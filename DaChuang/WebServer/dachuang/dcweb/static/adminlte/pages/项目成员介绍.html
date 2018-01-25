@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>项目成员介绍</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+  <!-- Content Wrapper. Contains page content -->
+ 
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        
+        任务日程管理+活动会议记录
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Widgets</li>
+      </ol>
+    </section>
+	
+	<section class="content">
+	<div class="row">
+     <!-- /.col -->
+        <div  class="col-md-6">
+          <div class="box box-success box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">任务日程管理</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              项目需求描述：
+			<p>  一、任务管理系统（面向老师，只要老师之间可以看到）</p> 
+ <p>仿造teambition，可以发布任务和日程，显示发起人和时间，具体内容，截止日期，
+重要程度（红绿色），类别，需要人数，分配任务可以指定分配的人，任务有截止日期。
+（任务：过期会标红，提醒任务尽快完成；日程（主要是开会）过期会消失） </p>
+
+<p>1》主页面：</p>
+<p>用表单的形式列出任务和日程（颜色不同），紧急程度不同，有不同颜色的标签（红绿黄）</p>
+<p>2》添加任务：</p>
+<p>时间，地点，事件，发起人，指派人，截止时间，优先级，是否需要其他人。</p>
+<p>3》添加日程：</p>
+<p>时间，地点，事件，发起人，对象。
+任务和日程可以编辑修改。
+任务完成打钩即可。任务日程看到点击收到，即表示接受任务。
+任务和日程不用太详细，说清楚事件即可。</p>
+
+<p>4》查看日历：</p>
+<p>有任务和日程，选中任务显示任务，选中日程显示日程，可以同时显示。
+颜色不同</p>
+<p>5》排序及筛选：</p>
+<p>按优先级，截止时间，创建时间，人员来查看任务和日程</p>
+<p>6》有历史消息记录，记录任务日程。</p>
+
+<p>注意：页面设计美观大方，操作简单实用</p>
+<p>分工：</p>
+<p>1、李迎春  把任务和日程加到日历表上</p>
+<p>2、张一帆  添加任务和日程</p>
+<p>3、刘粤浩  任务日程界面的美化</p>
+<p>4、卢鹏宇  任务和日程主界面</p>
+
+任务完成情况：
+界面基本功能实现
+用日历显示日程和任务功能未完成，只有一个静态页面
+
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div  class="col-md-6">
+          <div class="box box-warning box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">会议记录</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            <p>  项目需求：</p>
+	 <p>五、会议记录</p>
+ <p>记录会议的时间地点，参加人物（老师、学号列表、姓名），会议类别（学工组例会、年级大班会、学院会议、年级小班会、学生处会议、班委会、学校会议、党会议、团会议），标题，纪要，保存下来，方便查询。需要上传照片、文件。老师可以以看到所有会议记录，学生只可以看到自己参加的和创建的,可以按时间地点人物查询。</p>
+ <p>
+任务的难点有：分权限问题（学生可以看到自己创建的和参与的会议，老师可以看到所有会议），上传文件问题，页面做的好看一点，各个方面功能实现做到位,上传下载文件功能.</p>
+ <p>1》教师页面</p>
+ <p>2》创建会议事件</p>
+ <p>3》学生界面</p>
+   <p>4》上传下载文件</p>
+   
+ <p>要求：</p>
+  <p>复制张贴学号能出现相应的同学名字;
+学号文本输入框，以换行作为分隔符，
+如果出现其他字符或者空格就报错，出现一样的学号也报错	</p>
+	<p>  分工：</p>
+<p>1、李迎春 教师主页面</p>
+
+<p>2、张一帆 创建会议事件</p>
+
+<p>3、刘粤浩 学生界面</p>
+
+<p>4、卢鹏宇 上传下载功能</p>
+
+任务完成情况：
+
+复制张贴学号能出现相应的同学名字功能未实现
+
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+	  </div>
+		
+	</section>	
+    <!-- Main content -->
+    <section class="content">
+
+      <h2 class="page-header">项目成员介绍</h2>
+
+      <div class="row">
+        <div class="col-md-6">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+             <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">李迎春</h3>
+              <h5 class="widget-user-desc">项目负责人</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">班级：14011502<span class="pull-right badge bg-blue">1</span></a></li>
+                <li><a href="#">学号：2015303099<span class="pull-right badge bg-aqua">2</span></a></li>
+                <li><a href="#">QQ：2791958995 <span class="pull-right badge bg-green">3</span></a></li>
+                <li><a href="#">手机号：18829573007<span class="pull-right badge bg-red">4</span></a></li>
+			
+                <li><a href="#">湖南郴州人<span class="pull-right badge bg-aqua">6</span></a></li>
+                <li><a href="#">完成部分：会议记录页面和基本功能</a></li>
+                
+              </ul>
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-6">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">卢鹏宇</h3>
+              <h5 class="widget-user-desc">项目成员</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">班级：14011503<span class="pull-right badge bg-blue">1</span></a></li>
+                <li><a href="#">学号：2015303135<span class="pull-right badge bg-aqua">2</span></a></li>
+                <li><a href="#">QQ：729387121 <span class="pull-right badge bg-green">3</span></a></li>
+                <li><a href="#">手机号：18829572329<span class="pull-right badge bg-red">4</span></a></li>
+			
+                <li><a href="#">广东深圳人<span class="pull-right badge bg-aqua">6</span></a></li>
+                <li><a href="#">个人成绩：完成任务日程管理页面大部分功能 </a></li>
+               
+              </ul>
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+	   </div>
+        <!-- /.col -->
+	  <div class="row">
+        <div class="col-md-6">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center;">
+              <h3 class="widget-user-username">张一帆</h3>
+              <h5 class="widget-user-desc">项目成员</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user3-128x128.jpg" alt="User Avatar">
+            </div>
+           <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">班级：14011402<span class="pull-right badge bg-blue">1</span></a></li>
+                <li><a href="#">学号：2014303347<span class="pull-right badge bg-aqua">2</span></a></li>
+                <li><a href="#">QQ：925953877 <span class="pull-right badge bg-green">3</span></a></li>
+                <li><a href="#">手机号：15991735822<span class="pull-right badge bg-red">4</span></a></li>
+			
+                <li><a href="#">陕西铜川人<span class="pull-right badge bg-aqua">6</span></a></li>
+                <li><a href="#">完成部分：两个项目的美化和功能完善 </a></li>
+               
+              </ul>
+            </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+		  <div class="col-md-6">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center;">
+              <h3 class="widget-user-username">张粤浩</h3>
+              <h5 class="widget-user-desc">项目成员</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user3-128x128.jpg" alt="User Avatar">
+            </div>
+           <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">班级：14011408<span class="pull-right badge bg-blue">1</span></a></li>
+                <li><a href="#">学号：2014303511<span class="pull-right badge bg-aqua">2</span></a></li>
+                <li><a href="#">QQ：925953877 <span class="pull-right badge bg-green">3</span></a></li>
+                <li><a href="#">手机号：18049590819<span class="pull-right badge bg-red">4</span></a></li>
+			
+                <li><a href="#">陕西铜川人<span class="pull-right badge bg-aqua">6</span></a></li>
+                <li><a href="#">完成部分：两个项目的美化和功能完善 </a></li>
+               
+              </ul>
+            </div>
+              <!-- /.row -->
+            </div>
+          </div>
+        </div>
+        <!-- /.col -->
+      </section>
+      <!-- /.row -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 
+    </div>
+    <strong>Copyright &copy; 2014-2016 软件与微电子学院</a>.</strong> All rights
+    reserved.
+  </footer>
+
+
+
+
+<!-- jQuery 2.2.3 -->
+<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<!-- Slimscroll -->
+<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+</body>
+</html>

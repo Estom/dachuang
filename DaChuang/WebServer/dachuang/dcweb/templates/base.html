@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myblog 2017-3-21 </title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/pygments/github.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/css/bootstrap.min.css' %}">
+        {% block head %}{% endblock %}
+</head>
+
+<body>
+    <div id="header">
+        <div id="header-warp">
+            <a href="{% url 'index' %}" title="清橙资讯" id="logo"></a>
+            <ul id="header-nav">
+                <li><a href="{% url 'index' %}">全部</a></li>
+                <li><a href="{% url 'index_rec' %}">推荐</a></li>
+                <li><a href="{% url 'index_star' %}">关注</a></li> <!---->
+                <li><a href="{% url 'pub_list' %}">团体</a></li>
+                <li><a href="{% url 'data' %}">数据</a></li>
+                <li><a href="{% url 'person' %}">个人</a></li>
+                {% if request.user.is_authenticated %}
+                <li>
+                    <a   href="{% url 'logout' %}">登出</a>
+                </li>
+                <li>
+                    <a href="{% url 'person' %}"><i class="glyphicon glyphicon-user" aria-hidden="true">{{ request.user.username }}</i></a>
+                </li>
+
+                {% else %}
+                <li>
+                    <a   href="{% url 'login' %}">登录</a>
+                </li>
+                <li>
+                    <a   href="{% url 'reg' %}">注册</a>
+
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <div id="footer" class="noselect ">
+        <ul id="ft-links" class="container">
+            <li >
+                <a href="http://www.liaoxuefeng.com/" target="_blank">西北工业大学</a>
+                <div id="copyright">&copy; 西工大cybeTech小组</div>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="{% static 'blog/js/jquery.js' %}"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script type="text/javascript" src="{% static 'lib/js/bootstrap.min.js' %}"></script>
+
+    {% block js %}{% endblock %}
+
+</body>
+
+</html>

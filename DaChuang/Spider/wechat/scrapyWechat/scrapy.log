@@ -1,0 +1,2 @@
+2018-01-21 16:45:50 [scrapy.utils.log] INFO: Scrapy 1.4.0 started (bot: scrapyWechat)
+2018-01-21 16:45:50 [scrapy.utils.log] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'scrapyWechat.spiders', 'BOT_NAME': 'scrapyWechat', 'CONCURRENT_REQUESTS': 1, 'SPIDER_MODULES': ['scrapyWechat.spiders'], 'LOG_ENABLED': False, 'COOKIES_ENABLED': False, 'USER_AGENT': 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0', 'REDIRECT_ENABLED': False, 'LOG_FILE': 'scrapy.log', 'DOWNLOAD_DELAY': 1}

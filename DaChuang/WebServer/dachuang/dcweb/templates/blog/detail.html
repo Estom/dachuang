@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div id="bd" class="wrp clear-fix">
+            <div id="main">
+                <div id="detail-title">
+                    <ul id="single-nav">
+                        <li><a href="{% url 'index' %}">首页</a></li>
+                        <li>&gt;</li>
+                        <li>
+                            <ul class="post-categories">
+                                <li><a href="" title="" rel="category">{{ article.category }}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>&gt;</li>
+                        <li class="title-active"><a href="{% url 'detail' article.pk %}" rel="bookmark">{{ article.title }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="post-1951" class="post-1951 post type-post status-publish format-standard hentry category-meida-report">
+                    <div class="post-hd">
+                        <h1 class="title">{{ article.title }}</h1>
+                    </div>
+                    <div class="date-read">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <i class="icon-date"></i><span class="date">{{ article.date_publish|date:"Y年n月d日" }}</span>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <a href="{% url 'pub_detail' article.publisher.pk %}" class="more text-center"><span class="glyphicon glyphicon-user" aria-hidden="true">{{ article.publisher }}</span></a>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <!--<a class="btn btn-default" href="#" role="button">关注</a>-->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-bd">
+                        {{ article.content |safe }}
+                    </div>
+                    <div class="post-ft">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                                <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true">{{ article.click_count}}</span>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                {% if request.session.has_loved %}
+                                <span class="glyphicon glyphicon-heart" aria-hidden="true">{{ article.love_count }}</span>
+                                {% else %}
+                                <a href="love/?article_id={{article.id}}"> <span class="glyphicon glyphicon-heart" aria-hidden="true">{{ article.love_count }}</span></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

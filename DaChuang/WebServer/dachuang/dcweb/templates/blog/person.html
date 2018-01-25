@@ -1,0 +1,156 @@
+
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | ChartJS</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="{% static 'adminlte/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/AdminLTE.min.css' %}">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/skins/_all-skins.min.css' %}">
+
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'blog/css/pygments/github.css' %}">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    <section class="content">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+        <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="{{ user_normal.img.url }}" alt="User profile picture">
+
+              <h3 class="profile-username text-center">{{ request.user.username}}</h3>
+
+              <p class="text-muted text-center">{{ request.user.email}}</p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>性别</b> <a class="pull-right">{{ user_normal.sex }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>年龄</b> <a class="pull-right">{{ user_normal.age }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>电话</b> <a class="pull-right">{{ user_normal.phone }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>个性签名</b> <a class="pull-right">{{ user_normal.desc }}</a>
+                </li>
+              </ul>
+
+              <a href="{% url 'person_edit' %}" class="btn btn-primary btn-block"><b>修改</b></a>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          </div>
+      </div>
+
+    </section>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <h1 class="bg-primary">关注的公众号</h1>
+        </div>
+        {% for pub in pub_list %}
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="panel panel-default">
+                  <div class="panel-body">
+                      <img src="{{pub.img.url}}" class="img-responsive center-block">
+                  </div>
+                  <div class="panel-footer">
+                      <a href="{% url 'pub_detail' pub.pk %}" class="more text-center"><p class="text-center"> {{ pub.name }} </p></a>
+                  </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+  <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <h1 class="bg-primary">浏览记录</h1>
+        </div>
+           <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+
+
+            <div id="bd" class="wrp clear-fix">
+                <div id="main">
+                    {% for article in history_list %}
+                    <div class="post">
+                        <div class="post-hd">
+                            <div class="row">
+                                <div class="col-lg-9 col-md-9">
+                                    <h1 class="title"><a href="{% url 'detail' article.pk %}">{{ article.title }}</a>
+                                    </h1>
+                                </div>
+                                <div class="col-lg-3 col-md-3">
+                                    <h6 class="title text-right"> <span class="glyphicon glyphicon-user" aria-hidden="true">{{ article.category }}</span></h6>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="post-bd">
+                            <!-- 	<p><a href=""><img src="" alt=""></a></p> -->
+                            <p>{{ article.desc }}</p>
+                            <p>
+                                <a href="" class="more-link"></a>
+                            </p>
+                        </div>
+                        <div class="post-ft">
+                            <a href="{% url 'detail' article.id %}" class="more">阅读全文>></a>
+                            <i class="icon-date"></i>
+                            <span class="date">{{ article.date_publish|date:"Y年n月d日" }}</span>
+                            <span class="glyphicon glyphicon-user" aria-hidden="true">{{ article.publisher }}</span>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+        </div>
+  </div>
+</div>
+{% endblock  %}
+{% block js %}
+<!-- jQuery 2.2.3 -->
+<script src="{% static 'adminlte/plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{% static 'adminlte/bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- ChartJS 1.0.1 -->
+<script src="{% static 'adminlte/plugins/chartjs/Chart.min.js' %}"></script>
+<!-- FastClick -->
+<script src="{% static 'adminlte/plugins/fastclick/fastclick.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'adminlte/dist/js/app.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'adminlte/dist/js/demo.js' %}"></script>
+<!-- page script -->
+<script src="{% static 'adminlte/data.js' %}"></script>
+
+{% endblock %}
+
