@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+
+'''
+自动化 Automation
+'''
+
 import scrapy
 import sys
 from shoolnews.items import ShoolnewsItem

@@ -11,8 +11,11 @@ import scrapy
 class ShoolnewsItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    school = scrapy.Field()
-    title = scrapy.Field()
-    content = scrapy.Field()
-    url = scrapy.Field()
-    time = scrapy.Field()
+    school = scrapy.Field()#
+    title = scrapy.Field()#
+    content = scrapy.Field()#
+    url = scrapy.Field()# content_html
+    time = scrapy.Field()#
+    image_path = scrapy.Field()#
+    image_html = scrapy.Field()#
+
