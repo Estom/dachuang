@@ -7,9 +7,7 @@ Desktop.ini
 *.so
 *.egg
 *.egg-info
-dist
-build
 # file
-DaChuang/.idea/*
+/DaChuang/.idea/
 # My configureations
 *.xml
