@@ -2,12 +2,11 @@
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+DaChuang/.idea/
 # Python
 *.py[cod]
 *.so
 *.egg
 *.egg-info
-# file
-/DaChuang/.idea/
 # My configureations
 *.xml
