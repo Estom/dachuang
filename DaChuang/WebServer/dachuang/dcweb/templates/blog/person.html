@@ -46,7 +46,7 @@
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>性别</b> <a class="pull-right">{{ user_normal.sex }}</a>
+                  <b>性别</b> <a class="pull-right">{{ user_normal.get_sex_display }}</a>
                 </li>
                 <li class="list-group-item">
                   <b>年龄</b> <a class="pull-right">{{ user_normal.age }}</a>
@@ -71,7 +71,10 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-          <h1 class="bg-primary">关注的公众号</h1>
+            <div class="alert  alert-info" role="alert">
+
+                <h5 class="text-center">关注的公众号</h5>
+            </div>
         </div>
         {% for pub in pub_list %}
         <div class="col-lg-4 col-md-4 col-sm-4">
@@ -91,7 +94,9 @@
 <div class="container">
   <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-          <h1 class="bg-primary">浏览记录</h1>
+            <div class="alert  alert-info" role="alert">
+                <h5 class="text-center">浏览记录</h5>
+            </div>
         </div>
            <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
 
