@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'dcserver',
         'USER': 'root',
         'PASSWORD': 'ykl123',
-        'HOST': '127.0.0.1',
+        'HOST': '111.230.181.121',
         'PORT': '3306',
     }
 }

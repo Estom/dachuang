@@ -450,7 +450,8 @@ class PubDetailView(ListView): # index article_list 云标签
 
     def get_queryset(self):
         article_list = Article.objects.filter(publisher=self.kwargs['pub_id'])
-        self.article_num += 1
+        for article in article_list:
+            self.article_num += 1
         # for article in article_list:
         #     article.body = markdown2.markdown(article.body, extras=['fenced-code-blocks'], )
         return article_list

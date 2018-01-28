@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+
+'''
+电子信息 Electronics and Information
+'''
+
 import scrapy
 import sys
 from shoolnews.items import ShoolnewsItem
-
 
 class ElectricitySpider(scrapy.Spider):
     name = 'electricity'
@@ -15,7 +19,7 @@ class ElectricitySpider(scrapy.Spider):
         # 不过python真的精简。200多行的代码，看了一下别人的规范，不到五十行就能实现了
         reload(sys)
         sys.setdefaultencoding('utf-8')
-        #通过response解析出每一条需要查看
+        #通过response解item['school']析出每一条需要查看
         print 'ykl'
         items = []
         list = response.xpath('/html/body/table[4]/tbody/tr/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tr')

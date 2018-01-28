@@ -78,7 +78,7 @@ embed {
 }
 
 #header #header-warp #logo {
-    background: url('../img/logo-django.svg') no-repeat;
+    background: url('../img/logo.jpg') no-repeat;
     width: 152px;
     height: 37px;
     float: left;
