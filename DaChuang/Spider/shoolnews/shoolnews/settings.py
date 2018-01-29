@@ -21,6 +21,15 @@ DBKWARGS = {
     'host':'localhost',
     'charset':'utf8',
 }
+#
+# DBKWARGS = {
+#     'db':'dcspider',
+#     'user':'root',
+#     'passwd':'ykl123',
+#     'host':'111.230.181.121',
+#     'charset':'utf8',
+# }
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'shoolnews (+http://www.yourdomain.com)'
 
@@ -33,7 +42,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 15
+DOWNLOAD_DELAY = 12
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -68,8 +77,11 @@ COOKIES_ENABLED = False
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'shoolnews.pipelines.ShoolnewsPipeline': 300,
-    'shoolnews.pipelines.ImageShoolnewsPipeline':300,
+    'shoolnews.pipelines.ImageShoolnewsPipeline':200,
 }
+#分配给每个类的整型值，确定了他们运行的顺序，item按数字从低到高的顺序，通过pipeline，
+# 通常将这些数字定义在0-1000范围内（0-1000随意设置，数值越低，组件的优先级越高）
+
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
