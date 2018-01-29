@@ -25,7 +25,8 @@ SECRET_KEY = 'k^or7lyz+skq#gcchebv*k4+-obu9=*brv!8t%p60m+1kyk2ha'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['111.230.181.121',
+        'www.brainnews.club',]
 
 
 # Application definition
