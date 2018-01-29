@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webpage>
+	<register>
+		<username></username>
+		<email></email>
+		<password></password>
+	</register>
+	<login>
+		<login_url></login_url>
+	</login>
+</webpage>

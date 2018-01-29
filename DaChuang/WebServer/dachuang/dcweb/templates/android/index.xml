@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	{% load paginate_tags %}
+	{% paginate article_list 5 %}
+	<article_list>
+		{% for article in article_list %}
+		<article>
+			<title>{{ article.title }}</title>
+			<cate>{{ article.category }}</cate>
+			<desc>{{ article.desc }}</desc>
+			<date>{{ article.date_publish|date:"Y年n月d日" }}</date>
+			<publisher>{{ article.publisher }}</publisher>
+			<url>{% url 'app_detail' article.id %}</url>
+		</article>
+		{% endfor %}
+	</article_list>
+{% include 'android/page.xml' %}
+
+	<category_list>
+		{% for category in category_list %}
+		<category>
+			<category_name>{{ category.name }}</category_name>
+			<category_url>{% url 'app_category' category.pk %}</category_url>
+		</category>
+		{% endfor %}
+	</category_list>
+	<tag_list>
+		{% for tag in tag_list %}
+		<tag>
+			<tag_name>{{ tag.name }}</tag_name>
+			<tag_num>{{tag.number}}</tag_num>
+			<tag_url>{% url 'app_tag' tag.pk %}</tag_url>
+		</tag>
+		{% endfor %}
+	</tag_list>
+</index>

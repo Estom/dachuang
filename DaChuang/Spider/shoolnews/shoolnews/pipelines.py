@@ -13,8 +13,10 @@ class ShoolnewsPipeline(object):
         DBKWARGS = spider.settings.get('DBKWARGS')
         con = MySQLdb.connect(**DBKWARGS)
         cur = con.cursor()
-        sql = ("insert into shool_news(shool,title,time,content,content_html,image_path,image_html)values(%s,%s,%s,%s,%s,%s,%s)")
-        lis = (item['school'], item['title'], item['time'], item['content'], item['url'], item['image_path'], item['image_html'])
+        # source_id 直接由数字3插入表中
+        # sql = ("insert into article(title, author, content, image_path, posttime, url, source_id)values(%s,%s,%s,%s,%s,%s,%s)")
+        sql = ("insert into shool_news(title, author, content, image_path, posttime, url, source_id)values(%s,%s,%s,%s,%s,%s,%s)")
+        lis = (item['title'], item['author'], item['content'], item['image_path'], item['posttime'], item['url'], 3)
         try:
             cur.execute(sql, lis)
         except Exception, e:
@@ -31,14 +33,24 @@ class ShoolnewsPipeline(object):
 '''
 class ImageShoolnewsPipeline(object) :
     def process_item(self, item, spider):
-        print 'load image...'
-        imagehtml = item['image_html']
+        print '下载图片...', item['image_html']
 
-        path = item['image_path'].encode('gb2312')
+        if len(item['image_html']) :
+            path = item['image_path'].encode('GBK')
+            image = requests.get(item['image_html'])
+            f = open(path, 'wb')
+            f.write(image.content)
+            f.close()
 
-        image = requests.get(imagehtml)
-        f = open(path, 'wb')
-        f.write(image.content)
-        f.close()
+        else :
+            item['image_path'] = ''
+            item['image_html'] = ''
+
+            print 'image_path', item['image_path']
+            print 'image_html', item['image_html']
+
+
+        print '结束下载图片...', item['url']
+
 
         return item

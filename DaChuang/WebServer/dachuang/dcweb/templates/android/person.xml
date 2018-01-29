@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webpage>
+	<person>
+		<username>{{ request.user.username}}</username>
+		<email>{{ request.user.email}}</email>
+		<sex>{{ user_normal.get_sex_display }}</sex>
+		<age>{{ user_normal.age }}</age>
+		<phone>{{ user_normal.phone }}</phone>
+		<desc>{{ user_normal.desc }}</desc>
+	</person>
+	<person_edit>
+		<person_edit_url>{% url 'app_person_edit' %}</person_edit_url>
+	</person_edit>
+	<star_list>
+		{% for pub in pub_list %}
+		<publisher>
+			<publisher_img>{{pub.img.url}}</publisher_img>
+			<publisher_name>{{ pub.name }}</publisher_name>
+			<publisher_url>{% url 'app_pub_detail' pub.pk %}</publisher_url>
+		</publisher>
+		{% endfor %}
+	</star_list>
+	<history_list>
+		{% for article in article_list %}
+		<article>
+			<title>{{ article.title }}</title>
+			<cate>{{ article.category }}</cate>
+			<desc>{{ article.desc }}</desc>
+			<date>{{ article.date_publish|date:"Y年n月d日" }}</date>
+			<publisher>{{ article.publisher }}</publisher>
+			<url>{% url 'app_detail' article.id %}</url>
+		</article>
+		{% endfor %}
+	</history_list>
+</webpage>

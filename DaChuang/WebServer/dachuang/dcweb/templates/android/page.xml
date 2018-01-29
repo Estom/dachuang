@@ -1,0 +1,18 @@
+<page>
+    <previous>
+    {% if article_list.has_previous %}
+        ?page={{ article_list.previous_page_number }}
+    {% endif %}
+    </previous>
+    <current>
+        {{ current_page }}
+    </current>
+    <next>
+    {% if article_list.has_next %}
+        ?page={{ article_list.next_page_number }}
+    {% endif %}
+    </next>
+    <number>
+        {{ last_page }}
+    </number>
+</page>
