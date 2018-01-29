@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webpage>
+	<publisher>
+		<publisher_img>{{pub.img.url}}</publisher_img>
+		<publisher_name>{{ pub.name }}</publisher_name>
+		<publisher_url>{% url 'app_pub_detail' pub.pk %}</publisher_url>
+		<publisher_article_num>{{ article_num }}</publisher_article_num>
+		<stared>
+			{% if loged %}
+			{% if stared %}
+				True
+			{% else %}
+				False
+			{% endif %}
+			{% else %}
+				False
+			{% endif %}
+		</stared>
+	</publisher>
+	<article_list>
+		{% load paginate_tags %}
+		{% paginate article_list 5 %}
+		{% for article in article_list %}
+		<article>
+			<title>{{ article.title }}</title>
+			<cate>{{ article.category }}</cate>
+			<desc>{{ article.desc }}</desc>
+			<date>{{ article.date_publish|date:"Y年n月d日" }}</date>
+			<publisher>{{ article.publisher }}</publisher>
+			<url>{% url 'app_detail' article.id %}</url>
+		</article>
+		{% endfor %}
+		{% include 'android/page.xml' %}
+	</article_list>
+</webpage>

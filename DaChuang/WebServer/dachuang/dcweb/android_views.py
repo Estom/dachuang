@@ -21,7 +21,7 @@ from django.core.urlresolvers import reverse
 
 class IndexView(ListView): # index首页view
 
-    template_name = "blog/index.html"
+    template_name = "android/index.xml"
     context_object_name = "article_list"
 
     def get_queryset(self):
@@ -39,7 +39,7 @@ class IndexView(ListView): # index首页view
 
 class IndexRecView(ListView): # index首页所有文章
 
-    template_name = "blog/index.html"
+    template_name = "android/index.xml"
     context_object_name = "article_list"
 
     user = UserNormal()
@@ -49,7 +49,7 @@ class IndexRecView(ListView): # index首页所有文章
         self.user = request.user
         if not request.user.is_authenticated():
             print 11111
-            return redirect(reverse('login'))
+            return redirect(reverse('app_login'))
 
         self.object_list = self.get_queryset()
         allow_empty = self.get_allow_empty()
@@ -89,7 +89,7 @@ class IndexRecView(ListView): # index首页所有文章
         return super(IndexRecView, self).get_context_data(**kwargs)
 
 class IndexStarView(ListView): # index首页关注文章view
-    template_name = "blog/index.html"
+    template_name = "android/index.xml"
     context_object_name = "article_list"
 
     user = UserNormal()
@@ -97,7 +97,7 @@ class IndexStarView(ListView): # index首页关注文章view
     def get(self, request, *args, **kwargs):
         self.user = request.user
         if not request.user.is_authenticated():
-             return redirect(reverse('login'))
+             return redirect(reverse('app_login'))
 
         self.object_list = self.get_queryset()
         allow_empty = self.get_allow_empty()
@@ -161,7 +161,7 @@ def do_reg(request):
                 user.backend = 'django.contrib.auth.backends.ModelBackend' # 指定默认的登录验证方式
                 login(request, user)
                 print 'deng lu cheng gong'
-                return redirect(reverse('index'))
+                return redirect(reverse('app_index'))
             else:
                 return render(request, 'failure.html', {'reason': reg_form.errors})
         else:
@@ -169,7 +169,7 @@ def do_reg(request):
     except Exception as e:
         print e
         logger.error(e)
-    return render(request, 'reg.html', locals())
+    return render(request, 'android/register.xml', locals())
 
 # 登录
 def do_login(request):
@@ -186,14 +186,14 @@ def do_login(request):
                     login(request, user)
                 else:
                     return render(request, 'failure.html', {'reason': '登录验证失败'})
-                return redirect(reverse('index'))
+                return redirect(reverse('app_index'))
             else:
                 return render(request, 'failure.html', {'reason': login_form.errors})
         else:
             login_form = LoginForm()
     except Exception as e:
         logger.error(e)
-    return render(request, 'login.html', locals())
+    return render(request, 'android/login.xml', locals())
 
 # 注销
 def do_logout(request):
@@ -201,30 +201,30 @@ def do_logout(request):
         logout(request)
     except Exception as e:
         print e
-    return redirect(reverse('index'))
+    return redirect(reverse('app_index'))
 
 # 测试
-def test(request):
-    # 经过验证发现，这个玩意的确可以使用系统的用户session进行验证。
-    user = authenticate(username='estom', password='ykl123ykl123')
-    message={}
-    if user is not None:
-        message['message'] = 'there is user'
-        message['username'] = 'estom'
-    else:
-        message['message'] = 'there is no user login'
-
-    # 现在使用request中携带的User对象完成权限认证
-    if request.user.is_authenticated():
-        message['message'] = 'some user is have logined'
-        message['username'] = request.user.username
-    else:
-        message['message'] = 'no one is use the system'
-
-    # 现在验证登录功能的实现
-
-    # 现在验证登出系统的实现
-    return render(request,'error.html',message)
+# def test(request):
+#     # 经过验证发现，这个玩意的确可以使用系统的用户session进行验证。
+#     user = authenticate(username='estom', password='ykl123ykl123')
+#     message={}
+#     if user is not None:
+#         message['message'] = 'there is user'
+#         message['username'] = 'estom'
+#     else:
+#         message['message'] = 'there is no user login'
+#
+#     # 现在使用request中携带的User对象完成权限认证
+#     if request.user.is_authenticated():
+#         message['message'] = 'some user is have logined'
+#         message['username'] = request.user.username
+#     else:
+#         message['message'] = 'no one is use the system'
+#
+#     # 现在验证登录功能的实现
+#
+#     # 现在验证登出系统的实现
+#     return render(request,'error.html',message)
 
 
 def PersonView(request):
@@ -243,16 +243,17 @@ def PersonView(request):
 
         except Exception as e:
             print 'nothing in the database'
-            return render(request,'blog/person.html',{'user_normal': user_normal,'pub_list':pub_list,'history_list':history_list})
-        return render(request,'blog/person.html',{'user_normal': user_normal,'pub_list':pub_list,'history_list':history_list})
+            return render(request,'android/person.xml',{'user_normal': user_normal,'pub_list':pub_list,'history_list':history_list})
+        return render(request,'android/person.xml',{'user_normal': user_normal,'pub_list':pub_list,'history_list':history_list})
     else:
-        return redirect(reverse('login'))
+        return redirect(reverse('app_login'))
 
 # 更新数据的功能已经能够实现。唔觉得还是使用这个函数比较好。
 # 因为这个函数与模型直接对接，比自己配置表单验证要简单很多。
 def update_data(request):
+    print 'hello ykl this ongoing'
     if request.method == 'POST':
-
+        print 'ykl'
         form = PersonsForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             user_normal = UserNormal.objects.filter(user=request.user).delete()
@@ -261,10 +262,10 @@ def update_data(request):
             user_normal.save()
             print user_normal.img.url
 
-            return HttpResponseRedirect(reverse('person'),RequestContext(request))
+            return HttpResponseRedirect(reverse('app_person'),RequestContext(request))
     else:
         form = PersonsForm()
-    return render(request,'blog/person_form.html', {'form': form})
+    return render(request,'android/person_edit.xml', {'form': form})
 
 # 点赞
 def love(request):
@@ -274,32 +275,28 @@ def love(request):
         article.increase_loves()
         request.session['has_loved'+article_id] = True
         print 123
-    return redirect(reverse('detail',kwargs={'article_id':article_id}))
+    return redirect(reverse('app_detail',kwargs={'article_id':article_id}))
 
 # 关注
 def staring(reqeust):
     pub_id = reqeust.GET['pub_id']
     pub = Publisher.objects.get(id=pub_id)
     star = Star.objects.get_or_create(user=reqeust.user,publisher=pub)
-    return redirect(reverse('pub_detail',kwargs={'pub_id':pub_id}))
+    return redirect(reverse('app_pub_detail',kwargs={'pub_id':pub_id}))
 
 def staroff(reqeust):
     pub_id = reqeust.GET['pub_id']
     pub = Publisher.objects.get(id=pub_id)
     print 'this is off star'
     Star.objects.filter(user=reqeust.user,publisher=pub).delete()
-    return redirect(reverse('pub_detail',kwargs={'pub_id':pub_id}))
+    return redirect(reverse('app_pub_detail',kwargs={'pub_id':pub_id}))
 
 # 修改
 def PersonEdit(request):
     try:
         if request.method == 'POST':
-            print 123
             person_form = PersonForm(request.POST, request.FILES or None)
-            print 456
-            print 789
             if person_form.is_valid():
-                print 012
                 cd = person_form.cleaned_data
                 img_url = person_form['img']
                 # 注册
@@ -311,25 +308,22 @@ def PersonEdit(request):
                 user_normal.phone=person_form.cleaned_data["phone"]
                 user_normal.desc = person_form.cleaned_data["desc"]
                 user_normal.img=person_form.cleaned_data["img"]
-                print 333
                 user_normal.save()
-                print 222
-                return redirect(reverse('person'))
+                return redirect(reverse('app_person'))
             else:
                 return render(request, 'failure.html', {'reason': person_form.errors})
         else:
             person_form = PersonForm()
     except Exception as e:
-        print 111111
         print e
         logger.error(e)
-    return render(request, 'blog/person_edit.html', locals())
+    return render(request, 'android/person_edit.xml', locals())
 
 
 
 class ArticleDetailView(DetailView): # detail  view 文章详细
     model = Article
-    template_name = "blog/detail.html"
+    template_name = "android/detail.xml"
     context_object_name = "article"
 
     # pk_url_kwarg 用于接受一个来自URL的主键，然后会根据这个主键进行查询，我们在之前urlpatterns中已经捕获了article_id
@@ -359,7 +353,7 @@ class ArticleDetailView(DetailView): # detail  view 文章详细
 
 
 class CategoryView(ListView):  # index view 文章
-    template_name = "blog/index.html"
+    template_name = "android/index.xml"
     context_object_name = "article_list"
 
     def get_queryset(self):
@@ -376,7 +370,7 @@ class CategoryView(ListView):  # index view 文章
 
 
 class TagView(ListView): #index article_list 云标签
-    template_name = "blog/index.html"
+    template_name = "android/index.xml"
     context_object_name = "article_list"
 
     def get_queryset(self):
@@ -391,7 +385,7 @@ class TagView(ListView): #index article_list 云标签
 
 
 class PublishView(ListView): # 发布者列表
-    template_name = "blog/pub_list.html"
+    template_name = "android/pub_list.xml"
     context_object_name = "pub_list"
 
     def get_queryset(self):
@@ -408,7 +402,7 @@ class PublishView(ListView): # 发布者列表
 
 
 class PubDetailView(ListView): # index article_list 云标签
-    template_name = "blog/pub_detail.html"
+    template_name = "android/pub_detail.xml"
     context_object_name = "article_list"
     article_num = 0
     user = User()
@@ -464,7 +458,7 @@ class PubDetailView(ListView): # index article_list 云标签
 
 
 class DataView(ListView):
-    template_name = "blog/data.html"
+    template_name = "android/data.xml"
     context_object_name = "article"
     a = 1
     def get_queryset(self):
