@@ -4,12 +4,6 @@
 管理学院
 '''
 
-# -*- coding: utf-8 -*-
-
-'''
-电子信息 Electronics and Information
-'''
-
 import scrapy
 import sys
 import os
@@ -17,23 +11,22 @@ import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
-class ElectricitySpider(scrapy.Spider):
-    name = 'electricity'
-    allowed_domains = ['dianzi.nwpu.edu.cn']
+
+class ManagementSpider(scrapy.Spider):
+    name = 'management'
+    allowed_domains = ['som.nwpu.edu.cn']
     start_urls = [
-                    # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw.htm',
-                  'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/40.htm'
+                  # 'http://som.nwpu.edu.cn/xxfb/xyxw.htm',
+                  # 'http://som.nwpu.edu.cn/xxfb/xyxw/41.htm',
+                  'http://som.nwpu.edu.cn/xxfb/xyxw/40.htm'
                   ]
 
+    base_image_html = 'http://som.nwpu.edu.cn'  # 图片的基网址  # /__local/B/E4/8C/5523A744CCF08A289BBE3FCA210_2705AB4A_FE6C.jpg
 
-    base_article_html = "http://dianzi.nwpu.edu.cn/info/"
-    base_image_html = 'http://dianzi.nwpu.edu.cn'  # 图片的基网址  # /__local/B/E4/8C/5523A744CCF08A289BBE3FCA210_2705AB4A_FE6C.jpg
+    base_path = 'C:/Images/' + '管理学院'  # 图片保存到本地的基地址
 
-    base_path = 'C:/Images/' + '电子信息学院'  # 图片保存到本地的基地址
-    # 'C:/Images/电子信息学院'
+    # 建立文件夹'C:/Images/管理学院'
 
-    # 建立文件夹'C:/Images/电子信息学院'
-    # fileName = base_path
     if not os.path.exists(base_path.decode('utf-8')):
         os.makedirs(base_path.decode('utf-8'))
 
@@ -44,38 +37,42 @@ class ElectricitySpider(scrapy.Spider):
 
         print 'parse....'
 
-        list = response.xpath('//table[@class="winstyle56021"]/tr')
+        # for i in range(0, 20):  # 左闭右开区间
+        for i in range(1, 21):  # 左闭右开区间
+            data = response.xpath('//tr[@id="''line57742_' + str(i) + '"]')
 
-        for tr in list:
-            item = ShoolnewsItem()
+            for tr in data:
+                item = ShoolnewsItem()
 
-            item['author'] = '电子信息学院'
+                item['author'] = '管理学院'
 
-            # 发布时间
-            if len(tr.xpath('./td[3]/span/text()').extract()):
-                item['posttime'] = tr.xpath('./td[3]/span/text()').extract()[0].strip().encode('utf-8')
+                # 发布时间
+                if len(tr.xpath('./td[3]/span/text()').extract()):
+                    item['posttime'] = tr.xpath('./td[3]/span/text()').extract()[0].strip().encode('utf-8')
 
-                print 'posttime : ', item['posttime']
+                    print 'posttime : ', item['posttime']
 
-            # 文章标题 文章网址
-            if len(tr.xpath('./td[2]/a/text()').extract()):
-                data = tr.xpath('./td[2]/a')
-                title = data[0].xpath('string(.)').extract()[0].strip().encode('utf-8')
-                item['title'] = title
+                # 文章标题 文章网址
+                if len(tr.xpath('./td[2]/a/text()').extract()):
+                    data = tr.xpath('./td[2]/a')
+                    title = data[0].xpath('string(.)').extract()[0].strip().encode('utf-8')
+                    item['title'] = title
 
-                temp_url = tr.xpath('./td[2]/a/@href').extract()[0].encode('utf-8')
-                value = re.search(r'../../info/', temp_url)
-                # print value
-                if value:
-                    item['url'] = urljoin("http://dianzi.nwpu.edu.cn/info/1002/51024.htm", temp_url)
-                else:
-                    item['url'] = urljoin("http://dianzi.nwpu.edu.cn/info/", temp_url)
+                    temp_url = tr.xpath('./td[2]/a/@href').extract()[0].encode('utf-8')
+                    value = re.search(r'../../info/', temp_url)
+                    # print value
+                    if value:
+                        item['url'] = urljoin("http://som.nwpu.edu.cn/info/1002/51024.htm", temp_url)
+                    else:
+                        item['url'] = urljoin("http://som.nwpu.edu.cn/info/", temp_url)
 
-                print 'title : ', item['title']
-                print 'url : ', item['url']
 
-                yield scrapy.Request(item['url'], meta=item, dont_filter=True,
-                                     headers=self.settings.get('DEFAULT_REQUEST_HEADERS'), callback=self.parse_content)
+                    print 'title : ', item['title']
+                    print 'url : ', item['url']
+
+                    yield scrapy.Request(item['url'], meta=item, dont_filter=True,
+                         headers=self.settings.get('DEFAULT_REQUEST_HEADERS'), callback=self.parse_content)
+
 
     def parse_content(self, response):
 
