@@ -26,8 +26,7 @@ class AeronauticsSpider(scrapy.Spider):
                   'http://hangkong.nwpu.edu.cn/index/xydt/29.htm'
                   ]
 
-    base_image_html = 'http://hangkong.nwpu.edu.cn'  # 图片的基网址  # /__local/B/E4/8C/5523A744CCF08A289BBE3FCA210_2705AB4A_FE6C.jpg
-
+    base_image_html = 'http://hangkong.nwpu.edu.cn'
     base_path = 'C:/Images/' + '航空学院'  # 图片保存到本地的基地址
 
     # 建立文件夹'C:/Images/航空学院'

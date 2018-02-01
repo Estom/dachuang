@@ -14,6 +14,22 @@ BOT_NAME = 'npunews'
 SPIDER_MODULES = ['npunews.spiders']
 NEWSPIDER_MODULE = 'npunews.spiders'
 
+# DBKWARGS = {
+#     'db':'dcspider',
+#     'user':'root',
+#     'passwd':'12345',
+#     'host':'localhost',
+#     'charset':'utf8',
+# }
+
+DBKWARGS = {
+    'db':'dcspider',
+    'user':'root',
+    'passwd':'ykl123',
+    'host':'111.230.181.121',
+    'charset':'utf8',
+}
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'npunews (+http://www.yourdomain.com)'
@@ -32,7 +48,7 @@ ROBOTSTXT_OBEY = True
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 
-# DOWNLOAD_DELAY = 20
+DOWNLOAD_DELAY = 5
 
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
@@ -41,6 +57,13 @@ ROBOTSTXT_OBEY = True
 # Disable cookies (enabled by default)
 #禁止cookies,防止被ban
 COOKIES_ENABLED = False
+
+# Configure item pipelines
+# See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
+ITEM_PIPELINES = {
+    'npunews.pipelines.NpunewsPipeline': 300,
+    'npunews.pipelines.ImageNpunewsPipeline':200,
+}
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -69,28 +92,6 @@ COOKIES_ENABLED = False
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
-#Mysql数据库的配置信息
-# MYSQL_HOST = '127.0.0.1'
-# MYSQL_DBNAME = 'spiders'         #数据库名字，请修改
-# MYSQL_USER = 'root'             #数据库账号，请修改
-# MYSQL_PASSWD = '123456'         #数据库密码，请修改
-#
-# MYSQL_PORT = 3306               #数据库端口，在dbhelper中使用
-
-DBKWARGS = {
-    'db':'dcspider',
-    'user':'root',
-    'passwd':'ykl123',
-    'host':'localhost',
-    'charset':'utf8',
-}
-
-# Configure item pipelines
-# See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#     # 'npunews.pipelines.NpunewsPipeline': 300,  # 保存到mysql数据库
-#     'npunews.pipelines.MySQLNpunewsPipeline': 300,
-# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

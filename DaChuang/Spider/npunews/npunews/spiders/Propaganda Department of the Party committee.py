@@ -1,5 +1,7 @@
-#!/usr/bin/python
 # -*- coding:utf-8 -*-
+'''
+党委宣传部 Propaganda Department of the Party committee
+'''
 
 import scrapy
 from npunews.items import NpunewsItem
@@ -11,19 +13,11 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-
-class NpuNewsSpider(scrapy.Spider):
-    name = "npunews"
+class PartyCommitteeSpider(scrapy.Spider):
+    name = "PartyCommittee"
     allowed_domains = ["news.nwpu.edu.cn"]
     start_urls = [
-        # "http://news.nwpu.edu.cn/news/gdyw/365.htm", #333 工大新闻
-        # 'http://news.nwpu.edu.cn/news/gdyw/351.htm'
-
-        # 'http://news.nwpu.edu.cn/news/gdyw.htm', # 工大新闻
-        # 'http://news.nwpu.edu.cn/news/xyxw.htm', # 校园动态
-        # "http://news.nwpu.edu.cn/news/xyxw/454.htm", #415 校园动态
-
-        "http://news.nwpu.edu.cn/news/xyxw/450.htm",
+        'http://news.nwpu.edu.cn/xcb/gzdt.htm', # 党委宣传部
     ]
 
     base_image_html = 'http://news.nwpu.edu.cn'
@@ -37,10 +31,9 @@ class NpuNewsSpider(scrapy.Spider):
     def parse(self, response):
         print '开始parse....'
 
-
-        for i in range(3,23):# 左闭右开区间
-        # for i in range(0, 20):  # 左闭右开区间
-            data = response.xpath('//tr[@id="''line48019_'+ str(i) + '"]')
+        # for i in range(1,19):# 左闭右开区间
+        for i in range(0, 14):  # 左闭右开区间
+            data = response.xpath('//tr[@id="''line130167_'+ str(i) + '"]')
 
             for sel in data:
                 item = NpunewsItem()
@@ -59,12 +52,9 @@ class NpuNewsSpider(scrapy.Spider):
                 if len(sel.xpath('./td/a/@href').extract()) :
                     temp_url = sel.xpath('./td/a/@href').extract()[0].encode('utf-8')
 
-                    value2 = re.search(r'1002', temp_url)
-                    if value2:
-                        item['author'] = '工大要闻'
-                    value3 = re.search(r'1003', temp_url)
-                    if value3:
-                        item['author'] = '校园动态'
+                    value4 = re.search(r'1213', temp_url)
+                    if value4:
+                        item['author'] = '党委宣传部'
 
                     value = re.search(r'../../info/', temp_url)
                     if value:
@@ -76,7 +66,6 @@ class NpuNewsSpider(scrapy.Spider):
 
                     # 进一步爬取内容
                     yield scrapy.Request(item['url'], meta={'item':item},callback=self.parse_content)
-
 
         print '结束parse....'
 
