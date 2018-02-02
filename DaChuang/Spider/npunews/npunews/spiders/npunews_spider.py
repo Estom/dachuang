@@ -18,12 +18,13 @@ class NpuNewsSpider(scrapy.Spider):
     start_urls = [
         # "http://news.nwpu.edu.cn/news/gdyw/365.htm", #333 工大新闻
         # 'http://news.nwpu.edu.cn/news/gdyw/351.htm'
+        'http://news.nwpu.edu.cn/news/gdyw/317.htm',
 
         # 'http://news.nwpu.edu.cn/news/gdyw.htm', # 工大新闻
         # 'http://news.nwpu.edu.cn/news/xyxw.htm', # 校园动态
         # "http://news.nwpu.edu.cn/news/xyxw/454.htm", #415 校园动态
 
-        "http://news.nwpu.edu.cn/news/xyxw/450.htm",
+        # "http://news.nwpu.edu.cn/news/xyxw/450.htm",
     ]
 
     base_image_html = 'http://news.nwpu.edu.cn'
@@ -38,7 +39,7 @@ class NpuNewsSpider(scrapy.Spider):
         print '开始parse....'
 
 
-        for i in range(3,23):# 左闭右开区间
+        for i in range(35, 36): # 左闭右开区间
         # for i in range(0, 20):  # 左闭右开区间
             data = response.xpath('//tr[@id="''line48019_'+ str(i) + '"]')
 
