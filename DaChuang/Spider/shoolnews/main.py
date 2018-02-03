@@ -28,13 +28,23 @@ from scrapy import cmdline
 
 # cmdline.execute("scrapy crawl InternationalCollege".split()) #国际教育学院 # 2.1
 
+
+
 # cmdline.execute("scrapy crawl Software".split()) # 软件学院 # 2.2
 
 # cmdline.execute("scrapy crawl PowerandEnergy".split()) # 动力与能源学院 # 2.2
 
-cmdline.execute("scrapy crawl NaturalandAppliedSciences".split()) # 理学院 # 2.2
+# cmdline.execute("scrapy crawl NaturalandAppliedSciences".split()) # 理学院 # 2.2
 
 
+
+# cmdline.execute("scrapy crawl Administration".split()) # 教务处 # 2.3
+
+# cmdline.execute("scrapy crawl InternationalCooperationOffice".split()) # 国际合作处 # 2.3
+
+# cmdline.execute("scrapy crawl InternationalCooperationOfficeNotice".split()) # 国际合作处通知 # 2.3
+
+cmdline.execute("scrapy crawl Marxism".split()) # 马克思主义学院 # 2.3
 
 
 # 排版太乱 不想爬

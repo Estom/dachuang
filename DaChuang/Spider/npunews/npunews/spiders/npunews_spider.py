@@ -18,7 +18,9 @@ class NpuNewsSpider(scrapy.Spider):
     start_urls = [
         # "http://news.nwpu.edu.cn/news/gdyw/365.htm", #333 工大新闻
         # 'http://news.nwpu.edu.cn/news/gdyw/351.htm'
-        'http://news.nwpu.edu.cn/news/gdyw/317.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/317.htm',
+
+        'http://news.nwpu.edu.cn/news/xxgg.htm', # 学术讲座
 
         # 'http://news.nwpu.edu.cn/news/gdyw.htm', # 工大新闻
         # 'http://news.nwpu.edu.cn/news/xyxw.htm', # 校园动态
@@ -39,8 +41,8 @@ class NpuNewsSpider(scrapy.Spider):
         print '开始parse....'
 
 
-        for i in range(35, 36): # 左闭右开区间
-        # for i in range(0, 20):  # 左闭右开区间
+        # for i in range(35, 36): # 左闭右开区间
+        for i in range(0, 20):  # 左闭右开区间
             data = response.xpath('//tr[@id="''line48019_'+ str(i) + '"]')
 
             for sel in data:
@@ -63,8 +65,10 @@ class NpuNewsSpider(scrapy.Spider):
                     value2 = re.search(r'1002', temp_url)
                     if value2:
                         item['author'] = '工大要闻'
-                    value3 = re.search(r'1003', temp_url)
-                    if value3:
+                    # value3 = re.search(r'1003', temp_url)
+                    # if value3:
+                    #     item['author'] = '校园动态'
+                    else:
                         item['author'] = '校园动态'
 
                     value = re.search(r'../../info/', temp_url)
