@@ -150,20 +150,16 @@ def do_reg(request):
             print 444
             if reg_form.is_valid():
                 # 注册
-                print 555
                 user = User.objects.create(username=reg_form.cleaned_data["username"],
                                     email=reg_form.cleaned_data["email"],
                                     password=make_password(reg_form.cleaned_data["password"]),)
-                print 333
                 user.save()
-                print 222
                 # 登录
                 user.backend = 'django.contrib.auth.backends.ModelBackend' # 指定默认的登录验证方式
                 login(request, user)
-                print 'deng lu cheng gong'
                 return redirect(reverse('app_index'))
             else:
-                return render(request, 'failure.html', {'reason': reg_form.errors})
+                return render(request, 'android/form_failure.html', {'reason': reg_form.errors})
         else:
             reg_form = RegForm()
     except Exception as e:
@@ -185,10 +181,10 @@ def do_login(request):
                     user.backend = 'django.contrib.auth.backends.ModelBackend' # 指定默认的登录验证方式
                     login(request, user)
                 else:
-                    return render(request, 'failure.html', {'reason': '登录验证失败'})
+                    return render(request, 'android/form_failure.xml', {'reason': '登录验证失败'})
                 return redirect(reverse('app_index'))
             else:
-                return render(request, 'failure.html', {'reason': login_form.errors})
+                return render(request, 'android/form_failure.xml', {'reason': login_form.errors})
         else:
             login_form = LoginForm()
     except Exception as e:
@@ -251,7 +247,6 @@ def PersonView(request):
 # 更新数据的功能已经能够实现。唔觉得还是使用这个函数比较好。
 # 因为这个函数与模型直接对接，比自己配置表单验证要简单很多。
 def update_data(request):
-    print 'hello ykl this ongoing'
     if request.method == 'POST':
         print 'ykl'
         form = PersonsForm(request.POST or None, request.FILES or None)
@@ -311,7 +306,7 @@ def PersonEdit(request):
                 user_normal.save()
                 return redirect(reverse('app_person'))
             else:
-                return render(request, 'failure.html', {'reason': person_form.errors})
+                return render(request, 'android/form_failure.html', {'reason': person_form.errors})
         else:
             person_form = PersonForm()
     except Exception as e:

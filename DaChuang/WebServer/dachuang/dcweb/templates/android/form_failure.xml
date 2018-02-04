@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webpage>
+    <!--如果表单提交失败，则跳转到这个页面-->
+    <form_status>failure</form_status>
+    <error>{{ reason }}</error>
+</webpage>
