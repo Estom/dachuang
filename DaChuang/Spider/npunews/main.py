@@ -1,5 +1,6 @@
+
 from scrapy import cmdline
-import scrapy
 
 cmdline.execute("scrapy crawl npunews".split())
 
+# cmdline.execute("scrapy crawl PartyCommittee".split())

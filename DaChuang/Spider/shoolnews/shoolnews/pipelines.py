@@ -14,8 +14,9 @@ class ShoolnewsPipeline(object):
         con = MySQLdb.connect(**DBKWARGS)
         cur = con.cursor()
         # source_id 直接由数字3插入表中
-        # sql = ("insert into article(title, author, content, image_path, posttime, url, source_id)values(%s,%s,%s,%s,%s,%s,%s)")
-        sql = ("insert into shool_news(title, author, content, image_path, posttime, url, source_id)values(%s,%s,%s,%s,%s,%s,%s)")
+
+        sql = ("insert into article(title, author, content, image_path, posttime, url, source_id)values(%s,%s,%s,%s,%s,%s,%s)")
+        # sql = ("insert into shool_news(title, author, content, image_path, posttime, url, source_id)values(%s,%s,%s,%s,%s,%s,%s)")
         lis = (item['title'], item['author'], item['content'], item['image_path'], item['posttime'], item['url'], 3)
         try:
             cur.execute(sql, lis)
@@ -33,23 +34,31 @@ class ShoolnewsPipeline(object):
 '''
 class ImageShoolnewsPipeline(object) :
     def process_item(self, item, spider):
-        print '下载图片...', item['image_html']
+        print '开始下载图片...', item['image_html']
 
         if len(item['image_html']) :
-            path = item['image_path'].encode('GBK')
-            image = requests.get(item['image_html'])
-            f = open(path, 'wb')
-            f.write(image.content)
-            f.close()
+
+            try:
+                path = item['image_path'].encode('GBK')
+                image = requests.get(item['image_html'])
+                f = open(path, 'wb')
+                f.write(image.content)
+            except IOError:
+                print "Error: 图片下载失败，清空"
+                item['image_path'] = ''
+                item['image_html'] = ''
+            else:
+                print "图片下载成功"
+                f.close()
+
 
         else :
             item['image_path'] = ''
             item['image_html'] = ''
 
-            print 'image_path', item['image_path']
-            print 'image_html', item['image_html']
 
-
+        print 'image_path', item['image_path']
+        print 'image_html', item['image_html']
         print '结束下载图片...', item['url']
 
 

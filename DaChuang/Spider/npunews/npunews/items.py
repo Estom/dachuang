@@ -10,11 +10,11 @@ import scrapy
 
 class NpunewsItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    title = scrapy.Field()  # 标题
-    url = scrapy.Field()  # 链接
-    #desc = scrapy.Field()  # 简述
-    content = scrapy.Field(); #内容
-    posttime = scrapy.Field()  # 发布时间
-    author = scrapy.Field() # 作者
-    source = scrapy.Field() # 来源
+    title = scrapy.Field()  #
+    author = scrapy.Field()  #
+    content = scrapy.Field()  #
+    image_path = scrapy.Field()  #
+    image_html = scrapy.Field()  #
+    posttime = scrapy.Field()  #
+    url = scrapy.Field()  #
+    # source_id = scrapy.Field()

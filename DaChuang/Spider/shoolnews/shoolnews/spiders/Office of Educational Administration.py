@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-理学院 school of Natural and Applied Sciences
+教务处 Office of Educational Administration
 '''
 
 import scrapy
@@ -11,19 +11,17 @@ import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
-class NaturalandAppliedSciencesSpider(scrapy.Spider):
-    name = 'NaturalandAppliedSciences'
-    allowed_domains = ['lxy.nwpu.edu.cn']
+class AdministrationSpider(scrapy.Spider):
+    name = 'Administration'
+    allowed_domains = ['jiaowu.nwpu.edu.cn']
 
     start_urls = [
-        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt.htm',
-        'http://lxy.nwpu.edu.cn/new/index/xwkx/82.htm',
-        # 'http://lxy.nwpu.edu.cn/new/index/xwkx/81.htm',
+        'http://jiaowu.nwpu.edu.cn/index/tzgg.htm',
     ]
 
-    base_image_html = 'http://lxy.nwpu.edu.cn'
+    base_image_html = 'http://jiaowu.nwpu.edu.cn'
 
-    base_path = 'C:/Images/' + '理学院'
+    base_path = 'C:/Images/' + '教务处'
 
     if not os.path.exists(base_path.decode('utf-8')):
         os.makedirs(base_path.decode('utf-8'))
@@ -33,48 +31,43 @@ class NaturalandAppliedSciencesSpider(scrapy.Spider):
         sys.setdefaultencoding('utf-8')
 
         print 'parse....'
-        list = response.xpath('//ul[@class="new-ul"]/li')
+        list = response.xpath('//div[@class="fywzlb"]/ul/li')
 
         for tr in list:  # 左闭右开区间
             item = ShoolnewsItem()
 
-            item['author'] = '理学院'
+            item['author'] = '教务处'
 
             # 发布时间
-            if len(tr.xpath('./div').extract()):
-                h1 = tr.xpath('./div/h3/text()').extract()[0].encode(
-                    'utf-8')  # 日
-                p = tr.xpath('./div/p/text()').extract()[0].encode(
-                    'utf-8')  # 年.月
-                date = p + '.' + h1  # 形如 2017-8-7
-                item['posttime'] = date
-
+            if len(tr.xpath('./span[2]').extract()):
+                item['posttime'] = tr.xpath('./span[2]/text()').extract()[0].encode(
+                    'utf-8')
                 print 'posttime : ', item['posttime']
 
             # 文章标题 文章网址
-            if len(tr.xpath('./div//a/text()').extract()):
-                data = tr.xpath('./div//a')
+            if len(tr.xpath('./span[1]/a/text()').extract()):
+                data = tr.xpath('./span[1]/a')
                 title = data[0].xpath('string(.)').extract()[0].strip().encode(
                     'utf-8')
                 item['title'] = title
 
-                temp_url = tr.xpath('./div//a/@href').extract()[0].encode(
+                temp_url = tr.xpath('./span[1]/a/@href').extract()[0].encode(
                     'utf-8')
 
                 value2 = re.search(r'http://news.nwpu.', temp_url)
+                print value2
                 if value2:
                     pass
                 else:
-                    value = re.search(r'../../../info/', temp_url)
+                    value = re.search(r'../../info/', temp_url)
                     # print value
                     if value:
-                        temp_url = temp_url[3:]
+                        item['url'] = urljoin(
+                            "http://jiaowu.nwpu.edu.cn/info/1002/51024.htm",
+                            temp_url)
                     else:
-                        pass
-
-                    item['url'] = urljoin(
-                        "http://lxy.nwpu.edu.cn/info/1002/51024.htm",
-                        temp_url)
+                        item['url'] = urljoin("http://jiaowu.nwpu.edu.cn/info/",
+                                              temp_url)
                     print 'title : ', item['title']
                     print 'url : ', item['url']
 
