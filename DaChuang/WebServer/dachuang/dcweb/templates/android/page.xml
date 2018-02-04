@@ -1,17 +1,21 @@
 <page>
+    <!--前一页的相对链接-->
     <previous>
     {% if article_list.has_previous %}
         ?page={{ article_list.previous_page_number }}
     {% endif %}
     </previous>
+    <!--当前页码-->
     <current>
         {{ current_page }}
     </current>
+    <!--后一页的相对链接-->
     <next>
     {% if article_list.has_next %}
         ?page={{ article_list.next_page_number }}
     {% endif %}
     </next>
+    <!--总页数-->
     <number>
         {{ last_page }}
     </number>
