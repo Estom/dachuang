@@ -1,24 +1,9 @@
 # encoding=utf-8
 
-##############数据表选择开始##############
-table_name = 'nwpu_news'
-# table_name = 'shool_news'
-# table_name = 'wechat_article'
-##############数据表选择结束#########
-
-##############数据表参数配置################
-if (table_name == 'wechat_article'):
-    content_name = 'content_real'
-    abstrack_name = 'abstract_auto'
-else:
-    content_name = 'content'
-    abstrack_name = 'abstract'
-###############数据表配置结束############################
-
 import jieba
 from networkx import from_scipy_sparse_matrix , pagerank
 from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
-import MySQLdb
+import SQLconfig
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -84,33 +69,16 @@ def get_abstract(content, size=3):
     indices = map(lambda x: x[0], tops)[:size]
     return map(lambda idx: docs[idx], indices)
 
-# 连接数据库
-conn = MySQLdb.connect(
-    host = 'localhost',
-    port = 3306,
-    user = 'root',
-    passwd = 'ykl123',
-    db = 'dcdata',
-    charset = 'utf8'
-)
-
-cur = conn.cursor()
-cur.execute("SET NAMES utf8")
-aa = cur.execute("select id , %s from %s" % (content_name, table_name))
-
-contentlist = cur.fetchmany(aa)
-for ii in contentlist:
-    s = ii[1]
-    if len(s) < 2:
+i = 0
+while True:
+    info = SQLconfig.sql0.select('article', ['id', 'content'], None, 1, i)
+    i += 1
+    if len(info) == 0:
+        break
+    if len(info[1]) < 2:
         continue
-    s1 = get_abstract(s)
-    sql = 'update %s set %s = "%s" where id = %d' % (table_name, abstrack_name, s1[0], ii[0])
-    try:
-        cur.execute(sql)
-        conn.commit()
-        print sql
-    except:
-        conn.rollback()
-
-conn.close()
-
+    s = get_abstract(info[1])
+    s[0] = s[0].strip('\r\n')
+    dic = {'desc': s[0]}
+    SQLconfig.sql0.update('article', dic, 'id=%d' % info[0])
+    print '%d : ' % info[0] + s[0]
