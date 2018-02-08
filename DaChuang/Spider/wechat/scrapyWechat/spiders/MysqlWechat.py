@@ -7,7 +7,6 @@
 import MySQLdb
 
 
-
 class mysqlwechat(object):
     host = "localhost"
     dbname = "dcspider"
@@ -15,11 +14,10 @@ class mysqlwechat(object):
     password = "ykl123"
     def getUser(self):
         print "get list of user"
-        con = MySQLdb.connect("localhost", "root", "ykl123","dcspider")
+        con = MySQLdb.connect(self.host, self.username,self.password,self.dbname)
         cur = con.cursor()
 
         wechatList = []
-
         sql = "SELECT wechat_id FROM wechat_user"
         try:
             cur.execute(sql)

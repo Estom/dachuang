@@ -2,7 +2,7 @@
 <webpage>
 	<!--注册需要填写的信息-->
 	<register>
-		<crsf></crsf>
+		<crsf>{% csrf_token %}</crsf>
 		<username></username>
 		<email></email>
 		<password></password>
