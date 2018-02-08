@@ -68,11 +68,11 @@ class Article(models.Model):
     click_count = models.IntegerField(default=0, verbose_name=u'点击次数')
 
     date_publish = models.DateTimeField(auto_now_add=True, verbose_name=u'发布时间')
+    tag_mark = models.BooleanField(verbose_name=u'标签标记',default=False,)
 
     publisher = models.ForeignKey(Publisher, verbose_name=u'发布者')
     category = models.ForeignKey(Category, blank=True, null=True, verbose_name=u'分类')
     tag = models.ManyToManyField(Tag, verbose_name=u'标签',blank=True)
-
     class Meta:
         verbose_name = u'文章'
         verbose_name_plural = verbose_name

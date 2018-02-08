@@ -18,7 +18,7 @@ DBKWARGS = {
     'db':'dcspider',
     'user':'root',
     'passwd':'ykl123',
-    'host':'localhost',
+    'host':'111.230.181.121',
     'charset':'utf8',
 }
 

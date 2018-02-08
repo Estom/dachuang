@@ -12,8 +12,8 @@ class ScrapywechatPipeline(object):
         DBKWARGS = spider.settings.get('DBKWARGS')
         con = MySQLdb.connect(**DBKWARGS)
         cur = con.cursor()
-        sql = ("insert into wechat_article(title,author,abstract,content_url,cover,datetime,content_real,body_html)values(%s,%s,%s,%s,%s,%s,%s,%s)")
-        lis = (item['title'], item['author'], item['abstract'], item['content_url'], item['cover'], item['datetime'], item['content_real'], item['body_html'])
+        sql = ("insert into article(title,author,`desc`,content,posttime,image_path,url,source_id)values(%s,%s,%s,%s,%s,%s,%s,%s)")
+        lis = (item['title'], item['author'], item['desc'], item['content'], item['posttime'], item['image_path'], item['url'], item['source_id'])
         try:
             cur.execute(sql, lis)
         except Exception, e:
