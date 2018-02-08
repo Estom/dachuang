@@ -47,7 +47,7 @@ class Source(models.Model):
 class Publisher(models.Model):
     name = models.CharField(max_length=300,verbose_name=u'发布者名称')
     wechat_id = models.CharField(max_length=300,verbose_name=u'微信号',default='nothing' )
-    img = models.ImageField(upload_to='pub',verbose_name=u'图片路径',blank=True,null=True)
+    img = models.ImageField(upload_to='pub',verbose_name=u'图片路径',blank=True,null=True,default='1.jpg')
     source = models.ForeignKey(Source,verbose_name=u'分类')
     intro = models.TextField(verbose_name=u'简介')
     class Meta:
