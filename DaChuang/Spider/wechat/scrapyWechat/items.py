@@ -11,11 +11,11 @@ import scrapy
 class ScrapywechatItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    abstract = scrapy.Field()
-    author = scrapy.Field()
-    content_url = scrapy.Field()
-    cover = scrapy.Field()
-    datetime = scrapy.Field()
     title = scrapy.Field()
-    content_real = scrapy.Field()
-    body_html = scrapy.Field()
+    author = scrapy.Field()
+    desc = scrapy.Field()
+    content = scrapy.Field()
+    image_path = scrapy.Field()
+    posttime = scrapy.Field()
+    url = scrapy.Field()
+    source_id= scrapy.Field()
