@@ -32,12 +32,8 @@ dicCategory = {u'学科竞赛': 1, u'学术信息': 2, u'工大新闻': 3, u'招
 # 类别前后改变对应字典
 dicClassToCategory = {u'学科竞赛': 1, u'科研信息': 2, u'行政信息': 3, u'招生信息': 3, u'招聘就业': 7, u'校园活动': 8, u'升学留学': 11, u'生活娱乐': 12}
 
-# 来源对应字典
-dicPublisher = {}
-i = -1
-while True:
-    i += 1
-    info = sql1.select('dcweb_publisher', ['id', 'name'], None, 1, i)
-    if len(info) == 0:
-        break
-    dicPublisher.update({'%s' % info[1]: '%d' % info[0]})
+# ###################基础常量###################################
+wordbag_path = "train_set.dat"
+stopword_path = "hlt_stop_words.txt"
+classification_path = "classification_NB.dat"
+###############################################################

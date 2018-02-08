@@ -10,9 +10,15 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-a = SQLconfig.sql0._getCount('article')
-for i in range(a):
-    info = SQLconfig.sql0.select('article', ['title', 'content', 'posttime', 'image_path'], None, 1, i)
-    dicDate = {'title': info[0], 'content': info[1], 'date_publish': info[2], 'love_count': 0, 'click_count': 0, 'img': info[3]}
+i = -1
+while True:
+    i += 1
+    info = SQLconfig.sql0.select('article', ['title', 'author', 'article.desc', 'content', 'image_path', 'posttime',
+                                             'category'], None, 1, i)
+    if len(info) == 0:
+        break
+    dicDate = {'title': info[0], 'dcweb_article.desc': info[2], 'content': info[3], 'love_count': 0, 'click_count': 0,
+               'date_publish': info[5], 'category_id': info[6], 'publisher_id': SQLconfig.dicPublisher.get(info[1]),
+               'img': info[4], }
     SQLconfig.sql1.add('dcweb_article', dicDate)
     print i

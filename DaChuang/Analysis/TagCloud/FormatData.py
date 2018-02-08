@@ -13,12 +13,6 @@ from sklearn.datasets.base import Bunch
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB  # 导入多项式贝叶斯算法
 
-# ###################基础常量###################################
-wordbag_path = "./train_word_bag_my/train_set_my.dat"
-stopword_path = "./train_word_bag_my/hlt_stop_words.txt"
-classification_path = "./train_word_bag_my/classification_NB.dat"
-###############################################################
-
 # 函数名称：CutText
 # 功能：分词
 # 输入：字符串
