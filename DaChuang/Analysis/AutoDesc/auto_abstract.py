@@ -69,16 +69,22 @@ def get_abstract(content, size=3):
     indices = map(lambda x: x[0], tops)[:size]
     return map(lambda idx: docs[idx], indices)
 
-i = 0
+i = -1
 while True:
-    info = SQLconfig.sql0.select('article', ['id', 'content'], None, 1, i)
     i += 1
-    if len(info) == 0:
+    a = SQLconfig.sql0.select('article', ['article.desc'], None, 1, i)
+    if len(a) == 0:
         break
-    if len(info[1]) < 2:
-        continue
-    s = get_abstract(info[1])
-    s[0] = s[0].strip('\r\n')
-    dic = {'desc': s[0]}
-    SQLconfig.sql0.update('article', dic, 'id=%d' % info[0])
-    print '%d : ' % info[0] + s[0]
+    else:
+        if a[0] is not None:
+            print "跳过第%d条数据" % i
+        else:
+            info = SQLconfig.sql0.select('article', ['id', 'content'], None, 1, i)
+            if len(info[1]) < 2:
+                continue
+            s = get_abstract(info[1])
+            s[0] = s[0].strip('\r\n')
+            s[0] = s[0].strip(' ')
+            dic = {'article.desc': s[0]}
+            SQLconfig.sql0.update('article', dic, 'id=%d' % info[0])
+            print '%d : ' % info[0] + s[0]
