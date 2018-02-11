@@ -15,8 +15,8 @@ class ShoolnewsPipeline(object):
         cur = con.cursor()
         # source_id 直接由数字3插入表中
 
-        sql = ("insert into article(title, author, content, image_path, posttime, url, source_id)values(%s,%s,%s,%s,%s,%s,%s)")
-        # sql = ("insert into shool_news(title, author, content, image_path, posttime, url, source_id)values(%s,%s,%s,%s,%s,%s,%s)")
+        # sql = ("insert into article(title, author, content, image_path, posttime, url, source_id)values(%s,%s,%s,%s,%s,%s,%s)")
+        sql = ("insert into shool_news(title, author, content, image_path, posttime, url, source_id)values(%s,%s,%s,%s,%s,%s,%s)")
         lis = (item['title'], item['author'], item['content'], item['image_path'], item['posttime'], item['url'], 3)
         try:
             cur.execute(sql, lis)

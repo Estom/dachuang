@@ -4,6 +4,7 @@ import wechatsogou
 from scrapyWechat.items import ScrapywechatItem
 from MysqlWechat import mysqlwechat
 import sys
+import os
 import time
 from datetime import datetime
 """
@@ -39,27 +40,47 @@ class ContentspiderSpider(scrapy.Spider):
 
         NWPUWechatIDList = user.getUser()
 
+        # print 'NWPUWechatIDList :', NWPUWechatIDList
+
         ws_api = wechatsogou.WechatSogouAPI(captcha_break_time=2,)
+
         for author,wechat_id in NWPUWechatIDList:
+            print 'wechat_id:',wechat_id
+            print 'author:',author
+
+            base_path = 'C:/Images/' + author  # 图片保存到本地的基地址
+
+
+            if not os.path.exists(base_path.decode('utf-8')):
+                os.makedirs(base_path.decode('utf-8'))
+
             try:
-                time.sleep(3)
-                print(wechat_id)
-                result_from_history = ws_api.get_gzh_artilce_by_history(wechat_id)
-                print wechat_id
+                time.sleep(6)
+                result_from_history = ws_api.get_gzh_article_by_history(wechat_id)
                 article_result_list = result_from_history.get("article")
+
                 item = ScrapywechatItem()
                 for article_result in article_result_list:
                     item["title"] = article_result.get("title")
                     item["url"] = article_result.get("content_url")
                     item["desc"] = article_result.get("abstract")
                     item["author"] = author
-                    item["posttime"]=datetime.fromtimestamp(article_result.get("datetime"))
+                    item["posttime"] = datetime.fromtimestamp(article_result.get("datetime"))
                     # item["posttime"] = article_result.get("datetime")
-                    item["image_path"] = article_result.get("cover")
-                    item["source_id"]=1
+                    item["image_html"] = article_result.get("cover")
+                    item["image_path"] = base_path + '/' + item['title'] + '.jpg'
+                    item["source_id"] = 1
+
+                    print 'title : ', item["title"]
+                    print 'author : ', item["author"]
+                    print 'posttime : ', item["posttime"]
+                    print 'url : ', item["url"]
+                    print 'image_html : ', item["image_html"]
+                    print 'image_path : ', item["image_path"]
                     # 划了近乎两天时间，来处理http的报文头，最后发现配置错误
                     req = scrapy.Request(article_result.get("content_url"), meta=item, dont_filter=True, headers=self.settings.get('DEFAULT_REQUEST_HEADERS'))
                     reqs.append(req)
+                    print '-------'
             except Exception,e:
                 print 'error occur when get the url of wechat publisher'
                 print e

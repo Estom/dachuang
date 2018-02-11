@@ -5,6 +5,8 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import MySQLdb
+import sys
+
 
 class mysqlwechat(object):
     def getUser(self):
@@ -17,7 +19,7 @@ class mysqlwechat(object):
                                 charset='utf8'
                               )
         cur = con.cursor()
-        print 'hello'
+        print 'getUser....'
         wechatList = []
         sql = "SELECT name,wechat_id FROM dcweb_publisher where source_id=1"
         try:
@@ -35,6 +37,6 @@ class mysqlwechat(object):
         con.close()
         return wechatList
 
-mw = mysqlwechat()
-print mw.getUser()
-
+# mw = mysqlwechat()
+# print mw.getUser()
+#

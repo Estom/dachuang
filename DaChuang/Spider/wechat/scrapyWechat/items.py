@@ -19,3 +19,5 @@ class ScrapywechatItem(scrapy.Item):
     posttime = scrapy.Field()
     url = scrapy.Field()
     source_id= scrapy.Field()
+
+    image_html = scrapy.Field()  #
