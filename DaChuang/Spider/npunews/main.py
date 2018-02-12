@@ -1,6 +1,11 @@
+# -*- coding:utf-8 -*-
 
 from scrapy import cmdline
+import os
 
-cmdline.execute("scrapy crawl npunews".split())
+os.system("scrapy crawl gdyw")  # 工大要闻
 
-# cmdline.execute("scrapy crawl PartyCommittee".split())
+os.system("scrapy crawl xyxw")  # 校园动态
+
+os.system("scrapy crawl PartyCommittee")
+

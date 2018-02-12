@@ -7,6 +7,8 @@ import sys
 import os
 import time
 from datetime import datetime
+import Myfilter
+
 """
             '瓜大人文微助手':'guada-renwen',
             '空院微视野':'nwpuhangkong',
@@ -30,7 +32,8 @@ class ContentspiderSpider(scrapy.Spider):
     allowed_domains = ['mp.weixin.qq.com',
                        'weixin.sogou.com',
                        'baidu.com'
-                      ]
+    ]
+
     start_urls = ['http://weixin.sogou.com/']
 
     def start_requests(self):
@@ -54,39 +57,62 @@ class ContentspiderSpider(scrapy.Spider):
             if not os.path.exists(base_path.decode('utf-8')):
                 os.makedirs(base_path.decode('utf-8'))
 
+
             try:
                 time.sleep(6)
+
+                myfilter = Myfilter.MyFilter()
+                lasttime = myfilter.FilterbyTime(author)
+
+                print 'lasttime: ', lasttime
+                timeslist = []
+
                 result_from_history = ws_api.get_gzh_article_by_history(wechat_id)
                 article_result_list = result_from_history.get("article")
 
                 item = ScrapywechatItem()
-                for article_result in article_result_list:
-                    item["title"] = article_result.get("title")
-                    item["url"] = article_result.get("content_url")
-                    item["desc"] = article_result.get("abstract")
-                    item["author"] = author
-                    item["posttime"] = datetime.fromtimestamp(article_result.get("datetime"))
-                    # item["posttime"] = article_result.get("datetime")
-                    item["image_html"] = article_result.get("cover")
-                    item["image_path"] = base_path + '/' + item['title'] + '.jpg'
-                    item["source_id"] = 1
 
-                    print 'title : ', item["title"]
-                    print 'author : ', item["author"]
-                    print 'posttime : ', item["posttime"]
-                    print 'url : ', item["url"]
-                    print 'image_html : ', item["image_html"]
-                    print 'image_path : ', item["image_path"]
-                    # 划了近乎两天时间，来处理http的报文头，最后发现配置错误
-                    req = scrapy.Request(article_result.get("content_url"), meta=item, dont_filter=True, headers=self.settings.get('DEFAULT_REQUEST_HEADERS'))
-                    reqs.append(req)
-                    print '-------'
+                for article_result in article_result_list:
+                    item["posttime"] = datetime.fromtimestamp(article_result.get("datetime"))
+                    if item["posttime"] > lasttime:
+                        timeslist.append(item['posttime'])
+
+                        item["title"] = article_result.get("title")
+                        item["url"] = article_result.get("content_url")
+                        item["desc"] = article_result.get("abstract")
+                        item["author"] = author
+                        item["image_html"] = article_result.get("cover")
+                        item["image_path"] = base_path + '/' + item['title'] + '.jpg'
+                        item["source_id"] = 1
+
+                        print 'title : ', item["title"]
+                        print 'author : ', item["author"]
+                        print 'posttime : ', item["posttime"]
+                        print 'url : ', item["url"]
+                        print 'image_html : ', item["image_html"]
+                        print 'image_path : ', item["image_path"]
+                        # 划了近乎两天时间，来处理http的报文头，最后发现配置错误
+                        req = scrapy.Request(article_result.get("content_url"), meta=item, dont_filter=True, headers=self.settings.get('DEFAULT_REQUEST_HEADERS'))
+                        reqs.append(req)
+                        print '-------'
+                    else:
+                        print '时间爬过了'
+                        continue
+
+                # 循环结束后更新数据表里的时间
+                if timeslist:
+                    latesttime = max(timeslist)
+                    myfilter.SaveLatestTime(latesttime, author)
+
             except Exception,e:
                 print 'error occur when get the url of wechat publisher'
                 print e
             else:
                 print 'successful get the url of the publisher'
+
         return reqs
+
+
 
     def parse(self, response):
         print sys.getdefaultencoding()

@@ -1,7 +1,5 @@
+#!/usr/bin/python
 # -*- coding:utf-8 -*-
-'''
-党委宣传部 Propaganda Department of the Party committee
-'''
 
 import scrapy
 from npunews.items import NpunewsItem
@@ -16,11 +14,12 @@ import Myfilter
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-class PartyCommitteeSpider(scrapy.Spider):
-    name = "PartyCommittee"
+
+class XyxwSpider(scrapy.Spider):
+    name = "xyxw"
     allowed_domains = ["news.nwpu.edu.cn"]
     start_urls = [
-        'http://news.nwpu.edu.cn/xcb/gzdt.htm', # 党委宣传部
+        'http://news.nwpu.edu.cn/news/xyxw.htm', # 校园动态
     ]
 
     base_image_html = 'http://news.nwpu.edu.cn'
@@ -35,22 +34,24 @@ class PartyCommitteeSpider(scrapy.Spider):
         print '开始parse....'
 
         myfilter = Myfilter.MyFilter()
-        lasttime = myfilter.FilterbyTime('党委宣传部')
+        lasttime = myfilter.FilterbyTime('校园动态')
 
         print 'lasttime: ', lasttime
         if lasttime:
             timeslist = []
-            for i in range(0, 14):  # 左闭右开区间
-                data = response.xpath('//tr[@id="''line130167_'+ str(i) + '"]')
+
+            for i in range(0, 20):  # 左闭右开区间
+                data = response.xpath('//tr[@id="''line48019_'+ str(i) + '"]')
 
                 for sel in data:
                     item = NpunewsItem()
 
-                    item['author'] = '党委宣传部'
+                    item['author'] = '校园动态'
 
                     # 提取发布时间
                     if len(sel.xpath('./td[@width="1%"]/span/text()').extract()) :
                         item['posttime'] = sel.xpath('./td[@width="1%"]/span/text()').extract()[0].strip().encode('utf-8')
+
                         item['posttime'] = datetime.datetime.strptime(
                             item['posttime'].replace("/", "-"), '%Y-%m-%d')
                         print 'posttimetype: ', type(item['posttime'])
@@ -85,10 +86,11 @@ class PartyCommitteeSpider(scrapy.Spider):
             # 循环结束后更新数据表里的时间
             if timeslist:
                 latesttime = max(timeslist)
-                myfilter.SaveLatestTime(latesttime, '党委宣传部')
+                myfilter.SaveLatestTime(latesttime, '校园动态')
 
         else:
             print '数据库中没有lasttime'
+
 
 
 
