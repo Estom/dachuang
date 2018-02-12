@@ -11,12 +11,15 @@ import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
+import datetime
+import Myfilter
+
 class InternationalCooperationOfficeNoticeSpider(scrapy.Spider) :
     name = 'InternationalCooperationOfficeNotice'
     allowed_domains = ['guoji.nwpu.edu.cn']
     start_urls = [
         'http://guoji.nwpu.edu.cn/axshx/sy/zxxx.htm',
-        ]
+    ]
 
     base_article_html = "http://guoji.nwpu.edu.cn/info/"
     base_image_html = 'http://guoji.nwpu.edu.cn'
@@ -31,45 +34,69 @@ class InternationalCooperationOfficeNoticeSpider(scrapy.Spider) :
         reload(sys)
         sys.setdefaultencoding('utf-8')
 
-        list = response.xpath('//ul[@class="list-unstyled"]/li[@class="row"]')
+        myfilter = Myfilter.MyFilter()
+        lasttime = myfilter.FilterbyTime('国际合作处')
 
-        for tr in list :
-            item = ShoolnewsItem()
+        print 'lasttime: ', lasttime
+        if lasttime:
+            timeslist = []
+            list = response.xpath('//ul[@class="list-unstyled"]/li[@class="row"]')
 
-            item['author'] = '国际合作处'
+            for tr in list :
+                item = ShoolnewsItem()
 
-            # 文章标题
-            if len(tr.xpath('./div[1]//a/text()').extract()):
-                data = tr.xpath('./div[1]//a')
-                title = data[0].xpath('string(.)').extract()[0].strip().encode(
-                    'utf-8')
-                item['title'] = title
-                print 'title : ', item['title']
+                item['author'] = '国际合作处'
 
-            # 发布时间
-            if len(tr.xpath('./div[2]/span/text()').extract()):
-                item['posttime'] = tr.xpath('./div[2]/span/text()').extract()[0].encode('utf-8')
-                print 'posttime : ', item['posttime']
+                # 发布时间
+                if len(tr.xpath('./div[2]/span/text()').extract()):
+                    item['posttime'] = tr.xpath('./div[2]/span/text()').extract()[0].encode('utf-8')
+                    item['posttime'] = datetime.datetime.strptime(
+                        item['posttime'].replace("/", "-"), '%Y-%m-%d')
+                    print 'posttimetype: ', type(item['posttime'])
+                    print 'posttime : ', item['posttime']
 
+                    # 时间字符串也可以直接比大小
+                    if item['posttime'] > lasttime:
+                        timeslist.append(item['posttime'])
 
-            # 文章网址
-            if len(tr.xpath('./div[1]//a/@href').extract()) :
-                temp_url = tr.xpath('./div[1]//a/@href').extract()[0].encode('utf-8')
+                        # 文章标题
+                        if len(tr.xpath('./div[1]//a/text()').extract()):
+                            data = tr.xpath('./div[1]//a')
+                            title = data[0].xpath('string(.)').extract()[
+                                0].strip().encode(
+                                'utf-8')
+                            item['title'] = title
+                            print 'title : ', item['title']
 
-                value2 = re.search(r'http://news.nwpu.', temp_url)
-                if value2:
-                    pass
-                else:
-                    value = re.search(r'../../info/', temp_url)
-                    # print value
-                    if value:
-                        item['url'] = urljoin(
-                            "http://guoji.nwpu.edu.cn/info/1002/51024.htm",temp_url)
+                        # 文章网址
+                        if len(tr.xpath('./div[1]//a/@href').extract()) :
+                            temp_url = tr.xpath('./div[1]//a/@href').extract()[0].encode('utf-8')
+
+                            value2 = re.search(r'http://news.nwpu.', temp_url)
+                            if value2:
+                                pass
+                            else:
+                                value = re.search(r'../../info/', temp_url)
+                                # print value
+                                if value:
+                                    item['url'] = urljoin(
+                                        "http://guoji.nwpu.edu.cn/info/1002/51024.htm",temp_url)
+                                else:
+                                    item['url'] = urljoin("http://guoji.nwpu.edu.cn/info/",temp_url)
+                                print 'url : ', item['url']
+
+                                yield scrapy.Request(item['url'], meta=item, dont_filter=True, headers=self.settings.get('DEFAULT_REQUEST_HEADERS'), callback=self.parse_content)
                     else:
-                        item['url'] = urljoin("http://guoji.nwpu.edu.cn/info/",temp_url)
-                    print 'url : ', item['url']
+                        print '时间爬过了'
 
-                    yield scrapy.Request(item['url'], meta=item, dont_filter=True, headers=self.settings.get('DEFAULT_REQUEST_HEADERS'), callback=self.parse_content)
+            # 循环结束后更新数据表里的时间
+            if timeslist:
+                latesttime = max(timeslist)
+                myfilter.SaveLatestTime(latesttime, '国际合作处')
+
+        else:
+            print '数据库中没有lasttime'
+
 
 
     def parse_content(self, response) :

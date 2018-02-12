@@ -8,7 +8,7 @@ class MyFilter(object):
                               port=3306,
                               user='root',
                               passwd='ykl123',
-                              db='dcserver',
+                              db='dcspider',
                               charset='utf8'
                               )
         self._cursor = self._conn.cursor()
@@ -22,7 +22,7 @@ class MyFilter(object):
         print 'name: ', name
 
         result = ''
-        sql = 'select lasttime from dcweb_publisher where name = "%s"' % name
+        sql = 'select lasttime from lastcrawl where name = "%s"' % name
 
         try:
             self._cursor.execute(sql)
@@ -50,13 +50,13 @@ class MyFilter(object):
     def SaveLatestTime(self, latesttime, name):
         print "SaveLatestTime...."
 
-        sql = 'update dcweb_publisher set lasttime ="%s" where name = "%s"' % (latesttime, name)
+        sql = 'update lastcrawl set lasttime ="%s" where name = "%s"' % (latesttime, name)
 
         try:
             print 'latesttime: ', latesttime
             self._cursor.execute(sql)
         except Exception, e:
-            print "select error:", e
+            print "update error:", e
             self._conn.commit()
         else:
             self._conn.commit()

@@ -14,22 +14,22 @@ BOT_NAME = 'shoolnews'
 SPIDER_MODULES = ['shoolnews.spiders']
 NEWSPIDER_MODULE = 'shoolnews.spiders'
 
-DBKWARGS = {
-    'db':'dcspider',
-    'user':'root',
-    'passwd':'12345',
-    'host':'localhost',
-    'charset':'utf8',
-}
-
-
 # DBKWARGS = {
 #     'db':'dcspider',
 #     'user':'root',
-#     'passwd':'ykl123',
-#     'host':'111.230.181.121',
+#     'passwd':'12345',
+#     'host':'localhost',
 #     'charset':'utf8',
 # }
+
+
+DBKWARGS = {
+    'db':'dcspider',
+    'user':'root',
+    'passwd':'ykl123',
+    'host':'111.230.181.121',
+    'charset':'utf8',
+}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'shoolnews (+http://www.yourdomain.com)'
