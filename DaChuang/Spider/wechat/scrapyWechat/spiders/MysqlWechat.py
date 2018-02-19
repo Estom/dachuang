@@ -5,27 +5,29 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import MySQLdb
-
+import sys
 
 
 class mysqlwechat(object):
-    host = "localhost"
-    dbname = "dcspider"
-    username = "root"
-    password = "ykl123"
     def getUser(self):
         print "get list of user"
-        con = MySQLdb.connect("localhost", "root", "ykl123","dcspider")
+        con = MySQLdb.connect(host='111.230.181.121',
+                                port=3306,
+                                user='root',
+                                passwd='ykl123',
+                                db='dcserver',
+                                charset='utf8'
+                              )
         cur = con.cursor()
-
+        print 'getUser....'
         wechatList = []
-
-        sql = "SELECT wechat_id FROM wechat_user"
+        sql = "SELECT name,wechat_id FROM dcweb_publisher where source_id=1"
         try:
             cur.execute(sql)
             results = cur.fetchall()
             for row in results:
-                wechatList.append(row[0])
+                res = (row[0],row[1])
+                wechatList.append(res)
         except Exception, e:
             print "insert error:", e
             con.rollback()
@@ -37,4 +39,4 @@ class mysqlwechat(object):
 
 # mw = mysqlwechat()
 # print mw.getUser()
-
+#

@@ -2,7 +2,7 @@
 <webpage>
 	<!--修改信息表单，需要提交的内容-->
 	<person>
-		<crsf></crsf>
+		<crsf>{% csrf_token %}</crsf>
 		<sex></sex>
 		<age></age>
 		<phone></phone>

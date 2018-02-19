@@ -11,12 +11,15 @@ import datetime
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
+import datetime
+import Myfilter
+
 class InternationalCooperationOfficeSpider(scrapy.Spider) :
     name = 'InternationalCooperationOffice'
     allowed_domains = ['guoji.nwpu.edu.cn']
     start_urls = [
         'http://guoji.nwpu.edu.cn/axshx/lxfc1.htm',
-        ]
+    ]
 
     base_article_html = "http://guoji.nwpu.edu.cn/info/"
     base_image_html = 'http://guoji.nwpu.edu.cn'

@@ -18,9 +18,17 @@ DBKWARGS = {
     'db':'dcspider',
     'user':'root',
     'passwd':'ykl123',
-    'host':'localhost',
+    'host':'111.230.181.121',
     'charset':'utf8',
 }
+
+# DBKWARGS = {
+#     'db':'dcspider',
+#     'user':'root',
+#     'passwd':'12345',
+#     'host':'localhost',
+#     'charset':'utf8',
+# }
 
 ITEM_PIPELINES = {
     'scrapyWechat.pipelines.ScrapywechatPipeline': 300,
@@ -46,7 +54,7 @@ REDIRECT_ENABLED = False
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 5
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -88,6 +96,7 @@ DEFAULT_REQUEST_HEADERS = {
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'scrapyWechat.pipelines.ScrapywechatPipeline': 300,
+    'scrapyWechat.pipelines.ImageScrapywechatPipeline':200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

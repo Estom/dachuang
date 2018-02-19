@@ -2,7 +2,7 @@
 <webpage>
 	<!--登录需要填写的信息-->
 	<login>
-		<csrf></csrf>
+		<csrf>{% csrf_token %}</csrf>
 		<username></username>
 		<password></password>
 	</login>

@@ -35,7 +35,7 @@ def TextCut(str1):
 # 函数功能：读取文件
 # 输 入 ：文件地址
 # 输出 ： 文件的字符串
-def _readfile(path):
+def readfile(path):
     with open(path, "rb") as fp:
         content = fp.read()
     return content
@@ -44,7 +44,7 @@ def _readfile(path):
 # 函数功能：读取bunch对象
 # 输入数据：文件地址
 # 输出数据：bounch对象
-def _readbunchobj(path):
+def readbunchobj(path):
     with open(path, "rb") as file_obj:
         bunch = pickle.load(file_obj)
     return bunch
@@ -53,6 +53,6 @@ def _readbunchobj(path):
 # 函数功能：存储bunch对象
 # 输入数据：参数1：文件地址，参数2：bunch对象
 # 输出数据：无
-def _writebunchobj(path, bunchobj):
+def writebunchobj(path, bunchobj):
     with open(path, "wb") as file_obj:
         pickle.dump(bunchobj, file_obj)

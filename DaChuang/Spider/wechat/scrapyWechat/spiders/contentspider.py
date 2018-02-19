@@ -4,6 +4,10 @@ import wechatsogou
 from scrapyWechat.items import ScrapywechatItem
 from MysqlWechat import mysqlwechat
 import sys
+import os
+import time
+from datetime import datetime
+import Myfilter
 
 """
             '瓜大人文微助手':'guada-renwen',
@@ -28,7 +32,8 @@ class ContentspiderSpider(scrapy.Spider):
     allowed_domains = ['mp.weixin.qq.com',
                        'weixin.sogou.com',
                        'baidu.com'
-                      ]
+    ]
+
     start_urls = ['http://weixin.sogou.com/']
 
     def start_requests(self):
@@ -38,24 +43,76 @@ class ContentspiderSpider(scrapy.Spider):
 
         NWPUWechatIDList = user.getUser()
 
+        # print 'NWPUWechatIDList :', NWPUWechatIDList
+
         ws_api = wechatsogou.WechatSogouAPI(captcha_break_time=2,)
-        for wechat_id in NWPUWechatIDList:
-            print(wechat_id)
-            result_from_history = ws_api.get_gzh_artilce_by_history(wechat_id)
-            article_result_list = result_from_history.get("article")
-            print wechat_id
-            item = ScrapywechatItem()
-            for article_result in article_result_list:
-                item["title"] = article_result.get("title")
-                item["content_url"] = article_result.get("content_url")
-                item["abstract"] = article_result.get("abstract")
-                item["author"] = article_result.get("author")
-                item["datetime"] = article_result.get("datetime")
-                item["cover"] = article_result.get("cover")
-                # 划了近乎两天时间，来处理http的报文头，最后发现配置错误
-                req = scrapy.Request(article_result.get("content_url"), meta=item, dont_filter=True, headers=self.settings.get('DEFAULT_REQUEST_HEADERS'))
-                reqs.append(req)
+
+        for author,wechat_id in NWPUWechatIDList:
+            print 'wechat_id:',wechat_id
+            print 'author:',author
+
+            base_path = 'C:/Images/' + author  # 图片保存到本地的基地址
+
+
+            if not os.path.exists(base_path.decode('utf-8')):
+                os.makedirs(base_path.decode('utf-8'))
+
+
+            try:
+                time.sleep(6)
+
+                myfilter = Myfilter.MyFilter()
+                lasttime = myfilter.FilterbyTime(author)
+
+                print 'lasttime: ', lasttime
+                timeslist = []
+
+                result_from_history = ws_api.get_gzh_article_by_history(wechat_id)
+                article_result_list = result_from_history.get("article")
+
+                item = ScrapywechatItem()
+
+                for article_result in article_result_list:
+                    item["posttime"] = datetime.fromtimestamp(article_result.get("datetime"))
+                    if item["posttime"] > lasttime:
+                        timeslist.append(item['posttime'])
+
+                        item["title"] = article_result.get("title")
+                        item["url"] = article_result.get("content_url")
+                        item["desc"] = article_result.get("abstract")
+                        item["author"] = author
+                        item["image_html"] = article_result.get("cover")
+                        item["image_path"] = base_path + '/' + item['title'] + '.jpg'
+                        item["source_id"] = 1
+
+                        print 'title : ', item["title"]
+                        print 'author : ', item["author"]
+                        print 'posttime : ', item["posttime"]
+                        print 'url : ', item["url"]
+                        print 'image_html : ', item["image_html"]
+                        print 'image_path : ', item["image_path"]
+                        # 划了近乎两天时间，来处理http的报文头，最后发现配置错误
+                        req = scrapy.Request(article_result.get("content_url"), meta=item, dont_filter=True, headers=self.settings.get('DEFAULT_REQUEST_HEADERS'))
+                        reqs.append(req)
+                        print '-------'
+                    else:
+                        print '时间爬过了'
+                        continue
+
+                # 循环结束后更新数据表里的时间
+                if timeslist:
+                    latesttime = max(timeslist)
+                    myfilter.SaveLatestTime(latesttime, author)
+
+            except Exception,e:
+                print 'error occur when get the url of wechat publisher'
+                print e
+            else:
+                print 'successful get the url of the publisher'
+
         return reqs
+
+
 
     def parse(self, response):
         print sys.getdefaultencoding()
@@ -66,7 +123,6 @@ class ContentspiderSpider(scrapy.Spider):
         sys.setdefaultencoding('utf-8')
 
         item = response.meta
-        item["body_html"] = response.body
 
 
         # print u"标题:", response.xpath('//*[@id="activity-name"]/text()')[0].extract().strip()
@@ -99,6 +155,6 @@ class ContentspiderSpider(scrapy.Spider):
 
         content_real = title + "\n" + time + "\n" + group + "\n" + publication + "\n" + content + "\n"
 
-        item["content_real"] = content_real
+        item["content"] = content_real
         # 此处省略对content_real从body中解析出来的过程
         return item

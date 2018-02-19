@@ -360,7 +360,7 @@ class CategoryView(ListView):  # index view 文章
 
     def get_context_data(self, **kwargs):
         kwargs['category_list'] = Category.objects.all().order_by('name')
-        kwargs['tag_list'] = Tag.objects.all().order_by('name')
+        kwargs['tag_list'] = Tag.objects.all().order_by('-number')[:10]
         return super(CategoryView, self).get_context_data(**kwargs)
 
 
@@ -375,7 +375,8 @@ class TagView(ListView): #index article_list 云标签
         return article_list
 
     def get_context_data(self, **kwargs):
-        kwargs['tag_list'] = Tag.objects.all().order_by('name')
+        kwargs['category_list'] = Category.objects.all().order_by('name')
+        kwargs['tag_list'] = Tag.objects.all().order_by('-number')[:10]
         return super(TagView, self).get_context_data(**kwargs)
 
 
