@@ -176,8 +176,10 @@ def do_login(request):
     try:
         if request.method == 'POST':
             login_form = LoginForm(request.POST)
+            print 222
             if login_form.is_valid():
                 # 登录
+                print 111
                 username = login_form.cleaned_data["username"]
                 password = login_form.cleaned_data["password"]
                 user = authenticate(username=username, password=password)
@@ -185,13 +187,16 @@ def do_login(request):
                     user.backend = 'django.contrib.auth.backends.ModelBackend' # 指定默认的登录验证方式
                     login(request, user)
                 else:
-                    return render(request, 'failure.html', {'reason': '登录验证失败'})
+                    return render(request, 'failure.html', {'reason': '用户名或密码错误'})
                 return redirect(reverse('index'))
             else:
+                print 333
                 return render(request, 'failure.html', {'reason': login_form.errors})
         else:
+            print 444
             login_form = LoginForm()
     except Exception as e:
+        print e
         logger.error(e)
     return render(request, 'login.html', locals())
 
