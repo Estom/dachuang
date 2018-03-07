@@ -336,6 +336,12 @@ class ArticleDetailView(DetailView): # detail  view 文章详细
         obj.increase_views()
         # obj.body = markdown2.markdown(obj.body, extras=['fenced-code-blocks'], )
         return obj
+    # 用于加载新的全局变量
+    def get_context_data(self, **kwargs):
+        # kwargs['category_list'] = Category.objects.all().order_by('name')
+        #kwargs['date_archive'] = Article.objects.archive()
+        kwargs['tag_list'] = Tag.objects.filter(article=self.kwargs['article_id'])
+        return super(ArticleDetailView, self).get_context_data(**kwargs)
 
     # 第五周新增
     # def get_context_data(self, **kwargs):

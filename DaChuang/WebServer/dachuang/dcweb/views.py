@@ -335,6 +335,7 @@ class ArticleDetailView(DetailView): # detail  view 文章详细
     # pk_url_kwarg 用于接受一个来自URL的主键，然后会根据这个主键进行查询，我们在之前urlpatterns中已经捕获了article_id
     pk_url_kwarg = 'article_id'
 
+    # 重写了get方法，用来每次访问时，将一个文章添加到历史记录。
     def get(self, request, *args, **kwargs):
         article = super(ArticleDetailView, self).get_object()
         if request.user.is_authenticated():
@@ -348,6 +349,12 @@ class ArticleDetailView(DetailView): # detail  view 文章详细
         # obj.body = markdown2.markdown(obj.body, extras=['fenced-code-blocks'], )
         return obj
 
+    # 用于加载新的全局变量
+    def get_context_data(self, **kwargs):
+        # kwargs['category_list'] = Category.objects.all().order_by('name')
+        #kwargs['date_archive'] = Article.objects.archive()
+        kwargs['tag_list'] = Tag.objects.filter(article=self.kwargs['article_id'])
+        return super(ArticleDetailView, self).get_context_data(**kwargs)
     # 第五周新增
     # def get_context_data(self, **kwargs):
     #     kwargs['comment_list'] = self.object.blogcomment_set.all()

@@ -23,18 +23,17 @@ urlpatterns = [
     url(r'^data$', views.DataView.as_view(),name='data'),
 
     url(r'^person$', views.PersonView, name='person'),
-    url(r'^person_edit2$',views.PersonEdit, name='person_edit2'),
     url(r'^person_edit$',views.update_data, name='person_edit'),
 
     url(r'^logout', views.do_logout, name='logout'),
     url(r'^reg', views.do_reg, name='reg'),
     url(r'^login', views.do_login, name='login'),
 
-    url(r'^article/love',android_views.love, name='love'),
-    url(r'^pub_detail/staring',android_views.staring, name='staring'),
-    url(r'^pub_detail/staroff',android_views.staroff,name='staroff'),
+    url(r'^article/love',views.love, name='love'),
+    url(r'^pub_detail/staring',views.staring, name='staring'),
+    url(r'^pub_detail/staroff',views.staroff,name='staroff'),
 
-
+    # ----------------------------------this is a part line-------------------------- #
     url(r'^app$', android_views.IndexView.as_view(), name='app_index'),
     url(r'^app_rec$', android_views.IndexRecView.as_view(), name='app_index_rec'),
     url(r'^app_star$', android_views.IndexStarView.as_view(), name='app_index_star'),
@@ -56,9 +55,10 @@ urlpatterns = [
     url(r'^app_reg', android_views.do_reg, name='app_reg'),
     url(r'^app_login', android_views.do_login, name='app_login'),
 
-    url(r'^app_article/love', android_views.love, name='app_love'),
+    url(r'^app_article/love$', android_views.love, name='app_love'),
     url(r'^app_pub_detail/staring', android_views.staring, name='app_staring'),
     url(r'^app_pub_detail/staroff', android_views.staroff,name='app_staroff'),
+
     # url(r'^pub_detail/(?P<pub_id>\d+)$',views.PublishDetailView.as_View(),name='pub_detail'),
     # url(r'^archive/(?P<year>\d+)/(?P<month>\d+)$', views.ArchiveView.as_view(), name='archive'),
     # url(r'^article/(?P<article_id>\d+)/comment/$', views.CommentPostView.as_view(), name='comment'),

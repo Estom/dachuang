@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article>
 	<title>{{ article.title }}</title>
-	<cate>{{ article.category }</cate>
+	<cate>{{ article.category }}</cate>
 	<date>{{ article.date_publish|date:"Y年n月d日" }}</date>
 	<publisher>{{ article.publisher }}</publisher>
 	<url>{% url 'app_detail' article.pk %}</url>
 	<content>{{ article.content |safe }}</content>
 	<love_num>{{ article.love_count }}</love_num>
 	<click_num>{{ article.click_count}}</click_num>
+	<!-- tags -->
+	<tag>
+		{% for tag in tag_list %}
+		<tag_name>{{ tag.name }} </tag_name>
+		{% endfor %}
+	</tag>
 </article>
