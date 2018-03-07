@@ -74,8 +74,9 @@ for i in range(len(weight)):  # 打印每类文本的tf-idf词语权重，第一
 for ii in range(numcontent):
     for jj in FeaturesWordList[ii]:
         id_tag = dict_hot_word.get(jj[0])
-        dic = {'article_id': Data_ID[ii], 'tag_id': id_tag}
-        SQLconfig.sql1.add('dcweb_article_tag', dic)
-        if Data_ID[ii] is not None and id_tag is not None:
-            print '文章号 : %d , 标签号 : %d' % (Data_ID[ii], id_tag)
+        value = jj[1]*1000
+        if Data_ID[ii] is not None and id_tag is not None and value is not None:
+            dic = {'article_id': Data_ID[ii], 'tag_id': id_tag, 'value': value}
+            SQLconfig.sql1.add('dcweb_article_tag', dic)
+            print '文章号 : %d , 标签号 : %d , 重要度 : %d' % (Data_ID[ii], id_tag, value)
 # #######################文章与关键词匹配##################################
