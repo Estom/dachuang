@@ -150,25 +150,23 @@ def do_reg(request):
             print 444
             if reg_form.is_valid():
                 # 注册
-                print 555
                 user = User.objects.create(username=reg_form.cleaned_data["username"],
                                     email=reg_form.cleaned_data["email"],
                                     password=make_password(reg_form.cleaned_data["password"]),)
-                print 333
                 user.save()
-                print 222
                 # 登录
                 user.backend = 'django.contrib.auth.backends.ModelBackend' # 指定默认的登录验证方式
                 login(request, user)
-                print 'deng lu cheng gong'
-                return redirect(reverse('index'))
+                return redirect(reverse('app_index'))
             else:
+                # 表单自带验证出现错误的时候 - 是否填写，个字段是否符合规范
                 return render(request, 'failure.html', {'reason': reg_form.errors})
         else:
             reg_form = RegForm()
     except Exception as e:
         print e
         logger.error(e)
+        return render(request, 'failure.html', {'reason': "用户名已经注册"})
     return render(request, 'reg.html', locals())
 
 # 登录
@@ -176,10 +174,8 @@ def do_login(request):
     try:
         if request.method == 'POST':
             login_form = LoginForm(request.POST)
-            print 222
             if login_form.is_valid():
                 # 登录
-                print 111
                 username = login_form.cleaned_data["username"]
                 password = login_form.cleaned_data["password"]
                 user = authenticate(username=username, password=password)
@@ -190,10 +186,8 @@ def do_login(request):
                     return render(request, 'failure.html', {'reason': '用户名或密码错误'})
                 return redirect(reverse('index'))
             else:
-                print 333
                 return render(request, 'failure.html', {'reason': login_form.errors})
         else:
-            print 444
             login_form = LoginForm()
     except Exception as e:
         print e
@@ -296,39 +290,39 @@ def staroff(reqeust):
     return redirect(reverse('pub_detail',kwargs={'pub_id':pub_id}))
 
 # 修改
-def PersonEdit(request):
-    try:
-        if request.method == 'POST':
-            print 123
-            person_form = PersonForm(request.POST, request.FILES or None)
-            print 456
-            print 789
-            if person_form.is_valid():
-                print 012
-                cd = person_form.cleaned_data
-                img_url = person_form['img']
-                # 注册
-                print cd
-                print 'url:'+img_url
-                user_normal = UserNormal.objects.get_or_create(user=request.user)
-                user_normal.sex=person_form.cleaned_data["username"]
-                user_normal.age=person_form.cleaned_data["email"]
-                user_normal.phone=person_form.cleaned_data["phone"]
-                user_normal.desc = person_form.cleaned_data["desc"]
-                user_normal.img=person_form.cleaned_data["img"]
-                print 333
-                user_normal.save()
-                print 222
-                return redirect(reverse('person'))
-            else:
-                return render(request, 'failure.html', {'reason': person_form.errors})
-        else:
-            person_form = PersonForm()
-    except Exception as e:
-        print 111111
-        print e
-        logger.error(e)
-    return render(request, 'blog/person_edit.html', locals())
+# def PersonEdit(request):
+#     try:
+#         if request.method == 'POST':
+#             print 123
+#             person_form = PersonForm(request.POST, request.FILES or None)
+#             print 456
+#             print 789
+#             if person_form.is_valid():
+#                 print 012
+#                 cd = person_form.cleaned_data
+#                 img_url = person_form['img']
+#                 # 注册
+#                 print cd
+#                 print 'url:'+img_url
+#                 user_normal = UserNormal.objects.get_or_create(user=request.user)
+#                 user_normal.sex=person_form.cleaned_data["username"]
+#                 user_normal.age=person_form.cleaned_data["email"]
+#                 user_normal.phone=person_form.cleaned_data["phone"]
+#                 user_normal.desc = person_form.cleaned_data["desc"]
+#                 user_normal.img=person_form.cleaned_data["img"]
+#                 print 333
+#                 user_normal.save()
+#                 print 222
+#                 return redirect(reverse('person'))
+#             else:
+#                 return render(request, 'failure.html', {'reason': person_form.errors})
+#         else:
+#             person_form = PersonForm()
+#     except Exception as e:
+#         print 111111
+#         print e
+#         logger.error(e)
+#     return render(request, 'blog/person_edit.html', locals())
 
 
 

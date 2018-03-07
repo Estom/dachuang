@@ -3,6 +3,7 @@
 	<!--注册需要填写的信息-->
 	<register>
 		<crsf>{% csrf_token %}</crsf>
+		<action>{% url 'reg' %}</action>
 		<email>{{ reg_form.email }}</email>
 		<username>{{ reg_form.username }}</username>
 		<password>{{ reg_form.password }}</password>

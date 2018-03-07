@@ -10,38 +10,38 @@ class LoginForm(forms.Form):
     '''
     登录Form
     '''
-    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Username", "required": "required",}),
+    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Username", "required": "required","class":"form-control",}),
                               max_length=50,error_messages={"required": "username不能为空",})
-    password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "required": "required",}),
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "required": "required","class":"form-control",}),
                               max_length=20,error_messages={"required": "password不能为空",})
 
 class RegForm(forms.Form):
     '''
     注册表单
     '''
-    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Username", "required": "required",}),
+    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Username", "required": "required","class":"form-control",}),
                               max_length=50,error_messages={"required": "username不能为空",})
-    email = forms.EmailField(widget=forms.TextInput(attrs={"placeholder": "Email", "required": "required",}),
+    email = forms.EmailField(widget=forms.TextInput(attrs={"placeholder": "Email", "required": "required","class":"form-control",}),
                               max_length=50,error_messages={"required": "email不能为空",})
-    password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "required": "required",}),
-                              max_length=20,error_messages={"required": "password不能为空",})
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "required": "required","class":"form-control",}),
+                              max_length=20,min_length=6,error_messages={"required": "password不能为空",})
 
 
 class PersonForm(forms.Form):
     '''
     评论表单
     '''
-    sex = forms.IntegerField(widget=forms.TextInput(attrs={"placeholder": u"性别","id": "sex", "required": "required","tabindex": "1"}),
+    sex = forms.IntegerField(widget=forms.TextInput(attrs={"placeholder": u"性别","id": "sex", "required": "required","tabindex": "1","class":"form-control",}),
                               error_messages={"required":"sex不能为空",},
                           label=u'性别',required=False)
     age = forms.IntegerField(widget=forms.TextInput(attrs={"placeholder": u"年龄","id":"age",
-                                                           "required":"required", "tabindex":"2"}),
+                                                           "required":"required", "tabindex":"2","class":"form-control",}),
                                  error_messages={"required":"age不能为空",},
                            label=u'年龄',required=False)
-    phone = forms.CharField(widget=forms.TextInput(attrs={"placeholder": u"电话","id":"phone","tabindex":"3"}),
+    phone = forms.CharField(widget=forms.TextInput(attrs={"placeholder": u"电话","id":"phone","tabindex":"3","class":"form-control",}),
                               max_length=100, required=False,label=u'电话')
     desc = forms.CharField(widget=forms.Textarea(attrs={"placeholder": u"签名","id":"desc","required": "required", "cols": "80",
-                                                           "rows": "5", "tabindex": "4"}),
+                                                           "rows": "5", "tabindex": "4","class":"form-control",}),
                                                     error_messages={"required":"评论不能为空",},
                            label=u'签名',required=False)
     img = forms.ImageField(label=u'头像', required=True)
@@ -50,3 +50,9 @@ class PersonsForm(forms.ModelForm):
     class Meta:
         model = UserNormal
         fields = [ 'age','sex','phone','desc','img']
+        widgets = {
+            'sex':forms.TextInput(attrs={"placeholder": u"性别","id": "sex", "required": "required","tabindex": "1","class":"form-control",}),
+            'age':forms.TextInput(attrs={"placeholder": u"年龄","id":"age", "required":"required", "tabindex":"2","class":"form-control",}),
+            'phone':forms.TextInput(attrs={"placeholder": u"电话","id":"phone","tabindex":"3","class":"form-control",}),
+            'desc':forms.Textarea(attrs={"placeholder": u"签名","id":"desc","required": "required", "cols": "80", "rows": "5", "tabindex": "4","class":"form-control",}),
+        }

@@ -3,7 +3,8 @@
 	<!--登录需要填写的信息-->
 	<login>
 		<csrf>{% csrf_token %}</csrf>
-		<username></username>
-		<password></password>
+		<action>{% url 'login' %}</action>
+		<username>{{ login_form.username }}</username>
+		<password>{{ login_form.password }}</password>
 	</login>
 </webpage>
