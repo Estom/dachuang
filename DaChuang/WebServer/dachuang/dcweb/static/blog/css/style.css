@@ -957,7 +957,7 @@ a.backToTop:hover {
 .icon-next {
     width: 10px;
     height: 20px;
-    background: url(img/next.png) no-repeat;
+    background: url(../img/next.png) no-repeat;
 }
 
 .next-post {
