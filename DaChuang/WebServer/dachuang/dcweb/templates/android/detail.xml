@@ -8,6 +8,7 @@
 	<content>{{ article.content |safe }}</content>
 	<love_num>{{ article.love_count }}</love_num>
 	<click_num>{{ article.click_count}}</click_num>
+	<img>{{ article.img.url}}</img>
 	<!-- tags -->
 	<tag>
 		{% for tag in tag_list %}
