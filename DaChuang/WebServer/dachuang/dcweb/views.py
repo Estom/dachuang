@@ -150,23 +150,18 @@ def do_reg(request):
             print 444
             if reg_form.is_valid():
                 # 注册
-                print 555
                 user = User.objects.create(username=reg_form.cleaned_data["username"],
                                     email=reg_form.cleaned_data["email"],
                                     password=make_password(reg_form.cleaned_data["password"]),)
-                print 333
                 user.save()
-                print 222
                 # 登录
                 user.backend = 'django.contrib.auth.backends.ModelBackend' # 指定默认的登录验证方式
                 login(request, user)
-                print 'deng lu cheng gong'
-                return redirect(reverse('index'))
+                return redirect(reverse('app_index'))
             else:
                 # 表单自带验证出现错误的时候 - 是否填写，个字段是否符合规范
                 return render(request, 'failure.html', {'reason': reg_form.errors})
         else:
-            print 6666
             reg_form = RegForm()
     except Exception as e:
         print e
@@ -179,10 +174,8 @@ def do_login(request):
     try:
         if request.method == 'POST':
             login_form = LoginForm(request.POST)
-            print 222
             if login_form.is_valid():
                 # 登录
-                print 111
                 username = login_form.cleaned_data["username"]
                 password = login_form.cleaned_data["password"]
                 user = authenticate(username=username, password=password)
@@ -193,10 +186,8 @@ def do_login(request):
                     return render(request, 'failure.html', {'reason': '用户名或密码错误'})
                 return redirect(reverse('index'))
             else:
-                print 333
                 return render(request, 'failure.html', {'reason': login_form.errors})
         else:
-            print 444
             login_form = LoginForm()
     except Exception as e:
         print e
@@ -261,7 +252,7 @@ def PersonView(request):
 def update_data(request):
     if request.method == 'POST':
 
-        form = PersonForm(request.POST or None, request.FILES or None)
+        form = PersonsForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             user_normal = UserNormal.objects.filter(user=request.user).delete()
             user_normal = form.save(commit=False)
@@ -271,7 +262,7 @@ def update_data(request):
 
             return HttpResponseRedirect(reverse('person'),RequestContext(request))
     else:
-        form = PersonForm()
+        form = PersonsForm()
     return render(request,'blog/person_form.html', {'form': form})
 
 # 点赞
