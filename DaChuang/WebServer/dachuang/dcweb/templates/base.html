@@ -6,11 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>聚加文章-西工大 </title>
-    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <!-- Tell the browser to be responsive to screen width 后来加的，说是能够响应设备的宽度-->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="shortcut icon" href="{% static 'pencil1.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/pygments/github.css' %}">
     <link rel="stylesheet" href="{% static 'lib/css/bootstrap.min.css' %}">
-        {% block head %}{% endblock %}
+    {% block head %}{% endblock %}
 </head>
 
 <body>
@@ -50,8 +53,13 @@
     <div id="footer" class="noselect ">
         <ul id="ft-links" class="container">
             <li >
-                <a href="http://www.liaoxuefeng.com/" target="_blank">西北工业大学</a>
-                <div id="copyright">&copy; 西工大cybeTech小组</div>
+                <a href="http://www.nwpu.edu.cn/" target="_blank">西北工业大学 &copy; 西工大cybeTech小组</a>
+
+            </li>
+            <li></li>
+            <li></li>
+            <li>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">ICP主体备案号 陕ICP备18002962号</a>
             </li>
         </ul>
     </div>

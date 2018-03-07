@@ -5,40 +5,69 @@
 <head>
 	<title>注册</title>
 		<meta charset="utf-8">
-		<link href="{% static 'blog/css/reglogin.css' %}" rel='stylesheet' type='text/css' />
+	 	<link rel="stylesheet"  href="{% static 'adminlte/bootstrap/css/bootstrap.min.css' %}">
+ 		<link rel="stylesheet" href="{% static 'adminlte/bootstrap/css/templatemo_style.css' %}">
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-	<div class="main">
-		<div class="header" >
-			<h1>注册</h1>
-		</div>
-		<p></p>
-			<form action="{% url 'reg' %}" method="post">
-                {% csrf_token %}
-				<ul class="left-form">
-					<li>
-						{{ reg_form.username }}
-						<div class="clear"> </div>
-					</li>
-					<li>
-						{{ reg_form.email }}
-						<div class="clear"> </div>
-					</li>
-					<li>
-                        {{ reg_form.password }}
-						<div class="clear"> </div>
-					</li>
-                    <input type="hidden" name="source_url" value="{{ request.META.HTTP_REFERER }}">
-					<p>
-						<input type="submit" value="注册">
-                    	<a   href="{% url 'login' %}">去登录</a>
-						<div class="clear"> </div>
-					</p>
-				</ul>
+<body class="">
+	<div class="container">
+		<div class="col-md-12">
+			<form class="form-horizontal templatemo-login-form-2" id="my-form" role="form" action="{% url 'reg' %}" method="post">
+				{% csrf_token %}
+				<div class="row">
+					<div class="col-md-12">
+						<h1>注册</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="templatemo-one-signin col-md-12">
+						<div class="form-group">
+							<div class="col-md-12">
+								<label for="email" class="control-label">Email</label>
+								<div class="templatemo-input-icon-container">
+									<i class="fa fa-envelope-o"></i>
+									{{ reg_form.email }}
+								</div>
+							</div>
+						</div>
 
-				<div class="clear"> </div>
-			</form>
+				        <div class="form-group">
+				          <div class="col-md-12">
+				            <label for="username" class="control-label">用户名</label>
+				            <div class="templatemo-input-icon-container">
+				            	<i class="fa fa-user"></i>
+								{{ reg_form.username }}
+				            </div>
+                          </div>
+				        </div>
+
+
+				        <div class="form-group">
+				          <div class="col-md-12">
+				            <label for="password" class="control-label">密码</label>
+				            <div class="templatemo-input-icon-container">
+				            	<i class="fa fa-lock"></i>
+								{{ reg_form.password }}
+				            </div>
+				          </div>
+				        </div>
+
+						<input type="hidden" name="source_url" value="{{ request.META.HTTP_REFERER }}">
+
+				        <div class="form-group">
+						  <div class="col-md-6 col-sm-6 col-xs-6">
+						   <input type="submit" id="login" value="注册" class="btn btn-warning">
+				          </div>
+						  <div class="col-md-6 col-sm-6 col-xs-6">
+						   <a href="{% url 'login' %}"><input type="button" id="register" value="去登录" class="btn btn-primary"></a>
+				          </div>
+				        </div>
+					</div>
+				</div>
+		      </form>
+		</div>
 	</div>
 </body>
+
 </html>

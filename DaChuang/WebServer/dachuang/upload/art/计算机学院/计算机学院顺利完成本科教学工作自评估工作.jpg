@@ -1,0 +1,720 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<title>计算机学院</title><META Name="keywords" Content="计算机学院" />
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta content="IE=9" http-equiv="X-UA-Compatible">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/blue.css">
+<link rel="stylesheet" href="css/lightslider.css">
+<script src="js/jquery.min.js"></script><script src="js/zmyui.js"></script>
+<style>
+.more {
+    font-size: 14px;
+    color: #999;
+    float: right;
+    padding-right: 19px;
+    margin-top: 12px;
+    position: absolute;
+    top: 0;
+    right: 25px;}
+</style>
+<!--Announced by Visual SiteBuilder 9-->
+<link rel="stylesheet" type="text/css" href="_sitegray/_sitegray_d.css" />
+<script language="javascript" src="_sitegray/_sitegray.js"></script>
+<!-- CustomerNO:776562626572323069754754525b544003070000 -->
+<link rel="stylesheet" type="text/css" href="index.vsb.css" />
+<script type="text/javascript" src="/system/resource/js/counter.js"></script>
+<script type="text/javascript">_jsq_(1204,'/index.jsp',-1,871903495)</script>
+</head>
+<body>
+<!-- 头 s -->
+<div id="top" class="top_a">
+  <h6>
+    <div class="top-link a2"><a class="hrefs" href="oldindex.htm">怀念旧版</a> <span>|</span><a href="">加入收藏</a> </div>
+  </h6>
+  <dl>
+    <a href="new/index.htm"><img src="images/logo.png"></a>
+    <h5 class="dc"><a> <i onclick="f2('new/index.htm','')" id="dh">首页</i>
+<!--[if gte IE 7]><!-->
+  </a>
+<a > <i onclick="f2('new/xygk.htm','')" id="dh">学院概况</i>
+<!--[if gte IE 7]><!-->
+ <ul>
+
+<li class="aul1" onclick="location='new/xygk/jgsz.htm'">  机构设置</li>
+
+<li class="aul2" onclick="location='new/xygk/lrld.htm'">  历任领导</li>
+
+<li class="aul3" onclick="location='new/xyld.jsp?urltype=tree.TreeTempUrl&wbtreeid=1321'">  现任领导</li>
+
+<li class="aul4" onclick="location='new/xygk/yyfc.htm'">  院友风采</li>
+
+<li class="aul5" onclick="location='new/xygk/rrhj.htm'">  荣誉获奖</li>
+ </ul>
+   </a>
+<a> <i onclick="f2('new/szdw.htm','')" id="dh">师资队伍</i>
+<!--[if gte IE 7]><!-->
+ <ul>
+
+<li class="aul1" onclick="location='new/szdw/szmd.htm'" >  师资名单</li>
+
+<li class="aul2" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1381'" >  人事政策</li>
+
+<li class="aul3" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1382'" >  人才特区</li>
+
+<li class="aul4" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1383'" >  办事指南</li>
+
+<li class="aul5" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1384'" >  相关下载</li>
+ </ul>
+   </a>
+<a > <i onclick="f2('new/jyjx.htm','')" id="dh">教育教学</i>
+<!--[if gte IE 7]><!-->
+ <ul>
+
+<li class="aul1" onclick="location='new/jyjxlby.jsp?urltype=tree.TreeTempUrl&wbtreeid=1386'">  本科生教学</li>
+
+<li class="aul2" onclick="location='new/jyjx/yjs/zysz.htm'">  研究生教学</li>
+ </ul>
+   </a>
+<a> <i onclick="f2('new/kxyj.htm','')" id="dh">科学研究</i>
+<!--[if gte IE 7]><!-->
+ <ul>
+
+<li class="aul1" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1335'" >  研究机构</li>
+
+<li class="aul2" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1336'" >  学术交流</li>
+
+<li class="aul3" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1337'" >  科研动态</li>
+
+<li class="aul4" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1338'" >  政策法规</li>
+
+<li class="aul5" onclick="location='new/kxyj/ywzn.htm'" >  业务指南</li>
+
+<li class="aul6" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1340'" >  相关下载</li>
+ </ul>
+   </a>
+<a > <i onclick="f2('new/xkjs.htm','')" id="dh">学科建设</i>
+<!--[if gte IE 7]><!-->
+ <ul>
+
+<li class="aul1" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1341'">  学科团队</li>
+
+<li class="aul2" onclick="location='new/xkjs/xkfx.htm'">  学科方向</li>
+ </ul>
+   </a>
+<a> <i onclick="f2('new/djcy.htm','')" id="dh">党建创优</i>
+<!--[if gte IE 7]><!-->
+ <ul>
+
+<li class="aul1" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1331'" >  理论学习</li>
+
+<li class="aul2" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1332'" >  组织建设</li>
+
+<li class="aul3" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1333'" >  党风廉政</li>
+
+<li class="aul4" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1334'" >  创优争先</li>
+ </ul>
+   </a>
+<a > <i onclick="f2('new/xsgz.htm','')" id="dh">学生工作</i>
+<!--[if gte IE 7]><!-->
+ <ul>
+
+<li class="aul1" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1314'">  学生活动</li>
+
+<li class="aul2" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1422'">  通知公告</li>
+
+<li class="aul3" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1423'">  团学组织</li>
+
+<li class="aul4" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1324'">  创新实践</li>
+
+<li class="aul5" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1325'">  就业工作</li>
+
+<li class="aul6" onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1328'">  规章制度</li>
+ </ul>
+   </a>
+ <script type="text/javascript">
+     function f2(var1,var2){
+                  if(var2=="target=_blank"){
+                  window.open(var1);
+
+         }else{
+         window.location.href=var1;
+
+                  }
+     }
+</script><a class="mu_logo" onclick="abc('search','className','search_1')"></a> </h5>
+    <h5 class="dm visible-xs" style="display: none"><a class="mu_logo" onclick="abc('menu_m','className','menu_1')"></a> <a class="mu_logo" onclick="abc('search','className','search_1')"></a> </h5>
+  </dl>
+  <h4 id="search" class="search_0"><script type="text/javascript">
+function f1(){
+ var keyword = document.getElementById('showkeycode141084').value;
+  
+     document.getElementById("sub").click();
+ 
+
+}
+
+function   getRadioBoxValue(radioName) 
+{ 
+            var obj = document.getElementsByName(radioName);  //这个是以标签的name来取控件
+                 for(i=0; i<obj.length;i++)    {
+
+                  if(obj[i].checked)    { 
+                          return   obj[i].value; 
+                  } 
+              }         
+             return "undefined";       
+}
+    function _nl_ys_check(){
+        
+        var keyword = document.getElementById('showkeycode141084').value;
+        if(keyword==null||keyword==""){
+            alert("Please enter the search content...!");
+            return false;
+        }
+        if(window.toFF==1)
+        {
+            document.getElementById("lucenenewssearchkey141084").value = Simplized(keyword );
+        }else
+        {
+            document.getElementById("lucenenewssearchkey141084").value = keyword;            
+        }
+        var  base64 = new Base64();
+        document.getElementById("lucenenewssearchkey141084").value = base64.encode(document.getElementById("lucenenewssearchkey141084").value);
+        new VsbFormFunc().disableAutoEnable(document.getElementById("showkeycode141084"));
+        return true;
+    } 
+</script>
+<form action="/system/resource/code/notemp.jsp?owner=871903495&wbtreeid=1204&tempname=%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2%E7%BB%93%E6%9E%9C%E9%A1%B5&notuse=notuse" method="post" id="au1a" name="au1a" onsubmit="return _nl_ys_check()" style="display: inline">
+ <input type="hidden" id="lucenenewssearchkey141084" name="lucenenewssearchkey" value=""><input type="hidden" id="_lucenesearchtype141084" name="_lucenesearchtype" value="1"><input type="hidden" id="searchScope141084" name="searchScope" value="0">
+  
+     
+     <input type="text" scrolling="no" name="showkeycode" id="showkeycode141084" placeholder="请输入搜索关键字..." />
+    
+     <input id="sub" type="image" src="/system/resource/images/research/seach22.gif" align="absmiddle" style="cursor: hand;height: 0px;width: 0px;">
+    <i id="opne" onclick="f1()">&#xe600; 搜 索</i>&nbsp;
+    <i id="out" onclick="abc('search','className','search_0')">&#xe603; </i>
+</form>
+
+
+ 
+<script language="javascript" src="/system/resource/js/base64.js"></script><script language="javascript" src="/system/resource/js/formfunc.js"></script>
+</h4>
+</div>
+<!--移动端导航-->
+<div id="menu_m" class="menu_0"> <ul class="m1">
+    <li class="now"><a href="javascript:void(0);">首页<i>&#xe609;</i></a></li>
+     
+    <li><a href="javascript:void(0);">学院概况<i>&#xe609;</i></a></li>
+     
+    <li><a href="javascript:void(0);">师资队伍<i>&#xe609;</i></a></li>
+     
+    <li><a href="javascript:void(0);">教育教学<i>&#xe609;</i></a></li>
+     
+    <li><a href="javascript:void(0);">科学研究<i>&#xe609;</i></a></li>
+     
+    <li><a href="javascript:void(0);">学科建设<i>&#xe609;</i></a></li>
+     
+    <li><a href="javascript:void(0);">党建创优<i>&#xe609;</i></a></li>
+     
+    <li><a href="javascript:void(0);">学生工作<i>&#xe609;</i></a></li>
+     
+  </ul>
+  <span id="m2">
+  <ul>
+      <li onclick="location='/system/go.jsp?treeid=1295&apptype=treetemp&urltype=tree.TreeTempUrl'">首页</li>
+       
+    </ul>
+ 
+  
+ 
+
+    <ul style="display:none">
+      <li onclick="location='new/xygk/jgsz.htm'">机构设置</li>
+      <li onclick="location='new/xygk/lrld.htm'">历任领导</li>
+      <li onclick="location='new/xyld.jsp?urltype=tree.TreeTempUrl&wbtreeid=1321'">现任领导</li>
+      <li onclick="location='new/xygk/yyfc.htm'">院友风采</li>
+      <li onclick="location='new/xygk/rrhj.htm'">荣誉获奖</li>
+    </ul>
+    
+   
+  
+  
+ 
+
+    <ul style="display:none">
+      <li onclick="location='new/szdw/szmd.htm'">师资名单</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1381'">人事政策</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1382'">人才特区</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1383'">办事指南</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1384'">相关下载</li>
+    </ul>
+    
+   
+  
+  
+ 
+
+    <ul style="display:none">
+      <li onclick="location='new/jyjxlby.jsp?urltype=tree.TreeTempUrl&wbtreeid=1386'">本科生教学</li>
+      <li onclick="location='new/jyjx/yjs/zysz.htm'">研究生教学</li>
+    </ul>
+    
+   
+  
+  
+ 
+
+    <ul style="display:none">
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1335'">研究机构</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1336'">学术交流</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1337'">科研动态</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1338'">政策法规</li>
+      <li onclick="location='new/kxyj/ywzn.htm'">业务指南</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1340'">相关下载</li>
+    </ul>
+    
+   
+  
+  
+ 
+
+    <ul style="display:none">
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1341'">学科团队</li>
+      <li onclick="location='new/xkjs/xkfx.htm'">学科方向</li>
+    </ul>
+    
+   
+  
+  
+ 
+
+    <ul style="display:none">
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1331'">理论学习</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1332'">组织建设</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1333'">党风廉政</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1334'">创优争先</li>
+    </ul>
+    
+   
+  
+  
+ 
+
+    <ul style="display:none">
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1314'">学生活动</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1422'">通知公告</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1423'">团学组织</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1324'">创新实践</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1325'">就业工作</li>
+      <li onclick="location='new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1328'">规章制度</li>
+    </ul>
+    
+   
+  
+  
+  </span> 
+<!--关闭手机菜单--><i class="m_esc" onclick="abc('menu_m','className','menu_0')"></i> </div>
+<!-- 头 e --><!--banner s-->
+<div id="myCarousel" class="carousel slide"><!-- 轮播（Carousel）指标 -->
+  <ol class="carousel-indicators">
+    <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
+    <li data-slide-to="1" data-target="#myCarousel"></li>
+    <li data-slide-to="2" data-target="#myCarousel"></li>
+  </ol>
+  <!-- 轮播（Carousel）项目 --><script language="javascript" src="/system/resource/js/dynclicks.js"></script><script language="javascript" src="/system/resource/js/jquery/jquery-latest.min.js"></script>  <DIV role="listbox" class="carousel-inner"><!-- Third Slide -->
+<!-- Second Slide -->
+    
+ <DIV class="item active">  <IMG class="slide-image" alt="Bootstrap Touch Slider" src="/_mediafile/jisuanji2011/2017/04/26/2rzesl86ty.jpg">  
+   <div class="carousel-caption hidden-xs company_introduce">参赛师生在赛前准备中</div>
+</DIV>
+
+  <DIV class="item">  <IMG class="slide-image" alt="Bootstrap Touch Slider" src="/_mediafile/jisuanji2011/2017/04/26/1l226wu6tz.jpg">  
+   <div class="carousel-caption hidden-xs company_introduce">参赛机器人与获得奖杯</div>
+</DIV>
+
+     
+    
+  <DIV class="item">  <IMG class="slide-image" alt="Bootstrap Touch Slider" src="/_mediafile/jisuanji2011/2017/04/26/2su8rc36tz.jpg">  
+   <div class="carousel-caption hidden-xs company_introduce">轮式机器人技术挑战赛</div>
+</DIV>
+
+     
+
+ 
+ 
+  </DIV><script>_showDynClickBatch(['dynclicks_u3_5109','dynclicks_u3_5108','dynclicks_u3_5107'],[5109,5108,5107],"wbnews", 871903495)</script>
+<!-- 轮播（Carousel）导航 --><a class="carousel-control left hidden-xs " href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a><a class="carousel-control right hidden-xs" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a><!-- <a href="#myCarousel" data-slide="prev" class="carousel-control left">&lsaquo;</a>
+   <a href="#myCarousel" data-slide="next" class="carousel-control right">&rsaquo;</a>  --></div>
+<!--banner e--><!-- 第一部分 s -->
+<div class="tab-1">
+  <div class="container">
+    <div class="row"><!-- 新闻快递 s -->
+      <div class="col-md-8 col-sm-12 index-new">
+        <div class="in-new-head">
+          <h4>新闻快递 / <span>News</span></h4>
+          <A class="more" href="new/news.jsp?urltype=tree.TreeTempUrl&wbtreeid=1317">更多</A> 
+<DIV class="in-new-main">
+<DIV class="row">
+
+     
+      
+     
+<DIV class="col-md-5 col-sm-5">
+<DIV class="in-new-left">
+<A href="info/1317/5925.htm"><IMG alt="" src="/__local/6/09/FE/83BDE9165D35EBF749BAE659DD3_0E6F8F4D_3BC1.jpg"></A> 
+<H5><A href="info/1317/5925.htm">计算机学院学习缅怀康继昌教授光辉事迹</A>
+</H5>
+<P>​      我校计算机学科重要奠基人，首任计算机科学与工程系主任康继昌教授，不幸因病离开我们...</P></DIV></DIV>
+
+<DIV class="col-md-7 col-sm-7">
+<DIV class="in-new-right">
+<UL>
+ 
+
+      
+     
+<LI><SPAN>2018-01-04</SPAN> <A href="info/1317/5913.htm">2017年全校冬季安全生产大检查督察组来计算机学院督查 </A>
+ </LI>
+ 
+
+
+     
+      
+     
+<LI><SPAN>2017-12-30</SPAN> <A href="info/1317/5903.htm">计算机学院召开2017年度教职工代表大会 </A>
+ </LI>
+ 
+
+      
+     
+<LI><SPAN>2017-12-29</SPAN> <A href="info/1317/5902.htm">计算机学院党委组织基层党支部书记述职考核 </A>
+ </LI>
+ 
+
+
+     
+      
+     
+<LI><SPAN>2017-12-26</SPAN> <A href="info/1317/5897.htm">认清形势 统一思想 凝心聚力 努力为人民满意教育和“双一流”建设奉献聪明才智 </A>
+ </LI>
+ 
+
+      
+     
+<LI><SPAN>2017-12-26</SPAN> <A href="info/1317/5894.htm">西工大-云创大数据联合实验室签约暨揭牌仪式顺利举行 </A>
+ </LI>
+ 
+
+
+</UL>
+</DIV>
+</DIV>
+</DIV>
+
+</DIV><script>_showDynClickBatch(['dynclicks_u4_5925','dynclicks_u4_5913','dynclicks_u4_5903','dynclicks_u4_5902','dynclicks_u4_5897','dynclicks_u4_5894'],[5925,5913,5903,5902,5897,5894],"wbnews", 871903495)</script>
+</div>
+        <!-- 新闻快递 e --><!-- 通知公告 s -->
+        
+        <!-- 通知公告 e --></div>
+        <div class="col-md-4 col-sm-12 index-notice">
+          <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a class="nav-tab1" href="#nav-tab-1" data-toggle="tab">通知公告</a>
+            <li><a class="nav-tab2" href="#nav-tab-2" data-toggle="tab">科研信息</a> </li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div id="nav-tab-1" class="tab-pane fade in active"><a href="new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1311" class="more">更多</a>
+            <ul>
+
+<LI><SPAN>01-12 ·<A href="info/1311/5923.htm">关于计算机学院各系主任换届的公示</A></SPAN> 
+  </LI>
+<LI><SPAN>03-30 ·<A href="info/1311/5342.htm">关于计算机学院科研训练学分认定细则的公示</A></SPAN> 
+  </LI>
+<LI><SPAN>03-28 ·<A href="info/1311/5325.htm">关于申报2017年“青年骨干教师出国研修项目”的通知</A></SPAN> 
+  </LI>
+<LI><SPAN>03-16 ·<A href="info/1311/5337.htm">2017年计算机学院研究生复试方案和复试名单</A></SPAN> 
+  </LI>
+<LI><SPAN>06-12 ·<A href="info/1311/5351.htm">西北工业大学计算机学院2016年VLDB暑期学校报名通知</A></SPAN> 
+  </LI>
+<LI><SPAN>04-12 ·<A href="info/1311/5346.htm">数字革命与计算机学院交叉研究中心</A></SPAN> 
+  </LI>
+<LI><SPAN>04-06 ·<A href="info/1311/5350.htm">计算机学院研究生复试相关</A></SPAN> 
+  </LI>
+<LI><SPAN>04-05 ·<A href="info/1311/5338.htm">关于征集计算机学院院史资料、实物的启事</A></SPAN> 
+  </LI>
+</ul>
+<script>_showDynClickBatch(['dynclicks_u5_5923','dynclicks_u5_5342','dynclicks_u5_5325','dynclicks_u5_5337','dynclicks_u5_5351','dynclicks_u5_5346','dynclicks_u5_5350','dynclicks_u5_5338'],[5923,5342,5325,5337,5351,5346,5350,5338],"wbnews", 871903495)</script>
+</div>
+            <div id="nav-tab-2" class="tab-pane fade"><a href="new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1312" class="more">更多</a>
+            <ul>
+
+<LI><SPAN>09-15 ·<A href="info/1312/5125.htm">关于发布“高性能科学计算的基础算法与可计算建模”重大研究计划2015年度项目指南的通告</A></SPAN> 
+  </LI>
+<LI><SPAN>09-15 ·<A href="info/1312/5118.htm">关于进行2015年度国防科技成果鉴定申请的通知</A></SPAN> 
+  </LI>
+<LI><SPAN>07-06 ·<A href="info/1312/5127.htm">关于申报2015年度高等学校科学研究优秀成果奖（科学技术）的通知</A></SPAN> 
+  </LI>
+<LI><SPAN>09-09 ·<A href="info/1312/5119.htm">关于科研技术合同/外协合同审批流程变更的通知</A></SPAN> 
+  </LI>
+<LI><SPAN>09-05 ·<A href="info/1312/5122.htm">研究人员创造出具备自愈功能的计算机芯片</A></SPAN> 
+  </LI>
+<LI><SPAN>07-03 ·<A href="info/1312/5121.htm">新型自主机器人管家能够自动识别环境物体</A></SPAN> 
+  </LI>
+<LI><SPAN>06-18 ·<A href="info/1312/5120.htm">第41届世界超级计算机TOP500排名发布                    中国“天河”重返世界第一</A></SPAN> 
+  </LI>
+<LI><SPAN>05-29 ·<A href="info/1312/5123.htm">三星研制意念控制电脑 可收发邮件播乐曲</A></SPAN> 
+  </LI>
+</ul>
+<script>_showDynClickBatch(['dynclicks_u6_5125','dynclicks_u6_5118','dynclicks_u6_5127','dynclicks_u6_5119','dynclicks_u6_5122','dynclicks_u6_5121','dynclicks_u6_5120','dynclicks_u6_5123'],[5125,5118,5127,5119,5122,5121,5120,5123],"wbnews", 871903495)</script>
+</div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- 第一部分 e --><!-- 第二部分 s -->
+  <div class="tab-2">
+    <div class="container">
+      <div class="row"><!-- 科研团队 s -->
+        <div class="col-md-12">
+          <div class="index-team-head">
+            <div class="in-team-hmain">
+              <h3>科研平台</h3>
+              <p class="text-uppercase">scientific team</p>
+            </div>
+            <div class="in-team-hxian"></div>
+          </div>
+          <div class="index-team-main">
+            <div class="item">
+              <ul id="content-slider" class="content-slider">
+                <li>  
+    
+        <A href="info/1402/5761.htm"><IMG alt="" src="/_mediafile/jisuanji2011/2017/10/31/2pvyfey2cf.jpg"></A> 
+<H5><A href="info/1402/5761.htm">智能语音交互技术学术论坛召开
+</A></H5>
+<P class="hidden-xs">
+2017年10月10日，由西北工业大学—云知声智能语音交互联合实验室举办的“智能语音交互技术学术论坛”在计算机学院新报告厅召...</P>
+    
+<script>_showDynClickBatch(['dynclicks_u7_5761'],[5761],"wbnews", 871903495)</script>
+ <b> <a href="ypyyclz/index.htm">陕西省语音与图像处理重点实验室</a></b> <a class="enter" href="ypyyclz/index.htm">进入&gt;&gt;</a>
+                <li><a href=""><img alt="" src="images/ktdh.jpg"></a>
+                  <h5><a href="">我校承建空天地海一体化大数据应用技术国家工程实验室</a></h5>
+                  <p class="hidden-xs">“十三五”期间，国家规划建设13家国家大数据工程实验室，陕西省占有两席，其中之一由西北工业大学为承担单位。</p>
+                  <b><a href="">空天地海一体化大数据应用技术国家工程实验室</b> </a><a class="enter" href="">进入&gt;&gt;</a>
+                <li><a href=""><img alt="" src="images/zdsys.jpg"></a>
+                  <h5><a href="">2016年工业和信息化部重点实验室拟认定实验室名单 </a></h5>
+                  <p class="hidden-xs">　重点实验室是指国家科技创新体系中重要的实验室，是国家组织高水平基础研究和应用基础研究、聚集和培养优秀科技人才、开展高水平学术交流、科研装备先进的重要基地
+                    。</p>
+                  <b><a href="">工业和信息化部大数据存储与管理重点实验室</a></b> <a class="enter" href="">进入&gt;&gt;</a>
+                <li><a href=""><img alt="" src="images/qrs.jpg"></a>
+                  <h5><a href="">教育部工程研究中心</a></h5>
+                  <p class="hidden-xs">教育部工程研究中心是我国高等学校科技创新体系的重要组成部分，是高等学校加强资源共享、促进学科建设与发展、组织工程技术研究与开发、加快科技成果转化...。</p>
+                  <b><a href="">教育部嵌入式系统集成工程研究中心</a></b> <a class="enter" href="">进入&gt;&gt;</a>
+                <li><a href=""><img alt="" src="images/sxqrs.jpg"></a>
+                  <h5><a href="">陕西省嵌入式系统技术重点实验室</a></h5>
+                  <p class="hidden-xs">陕西省嵌入式系统技术重点实验室。 </p>
+                  <b><a href="">陕西省嵌入式系统技术重点实验室</a></b> <a class="enter" href="">进入&gt;&gt;</a>
+                <li><a href=""><img alt="" src="images/cg.jpg"></a>
+                  <h5><a href="">中国国际物联网博览会暨中国物联网大会</a></h5>
+                  <p class="hidden-xs">此次博览会依托无锡作为国家传感网创新示范区（国家传感信息中心）的品牌优势、集成电路产业优势、以及地处长三角几何中心的区位优势，以“感知科技、感知未来”为主题...</p>
+                  <b><a href="">陕西省传感网与智能控制工程技术研究中心</a></b> <a class="enter" href="">进入&gt;&gt;</a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- 科研团队 e --></div>
+    </div>
+  </div>
+  <!-- 第二部分 e --><!-- 第三部分 s -->
+  <div class="tab-3">
+    <div class="container">
+      <div class="row"><!-- 学术报告 s -->
+        <div class="col-md-4 col-sm-12 in-report">
+          <div class="in-new-head in-report-head">
+            <h4>学术报告 / <span>Report</span></h4>
+            
+<A class="more" href="new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1315">更多</A> </DIV>
+<DIV class="in-report-main">
+<UL>
+     
+<LI>
+<DIV class="in-report-name">
+<DIV class="in-report-img1"><IMG alt="" src="images/report-img1.png"></DIV><A href="info/1315/5906.htm">2018年1月5日学术报告会通知</A> </DIV>
+<DIV class="in-report-content">
+<DIV class="in-report-img2">详</DIV>
+报告时间：2018年1月5日（周五）14:00报告地点：计算机学院楼203会议室报告人：  田建辉教授 (西北工业大学计算机学院 陕西省百人计划特聘教授)邀请人：  李战怀教授    主题：量化软件质量保障方法、近期发展及大数据、云计算、物联网应用前景      Quantifi...
+</DIV></LI><LI>
+<DIV class="in-report-name">
+<DIV class="in-report-img1"><IMG alt="" src="images/report-img1.png"></DIV><A href="info/1315/5794.htm">澳洲国立大学Dr.Ramesh Sankaranara...</A> </DIV>
+<DIV class="in-report-content">
+<DIV class="in-report-img2">详</DIV>
+<p>报告题目：Understanding user search behaveour on mobile devices了解移动设备上的用户搜索行为</p><p>
+报告人： 澳洲国立大学计算机科学学院副院长
+</p><p>讲座时间：2017年10月25日下午14：00
+< ... </DIV></LI>
+     
+</UL>
+</DIV><script>_showDynClickBatch(['dynclicks_u8_5906','dynclicks_u8_5794'],[5906,5794],"wbnews", 871903495)</script>
+</div>
+          <!-- 学术报告 e --><!-- 学生活动 s -->
+          <div class="col-md-4 col-sm-12 in-active">
+            <div class="in-new-head in-active-head">
+              <h4>学生活动 / <span>Activities</span></h4>
+               <A class="more" href="new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1314">更多</A> </DIV>
+<DIV class="in-active-main">
+<UL>
+<LI><SPAN>11月28日</SPAN> <A href="info/1314/5809.htm">计算机学院举办“学习十九大精神”校园闯关赛</A> 
+ </LI>
+<LI><SPAN>11月27日</SPAN> <A href="info/1314/5807.htm">计算机学院承办第六届“三航杯”健美操（舞）赛</A> 
+ </LI>
+<LI><SPAN>11月29日</SPAN> <A href="info/1314/5137.htm">计算机学院体育文化节之羽毛球赛成功举办</A> 
+ </LI>
+<LI><SPAN>11月29日</SPAN> <A href="info/1314/5132.htm">计算机学院举办“一支部，一品牌”团日活动答辩会</A> 
+ </LI>
+<LI><SPAN>11月21日</SPAN> <A href="info/1314/5133.htm">计算机学院体育文化节之田径运动会成功举办</A> 
+ </LI>
+<LI><SPAN>11月18日</SPAN> <A href="info/1314/5131.htm">计算机学院举办“编译青春 拾梦飞扬”迎新晚会</A> 
+ </LI>
+<LI><SPAN>11月06日</SPAN> <A href="info/1314/5130.htm">计算机学院团支部组织观看《长征》纪录片</A> 
+ </LI>
+<LI><SPAN>11月03日</SPAN> <A href="info/1314/5129.htm">研究生灵犀学术殿堂第65期之Joseph Sifakis教授报告会成功举办</A> 
+ </LI>
+<LI><SPAN>11月03日</SPAN> <A href="info/1314/5136.htm">学雷锋”——计算机学院二级团校图书馆书籍整理活动</A> 
+ </LI>
+</UL></DIV><script>_showDynClickBatch(['dynclicks_u9_5809','dynclicks_u9_5807','dynclicks_u9_5137','dynclicks_u9_5132','dynclicks_u9_5133','dynclicks_u9_5131','dynclicks_u9_5130','dynclicks_u9_5129','dynclicks_u9_5136'],[5809,5807,5137,5132,5133,5131,5130,5129,5136],"wbnews", 871903495)</script>
+</div>
+            <!-- 学生活动 e --><!-- 新媒体 s -->
+            <div class="col-md-4 col-sm-12">
+              <div class="in-new-head in-media-head">
+                <h4>新媒体 / <span>Media</span></h4>
+              </div>
+              <div class="in-media-main">
+                <ul class="media-item-1">
+                  <li><a><img alt="" src="images/pic1.jpg" width="84" height="84"><span></span></a> </li>
+                  <li><a class="codebox"><img alt="" src="images/pic2.jpg" width="84" height="84"><span></span></a> </li>
+                </ul>
+                <ul class="media-item-2">
+                  
+ 
+     
+<LI>
+<DIV class="mda-title"><A href="info/1318/5156.htm" target="_blank">关于计算机学院科研训练学分认定细则的公示</A></DIV>
+<DIV class="mda-desc">关于计算机学院科研训练学分认定细则的公示</DIV>
+<DIV class="date">2017-03-30</DIV></LI>
+<LI>
+<DIV class="mda-title"><A href="info/1318/5157.htm" target="_blank">2017年计算机学院硕士研究生拟录取和不予录取名单公示</A></DIV>
+<DIV class="mda-desc">2017年计算机学院硕士研究生拟录取和不予录取名单公示</DIV>
+<DIV class="date">2017-03-29</DIV></LI>
+     
+
+     
+<LI>
+<DIV class="mda-title"><A href="info/1318/5153.htm" target="_blank">关于申报2017年“青年骨干教师出国研修项目”的通知</A></DIV>
+<DIV class="mda-desc">青年骨干教师出国研修项目</DIV>
+<DIV class="date">2017-03-28</DIV></LI>
+     
+<script>_showDynClickBatch(['dynclicks_u10_5156','dynclicks_u10_5157','dynclicks_u10_5153'],[5156,5157,5153],"wbnews", 871903495)</script>
+
+                </ul>
+              </div>
+            </div>
+            <!-- 新媒体 e --></div>
+          <div class="row"><!-- 快捷导航 s -->
+            <div class="col-md-12 index-qunav">
+              <ul>
+                <li><a href="new/index/bszn.htm"><img alt="" src="images/qunav-1.png">
+                  <div class="index-qunav-text">
+                    <h4>办事指南</h4>
+                    <p class="text-unpercase">Guide to</p>
+                  </div>
+                  </a></li>
+                <li><a href="new/tzgg.jsp?urltype=tree.TreeTempUrl&wbtreeid=1410"><img alt="" src="images/qunav-2.png">
+                  <div class="index-qunav-text">
+                    <h4>规章制度</h4>
+                    <p class="text-unpercase">regulatory framework</p>
+                  </div>
+                  </a></li>
+                <li><a href="new/index/xgxz.htm"><img alt="" src="images/qunav-3.png">
+                  <div class="index-qunav-text">
+                    <h4>相关下载</h4>
+                    <p class="text-unpercase">Related to download</p>
+                  </div>
+                  </a></li>
+                <li><a href=""><img alt="" src="images/qunnav-4.png">
+                  <div class="index-qunav-text">
+                    <h4>学生管理</h4>
+                    <p class="text-unpercase">Student management</p>
+                  </div>
+                  </a></li>
+              </ul>
+            </div>
+            <!-- 快捷导航 e --></div>
+        </div>
+      </div>
+      <!-- 第三部分 e --><!-- 底 s -->
+      <div class="footer">
+        <div class="container">
+
+        
+        <div class="row"> 
+ <div class="col-md-6 col-sm-12 foot-left"> 
+  <p>地址：陕西省西安市西北工业大学长安校区计算机学院886信箱</p> 
+  <p>邮编：710029</p>
+ </div> 
+ <div class="col-md-6 col-sm-12 foot-right hidden-xs "> 
+  <p><a href="">学校主页</a> - <a href="">中国计算机协会</a> - <a href="">校内新闻</a> - <a href="">办事指南</a></p> 
+  <p>西北工业大学计算机学院版权所有</p>
+ </div>
+</div>
+
+</div>
+      </div>
+      <!-- 底 e --><script src="js/bootstrap.min.js"></script><script src="js/lightslider.js"></script><script type="text/javascript">
+//轮播自动播放
+$('#myCarousel').carousel({
+//自动4秒播放
+interval : 4000,
+});
+
+$(document).ready(function() {
+ if(screen.width<768){
+ $("#content-slider").lightSlider({
+    loop:true,
+    keyPress:true,
+    item:1
+  }); 
+
+}else{
+ $("#content-slider").lightSlider({
+    loop:true,
+    keyPress:true,
+    item:4
+  }); 
+
+}
+ 
+
+
+
+ 
+  $('#image-gallery').lightSlider({
+    gallery:true,
+    item:4,
+    thumbItem:9,
+    slideMargin: 0,
+    speed:500,
+    auto:true,
+    loop:true,
+    onSliderLoad: function() {
+      $('#image-gallery').removeClass('cS-hidden');
+    }  
+  });
+});
+</script></div>
+  </div>
+</div>
+</body>
+</html>

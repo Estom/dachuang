@@ -3,10 +3,11 @@
 	<!--修改信息表单，需要提交的内容-->
 	<person>
 		<crsf>{% csrf_token %}</crsf>
-		<sex></sex>
-		<age></age>
-		<phone></phone>
-		<desc></desc>
-		<img></img>
+		<action>{% url 'person_edit' %}</action>
+		<sex>{{ form.sex }}</sex>
+		<age>{{ form.age }}</age>
+		<phone>{{ form.phone}}</phone>
+		<desc>{{ form.desc}}</desc>
+		<img>{{ form.img}}</img>
 	</person>
 </webpage>

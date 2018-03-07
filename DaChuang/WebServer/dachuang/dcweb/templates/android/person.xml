@@ -21,7 +21,7 @@
 		{% endfor %}
 	</star_list>
 	<history_list>
-		{% for article in article_list %}
+		{% for article in history_list %}
 		<article>
 			<title>{{ article.title }}</title>
 			<cate>{{ article.category }}</cate>

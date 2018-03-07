@@ -1,28 +1,59 @@
 <!DOCTYPE html>
+{% load staticfiles %}
+
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <title>操作失败</title>
-    <link href="http://www.maiziedu.com/static/css/base.css" rel="stylesheet">
-    <link href="http://www.maiziedu.com/static/css/microoh-v5.css" rel="stylesheet">
-    <style type="text/css">
-        ul li{float: left; margin-left: 10px;}
-    </style>
-</head>
 
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="{% static 'adminlte/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/AdminLTE.min.css' %}">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="{% static 'adminlte/dist/css/skins/_all-skins.min.css' %}">
+
+  <link rel="shortcut icon" href="{% static 'pencil1.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'blog/css/pygments/github.css' %}">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
 <body>
-<div class="microoh-main" style="height: 150px">
-    <div class="container" style="position: absolute; top: 20px; left: 20px;">
-        <div style="height: 150px">
-            <i class="v5-icon v5-icon-wrong"></i>
-            <span>{{ reason | safe }}</span>
-        </div>
+    <div class="wrapper">
+        <section class="content-header">
+        </section>
+        <section class="content">
+            <div class="row">
+
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="box box-default">
+                        <div class="box-body">
+                            <div class="alert alert-warning alert-dismissible">
+                                <h4><i class="icon fa fa-warning"></i>发生错误</h4>
+                                {{ reason }}
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <a href="">返回</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </div>
-</div>
 </body>
 </html>

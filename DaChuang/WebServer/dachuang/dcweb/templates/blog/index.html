@@ -58,7 +58,7 @@
 
             <div id="bd" class="wrp clear-fix">
                 <div id="main">
-                    {% load paginate_tags %} {% paginate article_list 3 %}
+                    {% load paginate_tags %} {% paginate article_list 6 %}
                     {% for article in article_list %}
                     <div class="post">
                         <div class="post-hd">
@@ -97,22 +97,53 @@
 
         <div class="col-lg-3">
             <!-- category -->
-            <h3>分类</h3>
-            <div  class="list-group">
-                    {% for category in category_list %}
-                    <a href="{% url 'category' category.pk %}" class="list-group-item"><span
-                            class="badge"></span>{{ category.name }}</a>
+                        <!-- tags -->
+            <br/>
+            <br/>
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">分类</h3>
+              </div>
+              <div class="panel-body">
+                        {% for category in category_list %}
+                        <a href="{% url 'category' category.pk %}" class=""><span
+                                class="badge"></span>{{ category.name }}</a>
+                        <hr/>
+                        {% endfor %}
 
-                    {% endfor %}
+              </div>
             </div>
+
+            <!--<h3>分类</h3>-->
+            <!--<div  class="list-group">-->
+                    <!--{% for category in category_list %}-->
+                    <!--<a href="{% url 'category' category.pk %}" class="list-group-item"><span-->
+                            <!--class="badge"></span>{{ category.name }}</a>-->
+
+                    <!--{% endfor %}-->
+            <!--</div>-->
             <!-- tags -->
-            <h3>标签</h3>
-            <div class="list-group">
-                {% for tag in tag_list %}
-                <a href="{% url 'tag' tag.pk %}" class="list-group-item"><span
-                                class="badge"></span>{{ tag.name }} <span class="text-right">{{tag.number}}</span></a>
-                {% endfor %}
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">标签</h3>
+              </div>
+              <div class="panel-body">
+                  <p>
+                    {% for tag in tag_list %}
+                    <a href="{% url 'tag' tag.pk %}" class=""><span  style="font-size:{% cycle '35px' '30px' '20px' %};"
+                                class="label {% cycle 'label-danger' 'label-info' 'label-warning' 'label-primary' 'label-success' %}">{{ tag.name }}</span></a>
+                    {% endfor %}
+                  </p>
+              </div>
             </div>
+
+            <!--<h3>标签</h3>-->
+            <!--<div class="list-group">-->
+                <!--{% for tag in tag_list %}-->
+                <!--<a href="{% url 'tag' tag.pk %}" class="list-group-item"><span-->
+                                <!--class="badge"></span>{{ tag.name }} <span class="text-right">{{tag.number}}</span></a>-->
+                <!--{% endfor %}-->
+            <!--</div>-->
 
             <!-- archive -->
             <!--<h3>文章归档</h3>-->

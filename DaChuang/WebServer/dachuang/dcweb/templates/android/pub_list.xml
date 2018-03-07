@@ -6,4 +6,5 @@
 		<publisher_name>{{ pub.name }}</publisher_name>
 		<publisher_url>{% url 'app_pub_detail' pub.pk %}</publisher_url>
 	</publisher>
+	{% endfor %}
 </publisher_list>

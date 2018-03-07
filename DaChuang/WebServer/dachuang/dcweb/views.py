@@ -150,25 +150,23 @@ def do_reg(request):
             print 444
             if reg_form.is_valid():
                 # 注册
-                print 555
                 user = User.objects.create(username=reg_form.cleaned_data["username"],
                                     email=reg_form.cleaned_data["email"],
                                     password=make_password(reg_form.cleaned_data["password"]),)
-                print 333
                 user.save()
-                print 222
                 # 登录
                 user.backend = 'django.contrib.auth.backends.ModelBackend' # 指定默认的登录验证方式
                 login(request, user)
-                print 'deng lu cheng gong'
-                return redirect(reverse('index'))
+                return redirect(reverse('app_index'))
             else:
+                # 表单自带验证出现错误的时候 - 是否填写，个字段是否符合规范
                 return render(request, 'failure.html', {'reason': reg_form.errors})
         else:
             reg_form = RegForm()
     except Exception as e:
         print e
         logger.error(e)
+        return render(request, 'failure.html', {'reason': "用户名已经注册"})
     return render(request, 'reg.html', locals())
 
 # 登录
@@ -185,13 +183,14 @@ def do_login(request):
                     user.backend = 'django.contrib.auth.backends.ModelBackend' # 指定默认的登录验证方式
                     login(request, user)
                 else:
-                    return render(request, 'failure.html', {'reason': '登录验证失败'})
+                    return render(request, 'failure.html', {'reason': '用户名或密码错误'})
                 return redirect(reverse('index'))
             else:
                 return render(request, 'failure.html', {'reason': login_form.errors})
         else:
             login_form = LoginForm()
     except Exception as e:
+        print e
         logger.error(e)
     return render(request, 'login.html', locals())
 
@@ -291,39 +290,39 @@ def staroff(reqeust):
     return redirect(reverse('pub_detail',kwargs={'pub_id':pub_id}))
 
 # 修改
-def PersonEdit(request):
-    try:
-        if request.method == 'POST':
-            print 123
-            person_form = PersonForm(request.POST, request.FILES or None)
-            print 456
-            print 789
-            if person_form.is_valid():
-                print 012
-                cd = person_form.cleaned_data
-                img_url = person_form['img']
-                # 注册
-                print cd
-                print 'url:'+img_url
-                user_normal = UserNormal.objects.get_or_create(user=request.user)
-                user_normal.sex=person_form.cleaned_data["username"]
-                user_normal.age=person_form.cleaned_data["email"]
-                user_normal.phone=person_form.cleaned_data["phone"]
-                user_normal.desc = person_form.cleaned_data["desc"]
-                user_normal.img=person_form.cleaned_data["img"]
-                print 333
-                user_normal.save()
-                print 222
-                return redirect(reverse('person'))
-            else:
-                return render(request, 'failure.html', {'reason': person_form.errors})
-        else:
-            person_form = PersonForm()
-    except Exception as e:
-        print 111111
-        print e
-        logger.error(e)
-    return render(request, 'blog/person_edit.html', locals())
+# def PersonEdit(request):
+#     try:
+#         if request.method == 'POST':
+#             print 123
+#             person_form = PersonForm(request.POST, request.FILES or None)
+#             print 456
+#             print 789
+#             if person_form.is_valid():
+#                 print 012
+#                 cd = person_form.cleaned_data
+#                 img_url = person_form['img']
+#                 # 注册
+#                 print cd
+#                 print 'url:'+img_url
+#                 user_normal = UserNormal.objects.get_or_create(user=request.user)
+#                 user_normal.sex=person_form.cleaned_data["username"]
+#                 user_normal.age=person_form.cleaned_data["email"]
+#                 user_normal.phone=person_form.cleaned_data["phone"]
+#                 user_normal.desc = person_form.cleaned_data["desc"]
+#                 user_normal.img=person_form.cleaned_data["img"]
+#                 print 333
+#                 user_normal.save()
+#                 print 222
+#                 return redirect(reverse('person'))
+#             else:
+#                 return render(request, 'failure.html', {'reason': person_form.errors})
+#         else:
+#             person_form = PersonForm()
+#     except Exception as e:
+#         print 111111
+#         print e
+#         logger.error(e)
+#     return render(request, 'blog/person_edit.html', locals())
 
 
 
@@ -335,6 +334,7 @@ class ArticleDetailView(DetailView): # detail  view 文章详细
     # pk_url_kwarg 用于接受一个来自URL的主键，然后会根据这个主键进行查询，我们在之前urlpatterns中已经捕获了article_id
     pk_url_kwarg = 'article_id'
 
+    # 重写了get方法，用来每次访问时，将一个文章添加到历史记录。
     def get(self, request, *args, **kwargs):
         article = super(ArticleDetailView, self).get_object()
         if request.user.is_authenticated():
@@ -348,6 +348,12 @@ class ArticleDetailView(DetailView): # detail  view 文章详细
         # obj.body = markdown2.markdown(obj.body, extras=['fenced-code-blocks'], )
         return obj
 
+    # 用于加载新的全局变量
+    def get_context_data(self, **kwargs):
+        # kwargs['category_list'] = Category.objects.all().order_by('name')
+        #kwargs['date_archive'] = Article.objects.archive()
+        kwargs['tag_list'] = Tag.objects.filter(article=self.kwargs['article_id'])
+        return super(ArticleDetailView, self).get_context_data(**kwargs)
     # 第五周新增
     # def get_context_data(self, **kwargs):
     #     kwargs['comment_list'] = self.object.blogcomment_set.all()
