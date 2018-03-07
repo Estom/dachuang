@@ -163,12 +163,15 @@ def do_reg(request):
                 print 'deng lu cheng gong'
                 return redirect(reverse('index'))
             else:
+                # 表单自带验证出现错误的时候 - 是否填写，个字段是否符合规范
                 return render(request, 'failure.html', {'reason': reg_form.errors})
         else:
+            print 6666
             reg_form = RegForm()
     except Exception as e:
         print e
         logger.error(e)
+        return render(request, 'failure.html', {'reason': "用户名已经注册"})
     return render(request, 'reg.html', locals())
 
 # 登录
@@ -258,7 +261,7 @@ def PersonView(request):
 def update_data(request):
     if request.method == 'POST':
 
-        form = PersonsForm(request.POST or None, request.FILES or None)
+        form = PersonForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             user_normal = UserNormal.objects.filter(user=request.user).delete()
             user_normal = form.save(commit=False)
@@ -268,7 +271,7 @@ def update_data(request):
 
             return HttpResponseRedirect(reverse('person'),RequestContext(request))
     else:
-        form = PersonsForm()
+        form = PersonForm()
     return render(request,'blog/person_form.html', {'form': form})
 
 # 点赞
@@ -296,39 +299,39 @@ def staroff(reqeust):
     return redirect(reverse('pub_detail',kwargs={'pub_id':pub_id}))
 
 # 修改
-def PersonEdit(request):
-    try:
-        if request.method == 'POST':
-            print 123
-            person_form = PersonForm(request.POST, request.FILES or None)
-            print 456
-            print 789
-            if person_form.is_valid():
-                print 012
-                cd = person_form.cleaned_data
-                img_url = person_form['img']
-                # 注册
-                print cd
-                print 'url:'+img_url
-                user_normal = UserNormal.objects.get_or_create(user=request.user)
-                user_normal.sex=person_form.cleaned_data["username"]
-                user_normal.age=person_form.cleaned_data["email"]
-                user_normal.phone=person_form.cleaned_data["phone"]
-                user_normal.desc = person_form.cleaned_data["desc"]
-                user_normal.img=person_form.cleaned_data["img"]
-                print 333
-                user_normal.save()
-                print 222
-                return redirect(reverse('person'))
-            else:
-                return render(request, 'failure.html', {'reason': person_form.errors})
-        else:
-            person_form = PersonForm()
-    except Exception as e:
-        print 111111
-        print e
-        logger.error(e)
-    return render(request, 'blog/person_edit.html', locals())
+# def PersonEdit(request):
+#     try:
+#         if request.method == 'POST':
+#             print 123
+#             person_form = PersonForm(request.POST, request.FILES or None)
+#             print 456
+#             print 789
+#             if person_form.is_valid():
+#                 print 012
+#                 cd = person_form.cleaned_data
+#                 img_url = person_form['img']
+#                 # 注册
+#                 print cd
+#                 print 'url:'+img_url
+#                 user_normal = UserNormal.objects.get_or_create(user=request.user)
+#                 user_normal.sex=person_form.cleaned_data["username"]
+#                 user_normal.age=person_form.cleaned_data["email"]
+#                 user_normal.phone=person_form.cleaned_data["phone"]
+#                 user_normal.desc = person_form.cleaned_data["desc"]
+#                 user_normal.img=person_form.cleaned_data["img"]
+#                 print 333
+#                 user_normal.save()
+#                 print 222
+#                 return redirect(reverse('person'))
+#             else:
+#                 return render(request, 'failure.html', {'reason': person_form.errors})
+#         else:
+#             person_form = PersonForm()
+#     except Exception as e:
+#         print 111111
+#         print e
+#         logger.error(e)
+#     return render(request, 'blog/person_edit.html', locals())
 
 
 
