@@ -3,12 +3,8 @@
 	<!--注册需要填写的信息-->
 	<register>
 		<crsf>{% csrf_token %}</crsf>
-		<username></username>
-		<email></email>
-		<password></password>
+		<email>{{ reg_form.email }}</email>
+		<username>{{ reg_form.username }}</username>
+		<password>{{ reg_form.password }}</password>
 	</register>
-	<!--前往登陆的相对链接-->
-	<login>
-		<login_url></login_url>
-	</login>
 </webpage>

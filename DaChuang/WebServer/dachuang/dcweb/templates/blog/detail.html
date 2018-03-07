@@ -38,6 +38,14 @@
 
                             </div>
                         </div>
+
+                        <!-- tags -->
+                        <div class="center-block">
+                            {% for tag in tag_list %}
+                            <a href="{% url 'tag' tag.pk %}" class="btn btn-default">{{ tag.name }} </a>
+                            {% endfor %}
+                        </div>
+
                     </div>
                     <div class="post-bd">
                         {{ article.content |safe }}

@@ -6,8 +6,4 @@
 		<username></username>
 		<password></password>
 	</login>
-	<!--前往注册的方法-->
-	<register>
-		<register_url>{% url 'app_reg' %}</register_url>
-	</register>
 </webpage>
