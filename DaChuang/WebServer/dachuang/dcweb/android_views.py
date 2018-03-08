@@ -261,6 +261,8 @@ def update_data(request):
             print user_normal.img.url
 
             return HttpResponseRedirect(reverse('app_person'),RequestContext(request))
+        else:
+            return render(request, 'android/failure.html', {'reason': form.errors})
     else:
         form = PersonsForm()
     return render(request,'android/person_edit.xml', {'form': form})

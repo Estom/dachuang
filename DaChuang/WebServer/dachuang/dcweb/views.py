@@ -261,6 +261,8 @@ def update_data(request):
             print user_normal.img.url
 
             return HttpResponseRedirect(reverse('person'),RequestContext(request))
+        else:
+            return render(request, 'failure.html', {'reason': form.errors})
     else:
         form = PersonsForm()
     return render(request,'blog/person_form.html', {'form': form})
