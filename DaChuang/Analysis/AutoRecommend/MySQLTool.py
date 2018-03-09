@@ -156,3 +156,14 @@ class MySQLTools:
         self._exeCuteCommit(sql)
 
 
+    def deldet(self, tablename, con = None):
+        """
+        删除数据
+        :param tablename: 数据库的名字
+        :param con: 删除条件
+        :return: 无
+        """
+        sql = 'DELETE FROM %s' % (tablename)
+        if con is not None:
+            sql += ' WHERE %s' % (con)
+        self._exeCuteCommit(sql)
