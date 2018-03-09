@@ -18,11 +18,14 @@ sql0 = MySQLTools(
 
 # sql1是已处理数据的数据库
 sql1 = MySQLTools(
-    host='111.230.181.121',
+    # host='111.230.181.121',
+    host='localhost',
     port=3306,
     user='root',
-    passwd='ykl123',
-    db='dcserver',
+    # passwd='ykl123',
+    passwd='root',
+    # db='dcserver',
+    db='dcspider',
     charset='utf8'
 )
 
