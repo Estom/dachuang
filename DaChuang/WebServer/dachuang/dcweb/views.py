@@ -19,6 +19,15 @@ logger = logging.getLogger('blog.views')
 from django.contrib.auth.hashers import make_password
 from django.core.urlresolvers import reverse
 
+# 加载推荐文章的类
+import sys
+import os
+path1 = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+path2 = '/Analysis/AutoRecommend'
+path = path1+path2
+sys.path.append(path)
+import autocomm_CT
+
 class IndexView(ListView): # index首页view
 
     template_name = "blog/index.html"
@@ -50,7 +59,9 @@ class IndexRecView(ListView): # index首页所有文章
         if not request.user.is_authenticated():
             print 11111
             return redirect(reverse('login'))
-
+        # 调用自动推荐函数
+        UserID = self.user.id
+        autocomm_CT.Commend_CT(UserID, numHistoryArticle=10, numTagRecommend=3, numRecommend=10)
         self.object_list = self.get_queryset()
         allow_empty = self.get_allow_empty()
 
