@@ -9,3 +9,4 @@ DaChuang/.idea/
 *.egg
 *.egg-info
 # My configureations
+.idea/
