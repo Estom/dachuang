@@ -84,10 +84,10 @@
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true">{{ article.click_count}}</span>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2">
-                                {% if request.session.has_loved %}
-                                <span class="glyphicon glyphicon-heart" aria-hidden="true">{{ article.love_count }}</span>
+                                {% if love %}
+                                <span class="glyphicon glyphicon-heart" style="color:red;" aria-hidden="true"> &nbsp;{{ article.love_count }}</span>
                                 {% else %}
-                                <a href="love/?article_id={{article.id}}"> <span class="glyphicon glyphicon-heart" aria-hidden="true">{{ article.love_count }}</span></a>
+                                <a href="love/?article_id={{article.id}}"> <span class="glyphicon glyphicon-heart" style="color:#505050;" aria-hidden="true"> &nbsp;{{ article.love_count }}</span></a>
                                 {% endif %}
                             </div>
                         </div>

@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     '111.230.181.121',
     'www.brainnews.club',
     '127.0.0.1',
+    'brainnews.club',
 ]
 
 
@@ -48,7 +49,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -91,7 +94,18 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+        'TIMEOUT': 600,
+        'OPTIONS': {
+        'MAX_ENTRIES': 1000
+        },
+    }
+}
 
+CACHE_MIDDLEWARE_SECONDS = 500
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 

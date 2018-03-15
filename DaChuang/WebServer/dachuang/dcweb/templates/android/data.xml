@@ -1,5 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
-    nothing
-    <!--用来绘制图形的相关数据，29号添加-->
+
+    <!--文章热度排行榜-->
+   <hot_article>
+       {% for article in hot_article_list %}
+       <article>
+           <title>{{article.title}}</title>
+           <url>{% url 'app_detail' article.id %}</url>
+           <publisher>{{article.publisher}}</publisher>
+           <hot_num>{{article.hot_num}}</hot_num>
+       </article>
+       {% endfor %}
+   </hot_article>
+
+    <!--发布者关注排行榜-->
+    <star_publisher>
+        {% for publisher in star_publisher_set %}
+        <publisher>
+            <name>{{publisher.name}}</name>
+            <url>{% url 'app_pub_detail' publisher.id %}</url>
+            <star_num>{{publisher.num_star}}</star_num>
+        </publisher>
+        {% endfor %}
+    </star_publisher>
+
+    <!--发布者热度排行榜-->
+    <hot_publisher>
+        {% for publisher in hot_publisher_list %}
+        <publisher>
+            <name>{{publisher.name}}</name>
+            <url>{% url 'app_pub_detail' publisher.id %}</url>
+            <hot_num>{{publisher.hot_num}}</hot_num>
+        </publisher>
+        {% endfor %}
+    </hot_publisher>
+
+    <!--热词统计-->
+    <use_tag>
+        {% for tag in use_tag %}
+        <tag>
+            <name>{{tag.name}}</name>
+            <url>{% url 'app_tag' tag.id %}</url>
+            <use_num>{{tag.number}}</use_num>
+        </tag>
+        {% endfor %}
+    </use_tag>
+
+    <!--类别文章数量分布-->
+    <use_category>
+        {% for category in category_list %}
+        <name>{{category.name}}</name>
+        <url>{% url 'app_category' category.id %}</url>
+        <use_num>{{category.num_article}}</use_num>
+        {% endfor %}
+    </use_category>
+
+    <!--类别热度分布-->
+    <hot_category>
+        {% for category in hot_category_list %}
+        <name>{{category.name}}</name>
+        <url>{% url 'app_category' category.id %}</url>
+        <hot_num>{{category.hot_num}}</hot_num>
+        {% endfor %}
+    </hot_category>
+
+    <!--来源文章数量分布-->
+    <use_source>
+        {% for source in source_set %}
+        <name>{{source.name}}</name>
+        <use_num>{{source.article_num}}</use_num>
+        {% endfor %}
+    </use_source>
+
+    <!--来源文章热度分布-->
+    <hot_source>
+        {% for source in source_set2 %}
+        <name>{{source.name}}</name>
+        <hot_num>{{source.hot_num}}</hot_num>
+        {% endfor %}
+    </hot_source>
 </data>

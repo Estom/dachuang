@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from dcweb import views
 from dcweb import android_views
+from dcweb import data_views
 from django.conf import settings
 from django.conf.urls.static import static
 from dcweb.views import test
@@ -20,7 +21,7 @@ urlpatterns = [
     url(r'^pub_list$', views.PublishView.as_view(), name='pub_list'),
     url(r'^pub_detail/(?P<pub_id>\d+)$', views.PubDetailView.as_view(), name='pub_detail'),
 
-    url(r'^data$', views.DataView.as_view(),name='data'),
+    url(r'^data$', data_views.data,name='data'),
 
     url(r'^person$', views.PersonView, name='person'),
     url(r'^person_edit$',views.update_data, name='person_edit'),
@@ -46,7 +47,7 @@ urlpatterns = [
     url(r'^app_pub_list$', android_views.PublishView.as_view(), name='app_pub_list'),
     url(r'^app_pub_detail/(?P<pub_id>\d+)$', android_views.PubDetailView.as_view(), name='app_pub_detail'),
 
-    url(r'^app_data$', android_views.DataView.as_view(),name='app_data'),
+    url(r'^app_data$', data_views.app_data,name='app_data'),
 
     url(r'^app_person$', android_views.PersonView, name='app_person'),
     url(r'^app_person_edit$', android_views.update_data, name='app_person_edit'),
