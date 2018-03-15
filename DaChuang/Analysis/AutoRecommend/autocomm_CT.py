@@ -51,13 +51,11 @@ def Commend_CT(UserID, numHistoryArticle=3, numTagRecommend=3, numRecommend=10):
     for i in ReadHistory:
         while RecommendArticleId.count(i[0]) > 0:
             RecommendArticleId.remove(i[0])
+    SQLconfig.sql0.deldet('dcweb_recommend', 'user_id = %d' % (UserID))
     for i in range(numRecommend):
         if len(RecommendArticleId) > i:
-            SQLconfig.sql0.update('dcweb_recommend', {'article_id': RecommendArticleId[i]},
-                                  'user_id = %d AND recommend_id = %d' % (UserID, i + 1))
-        else:
-            SQLconfig.sql0.update('user_recommend', {'article_id': -1},
-                                  'user_id = %d AND recommend_id = %d' % (UserID, i + 1))
+            SQLconfig.sql0.add('dcweb_recommend', {'article_id': RecommendArticleId[i],
+                                                      'user_id': UserID, 'recommend_id': i+1})
     print "用户%d阅读了："
     for i in ReadHistory:
         print SQLconfig.sql0.select('dcweb_article', ['title'], 'id = %d' % (i[0]))[0].decode('utf8')
@@ -65,4 +63,6 @@ def Commend_CT(UserID, numHistoryArticle=3, numTagRecommend=3, numRecommend=10):
     for i in RecommendArticleId:
         print SQLconfig.sql0.select('dcweb_article', ['title'], 'id = %d' % (i))[0].decode('utf8')
 
-Commend_CT(51, numHistoryArticle=3, numTagRecommend=3, numRecommend=10)
+# 举例
+# Commend_CT(51, numHistoryArticle=3, numTagRecommend=3, numRecommend=10)
+# Commend_CT(90, numHistoryArticle=3, numTagRecommend=3, numRecommend=10)

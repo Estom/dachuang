@@ -54,6 +54,9 @@ class IndexRecView(ListView): # index首页所有文章
         self.object_list = self.get_queryset()
         allow_empty = self.get_allow_empty()
 
+        # 调用自动推荐函数
+        UserID = self.user.id
+        autocomm_CT.Commend_CT(UserID, numHistoryArticle=10, numTagRecommend=3, numRecommend=10)
         if not allow_empty:
             # When pagination is enabled and object_list is a queryset,
             # it's better to do a cheap query than to load the unpaginated
@@ -261,6 +264,8 @@ def update_data(request):
             print user_normal.img.url
 
             return HttpResponseRedirect(reverse('app_person'),RequestContext(request))
+        else:
+            return render(request, 'android/failure.html', {'reason': form.errors})
     else:
         form = PersonsForm()
     return render(request,'android/person_edit.xml', {'form': form})

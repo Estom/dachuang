@@ -13,11 +13,20 @@ from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, FormView
-from models import Article, Category, Tag, Publisher,UserNormal,Recommend,Star,History
+from models import Article, Category, Tag, Publisher,UserNormal,Recommend,Star,History,Love
 from forms import *
 logger = logging.getLogger('blog.views')
 from django.contrib.auth.hashers import make_password
 from django.core.urlresolvers import reverse
+
+# 加载推荐文章的类
+import sys
+import os
+path1 = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+path2 = '/Analysis/AutoRecommend'
+path = path1+path2
+sys.path.append(path)
+import autocomm_CT
 
 class IndexView(ListView): # index首页view
 
@@ -50,7 +59,9 @@ class IndexRecView(ListView): # index首页所有文章
         if not request.user.is_authenticated():
             print 11111
             return redirect(reverse('login'))
-
+        # 调用自动推荐函数
+        UserID = self.user.id
+        autocomm_CT.Commend_CT(UserID, numHistoryArticle=10, numTagRecommend=3, numRecommend=10)
         self.object_list = self.get_queryset()
         allow_empty = self.get_allow_empty()
 
@@ -157,7 +168,7 @@ def do_reg(request):
                 # 登录
                 user.backend = 'django.contrib.auth.backends.ModelBackend' # 指定默认的登录验证方式
                 login(request, user)
-                return redirect(reverse('app_index'))
+                return redirect(reverse('index'))
             else:
                 # 表单自带验证出现错误的时候 - 是否填写，个字段是否符合规范
                 return render(request, 'failure.html', {'reason': reg_form.errors})
@@ -236,7 +247,7 @@ def PersonView(request):
             star_list = Star.objects.filter(user=request.user)
             for star in star_list:
                 pub_list.append(star.publisher)
-            article_in_history = History.objects.filter(user=request.user)
+            article_in_history = History.objects.filter(user=request.user).order_by('-time')[:10]
             for his in article_in_history:
                 history_list.append(his.article)
 
@@ -261,18 +272,24 @@ def update_data(request):
             print user_normal.img.url
 
             return HttpResponseRedirect(reverse('person'),RequestContext(request))
+        else:
+            return render(request, 'failure.html', {'reason': form.errors})
     else:
         form = PersonsForm()
     return render(request,'blog/person_form.html', {'form': form})
 
 # 点赞
 def love(request):
+
     article_id = request.GET['article_id']
-    if not request.session.get('has_loved'+article_id, False):
-        article = Article.objects.get(id=article_id)
-        article.increase_loves()
-        request.session['has_loved'+article_id] = True
-        print 123
+    article = Article.objects.get(pk=article_id)
+    if request.user.is_authenticated():
+        his = Love().add(request.user, article)
+    # if not request.session.get('has_loved'+article_id, False):
+    #     article = Article.objects.get(id=article_id)
+    #     article.increase_loves()
+    #     request.session['has_loved'+article_id] = True
+    #     print 123
     return redirect(reverse('detail',kwargs={'article_id':article_id}))
 
 # 关注
@@ -330,7 +347,7 @@ class ArticleDetailView(DetailView): # detail  view 文章详细
     model = Article
     template_name = "blog/detail.html"
     context_object_name = "article"
-
+    love = False
     # pk_url_kwarg 用于接受一个来自URL的主键，然后会根据这个主键进行查询，我们在之前urlpatterns中已经捕获了article_id
     pk_url_kwarg = 'article_id'
 
@@ -339,12 +356,13 @@ class ArticleDetailView(DetailView): # detail  view 文章详细
         article = super(ArticleDetailView, self).get_object()
         if request.user.is_authenticated():
             his = History().add(request.user,article)
+            self.love = Love.objects.filter(user=request.user,article=article).exists()
         return super(ArticleDetailView, self).get(self,request,*args,**kwargs)
     # get_object返回该视图要显示的对象。若果设置了queryset，则查询结果就是数据源。如果没有设置queryset，查询视图中
     # 的pk_url_kwarg，以它为主键进行查询，返回查询结果
     def get_object(self, queryset=None):
         obj = super(ArticleDetailView, self).get_object()
-        obj.increase_views()
+        # obj.increase_views()
         # obj.body = markdown2.markdown(obj.body, extras=['fenced-code-blocks'], )
         return obj
 
@@ -353,6 +371,7 @@ class ArticleDetailView(DetailView): # detail  view 文章详细
         # kwargs['category_list'] = Category.objects.all().order_by('name')
         #kwargs['date_archive'] = Article.objects.archive()
         kwargs['tag_list'] = Tag.objects.filter(article=self.kwargs['article_id'])
+        kwargs['love'] = self.love
         return super(ArticleDetailView, self).get_context_data(**kwargs)
     # 第五周新增
     # def get_context_data(self, **kwargs):
@@ -469,58 +488,3 @@ class PubDetailView(ListView): # index article_list 云标签
         kwargs['loged'] = self.loged
         return super(PubDetailView, self).get_context_data(**kwargs)
 
-
-class DataView(ListView):
-    template_name = "blog/data.html"
-    context_object_name = "article"
-    a = 1
-    def get_queryset(self):
-        pub_list = Publisher.objects.all()
-        # pub_list = pub_list[:2]
-        # for pub in pub_list:
-        #     pub.img = Image.objects.get(id=pub.img)
-        # for article in article_list:
-        #     article.body = markdown2.markdown(article.body, extras=['fenced-code-blocks'], )
-        return pub_list
-
-    def get_context_data(self, **kwargs):
-        return super(DataView, self).get_context_data(**kwargs)
-
-#
-# class ArchiveView(ListView):
-#     template_name = "blog/index.html"
-#     context_object_name = "article_list"
-#
-#     def get_queryset(self):
-#         year = int(self.kwargs['year'])
-#         month = int(self.kwargs['month'])
-#         article_list = Article.objects.filter(created_time__year=year, created_time__month=month)
-#         for article in article_list:
-#             article.body = markdown2.markdown(article.body, extras=['fenced-code-blocks'], )
-#         return article_list
-#
-#     def get_context_data(self, **kwargs):
-#         kwargs['tag_list'] = Tag.objects.all().order_by('name')
-#         return super(ArchiveView, self).get_context_data(**kwargs)
-#
-
-# 第五周新增 评论区域
-# class CommentPostView(FormView):
-#     form_class = BlogCommentForm
-#     template_name = 'blog/detail.html'
-#
-#     def form_valid(self, form):
-#         target_article = get_object_or_404(Article, pk=self.kwargs['article_id'])
-#         comment = form.save(commit=False)
-#         comment.article = target_article
-#         comment.save()
-#         self.success_url = target_article.get_absolute_url()
-#         return HttpResponseRedirect(self.success_url)
-#
-#     def form_invalid(self, form):
-#         target_article = get_object_or_404(Article, pk=self.kwargs['article_id'])
-#         return render(self.request, 'blog/detail.html', {
-#             'form': form,
-#             'article': target_article,
-#             'comment_list': target_article.blogcomment_set.all(),
-#         })

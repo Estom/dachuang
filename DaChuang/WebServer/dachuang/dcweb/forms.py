@@ -51,8 +51,8 @@ class PersonsForm(forms.ModelForm):
         model = UserNormal
         fields = [ 'age','sex','phone','desc','img']
         widgets = {
-            'sex':forms.TextInput(attrs={"placeholder": u"性别","id": "sex", "required": "required","tabindex": "1","class":"form-control",}),
-            'age':forms.TextInput(attrs={"placeholder": u"年龄","id":"age", "required":"required", "tabindex":"2","class":"form-control",}),
+            'sex':forms.Select(attrs={"placeholder": u"性别","id": "sex", "required": "required","tabindex": "1","class":"form-control",}),
+            'age':forms.NumberInput(attrs={"placeholder": u"年龄","id":"age", "required":"required", "tabindex":"2","class":"form-control",}),
             'phone':forms.TextInput(attrs={"placeholder": u"电话","id":"phone","tabindex":"3","class":"form-control",}),
             'desc':forms.Textarea(attrs={"placeholder": u"签名","id":"desc","required": "required", "cols": "80", "rows": "5", "tabindex": "4","class":"form-control",}),
         }
