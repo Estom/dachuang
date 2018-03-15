@@ -23,11 +23,7 @@
   <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
   <link rel="stylesheet" href="{% static 'blog/css/pygments/github.css' %}">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+
 {% endblock %}
 
 {% block content %}
@@ -35,72 +31,44 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <!-- AREA CHART -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Area Chart</h3>
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="areaChart" style="height:250px"></canvas>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
 
-          <!-- DONUT CHART -->
-          <div class="box box-danger">
-            <div class="box-header with-border">
-              <h3 class="box-title">Donut Chart</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <canvas id="pieChart" style="height:250px"></canvas>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-        </div>
-        <!-- /.col (LEFT) -->
-        <div class="col-md-6 col-md-offset-3">
-          <!-- LINE CHART -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Line Chart</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="lineChart" style="height:250px"></canvas>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
+        <div class="col-md-6">
           <!-- BAR CHART -->
           <div class="box box-success">
             <div class="box-header with-border">
-              <h3 class="box-title">Bar Chart</h3>
+              <h3 class="box-title">文章热度排行榜</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body box-profile">
+              <ul class="list-group list-group-unbordered">
+             {% for article in hot_article_list %}
+               <li class="list-group-item">
+                 <a href="{% url 'app_detail' article.id %}"><b style="color:black">{{article.title}}</b></a>
+                   <p class="pull-right text-success">{{article.hot_num}}</p>
+               </li>
+               {% endfor %}
+                <li class="list-group-item">
+                </li>
+              </ul>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+        <div class="col-md-6">
+          <!-- BAR CHART -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">热词排行榜</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -110,15 +78,151 @@
             </div>
             <div class="box-body">
               <div class="chart">
-                <canvas id="barChart" style="height:230px"></canvas>
+                <canvas id="tagChart" style="height:500px"></canvas>
+
               </div>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-
         </div>
-        <!-- /.col (RIGHT) -->
+
+
+
+        <div class="col-md-6">
+          <!-- BAR CHART -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">最具吸引力的发布者排行榜</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="chart">
+                <canvas id="starChart" style="height:250px"></canvas>
+
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+
+
+        <div class="col-md-6">
+          <!-- BAR CHART -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">最受欢迎的发布者排行榜</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="chart">
+                <canvas id="hotPubChart" style="height:250px"></canvas>
+
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+       <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">文章分布</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <canvas id="numCatChart" style="height:250px"></canvas>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+        <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">类别热度</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <canvas id="hotCatChart" style="height:250px"></canvas>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+        <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">文章来源分布</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <canvas id="numSourceChart" style="height:250px"></canvas>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+        <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">最受欢迎的文章来源分布</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <canvas id="hotSourceChart" style="height:250px"></canvas>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
       </div>
       <!-- /.row -->
 
@@ -126,200 +230,6 @@
     <!-- /.content -->
   </div>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                <p>New phone +1(800)555-1234</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                <p>nora@example.com</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                <p>Execution time 5 seconds</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Other sets of options are available
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Allow the user to show his name in blog posts
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Show me as online
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Turn off notifications
-              <input type="checkbox" class="pull-right">
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Delete chat history
-              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
 <!-- ./wrapper -->
 {% endblock  %}
 {% block js %}
@@ -336,7 +246,541 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{% static 'adminlte/dist/js/demo.js' %}"></script>
 <!-- page script -->
-<script src="{% static 'adminlte/data.js' %}"></script>
+<script>
 
+</script>
+<script>
+    $(function () {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+
+
+    //-------------
+    //- Tag BAR CHART -
+    //-------------
+    var barChartCanvasTag = $("#tagChart").get(0).getContext("2d");
+    var barChartTag = new Chart(barChartCanvasTag);
+    var barChartDataTag =  {
+      labels: ["{{use_tag.0.name}}", "{{use_tag.1.name}}", "{{use_tag.2.name}}", "{{use_tag.3.name}}", "{{use_tag.4.name}}", "{{use_tag.5.name}}",
+      "{{use_tag.6.name}}","{{use_tag.7.name}}","{{use_tag.8.name}}","{{use_tag.9..name}}"],
+      datasets: [
+        {
+          label: "标签热度",
+
+          fillColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+        ],
+          //strokeColor: "rgba(60,141,188,0.8)",
+          //pointColor: "#3b8bba",
+          //pointStrokeColor: "rgba(60,141,188,1)",
+          //pointHighlightFill: "#fff",
+          //pointHighlightStroke: "rgba(60,141,188,1)",
+          data: [{{use_tag.0.number}}, {{use_tag.1.number}}, {{use_tag.2.number}}, {{use_tag.3.number}}, {{use_tag.4.number}},
+           {{use_tag.5.number}}, {{use_tag.6.number}},{{use_tag.7.number}},{{use_tag.8.number}},{{use_tag.9.number}}],
+        }
+      ]
+    };
+    //barChartDataTag.datasets[1].fillColor = "#00a65a";
+    //barChartDataTag.datasets[1].strokeColor = "#00a65a";
+    //barChartDataTag.datasets[1].pointColor = "#00a65a";
+    var barChartOptionsTag = {
+      //Boolean - If we should show the scale at all
+      showScale: true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines: false,
+      //String - Colour of the grid lines
+      scaleGridLineColor: "rgba(0,0,0,.05)",
+      //Number - Width of the grid lines
+      scaleGridLineWidth: 1,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines: true,
+      //Boolean - Whether the line is curved between points
+      bezierCurve: true,
+      //Number - Tension of the bezier curve between points
+      bezierCurveTension: 0.3,
+      //Boolean - Whether to show a dot for each point
+      pointDot: false,
+      //Number - Radius of each point dot in pixels
+      pointDotRadius: 4,
+      //Number - Pixel width of point dot stroke
+      pointDotStrokeWidth: 1,
+      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+      pointHitDetectionRadius: 20,
+      //Boolean - Whether to show a stroke for datasets
+      datasetStroke: true,
+      //Number - Pixel width of dataset stroke
+      datasetStrokeWidth: 2,
+      //Boolean - Whether to fill the dataset with a color
+      datasetFill: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++)%></ul>",
+      //Boolean - whether to maintain the HotPubting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true
+    };
+
+    barChartOptionsTag.datasetFill = false;
+    barChartTag.Bar(barChartDataTag, barChartOptionsTag);
+
+
+
+    //-------------
+    //- Star BAR CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var barChartCanvasStar = $("#starChart").get(0).getContext("2d");
+    // This will get the first returned node in the jQuery collection.
+    var barChartStar = new Chart(barChartCanvasStar);
+
+    var barChartDataStar =  {
+      labels: ["{{star_publisher_set.0.name}}", "{{star_publisher_set.1.name}}", "{{star_publisher_set.2.name}}", "{{star_publisher_set.3.name}}", "{{star_publisher_set.4.name}}", "{{star_publisher_set.5.name}}",
+      "{{star_publisher_set.6.name}}","{{star_publisher_set.7.name}}","{{star_publisher_set.8.name}}","{{star_publisher_set.9..name}}"],
+      datasets: [
+        {
+          label: "标签热度",
+
+          fillColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+        ],
+          //strokeColor: "rgba(60,141,188,0.8)",
+          //pointColor: "#3b8bba",
+          //pointStrokeColor: "rgba(60,141,188,1)",
+          //pointHighlightFill: "#fff",
+          //pointHighlightStroke: "rgba(60,141,188,1)",
+          data: [{{star_publisher_set.0.num_star}}, {{star_publisher_set.1.num_star}}, {{star_publisher_set.2.num_star}}, {{star_publisher_set.3.num_star}}, {{star_publisher_set.4.num_star}},
+           {{star_publisher_set.5.num_star}}, {{star_publisher_set.6.num_star}},{{star_publisher_set.7.num_star}},{{star_publisher_set.8.num_star}},{{star_publisher_set.9.num_star}}],
+        }
+      ]
+    };
+
+    var barChartOptionsStar = {
+      //Boolean - If we should show the scale at all
+      showScale: true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines: false,
+      //String - Colour of the grid lines
+      scaleGridLineColor: "rgba(0,0,0,.05)",
+      //Number - Width of the grid lines
+      scaleGridLineWidth: 1,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines: true,
+      //Boolean - Whether the line is curved between points
+      bezierCurve: true,
+      //Number - Tension of the bezier curve between points
+      bezierCurveTension: 0.3,
+      //Boolean - Whether to show a dot for each point
+      pointDot: false,
+      //Number - Radius of each point dot in pixels
+      pointDotRadius: 4,
+      //Number - Pixel width of point dot stroke
+      pointDotStrokeWidth: 1,
+      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+      pointHitDetectionRadius: 20,
+      //Boolean - Whether to show a stroke for datasets
+      datasetStroke: true,
+      //Number - Pixel width of dataset stroke
+      datasetStrokeWidth: 2,
+      //Boolean - Whether to fill the dataset with a color
+      datasetFill: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++)%></ul>",
+      //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true
+    };
+
+    barChartOptionsStar.datasetFill = false;
+    barChartStar.Bar(barChartDataStar, barChartOptionsStar);
+
+
+
+    //-------------
+    //- Hot Publisher BAR CHART -
+    //-------------
+    var barChartCanvasHotPub = $("#hotPubChart").get(0).getContext("2d");
+    var barChartHotPub = new Chart(barChartCanvasHotPub);
+    var barChartDataHotPub =  {
+      labels: ["{{hot_publisher_list.0.name}}", "{{hot_publisher_list.1.name}}", "{{hot_publisher_list.2.name}}", "{{hot_publisher_list.3.name}}", "{{hot_publisher_list.4.name}}", "{{hot_publisher_list.5.name}}",
+      "{{hot_publisher_list.6.name}}","{{hot_publisher_list.7.name}}","{{hot_publisher_list.8.name}}","{{hot_publisher_list.9..name}}"],
+      datasets: [
+        {
+          label: "标签热度",
+
+          fillColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+        ],
+          //strokeColor: "rgba(60,141,188,0.8)",
+          //pointColor: "#3b8bba",
+          //pointStrokeColor: "rgba(60,141,188,1)",
+          //pointHighlightFill: "#fff",
+          //pointHighlightStroke: "rgba(60,141,188,1)",
+          data: [{{hot_publisher_list.0.hot_num}}, {{hot_publisher_list.1.hot_num}}, {{hot_publisher_list.2.hot_num}}, {{hot_publisher_list.3.hot_num}}, {{hot_publisher_list.4.hot_num}},
+           {{hot_publisher_list.5.hot_num}}, {{hot_publisher_list.6.hot_num}},{{hot_publisher_list.7.hot_num}},{{hot_publisher_list.8.hot_num}},{{hot_publisher_list.9.hot_num}}],
+        }
+      ]
+    };
+
+    var barChartOptionsHotPub = {
+      //Boolean - If we should show the scale at all
+      showScale: true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines: false,
+      //String - Colour of the grid lines
+      scaleGridLineColor: "rgba(0,0,0,.05)",
+      //Number - Width of the grid lines
+      scaleGridLineWidth: 1,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines: true,
+      //Boolean - Whether the line is curved between points
+      bezierCurve: true,
+      //Number - Tension of the bezier curve between points
+      bezierCurveTension: 0.3,
+      //Boolean - Whether to show a dot for each point
+      pointDot: false,
+      //Number - Radius of each point dot in pixels
+      pointDotRadius: 4,
+      //Number - Pixel width of point dot stroke
+      pointDotStrokeWidth: 1,
+      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+      pointHitDetectionRadius: 20,
+      //Boolean - Whether to show a stroke for datasets
+      datasetStroke: true,
+      //Number - Pixel width of dataset stroke
+      datasetStrokeWidth: 2,
+      //Boolean - Whether to fill the dataset with a color
+      datasetFill: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++)%></ul>",
+      //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true
+    };
+
+    barChartOptionsHotPub.datasetFill = false;
+    barChartHotPub.Bar(barChartDataHotPub, barChartOptionsHotPub);
+
+
+
+    //-------------
+    //- num Cat PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvasNumCat = $("#numCatChart").get(0).getContext("2d");
+    var pieChartNumCat = new Chart(pieChartCanvasNumCat);
+    var PieDataNumCat = [
+      {
+        value: {{ category_list.0.num_article|default_if_none:"1"}},
+        color: "#f56954",
+        highlight: "#f56954",
+        label: "{{ category_list.0.name}}"
+      },
+      {
+        value: {{ category_list.1.num_article|default_if_none:"1"}},
+        color: "#00a65a",
+        highlight: "#00a65a",
+        label: "{{ category_list.1.name}}"
+      },
+      {
+        value: {{ category_list.2.num_article|default_if_none:"1"}},
+        color: "#f39c12",
+        highlight: "#f39c12",
+        label: "{{ category_list.2.name}}"
+      },
+      {
+        value: {{ category_list.3.num_article|default_if_none:"1"}},
+        color: "#00c0ef",
+        highlight: "#00c0ef",
+        label: "{{ category_list.3.name}}"
+      },
+      {
+        value: {{ category_list.4.num_article|default_if_none:"1"}},
+        color: "#3c8dbc",
+        highlight: "#3c8dbc",
+        label: "{{ category_list.4.name}}"
+      },
+      {
+        value: {{ category_list.5.num_article|default_if_none:"1"}},
+        color: "#d2d6de",
+        highlight: "#d2d6de",
+        label: "{{ category_list.5.name}}"
+      },
+      {
+        value: {{ category_list.6.num_article|default_if_none:"1"}},
+        color: "#e2d6de",
+        highlight: "#d2d6de",
+        label: "{{ category_list.6.name}}"
+      },
+      {
+        value: {{ category_list.7.num_article|default_if_none:"1"}},
+        color: "#d2e6de",
+        highlight: "#d2d6de",
+        label: "{{ category_list.7.name}}"
+      }
+    ];
+    var pieOptionsNumCat = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke: true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor: "#fff",
+      //Number - The width of each segment stroke
+      segmentStrokeWidth: 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 0, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps: 100,
+      //String - Animation easing effect
+      animationEasing: "easeOutBounce",
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate: true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale: false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++)%></ul>"
+    };
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChartNumCat.Doughnut(PieDataNumCat, pieOptionsNumCat);
+
+
+  //-------------
+    //-hot Cat PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvasHotCat = $("#hotCatChart").get(0).getContext("2d");
+    var pieChartHotCat = new Chart(pieChartCanvasHotCat);
+    var PieDataHotCat = [
+      {
+        value: {{ hot_category_list.0.hot_num|default_if_none:"1"}},
+        color: "#f56954",
+        highlight: "#f56954",
+        label: "{{ hot_category_list.0.name}}"
+      },
+      {
+        value: {{ hot_category_list.1.hot_num|default_if_none:"1"}},
+        color: "#00a65a",
+        highlight: "#00a65a",
+        label: "{{ hot_category_list.1.name}}"
+      },
+      {
+        value: {{ hot_category_list.2.hot_num|default_if_none:"1"}},
+        color: "#f39c12",
+        highlight: "#f39c12",
+        label: "{{ hot_category_list.2.name}}"
+      },
+      {
+        value: {{ hot_category_list.3.hot_num|default_if_none:"1"}},
+        color: "#00c0ef",
+        highlight: "#00c0ef",
+        label: "{{ hot_category_list.3.name}}"
+      },
+      {
+        value: {{ hot_category_list.4.hot_num|default_if_none:"1"}},
+        color: "#3c8dbc",
+        highlight: "#3c8dbc",
+        label: "{{ hot_category_list.4.name}}"
+      },
+      {
+        value: {{ hot_category_list.5.hot_num|default_if_none:"1"}},
+        color: "#d2d6de",
+        highlight: "#d2d6de",
+        label: "{{ hot_category_list.5.name}}"
+      },
+      {
+        value: {{ hot_category_list.6.hot_num|default_if_none:"1"}},
+        color: "#e2d6de",
+        highlight: "#d2d6de",
+        label: "{{ hot_category_list.6.name}}"
+      },
+      {
+        value: {{ hot_category_list.7.hot_num|default_if_none:"1"}},
+        color: "#d2e6de",
+        highlight: "#d2d6de",
+        label: "{{ hot_category_list.7.name}}"
+      }
+    ];
+    var pieOptionsHotCat = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke: true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor: "#fff",
+      //Number - The width of each segment stroke
+      segmentStrokeWidth: 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 0, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps: 100,
+      //String - Animation easing effect
+      animationEasing: "easeOutBounce",
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate: true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale: false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++)%></ul>"
+    };
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChartHotCat.Doughnut(PieDataHotCat, pieOptionsHotCat);
+
+
+    //-------------
+    //-num Source PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvasNumSou = $("#numSourceChart").get(0).getContext("2d");
+    var pieChartNumSou = new Chart(pieChartCanvasNumSou);
+    var PieDataNumSou = [
+      {
+        value: {{ source_set.0.article_num|default_if_none:"1"}},
+        color: "#f56954",
+        highlight: "#f56954",
+        label: "{{ source_set.0.name}}"
+      },
+      {
+        value: {{ source_set.1.article_num|default_if_none:"1"}},
+        color: "#00a65a",
+        highlight: "#00a65a",
+        label: "{{ source_set.1.name}}"
+      },
+      {
+        value: {{ source_set.2.article_num|default_if_none:"1"}},
+        color: "#f39c12",
+        highlight: "#f39c12",
+        label: "{{ source_set.2.name}}"
+      }
+    ];
+    var pieOptionsNumSou = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke: true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor: "#fff",
+      //Number - The width of each segment stroke
+      segmentStrokeWidth: 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 50, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps: 100,
+      //String - Animation easing effect
+      animationEasing: "easeOutBounce",
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate: true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale: false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++)%></ul>"
+    };
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChartNumSou.Doughnut(PieDataNumSou, pieOptionsNumSou);
+
+
+
+
+
+    //-------------
+    //-hot Source PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvasHotSou = $("#hotSourceChart").get(0).getContext("2d");
+    var pieChartHotSou = new Chart(pieChartCanvasHotSou);
+    var PieDataHotSou = [
+      {
+        value: {{ source_set2.0.hot_num|default_if_none:"1"}},
+        color: "#00c0ef",
+        highlight: "#00c0ef",
+        label: "{{ source_set2.0.name}}"
+      },
+      {
+        value: {{ source_set2.1.hot_num|default_if_none:"1"}},
+        color: "#3c8dbc",
+        highlight: "#3c8dbc",
+        label: "{{ source_set2.1.name}}"
+      },
+      {
+        value: {{ source_set2.2.hot_num|default_if_none:"1"}},
+        color: "#d2d6de",
+        highlight: "#d2d6de",
+        label: "{{ source_set2.2.name}}"
+      }
+    ];
+    var pieOptionsHotSou = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke: true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor: "#fff",
+      //Number - The width of each segment stroke
+      segmentStrokeWidth: 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 50, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps: 100,
+      //String - Animation easing effect
+      animationEasing: "easeOutBounce",
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate: true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale: false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++)%></ul>"
+    };
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChartHotSou.Doughnut(PieDataHotSou, pieOptionsHotSou);
+  });
+</script>
 {% endblock %}
 

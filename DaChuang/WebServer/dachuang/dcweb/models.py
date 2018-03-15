@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User, Group
 from django.db.models.signals import post_save
 # Create your models here.
+# 我觉得这一部分可以将对数据库表和对数据库表的操作封装到一个类当中。
 
 #tag 标签是从文章中通过智能分析获得的参数，标签是不定的。而不是一开始由用户给定的参数
 class Tag(models.Model):
@@ -126,12 +127,39 @@ class History(models.Model):
         verbose_name_plural = u"浏览历史"
 
     def add(self,user,article):
+        # print not History.objects.filter(user=user,article=article).exists()
+        if not History.objects.filter(user=user,article=article).exists():
+            print 'what fuck'
+            Article.objects.filter(pk=article.pk).update(click_count=article.click_count + 1)
+
         History.objects.filter(user=user,article=article).delete()
         result = History(user=user,article=article)
         result.save()
-        history_list = History.objects.filter(user=user).order_by('time')
-        if len(history_list) > 10:
-            history_list[0].delete()
+        # article_item = Article.objects.get(pk=article)
+
+        # history_list = History.objects.filter(user=user).order_by('time')
+        # if len(history_list) > 10:
+        #     history_list[0].delete()
+
+    def __unicode__(self):
+        return unicode(self.id)
+
+class Love(models.Model):
+    user = models.ForeignKey(User)
+    article = models.ForeignKey(Article)
+    time = models.DateTimeField(verbose_name='时间',auto_now=True)
+    class Meta:
+        verbose_name = u'喜欢记录'
+        verbose_name_plural = u"喜欢"
+
+    def add(self,user,article):
+        if not Love.objects.filter(user=user,article=article).exists():
+            Article.objects.filter(pk=article.pk).update(love_count=article.love_count + 1)
+        Love.objects.filter(user=user,article=article).delete()
+        result = Love(user=user,article=article)
+        result.save()
+        # article_item = Article.objects.get(pk=article)
+
 
     def __unicode__(self):
         return unicode(self.id)
