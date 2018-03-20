@@ -6,13 +6,14 @@
 
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 
 class NaturalandAppliedSciencesSpider(scrapy.Spider):
@@ -20,15 +21,14 @@ class NaturalandAppliedSciencesSpider(scrapy.Spider):
     allowed_domains = ['lxy.nwpu.edu.cn']
 
     start_urls = [
+        # 'http://lxy.nwpu.edu.cn/new/index/xwkx/79.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/81.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/82.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/83.htm',
         'http://lxy.nwpu.edu.cn/new/index/xwkx.htm'
     ]
 
     base_image_html = 'http://lxy.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '理学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
 
     def parse(self, response):
         reload(sys)
@@ -120,14 +120,16 @@ class NaturalandAppliedSciencesSpider(scrapy.Spider):
         # 图片网址 图片地址
         if len(response.xpath(
                 '//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath(
                 '//img[@class="img_vsb_content"]/@src').extract()[0].encode(
                 'utf-8')
 
         elif len(response.xpath(
                 '//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath(
                 '//div[@class="v_news_content"]//img/@src').extract()[0].encode(
                 'utf-8')

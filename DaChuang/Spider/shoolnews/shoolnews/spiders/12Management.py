@@ -6,31 +6,27 @@
 
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 
 class ManagementSpider(scrapy.Spider):
     name = 'management'
     allowed_domains = ['som.nwpu.edu.cn']
     start_urls = [
+        'http://som.nwpu.edu.cn/xxfb/xyxw/42.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/43.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/44.htm',
         'http://som.nwpu.edu.cn/xxfb/xyxw.htm',
     ]
 
     base_image_html = 'http://som.nwpu.edu.cn'  # 图片的基网址  # /__local/B/E4/8C/5523A744CCF08A289BBE3FCA210_2705AB4A_FE6C.jpg
-
-    base_path = 'C:/Images/' + '管理学院'  # 图片保存到本地的基地址
-
-    # 建立文件夹'C:/Images/管理学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -107,11 +103,13 @@ class ManagementSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:

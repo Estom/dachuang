@@ -6,13 +6,14 @@
 
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 """
 材料学院的新闻大部分在新闻网的校园动态上发布，个人认为单独爬材料学院没有必要!!!
@@ -23,16 +24,23 @@ class MaterialsScienceSpider(scrapy.Spider):
     allowed_domains = ['cailiao.nwpu.edu.cn']
 
     start_urls = [
+        # 'http://cailiao.nwpu.edu.cn/zw2017/zxxx/57.htm',
+        # 'http://cailiao.nwpu.edu.cn/zw2017/zxxx/58.htm',
+        # 'http://cailiao.nwpu.edu.cn/zw2017/zxxx/59.htm',
+        'http://cailiao.nwpu.edu.cn/zw2017/zxxx/60.htm',
+        'http://cailiao.nwpu.edu.cn/zw2017/zxxx/61.htm',
+        'http://cailiao.nwpu.edu.cn/zw2017/zxxx/62.htm',
+        'http://cailiao.nwpu.edu.cn/zw2017/zxxx/63.htm',
+        'http://cailiao.nwpu.edu.cn/zw2017/zxxx/64.htm',
+        'http://cailiao.nwpu.edu.cn/zw2017/zxxx/65.htm',
+        'http://cailiao.nwpu.edu.cn/zw2017/zxxx/66.htm',
+        'http://cailiao.nwpu.edu.cn/zw2017/zxxx/67.htm',
+        'http://cailiao.nwpu.edu.cn/zw2017/zxxx/68.htm',
+        'http://cailiao.nwpu.edu.cn/zw2017/zxxx/69.htm',
         'http://cailiao.nwpu.edu.cn/zw2017/zxxx.htm',
     ]
 
     base_image_html = 'http://cailiao.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '材料学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -113,11 +121,13 @@ class MaterialsScienceSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:

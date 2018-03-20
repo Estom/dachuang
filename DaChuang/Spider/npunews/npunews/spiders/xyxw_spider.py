@@ -4,13 +4,13 @@
 import scrapy
 from npunews.items import NpunewsItem
 from urlparse import urljoin
-import os
 import re
 import sys
 
 import datetime
 import Myfilter
-
+import time
+import hashlib
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -19,15 +19,13 @@ class XyxwSpider(scrapy.Spider):
     name = "xyxw"
     allowed_domains = ["news.nwpu.edu.cn"]
     start_urls = [
+        'http://news.nwpu.edu.cn/news/xyxw/456.htm',
+        'http://news.nwpu.edu.cn/news/xyxw/457.htm',
+        'http://news.nwpu.edu.cn/news/xyxw/458.htm',
         'http://news.nwpu.edu.cn/news/xyxw.htm', # 校园动态
     ]
 
     base_image_html = 'http://news.nwpu.edu.cn'
-    base_path = 'C:/Images/' + '工大新闻网'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     # 收集处理一部分数据
     def parse(self, response):
@@ -105,12 +103,14 @@ class XyxwSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + \
                                  response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + \
                                  response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 

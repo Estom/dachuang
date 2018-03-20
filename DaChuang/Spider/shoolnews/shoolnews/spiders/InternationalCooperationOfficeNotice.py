@@ -6,13 +6,15 @@
 
 import scrapy
 import sys
-import os
+
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class InternationalCooperationOfficeNoticeSpider(scrapy.Spider) :
     name = 'InternationalCooperationOfficeNotice'
@@ -23,12 +25,6 @@ class InternationalCooperationOfficeNoticeSpider(scrapy.Spider) :
 
     base_article_html = "http://guoji.nwpu.edu.cn/info/"
     base_image_html = 'http://guoji.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '国际合作处'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -106,11 +102,13 @@ class InternationalCooperationOfficeNoticeSpider(scrapy.Spider) :
 
         # 图片网址 图片地址
         if len(response.xpath('//div[@class="page-main"]//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="page-main"]//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="page-main"]//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="page-main"]//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:

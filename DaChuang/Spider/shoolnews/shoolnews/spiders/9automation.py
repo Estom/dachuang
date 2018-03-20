@@ -6,37 +6,32 @@
 
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class AutomationSpider(scrapy.Spider):
     name = 'automation'
     allowed_domains = ['zdhxy.nwpu.edu.cn']
     start_urls = [
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/49.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/50.htm',
         'http://zdhxy.nwpu.edu.cn/xwgg/tuxw.htm'
     ]
 
     base_article_html = "http://zdhxy.nwpu.edu.cn/info/"
     base_image_html = 'http://zdhxy.nwpu.edu.cn' # 图片的基网址  # /__local/B/E4/8C/5523A744CCF08A289BBE3FCA210_2705AB4A_FE6C.jpg
 
-    base_path = 'C:/Images/'  # 图片保存到本地的基地址
-
-
     def parse(self, response):
         reload(sys)
         sys.setdefaultencoding('utf-8')
 
         list = response.xpath('/html/body/div/div[4]/div[3]/table/tr')
-
-        # 建立文件夹'C:/Images/自动化学院'
-        fileName = self.base_path + '自动化学院'.encode('GBK')
-        if not os.path.exists(fileName):
-            os.makedirs(fileName)
 
         myfilter = Myfilter.MyFilter()
         lasttime = myfilter.FilterbyTime('自动化学院')
@@ -103,11 +98,13 @@ class AutomationSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()) :
-            item['image_path'] = 'C:/Images/自动化学院/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()) :
-            item['image_path'] = 'C:/Images/自动化学院/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:
@@ -130,7 +127,6 @@ class AutomationSpider(scrapy.Spider):
             content += p
 
         item['content'] = content
-
 
 
         print '结束parse_content...', item['url']

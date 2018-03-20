@@ -8,7 +8,8 @@ import os
 import time
 from datetime import datetime
 import Myfilter
-
+import time
+import hashlib
 """
             '瓜大人文微助手':'guada-renwen',
             '空院微视野':'nwpuhangkong',
@@ -43,7 +44,6 @@ class ContentspiderSpider(scrapy.Spider):
 
         NWPUWechatIDList = user.getUser()
 
-        # print 'NWPUWechatIDList :', NWPUWechatIDList
 
         ws_api = wechatsogou.WechatSogouAPI(captcha_break_time=2,)
 
@@ -82,7 +82,8 @@ class ContentspiderSpider(scrapy.Spider):
                         item["desc"] = article_result.get("abstract")
                         item["author"] = author
                         item["image_html"] = article_result.get("cover")
-                        item["image_path"] = base_path + '/' + item['title'] + '.jpg'
+                        item['image_path'] = 'art/' + self.name + hashlib.md5(
+                            str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
                         item["source_id"] = 1
 
                         print 'title : ', item["title"]
@@ -91,7 +92,6 @@ class ContentspiderSpider(scrapy.Spider):
                         print 'url : ', item["url"]
                         print 'image_html : ', item["image_html"]
                         print 'image_path : ', item["image_path"]
-                        # 划了近乎两天时间，来处理http的报文头，最后发现配置错误
                         req = scrapy.Request(article_result.get("content_url"), meta=item, dont_filter=True, headers=self.settings.get('DEFAULT_REQUEST_HEADERS'))
                         reqs.append(req)
                         print '-------'
