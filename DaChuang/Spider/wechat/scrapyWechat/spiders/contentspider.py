@@ -51,13 +51,6 @@ class ContentspiderSpider(scrapy.Spider):
             print 'wechat_id:',wechat_id
             print 'author:',author
 
-            base_path = 'C:/Images/' + author  # 图片保存到本地的基地址
-
-
-            if not os.path.exists(base_path.decode('utf-8')):
-                os.makedirs(base_path.decode('utf-8'))
-
-
             try:
                 time.sleep(6)
 
