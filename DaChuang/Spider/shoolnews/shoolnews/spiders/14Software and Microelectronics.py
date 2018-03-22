@@ -20,10 +20,19 @@ class SoftwareSpider(scrapy.Spider):
     allowed_domains = ['rjwdz.nwpu.edu.cn']
 
     start_urls = [
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/24.htm',
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/25.htm',
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/26.htm',
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw.htm',
+        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/16.htm',
+        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/17.htm',
+        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/18.htm',
+        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/19.htm',
+        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/20.htm',
+        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/21.htm',
+        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/22.htm',
+        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/23.htm',
+
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/24.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/25.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/26.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw.htm',
     ]
 
     base_image_html = 'http://rjwdz.nwpu.edu.cn'

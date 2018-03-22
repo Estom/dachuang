@@ -19,9 +19,28 @@ class AutomationSpider(scrapy.Spider):
     name = 'automation'
     allowed_domains = ['zdhxy.nwpu.edu.cn']
     start_urls = [
-        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/49.htm',
-        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/50.htm',
-        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw.htm'
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/30.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/31.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/32.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/33.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/34.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/35.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/36.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/37.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/38.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/39.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/40.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/41.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/42.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/43.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/44.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/45.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/46.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/47.htm',
+        'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/48.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/49.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/50.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw.htm'
     ]
 
     base_article_html = "http://zdhxy.nwpu.edu.cn/info/"

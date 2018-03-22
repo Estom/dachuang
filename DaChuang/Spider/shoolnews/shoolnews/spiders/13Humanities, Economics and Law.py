@@ -19,9 +19,26 @@ class HumanitiesSpider(scrapy.Spider):
     allowed_domains = ['rwjj.nwpu.edu.cn']
 
     start_urls = [
-        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/38.htm',
-        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/39.htm',
-        'http://rwjj.nwpu.edu.cn/xwgg/xwdt.htm'
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/21.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/22.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/23.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/24.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/25.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/26.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/27.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/28.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/29.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/30.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/31.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/32.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/33.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/34.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/35.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/36.htm',
+        'http://rwjj.nwpu.edu.cn/xwgg/xwdt/37.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/38.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/39.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt.htm'
     ]
 
     base_image_html = 'http://rwjj.nwpu.edu.cn'

@@ -21,11 +21,41 @@ class NaturalandAppliedSciencesSpider(scrapy.Spider):
     allowed_domains = ['lxy.nwpu.edu.cn']
 
     start_urls = [
-        # 'http://lxy.nwpu.edu.cn/new/index/xwkx/79.htm',
-        'http://lxy.nwpu.edu.cn/new/index/xwkx/81.htm',
-        'http://lxy.nwpu.edu.cn/new/index/xwkx/82.htm',
-        'http://lxy.nwpu.edu.cn/new/index/xwkx/83.htm',
-        'http://lxy.nwpu.edu.cn/new/index/xwkx.htm'
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/50.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/51.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/52.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/53.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/54.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/55.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/56.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/57.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/58.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/59.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/60.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/61.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/62.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/63.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/64.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/65.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/66.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/67.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/68.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/69.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/70.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/71.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/72.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/73.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/74.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/75.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/76.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/77.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/78.htm',
+        'http://lxy.nwpu.edu.cn/new/index/xwkx/79.htm',
+
+        # 'http://lxy.nwpu.edu.cn/new/index/xwkx/81.htm',
+        # 'http://lxy.nwpu.edu.cn/new/index/xwkx/82.htm',
+        # 'http://lxy.nwpu.edu.cn/new/index/xwkx/83.htm',
+        # 'http://lxy.nwpu.edu.cn/new/index/xwkx.htm'
     ]
 
     base_image_html = 'http://lxy.nwpu.edu.cn'

@@ -20,10 +20,21 @@ class MechanicalEngineeringSpider(scrapy.Spider):
     allowed_domains = ['jidian.nwpu.edu.cn']
 
     start_urls = [
-        'http://jidian.nwpu.edu.cn/index/xyxw/36.htm',
-        'http://jidian.nwpu.edu.cn/index/xyxw/37.htm',
-        'http://jidian.nwpu.edu.cn/index/xyxw/38.htm',
-        'http://jidian.nwpu.edu.cn/index/xyxw.htm',
+        'http://jidian.nwpu.edu.cn/index/xyxw/25.htm',
+        'http://jidian.nwpu.edu.cn/index/xyxw/26.htm',
+        'http://jidian.nwpu.edu.cn/index/xyxw/27.htm',
+        'http://jidian.nwpu.edu.cn/index/xyxw/28.htm',
+        'http://jidian.nwpu.edu.cn/index/xyxw/29.htm',
+        'http://jidian.nwpu.edu.cn/index/xyxw/30.htm',
+        'http://jidian.nwpu.edu.cn/index/xyxw/31.htm',
+        'http://jidian.nwpu.edu.cn/index/xyxw/32.htm',
+        'http://jidian.nwpu.edu.cn/index/xyxw/33.htm',
+        'http://jidian.nwpu.edu.cn/index/xyxw/34.htm',
+
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/36.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/37.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/38.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw.htm',
     ]
 
     base_image_html = 'http://jidian.nwpu.edu.cn'

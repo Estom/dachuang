@@ -19,11 +19,29 @@ class LifeSciencesSpider(scrapy.Spider):
     allowed_domains = ['shengming.nwpu.edu.cn']
 
     start_urls = [
-        # 'http://shengming.nwpu.edu.cn/xwzx/yxxw/37.htm',
-        'http://shengming.nwpu.edu.cn/xwzx/yxxw/38.htm',
-        'http://shengming.nwpu.edu.cn/xwzx/yxxw/39.htm',
-        'http://shengming.nwpu.edu.cn/xwzx/yxxw/40.htm',
-        'http://shengming.nwpu.edu.cn/xwzx/yxxw.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/20.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/21.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/22.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/23.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/24.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/25.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/26.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/27.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/28.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/29.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/30.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/31.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/32.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/33.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/34.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/35.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/36.htm',
+        'http://shengming.nwpu.edu.cn/xwzx/yxxw/37.htm',
+
+        # 'http://shengming.nwpu.edu.cn/xwzx/yxxw/38.htm',
+        # 'http://shengming.nwpu.edu.cn/xwzx/yxxw/39.htm',
+        # 'http://shengming.nwpu.edu.cn/xwzx/yxxw/40.htm',
+        # 'http://shengming.nwpu.edu.cn/xwzx/yxxw.htm',
     ]
 
     base_image_html = 'http://shengming.nwpu.edu.cn'

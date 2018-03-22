@@ -19,9 +19,17 @@ class ForeignStudiesSpider(scrapy.Spider):
     allowed_domains = ['wgyxy.nwpu.edu.cn']
 
     start_urls = [
-        'http://wgyxy.nwpu.edu.cn/XYXW/xw/17.htm',
-        'http://wgyxy.nwpu.edu.cn/XYXW/xw/18.htm',
-        'http://wgyxy.nwpu.edu.cn/XYXW/xw.htm',
+        'http://wgyxy.nwpu.edu.cn/XYXW/xw/10.htm',
+        'http://wgyxy.nwpu.edu.cn/XYXW/xw/11.htm',
+        'http://wgyxy.nwpu.edu.cn/XYXW/xw/12.htm',
+        'http://wgyxy.nwpu.edu.cn/XYXW/xw/13.htm',
+        'http://wgyxy.nwpu.edu.cn/XYXW/xw/14.htm',
+        'http://wgyxy.nwpu.edu.cn/XYXW/xw/15.htm',
+        'http://wgyxy.nwpu.edu.cn/XYXW/xw/16.htm',
+
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/17.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/18.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw.htm',
         ]
 
     base_image_html = 'http://wgyxy.nwpu.edu.cn'

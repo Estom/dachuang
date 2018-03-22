@@ -20,10 +20,21 @@ class ElectricitySpider(scrapy.Spider):
     name = 'electricity'
     allowed_domains = ['dianzi.nwpu.edu.cn']
     start_urls = [
-        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/36.htm',
-        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/37.htm',
-        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/39.htm',
-        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/25.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/26.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/27.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/28.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/29.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/30.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/31.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/32.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/33.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/34.htm',
+        'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/35.htm',
+        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/36.htm',
+        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/37.htm',
+        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/39.htm',
+        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw.htm',
     ]
 
     base_image_html = 'http://dianzi.nwpu.edu.cn'  # 图片的基网址  # /__local/B/E4/8C/5523A744CCF08A289BBE3FCA210_2705AB4A_FE6C.jpg

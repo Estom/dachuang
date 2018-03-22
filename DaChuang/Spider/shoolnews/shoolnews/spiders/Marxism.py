@@ -21,6 +21,10 @@ class MarxismSpider(scrapy.Spider):
     allowed_domains = ['marx.nwpu.edu.cn']
 
     start_urls = [
+        'http://marx.nwpu.edu.cn/xwgg/xwdt/2.htm',
+        'http://marx.nwpu.edu.cn/xwgg/xwdt/3.htm',
+        'http://marx.nwpu.edu.cn/xwgg/xwdt/4.htm',
+        'http://marx.nwpu.edu.cn/xwgg/xwdt/5.htm',
         'http://marx.nwpu.edu.cn/xwgg/xwdt/6.htm',
         'http://marx.nwpu.edu.cn/xwgg/xwdt/7.htm',
         'http://marx.nwpu.edu.cn/xwgg/xwdt.htm',

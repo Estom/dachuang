@@ -20,10 +20,23 @@ class ManagementSpider(scrapy.Spider):
     name = 'management'
     allowed_domains = ['som.nwpu.edu.cn']
     start_urls = [
-        'http://som.nwpu.edu.cn/xxfb/xyxw/42.htm',
-        'http://som.nwpu.edu.cn/xxfb/xyxw/43.htm',
-        'http://som.nwpu.edu.cn/xxfb/xyxw/44.htm',
-        'http://som.nwpu.edu.cn/xxfb/xyxw.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/29.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/30.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/31.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/32.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/33.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/34.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/35.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/36.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/37.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/38.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/39.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/40.htm',
+        'http://som.nwpu.edu.cn/xxfb/xyxw/41.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/42.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/43.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/44.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw.htm',
     ]
 
     base_image_html = 'http://som.nwpu.edu.cn'  # 图片的基网址  # /__local/B/E4/8C/5523A744CCF08A289BBE3FCA210_2705AB4A_FE6C.jpg

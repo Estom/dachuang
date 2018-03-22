@@ -20,13 +20,33 @@ class PowerandEnergySpider(scrapy.Spider):
     allowed_domains = ['dongneng.nwpu.edu.cn']
 
     start_urls = [
-        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/69.htm',
-        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/70.htm',
-        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/71.htm',
-        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/72.htm',
-        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/73.htm',
-        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/74.htm',
-        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/50.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/51.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/52.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/53.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/54.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/55.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/56.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/57.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/58.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/59.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/60.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/61.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/62.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/63.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/64.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/65.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/66.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/67.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/68.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/69.htm',
+        'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/70.htm',
+
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/71.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/72.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/73.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/74.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt.htm',
     ]
 
     base_image_html = 'http://dongneng.nwpu.edu.cn'
