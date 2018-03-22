@@ -20,15 +20,13 @@ class GdywSpider(scrapy.Spider):
     name = "gdyw"
     allowed_domains = ["news.nwpu.edu.cn"]
     start_urls = [
-        # 'http://news.nwpu.edu.cn/news/gdyw/350.htm',
-        # 'http://news.nwpu.edu.cn/news/gdyw/354.htm',
-        'http://news.nwpu.edu.cn/news/gdyw/355.htm',
-        'http://news.nwpu.edu.cn/news/gdyw/358.htm',
         'http://news.nwpu.edu.cn/news/gdyw/362.htm',
         'http://news.nwpu.edu.cn/news/gdyw/364.htm',
         'http://news.nwpu.edu.cn/news/gdyw/367.htm',
         'http://news.nwpu.edu.cn/news/gdyw/368.htm',
         'http://news.nwpu.edu.cn/news/gdyw/369.htm',
+        'http://news.nwpu.edu.cn/news/gdyw/370.htm',
+        'http://news.nwpu.edu.cn/news/gdyw/371.htm',
         'http://news.nwpu.edu.cn/news/gdyw.htm', # 工大要闻
     ]
 

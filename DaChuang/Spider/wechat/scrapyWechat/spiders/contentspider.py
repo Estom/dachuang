@@ -144,7 +144,7 @@ class ContentspiderSpider(scrapy.Spider):
         else:
             group = ""
         publication = response.xpath('//*[@id="meta_content"]/span/text()')[0].extract().strip()
-        content = response.xpath('string(//div[@id="js_content"])').extract()[0].strip().encode('utf-8')
+        content = response.xpath('string(//div[@id="js_content"])').extract()[0].encode('utf-8')
 
         content_real = title + "\n" + time + "\n" + group + "\n" + publication + "\n" + content + "\n"
 

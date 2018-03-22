@@ -19,9 +19,11 @@ class XyxwSpider(scrapy.Spider):
     name = "xyxw"
     allowed_domains = ["news.nwpu.edu.cn"]
     start_urls = [
-        'http://news.nwpu.edu.cn/news/xyxw/456.htm',
         'http://news.nwpu.edu.cn/news/xyxw/457.htm',
         'http://news.nwpu.edu.cn/news/xyxw/458.htm',
+        'http://news.nwpu.edu.cn/news/xyxw/461.htm',
+        'http://news.nwpu.edu.cn/news/xyxw/463.htm',
+        'http://news.nwpu.edu.cn/news/xyxw/464.htm',
         'http://news.nwpu.edu.cn/news/xyxw.htm', # 校园动态
     ]
 

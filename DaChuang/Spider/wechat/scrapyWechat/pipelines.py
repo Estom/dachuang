@@ -38,7 +38,7 @@ class ImageScrapywechatPipeline(object) :
 
         if len(item['image_html']) :
             try:
-                temp_path = 'F:\Innovation Project\WorkNew\dachuang\DaChuang\WebServer\dachuang\upload'
+                temp_path = 'F:\Innovation Project\WorkNew\dachuang\DaChuang\WebServer\dachuang\upload/'
                 path = temp_path + item['image_path']
                 image = requests.get(item['image_html'])
                 f = open(path, 'wb')
