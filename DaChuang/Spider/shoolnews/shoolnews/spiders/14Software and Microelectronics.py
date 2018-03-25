@@ -20,19 +20,34 @@ class SoftwareSpider(scrapy.Spider):
     allowed_domains = ['rjwdz.nwpu.edu.cn']
 
     start_urls = [
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/16.htm',
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/17.htm',
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/18.htm',
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/19.htm',
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/20.htm',
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/21.htm',
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/22.htm',
-        'http://rjwdz.nwpu.edu.cn/xydt/xyxw/23.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/2.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/3.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/4.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/5.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/6.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/7.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/8.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/9.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/10.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/11.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/12.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/13.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/14.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/15.htm',
+
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/16.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/17.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/18.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/19.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/20.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/21.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/22.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/23.htm',
 
         # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/24.htm',
         # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/25.htm',
         # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/26.htm',
-        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw.htm',
+        'http://rjwdz.nwpu.edu.cn/xydt/xyxw.htm',
     ]
 
     base_image_html = 'http://rjwdz.nwpu.edu.cn'

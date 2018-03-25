@@ -20,7 +20,7 @@ class AdministrationSpider(scrapy.Spider):
     allowed_domains = ['jiaowu.nwpu.edu.cn']
 
     start_urls = [
-        'http://jiaowu.nwpu.edu.cn/index/tzgg/13.htm',
+        # 'http://jiaowu.nwpu.edu.cn/index/tzgg/13.htm',
         'http://jiaowu.nwpu.edu.cn/index/tzgg.htm',
     ]
 

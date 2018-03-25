@@ -18,11 +18,11 @@ class ComputerSpider(scrapy.Spider) :
     name = 'computer'
     allowed_domains = ['jsj.nwpu.edu.cn']
     start_urls = [
-        'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=5&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
-        'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=4&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
-        'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=3&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
-        'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=2&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
-        # 'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=1&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317'
+        # 'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=5&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
+        # 'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=4&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
+        # 'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=3&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
+        # 'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=2&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
+        'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=1&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317'
     ]
 
     base_article_html = "http://jsj.nwpu.edu.cn/info/"  # 文章的基网址
