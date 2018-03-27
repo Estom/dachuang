@@ -6,16 +6,19 @@
 
 	<title>修改个人信息</title>
 		<meta charset="utf-8">
-	 	<link rel="stylesheet"  href="{% static 'adminlte/bootstrap/css/bootstrap.min.css' %}">
- 		<link rel="stylesheet" href="{% static 'adminlte/bootstrap/css/templatemo_style.css' %}">
+		<!--使用非模板库-->
+	 	<link rel="stylesheet"  href="{% static 'lib/css/bootstrap.min.css' %}">
+ 		<link rel="stylesheet" href="{% static 'blog/css/form_style.css' %}">
+		<link rel="stylesheet" href="{% static 'lib/css/font-awesome.min.css' %}">
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 {% endblock %}
 
 {% block content %}
+<div class="">
 	<div class="container">
 		<div class="col-md-12">
-			<form class="form-horizontal templatemo-login-form-2" id="my-form" role="form" action="{% url 'person_edit' %}" method="post"  enctype="multipart/form-data">
+			<form class="form-horizontal templatemo-register-form" id="my-form" role="form" action="{% url 'person_edit' %}" method="post"  enctype="multipart/form-data">
 				{% csrf_token %}
 				<div class="row">
 					<div class="col-md-12">
@@ -40,7 +43,7 @@
 				          <div class="col-md-12">
 				            <label for="sex" class="control-label">性别</label>
 				            <div class="templatemo-input-icon-container">
-				            	<i class="fa fa-lock"></i>
+				            	<i class="fa "></i>
 								{{ form.sex }}
 				            </div>
 				          </div>
@@ -50,7 +53,7 @@
 				          <div class="col-md-12">
 				            <label for="phone" class="control-label">电话</label>
 				            <div class="templatemo-input-icon-container">
-				            	<i class="fa fa-user"></i>
+				            	<i class="fa fa-mobile-phone"></i>
 								{{ form.phone }}
 				            </div>
                           </div>
@@ -60,7 +63,7 @@
 				          <div class="col-md-12">
 				            <label for="desc" class="control-label">简介</label>
 				            <div class="templatemo-input-icon-container">
-				            	<i class="fa fa-user"></i>
+				            	<i class="fa fa-file-text-o"></i>
 								{{ form.desc }}
 				            </div>
                           </div>
@@ -70,7 +73,7 @@
 				          <div class="col-md-12">
 				            <label for="image" class="control-label">图片</label>
 				            <div class="templatemo-input-icon-container">
-				            	<i class="fa fa-user"></i>
+				            	<i class="fa fa-file-text"></i>
 								{{ form.img }}
 				            </div>
                           </div>
@@ -79,7 +82,7 @@
 						<input type="hidden" name="source_url" value="{{ request.META.HTTP_REFERER }}">
 
 				        <div class="form-group">
-						  <div class="col-md-6 col-sm-6 col-xs-6">
+						  <div class="col-md-6 col-sm-6 col-xs-6" >
 						   <input type="submit" id="login" value="提交" class="btn btn-warning">
 				          </div>
 						  <div class="col-md-6 col-sm-6 col-xs-6">
@@ -91,4 +94,5 @@
 		      </form>
 		</div>
 	</div>
+</div>
 {% endblock %}

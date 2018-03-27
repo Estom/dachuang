@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^pub_detail/staring',views.staring, name='staring'),
     url(r'^pub_detail/staroff',views.staroff,name='staroff'),
 
+    url(r'^gallery$',views.GalleryView.as_view(),name='gallery'),
     # ----------------------------------this is a part line-------------------------- #
     url(r'^app$', android_views.IndexView.as_view(), name='app_index'),
     url(r'^app_rec$', android_views.IndexRecView.as_view(), name='app_index_rec'),

@@ -65,14 +65,14 @@
                                 <!--</div>-->
                             <!--</div>-->
                         <!--</div>-->
-                        <img src="{{article.img.url}}" class="img-responsive center-block img-rounded">
+                        <img src="{{article.img.url}}" alt="hello world" onerror="this.src='{{article.publisher.img.url}}'" class="img-responsive center-block img-rounded">
 
                         <br/>
 
                     </div>
                     <div class="post-bd">
-                        <div class="text-justify">
-                            {{ article.content |safe }}
+                        <div class="text-justify line-intent">
+                            {{ article.content |linebreaks }}
                         </div>
                     </div>
                     <div class="post-ft">

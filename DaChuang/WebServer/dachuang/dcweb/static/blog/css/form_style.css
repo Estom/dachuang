@@ -1,0 +1,314 @@
+/* 
+
+
+Credit: www.cssmoban.com
+	1. General
+	2. login-form
+	3. register-form
+	4. person-form
+	10. Media Queries
+	
+--------------------------------------------*/
+/* 1. General
+--------------------------------------------*/
+
+*, body { font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+body { margin-bottom: 0px; }
+h1 {
+	font-weight: 300;
+	font-size: 36px;
+	line-height: normal;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+}
+h2 {
+	font-weight: 500;
+	font-size: 20px;
+	line-height: normal;
+	margin: auto;
+	margin-bottom: 30px;
+	text-align: center;
+	color: #09F;
+}
+
+.green { color: #3C3; }
+.gray { color: #999; }
+.blue {color: #00F;}
+
+.form-horizontal .control-label { padding-top: 0; }
+.form-horizontal.templatemo-payment-form .radio.templatemo-no-padding-top {	padding-top: 0; }
+.control-wrapper {
+	position: relative;
+	padding-left: 30px;
+}
+.control-wrapper label.fa-label {
+	position: absolute;
+	left: 4px;
+	top: 6px;
+}
+.form-group:last-child { margin-bottom: 0; }
+.form-horizontal .control-label { margin-bottom: 10px; }
+
+.table { margin-bottom: 0; }
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, 
+.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+	vertical-align: middle;
+}
+.templatemo-form-list-container { max-width: 600px; }
+.templatemo-input-icon-container { position: relative; }
+
+.templatemo-input-icon-container .fa {
+	color: gray;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+.templatemo-input-icon-container input, 
+.templatemo-input-icon-container textarea {
+	padding-left: 30px;
+}
+.templatemo-container {
+	background-color: rgba(255,255,255,0.8);
+	border: 1px solid #dedede;
+	border-radius: 8px;
+	margin: 0 auto;
+	padding: 30px;
+}
+.templatemo-bg-gray {
+    background-color: rgba(50,50,50,0.5);
+}
+.templatemo-bg-gray h1 { color: rgb(74, 164, 180); }
+
+
+.font-size-small { font-size: 0.8em; }
+.margin-bottom-15 {	margin-bottom: 15px; }
+.margin-bottom-30 {	margin-bottom: 30px; }
+.form-group { margin-bottom: 20px; }
+.form-group a {	line-height: 34px; }
+.fa { font-size: 16px; }
+.fa.login-with {
+	font-size: 30px;
+	margin: 0 5px;
+}
+.fa-medium { font-size: 20px; }
+.inline-block { display: inline-block; }
+
+.mask {
+    width:100%;
+    height: 100%;
+    background-color: rgba(	0 ,104 ,139,0.7);
+     position:fixed;
+}
+
+.blur {
+    filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
+
+    -webkit-filter: blur(10px); /* Chrome, Opera */
+       -moz-filter: blur(10px);
+        -ms-filter: blur(10px);
+            filter: blur(10px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+}
+.bg-blur {
+    float: left;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+}
+/*-------------------------------------
+2. login-form
+---------------------------------------*/
+.templatemo-bg-image-1 {
+	background-color: rgb(60,60,60);
+	background-image: url(../img/login.jpeg);
+}
+/*
+.templatemo-bg-image-1:after{
+    content: "";
+    width:100%;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    background: inherit;
+    filter: blur(5px);
+    z-index: 2;
+}
+*/
+.templatemo-login-form-1 {
+    max-width: 350px;
+    background-color: rgba(205,92,92,0.3);
+	border-radius: 8px;
+	color: #fff;
+	font-weight: 300;
+	padding: 0 30px 30px 30px;
+	margin: 100px auto 0 auto;
+
+}
+
+.templatemo-login-form-1 h1 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-family:"楷体","宋体",sans-serif;
+}
+
+.templatemo-login-form-1 .control-label {
+    margin-bottom: 10px;
+    font-size:18px;
+    font-family:"楷体","宋体",sans-serif;
+}
+.templatemo-login-form-1 a { color: gray; }
+.templatemo-login-form-1 a:hover {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+.templatemo-login-form-1 .btn {
+    width: 100%;
+}
+
+.templatemo-create-new {
+	color: #58B4BB;
+	font-size: 18px;
+	font-weight: 300;
+}
+.templatemo-create-new:hover {
+	color: #138892;
+	text-decoration: none;
+}
+
+.login-intro {
+    max-width: 600px;
+    /*background-color: rgba(205,92,92,0.3);*/
+	border-radius: 8px;
+	color: #fff;
+	padding: 0 30px 30px 30px;
+	margin: 100px auto 0 auto;
+}
+.login-intro a{
+    color:gold;
+    text-align:right;
+}
+.login-intro h1{
+    font-family:"楷体","宋体",sans-serif;
+}
+
+.login-intro p{
+    font-family:"楷体";
+    font-size:26px;
+    font-style:italic;
+}
+/*-------------------------------------
+3. register-form
+---------------------------------------*/
+.templatemo-bg-image-2 {
+	background-color: rgb(70, 90, 40);
+	background-image: url(../img/register.jpg);
+}
+.templatemo-register-form {
+	background-color: rgba(30,30,30,0.7);
+	border-radius: 8px;
+	color: #fff;
+	font-weight: 300;
+	max-width: 400px;
+	padding: 0 30px 30px 30px;
+	margin: 30px auto 0 auto;
+}
+.templatemo-register-form h1 {
+    color: #fff;
+    margin-bottom: 40px;
+    font-family:"楷体","宋体",sans-serif;
+    }
+
+
+.templatemo-login-form-1 .control-label {
+    margin-bottom: 10px;
+    font-size:18px;
+    font-family:"楷体","宋体",sans-serif;
+}
+.templatemo-register-form a { color: #DBDBDB; }
+.templatemo-register-form .form-control {
+	background-color: rgba(83, 78, 78, 0.35);
+	border: 1px solid rgba(255, 255, 255, 0.27);
+	color: rgb(255,255,255);
+}
+.templatemo-register-form .templatemo-input-icon-container .fa {	color: rgb(190, 190, 190); }
+.templatemo-register-form .control-label { margin-bottom: 10px; }
+.templatemo-register-form .btn {	width: 100%; }
+.templatemo-register-form .btn-social { max-width: 220px; }
+.templatemo-register-form label { font-weight: 400; }
+.templatemo-register-form .templatemo-one-signin { border-right: 1px solid rgba(200, 200, 200, 0.5); }
+
+
+/*-------------------------------------
+4. person
+--------------------------------------*/
+
+.templatemo-bg-image-3 {
+	background-color: rgb(70, 90, 40);
+	background-image: url(../img/person.jpg);
+	}
+.templatemo-header {
+	background-color: #0B8290;
+	color: white;
+	min-height: 90px;
+}
+.templatemo-header .checkbox {
+	display: block;
+	margin-top: 5px;
+}
+.templatemo-header form { margin-top: 25px; }
+.templatemo-header .form-inline .form-group { vertical-align: top; }
+
+.logo { margin: 18px; }
+
+
+
+/*--------------
+所有背景图片的配置
+------------------*/
+.templatemo-bg-image-1, .templatemo-bg-image-2, .templatemo-bg-image-3{
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+}
+.templatemo-bg-image-1, .templatemo-bg-image-2 ,.templatemo-bg-image-3{
+    background-size: cover;
+    }
+
+
+/*-------------------------------------
+10. Media Queries
+---------------------------------------*/
+@media screen and (max-width: 767px) {
+	.templatemo-header .col-md-12 {	line-height: 20px; }
+	.templatemo-header .btn { margin-bottom: 15px; }
+	.templatemo-container {	padding: 15px; }
+	.control-wrapper label.fa-label { top: 6px;	}
+	.templatemo-header form { margin-top: 0; }
+}
+@media screen and (max-width: 991px) {
+	.templatemo-login-form-2 .templatemo-one-signin {
+		border-right: none;
+		border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+	}
+	.templatemo-login-form-2 .templatemo-other-signin {	padding-top: 30px; }
+	.templatemo-login-form-2 .form-group:last-child { margin-bottom: 30px; }
+	.templatemo-create-account .col-md-6, .templatemo-create-account .col-md-12 {
+		padding-top: 5px;
+		padding-bottom: 15px;
+	}
+	.templatemo-create-account .form-group { margin-bottom: 0; }
+	.templatemo-radio-group { margin-top: 0; }
+	.templatemo-contact-form-2 .checkbox {	margin-bottom: 15px; }
+	.templatemo-contact-form-2 { padding: 30px 30px 0 30px;	}
+	.templatemo-radio-container { margin-left: 30px; }
+}
