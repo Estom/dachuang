@@ -19,6 +19,7 @@ logger = logging.getLogger('blog.views')
 from django.contrib.auth.hashers import make_password
 from django.core.urlresolvers import reverse
 
+from django.views.decorators.cache import cache_page
 # 加载推荐文章的类
 import sys
 import os
@@ -27,6 +28,7 @@ path2 = '/Analysis/AutoRecommend'
 path = path1+path2
 sys.path.append(path)
 import autocomm_CT
+
 
 class IndexView(ListView): # index首页view
 
@@ -137,6 +139,7 @@ class IndexStarView(ListView): # index首页关注文章view
         for star in star_list:
             pub_list.append(star.publisher)
 
+        # 这里应该可以对数据库查询进行优化
         for pub in pub_list:
             article_in_pub = Article.objects.filter(publisher=pub)
             article_list +=article_in_pub
