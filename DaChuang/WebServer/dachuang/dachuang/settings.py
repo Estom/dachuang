@@ -129,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_PROFILE_MODULE = 'dcweb.UserNormal'
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-MEDIA_ROOT = os.path.join(BASE_DIR, 'upload').replace("//", "/")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'upload').replace("\\", "/")
 
 MEDIA_URL = '/upload/'
 #LANGUAGE_CODE = 'en-us'

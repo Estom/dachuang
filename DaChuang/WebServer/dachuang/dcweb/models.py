@@ -87,6 +87,7 @@ class Article(models.Model):
     @property
     def img_url(self):
         if self.img and hasattr(self.img, 'url'):
+            print self.img.url
             return self.img.url
 
     def increase_views(self):
