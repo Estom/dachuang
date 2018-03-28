@@ -6,7 +6,7 @@
                       Main Styles
 =========================================================*/
 body {
-  background: #a95858;
+  background: #edf4f6;
   color: #333;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
@@ -833,19 +833,19 @@ main {
   top: 50%;
   margin-top: -84px;
   left: 50%;
-  margin-left: -188px;
+  margin-left: -150px;
 }
 @media (max-width: 1199px) {
   .gallery_caption {
     width: 240px;
-    margin-left: -150px;
+    margin-left: -120px;
     padding: 20px 30px 30px;
   }
 }
 @media (max-width: 979px) {
   .gallery_caption {
     width: 200px;
-    margin-left: -120px;
+    margin-left: -100px;
     padding: 10px 20px 20px;
     margin-top: -62px;
   }
