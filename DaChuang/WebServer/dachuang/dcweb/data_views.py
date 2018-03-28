@@ -25,7 +25,7 @@ from django.views.decorators.cache import cache_page
 # values()能见对象转化为字典
 # value_list()能将对象转化为元祖
 # oder_by()只能通过管理器调用，无法在查询集上调用
-@cache_page(60 * 60 * 24,key_prefix="my_cache_data_android") # 秒数，这里指缓存 15 分钟，不直接写900是为了提高可读性
+@cache_page(60 * 60 * 24,key_prefix="app_data") # 秒数，这里指缓存 15 分钟，不直接写900是为了提高可读性
 def app_data(request):
     # 传递导视图的数据
     data_dict={}
@@ -157,7 +157,7 @@ def app_data(request):
 
 # 首先实现参数封装传递过程，这节课必须完成这个东西
 # 然后根据页面需要，对参数进行格式化，然后显示出来。
-@cache_page(60 * 60 * 24,key_prefix="my_cache_data") # 秒数，这里指缓存 一天，不直接写900是为了提高可读性
+@cache_page(60 * 60 * 24,key_prefix="data") # 秒数，这里指缓存 一天，不直接写900是为了提高可读性
 def data(request):
     # 传递导视图的数据
     data_dict2 = {}

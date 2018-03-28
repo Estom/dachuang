@@ -28,6 +28,8 @@ $(function() {
 </script>
 {% endblock %}
 {% block content %}
+{% load cache %}
+{% cache 604800 pub_list %}
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -58,4 +60,5 @@ $(function() {
         </div>
     </div>
 </div>
+{% endcache %}
 {% endblock %}

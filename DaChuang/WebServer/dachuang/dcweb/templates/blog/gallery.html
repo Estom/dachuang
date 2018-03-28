@@ -19,8 +19,11 @@
 {% endblock %}
 {% block content %}
 
-{% load paginate_tags %} {% paginate article_list 9 %}
 
+
+{% load paginate_tags %} {% paginate article_list 9 %}
+{% load cache %}
+{% cache 86400 gallery current_page %}
 <div class="gallery">
     <div class="gallery_col-1">
         <a data-fancybox-group="gallery" href="{% url 'detail' article_list.0.pk %}" class="gallery_item thumb lazy-img" style="padding-bottom: 93.96551724137931%;">
@@ -115,4 +118,5 @@
     <li><a href="?page={{ article_list.next_page_number }}"><span class="glyphicon glyphicon-refresh">&nbsp;换一批</span></a></li>
   </ul>
 </nav>
+{% endcache %}
 {% endblock %}
