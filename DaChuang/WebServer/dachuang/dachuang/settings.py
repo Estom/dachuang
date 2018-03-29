@@ -99,7 +99,7 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
         'LOCATION': 'my_cache_table',
         'TIMEOUT': 60*3,
-        'KEY_PREFIX': 'ykl',
+        'KEY_PREFIX': 'web',
         'OPTIONS': {
         'MAX_ENTRIES': 10000
         },
@@ -107,7 +107,7 @@ CACHES = {
 }
 
 CACHE_MIDDLEWARE_SECONDS = 500
-CACHE_MIDDLEWARE_PREFIX = 'estom'
+CACHE_MIDDLEWARE_KEY_PREFIX = 'estom'
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 

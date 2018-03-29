@@ -3,7 +3,7 @@
 <head>
   {% load staticfiles %}
 
-  <title>>数据显示页面</title>
+  <title>数据显示页面</title>
   <!--mobile apps-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -196,9 +196,11 @@
 
       <!--//navigation-->
       <div class="banner-text">
-        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">Liqueur <br>is strong & <br> sweet alcohol</h2>
-        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">Vestibulum dictum fringilla accumsan fusce dolor tellus malesuada a aliquam id, pellentesque ut ante sed dapibus. </p>
-        <a href="about.html" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s"> More About</a>
+        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">西工大 <br>周热度排行榜</h2>
+        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">一周内最热门的十片文章，其中前三篇分别来自{{hot_article_list.0.publisher.name}}、
+          {{hot_article_list.1.publisher.name}}、{{hot_article_list.2.publisher.name}}.
+        </p>
+        <a href="{% url 'index' %}" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s">更多</a>
       </div>
     </div>
     <div class="clearfix"> </div>
@@ -214,9 +216,9 @@
 
     </div>
     <div class="bnr-btm-right">
-      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">Magnam aliquam quaerat voluptatemut enim minima laboriosam</h3>
-      <p class="wow fadeInRight animated" data-wow-delay=".5s">Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen book  It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. More recently with desktop.</p>
-      <a href="single.html" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s"> See More</a>
+      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>周内热词排行榜</h3>
+      <p class="wow fadeInRight animated" data-wow-delay=".5s"> 通过热门词汇，你会发现当前流行的网络语，并能迅速得知当前的热门话题.</p>
+      <a href="{% url 'index' %}" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s">导航</a>
     </div>
     <div class="clearfix"></div>
   </div>
@@ -234,9 +236,9 @@
 
       <!--//navigation-->
       <div class="banner-text">
-        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">Liqueur <br>is strong & <br> sweet alcohol</h2>
-        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">Vestibulum dictum fringilla accumsan fusce dolor tellus malesuada a aliquam id, pellentesque ut ante sed dapibus. </p>
-        <a href="about.html" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s"> More About</a>
+        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">西工大<br>发布者被关注的数量</h2>
+        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">发布者获得的关注越多，说明其发布的内容质量更好，更能得到读者的信任和喜爱.</p>
+        <a href="{% url 'pub_list' %}" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s">更多</a>
       </div>
     </div>
     <div class="clearfix"> </div>
@@ -251,9 +253,9 @@
 
     </div>
     <div class="bnr-btm-right">
-      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">Magnam aliquam quaerat voluptatemut enim minima laboriosam</h3>
-      <p class="wow fadeInRight animated" data-wow-delay=".5s">Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen book  It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. More recently with desktop.</p>
-      <a href="single.html" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s"> See More</a>
+      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>发布者热度排行榜</h3>
+      <p class="wow fadeInRight animated" data-wow-delay=".5s">发布者在一周内，发布了一篇或多篇受到广泛关注的文章，获得大量点赞，说明发布者有较强的get热点的能力</p>
+      <a href="{% url 'pub_list' %}" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s">更多</a>
     </div>
     <div class="clearfix"></div>
   </div>
@@ -270,9 +272,9 @@
 
       <!--//navigation-->
       <div class="banner-text">
-        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">Liqueur <br>is strong & <br> sweet alcohol</h2>
-        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">Vestibulum dictum fringilla accumsan fusce dolor tellus malesuada a aliquam id, pellentesque ut ante sed dapibus. </p>
-        <a href="about.html" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s"> More About</a>
+        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">西工大 <br>文章类别的分布</h2>
+        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">通过智能的分类系统，我们将文章划分为不同的类别，每种类别中文章的比例，能够反映当前发布者发布文章的倾向性.</p>
+        <a href="{% url 'index' %}" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s">更多</a>
       </div>
     </div>
     <div class="clearfix"> </div>
@@ -286,9 +288,9 @@
 
     </div>
     <div class="bnr-btm-right">
-      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">Magnam aliquam quaerat voluptatemut enim minima laboriosam</h3>
-      <p class="wow fadeInRight animated" data-wow-delay=".5s">Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen book  It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. More recently with desktop.</p>
-      <a href="single.html" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s"> See More</a>
+      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>文章热度分布</h3>
+      <p class="wow fadeInRight animated" data-wow-delay=".5s">每一个类别，都会引起不同人群的兴趣，类别越受欢迎，就说明这一类文章越能引起人们的喜爱.</p>
+      <a href="{% url 'index' %}" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s">更多</a>
     </div>
     <div class="clearfix"></div>
   </div>
@@ -304,9 +306,9 @@
 
       <!--//navigation-->
       <div class="banner-text">
-        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">Liqueur <br>is strong & <br> sweet alcohol</h2>
-        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">Vestibulum dictum fringilla accumsan fusce dolor tellus malesuada a aliquam id, pellentesque ut ante sed dapibus. </p>
-        <a href="about.html" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s"> More About</a>
+        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">西工大<br>文章来源热度</h2>
+        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">当前人们获取校园文章的方式各种各样，微信、西工大官网、校园网站等，不同来源的文章分布，能够说明发布者更喜欢哪一种发布渠道，也能体现文章媒介的变化.</p>
+        <a href="{% url 'index' %}" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s">更多</a>
       </div>
     </div>
     <div class="clearfix"> </div>
@@ -320,16 +322,16 @@
 
     </div>
     <div class="bnr-btm-right">
-      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">Magnam aliquam quaerat voluptatemut enim minima laboriosam</h3>
-      <p class="wow fadeInRight animated" data-wow-delay=".5s">Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen book  It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. More recently with desktop.</p>
-      <a href="single.html" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s"> See More</a>
+      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>来源热度分布</h3>
+      <p class="wow fadeInRight animated" data-wow-delay=".5s">人们可以通过各种方式获取文章，热度分布，反映了读者通过何种平台获取文章最为广泛，体现了读者对不同文章平台的观点.</p>
+      <a href="{% url 'index' %}" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s">更多</a>
     </div>
     <div class="clearfix"></div>
   </div>
   <!--copy-right-->
   <div class="copy-right">
     <div class="container">
-      <p class="wow bounceIn animated" data-wow-delay=".5s">Copyright &copy;西北工业大学-西工大cybeTech小组<br/><a href="http://www.miitbeian.gov.cn/" title="备案号" target="_blank">ICP主体备案号 陕ICP备18002962号</a></p>
+      <p class="wow bounceIn animated" data-wow-delay=".5s">特别鸣谢：前端工程师张鹏光，图片提供者董金国、许恒灼<br/>Copyright &copy;西北工业大学-西工大cybeTech小组<br/><a href="http://www.miitbeian.gov.cn/" title="备案号" target="_blank">ICP主体备案号 陕ICP备18002962号</a></p>
     </div>
   </div>
   <!--//copy-right-->
@@ -434,7 +436,7 @@
 				xAxes: [{
 					display: true,
 					scaleLabel: {
-						display: true,
+						display: false,
 						labelString: '热词热度'
 					},
 					position:'bottom',
@@ -532,7 +534,7 @@
 					xAxes: [{
 						display: true,
 						scaleLabel: {
-							display: true,
+							display: false,
 							labelString: '发布者名称'
 						},
 						position:'bottom',
@@ -623,7 +625,7 @@
 					xAxes: [{
 						display: true,
 						scaleLabel: {
-							display: true,
+							display: false,
 							labelString: '发布者名称'
 						},
 						position:'bottom',
@@ -662,8 +664,8 @@
 		var myChart = new Chart(ctx, {
 			type: 'pie',
 			data: {
-				labels: ["{{ category_list.0.name}}", "category_list.1.name", "category_list.2.name", "category_list.3.name", "category_list.4.name",
-				"category_list.5.name","category_list.6.name","category_list.7.name"],
+				labels: ["{{ category_list.0.name}}", "{{category_list.1.name}}", "{{category_list.2.name}}", "{{category_list.3.name}}",
+				"{{category_list.4.name}}","{{category_list.5.name}}","{{category_list.6.name}}","{{category_list.7.name}}"],
 				datasets: [{
 					label: '# of Votes',
 					data: [ {{ category_list.0.num_article|default_if_none:"1"}},
@@ -773,10 +775,10 @@
 			data: {
 				labels: ["{{ source_set.0.name}}", "{{ source_set.1.name}}", "{{ source_set.2.name}}"],
 				datasets: [{
-					label: '# of Votes',
-					data: [{{ source_set.0.name}},
-					{{ source_set.1.name}},
-					{{ source_set.2.name}}],
+					label: '文章来源分布',
+					data: [{{ source_set.0.article_num|default_if_none:"1"}},
+					{{ source_set.1.article_num|default_if_none:"1"}},
+					{{ source_set.2.article_num|default_if_none:"1"}}],
 					backgroundColor: [
 					'rgba(255, 99, 132, 0.66)',
 					'rgba(54, 162, 235, 0.66)',
@@ -818,9 +820,9 @@
 				labels: ["{{ source_set2.0.name}}", "{{ source_set2.1.name}}", "{{ source_set2.2.name}}"],
 				datasets: [{
 					label: '文章来源热度',
-					data: [{{ source_set2.1.hot_num|default_if_none:"1"}},
-					{{ source_set2.2.hot_num|default_if_none:"1"}},
-					{{ source_set2.3.hot_num|default_if_none:"1"}},],
+					data: [{{ source_set2.0.hot_num|default_if_none:"1"}},
+					{{ source_set2.1.hot_num|default_if_none:"1"}},
+					{{ source_set2.2.hot_num|default_if_none:"1"}},],
 					backgroundColor: [
 					'rgba(75, 192, 192, 0.66)',
 					'rgba(153, 102, 255,0.66)',
