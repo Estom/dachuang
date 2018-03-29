@@ -4,6 +4,7 @@
     <div class="row">
         <div id="bd" class="wrp clear-fix">
             <div id="main">
+                <!--位置栏 start-->
                 <div id="detail-title">
                     <ul id="single-nav">
                         <li><a href="{% url 'index' %}">首页</a></li>
@@ -19,30 +20,27 @@
                         </li>
                     </ul>
                 </div>
+                <!--位置栏 end-->
                 <div id="post-1951" class="post-1951 post type-post status-publish format-standard hentry category-meida-report">
                     <div class="post-hd">
                         <h1 class="title text-center">{{ article.title }}</h1>
                     </div>
+                    <hr/>
+                    <!--副标题 start-->
                     <div class="date-read">
                         <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
                                 <span class="center-block">
                                     <i class="icon-date text-center"></i><span class="date">{{ article.date_publish|date:"Y年n月d日" }}</span>
                                 </span>
-
                             </div>
-
-
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                            <div class="col-lg-6 col-md-6col-sm-6 col-xs-6  text-center" >
                                 <div class="wrap ">
                                     <a href="{% url 'pub_detail' article.publisher.pk %}" class="more text-center"><span class="glyphicon glyphicon-user" aria-hidden="true">{{ article.publisher }}</span></a>
-
                                 </div>
                             </div>
                             <br/>
-                            <br/>
                         </div>
-
                         <!-- tags -->
                         <div class="btn-group btn-group-justified" role="group">
                             {% for tag in tag_list %}
@@ -51,47 +49,38 @@
                         </div>
                         <br/>
                         <br/>
-                        <!-- 图片显示 -->
-                        <!--<div class="container">-->
-                            <!--<div class="box box-default">-->
-                                <!--<div class="box-header">-->
-
-                                <!--</div>-->
-                                <!--<div class="box-body">-->
-
-                                <!--</div>-->
-                                <!--<div class="box-footer">-->
-
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <img src="{{article.img.url}}" alt="hello world" onerror="this.src='{{article.publisher.img.url}}'" class="img-responsive center-block img-rounded">
-
+                        <!--picture start -->
+                        <img src="{{article.img_url}}" alt="hello world" onerror="this.src='{{article.publisher.img_url|default_if_none:'#'}}'" class="img-responsive center-block img-rounded">
+                        <!--picture end-->
                         <br/>
-
                     </div>
+                    <!--副标题 end-->
+                    <!--内容 start-->
                     <div class="post-bd">
                         <div class="text-justify line-intent">
                             {{ article.content |linebreaks }}
                         </div>
                     </div>
+                    <!--内容 end-->
+                    <!--辅助栏 start-->
                     <div class="post-ft">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                                 <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true">{{ article.click_count}}</span>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center" >
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;{{ article.click_count}}</span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                                 {% if love %}
-                                <span class="glyphicon glyphicon-heart" style="color:red;" aria-hidden="true"> &nbsp;{{ article.love_count }}</span>
+                                <span class="glyphicon glyphicon-heart" style="color:red;" aria-hidden="true">&nbsp;{{ article.love_count }}</span>
                                 {% else %}
-                                <a href="love/?article_id={{article.id}}"> <span class="glyphicon glyphicon-heart" style="color:#505050;" aria-hidden="true"> &nbsp;{{ article.love_count }}</span></a>
+                                <a href="love/?article_id={{article.id}}"> <span class="glyphicon glyphicon-heart" style="color:#505050;" aria-hidden="true">&nbsp;{{ article.love_count }}</span></a>
                                 {% endif %}
                             </div>
                         </div>
                     </div>
+                    <!--辅助栏 end-->
                 </div>
             </div>
         </div>

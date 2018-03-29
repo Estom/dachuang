@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>About</title>
+<!--mobile apps-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--mobile apps-->
+<!--Custom Theme files -->
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="js/jquery-1.11.1.min.js"></script> 
+<!-- //js -->
+<!--web-fonts-->
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!--//web-fonts-->
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- start-smoth-scrolling-->
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+</script>
+<!--//end-smoth-scrolling-->
+</head>
+<body>
+	<!-- main content start-->
+	<div id="page-wrapper">
+		<!--banner-->
+		<div class="banner about-banner">
+			<div class="banner-right">
+				<h1 class="wow zoomIn animated" data-wow-delay=".5s"><a href="index.html">Liqueur</a></h1>
+			</div>
+			<div class="banner-left">
+				<!--navigation-->
+				<nav> 
+					<a href="" id="menuToggle"> <span class="navClosed"></span> </a>
+					<a href="index.html">Home</a> 
+					<a href="about.html" class="active">About</a> 
+					<a href="typo.html">Typography</a> 
+					<a href="index.html">Blog</a>
+					<a href="index.html">Gallery</a> 
+					<a href="contact.html">Contact</a> 
+				</nav>
+				<script>
+					(function($){
+						// Menu Functions
+						$(document).ready(function(){
+						$('#menuToggle').click(function(e){
+							var $parent = $(this).parent('nav');
+						  $parent.toggleClass("open");
+						  var navState = $parent.hasClass('open') ? "hide" : "show";
+						  $(this).attr("title", navState + " navigation");
+								// Set the timeout to the animation length in the CSS.
+								setTimeout(function(){
+									console.log("timeout set");
+									$('#menuToggle > span').toggleClass("navClosed").toggleClass("navOpen");
+								}, 200);
+							e.preventDefault();
+						});
+					  });
+					})(jQuery);
+				</script>
+				<!--//navigation-->
+				<div class="banner-text">
+					<h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">Liqueur <br>is strong & <br> sweet alcohol</h2>
+					<ol class="breadcrumb wow fadeInUpBig animated" data-wow-delay=".5s">
+					  <li><a href="index.html">Home</a></li>
+					  <li>About</li>
+					</ol>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<!--//banner-->
+		<!-- about-->
+		<div class="about">
+			<!-- container -->
+			<div class="container">
+				<h3 class="title wow fadeInDown animated" data-wow-delay=".5s">About Us</h3>
+				<div class="about-info">
+					<div class="col-md-4 about-top-grid wow slideInLeft animated" data-wow-delay=".5s">
+						<img src="images/img4.jpg" alt="" />
+					</div>
+					<div class="col-md-8 about-top-grid about-grid-right">
+						<h4 class="wow slideInRight animated" data-wow-delay=".5s">Quisque eget nunc a ligula lobortis facilisis sed ornare commodo nunc elementum ultricies fusce eget lorem fringilla </h4>
+						<p class="text wow slideInRight animated" data-wow-delay=".5s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum iaculis enim, non convallis felis mattis at. Donec fringilla lacus eu pretium rutrum. Cras aliquet congue ullamcorper. Etiam mattis eros eu ullamcorper volutpat. Proin ut dui a urna efficitur varius. Quisque molestie cursus mi et congue.
+						 Nunc pharetra in odio sit amet maximus. Morbi imperdiet finibus nisi nec aliquam. Morbi vestibulum arcu nisi, sit amet mollis dolor euismod vitae. In aliquet elementum nisl a porta. Morbi a efficitur lectus. Nunc in erat iaculis, posuere turpis quis, efficitur mauris.</p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<!--//container-->
+		</div>
+		<!--//about-->
+		<!--History-->
+		<div class="history">
+			<div class="container">
+				<div class="about-row2">
+					<h3 class="title wow fadeInDown animated" data-wow-delay=".5s">Our History</h3>
+					<div class="history-info">
+						<h4 class="wow fadeInDown animated" data-wow-delay=".5s">2000</h4>
+						<p class="text wow fadeInDown animated" data-wow-delay=".5s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+							eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur 
+							 minus id quod veniam.</p>
+						<h4 class="wow fadeInDown animated" data-wow-delay=".5s">2010</h4>
+						<p class="text wow fadeInDown animated" data-wow-delay=".5s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+							eiusmod tempor incididunt magna aliqua Nam libero tempore cum soluta nobis est eligendi ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+						<h6 class="wow zoomIn animated" data-wow-delay=".5s">* * *</h6>
+						<h5 class="wow fadeInUp animated" data-wow-delay=".5s"> Ut enim quis nostrud exercitation ullamco aliquip ex ea commodo consequat. </h5>	
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--//History-->
+		<!--footer-->
+		<div class="footer">
+			<div class="container">
+				<div class="col-md-4 footer-grids wow fadeInDown animated" data-wow-delay=".5s">
+					<h3>Review :</h3>
+					<p>Sed ut turpis elit ullamcorper in auctor non, accumsan vel lacus nulla auctor cursus nunc. Maecenas ultricies dolor in urna tempus, id egestas erat finibus  interdum lectus eget scelerisque.</p>
+				</div>
+				<div class="col-md-4 footer-grids footer-address wow fadeInDown animated" data-wow-delay=".5s">
+					<h3>Contact Us:</h3>
+					<ul>
+						<li><i class="glyphicon glyphicon-send"></i> 123 San Sebastian <span> New York City USA. </span></li>
+						<li><i class="glyphicon glyphicon-phone"></i> +11 222 3333</li>
+						<li><i class="glyphicon glyphicon-envelope"></i><a href="mailto:example@mail.com">mail@example.com</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4 footer-grids wow fadeInDown animated" data-wow-delay=".5s">
+					<h3>Follow us:</h3>
+					<ul>
+						<li><a href="#"><img src="images/f1.png" alt=""> FACEBOOK</a></li>
+						<li><a href="#"><img src="images/f2.png" alt=""> GOOGLE+</a></li>
+						<li><a href="#"><img src="images/f3.png" alt=""> LINKEDIN</a></li>
+						<li><a href="#"><img src="images/f4.png" alt=""> TWITTER</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<!--//footer-->
+		<!--copy-right-->
+		<div class="copy-right">
+			<div class="container">
+				<p class="wow bounceIn animated" data-wow-delay=".5s">Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+			</div>
+		</div>
+		<!--//copy-right-->
+	</div>
+	<!--//main content start-->
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>

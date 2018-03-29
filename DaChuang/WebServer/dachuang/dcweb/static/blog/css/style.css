@@ -1367,7 +1367,8 @@ img.aligncenter, img.alignright, img.alignleft {
     font-size:18px;
     font-weight:600;
     font-family:"楷体","宋体",sans-serif;
-    margin: 3px 5px 3px 5px;
+    margin: 3px 20px 3px 20px;
+    padding:0px 25px 0px 25px;
 }
 .line-intent br{
     line-height:34px;

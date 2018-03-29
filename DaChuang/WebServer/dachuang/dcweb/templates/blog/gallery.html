@@ -1,25 +1,22 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block head %}
-    <title>Gallery</title>
-    <meta charset="utf-8">
-    <meta name="format-detection" content="telephone=no">
+<title>Gallery</title>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
 
-    <link rel="stylesheet" href="{% static 'gallery/css/style.css'%}">
-    <link rel="stylesheet" href="{% static 'gallery/css/camera.css'%}">
-    <link rel="stylesheet" href="{% static 'gallery/css/jquery.fancybox.css'%}">
+<link rel="stylesheet" href="{% static 'gallery/css/style.css'%}">
+<link rel="stylesheet" href="{% static 'gallery/css/camera.css'%}">
+<link rel="stylesheet" href="{% static 'gallery/css/jquery.fancybox.css'%}">
 
-    <script src="{% static 'gallery/js/jquery.js'%}"></script>
-    <script src="{% static 'gallery/js/jquery-migrate-1.2.1.js'%}"></script>
+<script src="{% static 'gallery/js/jquery.js'%}"></script>
+<script src="{% static 'gallery/js/jquery-migrate-1.2.1.js'%}"></script>
 
-
-    <script src="{% static 'gallery/js/device.min.js'%}"></script>
+<script src="{% static 'gallery/js/device.min.js'%}"></script>
 <style type="text/css">.fancybox-margin{margin-right:17px;}</style>
 
 {% endblock %}
 {% block content %}
-
-
 
 {% load paginate_tags %} {% paginate article_list 9 %}
 {% load cache %}
@@ -114,9 +111,9 @@
     </div>
 </div>
 <nav aria-label="fuck">
-  <ul class="pager">
-    <li><a href="?page={{ article_list.next_page_number }}"><span class="glyphicon glyphicon-refresh">&nbsp;换一批</span></a></li>
-  </ul>
+    <ul class="pager">
+        <li><a href="?page={{ article_list.next_page_number }}"><span class="glyphicon glyphicon-refresh">&nbsp;换一批</span></a></li>
+    </ul>
 </nav>
 {% endcache %}
 {% endblock %}
