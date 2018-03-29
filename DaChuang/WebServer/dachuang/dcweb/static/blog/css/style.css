@@ -58,10 +58,11 @@ embed {
     user-select: none;
 }
 
+
 /* header.css */
 #header #header-warp #header-right #login-register ul li #login, #header #header-warp #header-right #login-register ul li #register, #header #header-warp #header-right #user-info #dropdown, #header #header-warp #header-right #user-info #dropdown.close {
-    background-image: url('../img/header.png');
-    background-repeat: no-repeat;
+    background-color: #edf4f6;
+
 }
 
 #header {
@@ -1034,13 +1035,9 @@ img.aligncenter, img.alignright, img.alignleft {
 }
 
 /*footer.css*/
-.footer-sprite, #footer #ft-follow-us li #weibo, #footer #ft-follow-us li #wechat, #footer #ft-follow-us li #qq {
-    background-image: url('img/footer-sba448b1527.png');
-    background-repeat: no-repeat;
-}
 
 #footer {
-    height: 222px;
+    height: 100px;
     background-color: #555;
     margin-bottom: 0;
     color: #a8abb3;
@@ -1347,4 +1344,32 @@ img.aligncenter, img.alignright, img.alignleft {
     margin-top: 10px;
     font-size: 16px;
     text-indent: 0.5em;
+}
+/* 文章的css */
+.avatar img{
+    float: left;
+    margin: 7px 5px 0px 0px;
+    padding: 2px;
+    border-radius: 50px;
+    box-shadow: 0 0 1px 0px rgba(0, 0, 0, 0.3);
+    width: 50px;
+    height: 50px;
+}
+.avatar .pub-name{
+    margin: 5px 5px 0px 0px;
+    font-size:20px;
+
+}
+
+.line-intent p{
+    color:#303030;
+    text-indent: 2em;
+    font-size:18px;
+    font-weight:600;
+    font-family:"楷体","宋体",sans-serif;
+    margin: 3px 20px 3px 20px;
+    padding:0px 25px 0px 25px;
+}
+.line-intent br{
+    line-height:34px;
 }

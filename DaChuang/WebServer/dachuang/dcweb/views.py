@@ -19,6 +19,7 @@ logger = logging.getLogger('blog.views')
 from django.contrib.auth.hashers import make_password
 from django.core.urlresolvers import reverse
 
+from django.views.decorators.cache import cache_page
 # 加载推荐文章的类
 import sys
 import os
@@ -27,6 +28,7 @@ path2 = '/Analysis/AutoRecommend'
 path = path1+path2
 sys.path.append(path)
 import autocomm_CT
+
 
 class IndexView(ListView): # index首页view
 
@@ -137,6 +139,7 @@ class IndexStarView(ListView): # index首页关注文章view
         for star in star_list:
             pub_list.append(star.publisher)
 
+        # 这里应该可以对数据库查询进行优化
         for pub in pub_list:
             article_in_pub = Article.objects.filter(publisher=pub)
             article_list +=article_in_pub
@@ -249,7 +252,7 @@ def PersonView(request):
                 pub_list.append(star.publisher)
             article_in_history = History.objects.filter(user=request.user).order_by('-time')[:10]
             for his in article_in_history:
-                history_list.append(his.article)
+                history_list.append((his.article,his.time))
 
         except Exception as e:
             print 'nothing in the database'
@@ -278,9 +281,9 @@ def update_data(request):
         form = PersonsForm()
     return render(request,'blog/person_form.html', {'form': form})
 
+
 # 点赞
 def love(request):
-
     article_id = request.GET['article_id']
     article = Article.objects.get(pk=article_id)
     if request.user.is_authenticated():
@@ -488,3 +491,14 @@ class PubDetailView(ListView): # index article_list 云标签
         kwargs['loged'] = self.loged
         return super(PubDetailView, self).get_context_data(**kwargs)
 
+# 登录
+class GalleryView(ListView): # index首页view
+    template_name = "blog/gallery.html"
+    context_object_name = "article_list"
+
+    def get_queryset(self):
+        article_list = Article.objects.filter(img__isnull=False)
+        return article_list
+
+    def get_context_data(self, **kwargs):
+        return super(GalleryView, self).get_context_data(**kwargs)

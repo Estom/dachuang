@@ -25,7 +25,7 @@ from django.views.decorators.cache import cache_page
 # values()能见对象转化为字典
 # value_list()能将对象转化为元祖
 # oder_by()只能通过管理器调用，无法在查询集上调用
-@cache_page(60 * 60 * 24) # 秒数，这里指缓存 15 分钟，不直接写900是为了提高可读性
+@cache_page(60 * 60 * 24,key_prefix="app_data") # 秒数，这里指缓存 15 分钟，不直接写900是为了提高可读性
 def app_data(request):
     # 传递导视图的数据
     data_dict={}
@@ -154,11 +154,13 @@ def app_data(request):
     data_dict['source_set2'] = source_set2
     return render(request, 'android/data.xml', data_dict)
 
+
 # 首先实现参数封装传递过程，这节课必须完成这个东西
 # 然后根据页面需要，对参数进行格式化，然后显示出来。
-@cache_page(60 * 60 * 24) # 秒数，这里指缓存 一天，不直接写900是为了提高可读性
+@cache_page(60 * 60 * 24,key_prefix="data") # 秒数，这里指缓存 一天，不直接写900是为了提高可读性
 def data(request):
     # 传递导视图的数据
+    print "data is handling"
     data_dict2 = {}
     # 实现了文章热度排行----------------------
     # 获取查询集，并将对象字典化
@@ -184,13 +186,13 @@ def data(request):
 
     # 添加到字典当中
     data_dict2['hot_article_list'] = hot_article_list
-
+    print "hot_article done"
     # 被使用的标签数据排行榜------------------------
     use_tag = Tag.objects.all().order_by('-number')[:10]
 
     # 添加到字典当中
     data_dict2['use_tag'] = use_tag
-
+    print "tag done"
     # 标签的热度排行榜---------------------------暂缓执行
 
     # 发布者被关注排行榜--------------------
@@ -201,7 +203,7 @@ def data(request):
 
     # 添加到字典当中
     data_dict2['star_publisher_set'] = star_publisher_set
-
+    print "star_publisher done"
     # 发布者热度排行--------------------------
     hot_publisher_set = Publisher.objects.all().values('id','name')
     for publisher in hot_publisher_set:
@@ -223,13 +225,13 @@ def data(request):
 
     # 添加到字典当中
     data_dict2['hot_publisher_list'] = hot_publisher_list
-
+    print "hot_publisher done"
     # 类别的文章数量分布--------------------------
     category_list = Category.objects.annotate(num_article=Count('article')).order_by('-num_article')
 
     # 添加到字典当中
     data_dict2['category_list'] = category_list
-
+    print "num_category done"
     # 类别的文章热度分布---------------------------
     hot_category_set = Category.objects.all().values('id', 'name')
     for category in hot_category_set:
@@ -251,7 +253,7 @@ def data(request):
     #     print category['hot_num']
     # 添加到字典当中
     data_dict2['hot_category_list'] = hot_category_list
-
+    print "hot_category done"
     # 来源的文章数量分布---------------------------------------
     source_set = Source.objects.all().values()
     for source in source_set:
@@ -267,6 +269,7 @@ def data(request):
 
     # 添加到字典当中
     data_dict2['source_set'] = source_set
+    print "num_source done"
     # 来源的文章热度分布--------------------------------
     source_set2 = Source.objects.all().values()
     for source in source_set2:
@@ -284,4 +287,5 @@ def data(request):
 
     # 添加到字典当中
     data_dict2['source_set2'] = source_set2
+    print "hot_source done"
     return render(request, 'blog/data.html',data_dict2)

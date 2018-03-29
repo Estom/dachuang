@@ -6,28 +6,91 @@
 
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class PowerandEnergySpider(scrapy.Spider):
     name = 'PowerandEnergy'
     allowed_domains = ['dongneng.nwpu.edu.cn']
 
     start_urls = [
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/10.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/11.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/12.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/13.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/14.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/15.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/16.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/17.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/18.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/19.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/20.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/21.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/22.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/23.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/24.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/25.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/26.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/27.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/28.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/29.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/30.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/31.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/32.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/33.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/34.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/35.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/36.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/37.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/38.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/39.htm',
+
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/40.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/41.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/42.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/43.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/44.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/45.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/46.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/47.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/48.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/49.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/50.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/51.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/52.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/53.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/54.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/55.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/56.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/57.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/58.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/59.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/60.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/61.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/62.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/63.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/64.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/65.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/66.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/67.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/68.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/69.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/70.htm',
+
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/71.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/72.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/73.htm',
+        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/74.htm',
         'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt.htm',
     ]
 
     base_image_html = 'http://dongneng.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '动力与能源学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
 
     def parse(self, response):
         reload(sys)
@@ -116,14 +179,16 @@ class PowerandEnergySpider(scrapy.Spider):
         # 图片网址 图片地址
         if len(response.xpath(
                 '//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath(
                 '//img[@class="img_vsb_content"]/@src').extract()[0].encode(
                 'utf-8')
 
         elif len(response.xpath(
                 '//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath(
                 '//div[@class="v_news_content"]//img/@src').extract()[0].encode(
                 'utf-8')

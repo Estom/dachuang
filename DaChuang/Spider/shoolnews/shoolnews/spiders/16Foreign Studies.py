@@ -5,29 +5,43 @@
 '''
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class ForeignStudiesSpider(scrapy.Spider):
     name = 'ForeignStudies'
     allowed_domains = ['wgyxy.nwpu.edu.cn']
 
     start_urls = [
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/2.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/3.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/4.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/5.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/6.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/7.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/8.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/9.htm',
+
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/10.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/11.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/12.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/13.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/14.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/15.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/16.htm',
+
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/17.htm',
+        # 'http://wgyxy.nwpu.edu.cn/XYXW/xw/18.htm',
         'http://wgyxy.nwpu.edu.cn/XYXW/xw.htm',
         ]
 
     base_image_html = 'http://wgyxy.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '外国语学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -107,11 +121,11 @@ class ForeignStudiesSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:

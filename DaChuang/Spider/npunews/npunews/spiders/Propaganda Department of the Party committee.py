@@ -6,10 +6,11 @@
 import scrapy
 from npunews.items import NpunewsItem
 from urlparse import urljoin
-import os
+
 import re
 import sys
-
+import time
+import hashlib
 import datetime
 import Myfilter
 
@@ -24,10 +25,6 @@ class PartyCommitteeSpider(scrapy.Spider):
     ]
 
     base_image_html = 'http://news.nwpu.edu.cn'
-    base_path = 'C:/Images/' + '工大新闻网'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
 
 
     # 收集处理一部分数据
@@ -103,12 +100,14 @@ class PartyCommitteeSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + \
                                  response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + \
                                  response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 

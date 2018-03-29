@@ -6,22 +6,27 @@
 
 import scrapy
 import sys
-import os
 import datetime
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import Myfilter
+import time
+import hashlib
 
 class ComputerSpider(scrapy.Spider) :
     name = 'computer'
     allowed_domains = ['jsj.nwpu.edu.cn']
-    start_urls = ['http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=1&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317']
+    start_urls = [
+        # 'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=5&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
+        # 'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=4&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
+        # 'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=3&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
+        # 'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=2&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317',
+        'http://jsj.nwpu.edu.cn/new/news.jsp?a197110t=7&a197110p=1&a197110c=10&urltype=tree.TreeTempUrl&wbtreeid=1317'
+    ]
 
     base_article_html = "http://jsj.nwpu.edu.cn/info/"  # 文章的基网址
     base_image_html = 'http://jsj.nwpu.edu.cn' # 图片的基网址  # /__local/8/52/49/D2B64688AF6A93E6C054B03A47A_C1969EE8_3F928.jpg
-
-    base_path = 'C:/Images/' # 图片保存到本地的基地址
 
 
     def parse(self, response):
@@ -29,11 +34,6 @@ class ComputerSpider(scrapy.Spider) :
         sys.setdefaultencoding('utf-8')
 
         list = response.xpath('/html/body/div[4]/div/div/div[2]/div[2]/div/div/div[2]/div')
-
-        # 建立文件夹'C:/Images/计算机学院'
-        fileName = self.base_path + '计算机学院'.encode('GBK')
-        if not os.path.exists(fileName):
-            os.makedirs(fileName)
 
         myfilter = Myfilter.MyFilter()
         lasttime = myfilter.FilterbyTime('计算机学院')
@@ -65,7 +65,7 @@ class ComputerSpider(scrapy.Spider) :
 
                         # 图片网址
                         if len(tr.xpath('./div[2]/div/img/@src').extract()) :
-                            item['image_path'] = 'C:/Images/计算机学院/' + item['title'] + '.jpg'
+                            item['image_path'] = 'art/' + self.name + hashlib.md5(str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
                             item['image_html'] = self.base_image_html + tr.xpath('./div[2]/div/img/@src').extract()[0].encode('utf-8')
 
                             print 'image_path : ', item['image_path']

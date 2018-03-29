@@ -6,28 +6,51 @@
 
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class SoftwareSpider(scrapy.Spider):
     name = 'Software'
     allowed_domains = ['rjwdz.nwpu.edu.cn']
 
     start_urls = [
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/2.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/3.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/4.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/5.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/6.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/7.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/8.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/9.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/10.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/11.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/12.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/13.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/14.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/15.htm',
+
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/16.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/17.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/18.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/19.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/20.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/21.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/22.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/23.htm',
+
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/24.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/25.htm',
+        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/26.htm',
         'http://rjwdz.nwpu.edu.cn/xydt/xyxw.htm',
     ]
 
     base_image_html = 'http://rjwdz.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '软件与微电子学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
 
     def parse(self, response):
         reload(sys)
@@ -123,14 +146,16 @@ class SoftwareSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath(
                 '//img[@class="img_vsb_content"]/@src').extract()[0].encode(
                 'utf-8')
 
         elif len(response.xpath(
                 '//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath(
                 '//div[@class="v_news_content"]//img/@src').extract()[0].encode(
                 'utf-8')

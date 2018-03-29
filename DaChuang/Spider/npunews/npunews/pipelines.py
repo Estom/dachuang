@@ -42,7 +42,8 @@ class ImageNpunewsPipeline(object) :
         if len(item['image_html']) :
 
             try:
-                path = item['image_path'].encode('GBK')
+                temp_path = 'F:/Innovation Project/WorkNew/dachuang/DaChuang/WebServer/dachuang/upload/'
+                path = temp_path + item['image_path']
                 image = requests.get(item['image_html'])
                 f = open(path, 'wb')
                 f.write(image.content)
@@ -50,6 +51,7 @@ class ImageNpunewsPipeline(object) :
                 print "Error: 图片下载失败，清空"
                 item['image_path'] = ''
                 item['image_html'] = ''
+                path = ''
             else:
                 print "图片下载成功"
                 f.close()
@@ -58,10 +60,12 @@ class ImageNpunewsPipeline(object) :
         else :
             item['image_path'] = ''
             item['image_html'] = ''
+            path = ''
 
 
-        print 'image_path', item['image_path']
-        print 'image_html', item['image_html']
+        print 'image_path ', item['image_path']
+        print 'path ', path
+        print 'image_html ', item['image_html']
         print '结束下载图片...', item['url']
 
 

@@ -1,4 +1,4 @@
-from scrapy import cmdline
 
-cmdline.execute("scrapy crawl contentspider".split())
+import os
 
+os.system("scrapy crawl contentspider")

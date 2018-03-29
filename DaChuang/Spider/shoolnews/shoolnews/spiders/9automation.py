@@ -6,37 +6,71 @@
 
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class AutomationSpider(scrapy.Spider):
     name = 'automation'
     allowed_domains = ['zdhxy.nwpu.edu.cn']
     start_urls = [
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/10.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/11.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/12.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/13.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/14.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/15.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/16.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/17.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/18.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/19.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/20.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/21.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/22.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/23.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/24.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/25.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/26.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/27.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/28.htm',
+
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/30.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/31.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/32.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/33.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/34.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/35.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/36.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/37.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/38.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/39.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/40.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/41.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/42.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/43.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/44.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/45.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/46.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/47.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/48.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/49.htm',
+        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/50.htm',
         'http://zdhxy.nwpu.edu.cn/xwgg/tuxw.htm'
     ]
 
     base_article_html = "http://zdhxy.nwpu.edu.cn/info/"
     base_image_html = 'http://zdhxy.nwpu.edu.cn' # 图片的基网址  # /__local/B/E4/8C/5523A744CCF08A289BBE3FCA210_2705AB4A_FE6C.jpg
 
-    base_path = 'C:/Images/'  # 图片保存到本地的基地址
-
-
     def parse(self, response):
         reload(sys)
         sys.setdefaultencoding('utf-8')
 
         list = response.xpath('/html/body/div/div[4]/div[3]/table/tr')
-
-        # 建立文件夹'C:/Images/自动化学院'
-        fileName = self.base_path + '自动化学院'.encode('GBK')
-        if not os.path.exists(fileName):
-            os.makedirs(fileName)
 
         myfilter = Myfilter.MyFilter()
         lasttime = myfilter.FilterbyTime('自动化学院')
@@ -103,11 +137,13 @@ class AutomationSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()) :
-            item['image_path'] = 'C:/Images/自动化学院/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()) :
-            item['image_path'] = 'C:/Images/自动化学院/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:
@@ -130,7 +166,6 @@ class AutomationSpider(scrapy.Spider):
             content += p
 
         item['content'] = content
-
 
 
         print '结束parse_content...', item['url']

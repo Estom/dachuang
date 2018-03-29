@@ -6,9 +6,10 @@
 
 import scrapy
 import sys
-import os
 import re
 import datetime
+import time
+import hashlib
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
@@ -18,15 +19,45 @@ class AeronauticsSpider(scrapy.Spider):
     name = 'aeronautic'
     allowed_domains = ['hangkong.nwpu.edu.cn']
     start_urls = [
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/3.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/4.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/5.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/6.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/7.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/8.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/9.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/10.htm',
+
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/11.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/12.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/13.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/14.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/15.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/16.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/17.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/18.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/19.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/20.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/21.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/22.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/23.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/24.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/25.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/26.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/27.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/28.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/29.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/30.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/31.htm',
+
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/32.htm',
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/33.htm,'
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/34.htm,'
+        # 'http://hangkong.nwpu.edu.cn/index/xydt/35.htm,'
         'http://hangkong.nwpu.edu.cn/index/xydt.htm',
     ]
 
     base_image_html = 'http://hangkong.nwpu.edu.cn'
-    base_path = 'C:/Images/' + '航空学院'  # 图片保存到本地的基地址
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -101,11 +132,11 @@ class AeronauticsSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:

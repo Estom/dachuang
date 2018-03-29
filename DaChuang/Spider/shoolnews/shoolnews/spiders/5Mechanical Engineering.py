@@ -6,29 +6,54 @@
 
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class MechanicalEngineeringSpider(scrapy.Spider):
     name = 'MechanicalEngineering'
     allowed_domains = ['jidian.nwpu.edu.cn']
 
     start_urls = [
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/10.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/11.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/12.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/13.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/14.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/15.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/16.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/17.htm',
+
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/18.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/19.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/20.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/21.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/22.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/23.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/24.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/25.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/26.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/27.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/28.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/29.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/30.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/31.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/32.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/33.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/34.htm',
+
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/36.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/37.htm',
+        # 'http://jidian.nwpu.edu.cn/index/xyxw/38.htm',
         'http://jidian.nwpu.edu.cn/index/xyxw.htm',
     ]
 
     base_image_html = 'http://jidian.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '机电学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -110,11 +135,13 @@ class MechanicalEngineeringSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:

@@ -6,31 +6,69 @@
 
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 
 class ManagementSpider(scrapy.Spider):
     name = 'management'
     allowed_domains = ['som.nwpu.edu.cn']
     start_urls = [
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/2.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/3.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/4.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/5.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/6.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/7.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/8.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/9.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/10.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/11.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/12.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/13.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/14.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/15.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/16.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/17.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/18.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/19.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/20.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/21.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/22.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/23.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/24.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/25.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/26.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/27.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/28.htm',
+
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/29.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/30.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/31.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/32.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/33.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/34.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/35.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/36.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/37.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/38.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/39.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/40.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/41.htm',
+
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/42.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/43.htm',
+        # 'http://som.nwpu.edu.cn/xxfb/xyxw/44.htm',
         'http://som.nwpu.edu.cn/xxfb/xyxw.htm',
     ]
 
     base_image_html = 'http://som.nwpu.edu.cn'  # 图片的基网址  # /__local/B/E4/8C/5523A744CCF08A289BBE3FCA210_2705AB4A_FE6C.jpg
-
-    base_path = 'C:/Images/' + '管理学院'  # 图片保存到本地的基地址
-
-    # 建立文件夹'C:/Images/管理学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -107,11 +145,13 @@ class ManagementSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:

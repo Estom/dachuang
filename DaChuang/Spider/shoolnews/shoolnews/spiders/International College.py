@@ -5,29 +5,44 @@
 '''
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class InternationalCollegeSpider(scrapy.Spider):
     name = 'InternationalCollege'
     allowed_domains = ['gjjyxy.nwpu.edu.cn']
 
     start_urls = [
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/2.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/3.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/4.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/5.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/6.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/7.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/8.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/9.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/10.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/11.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/12.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/13.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/14.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/15.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/16.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/17.htm',
+
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/18.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/19.htm',
+        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/20.htm',
         'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news.htm'
     ]
 
     base_image_html = 'http://gjjyxy.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '国际教育学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -75,12 +90,16 @@ class InternationalCollegeSpider(scrapy.Spider):
                                 if value2:
                                     pass
                                 else :
-                                    value = re.search(r'../../info/', temp_url)
+                                    value = re.search(r'../../../info/', temp_url)
                                     # print value
                                     if value:
-                                        item['url'] = urljoin("http://gjjyxy.nwpu.edu.cn/info/1002/51024.htm", temp_url)
+                                        temp_url = temp_url[3:]
                                     else:
-                                        item['url'] = urljoin("http://gjjyxy.nwpu.edu.cn/info/", temp_url)
+                                        pass
+
+                                    item['url'] = urljoin("http://gjjyxy.nwpu.edu.cn/info/1002/51024.htm", temp_url)
+
+
                                     print 'title : ', item['title']
                                     print 'url : ', item['url']
 
@@ -107,11 +126,13 @@ class InternationalCollegeSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:

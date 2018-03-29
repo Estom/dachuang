@@ -1,15 +1,54 @@
 {% extends 'base.html' %}
+
+{% load staticfiles %}
+{% block head %}
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="{% static 'blog/css/bootstrap.css'%}" rel='stylesheet' type='text/css' />
+<!--Custom-Theme-files-->
+<link href="{% static 'blog/css/style2.css' %}" rel='stylesheet' type='text/css' />
+<!--/script-->
+<script src="{% static 'blog/js/jquery-1.11.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/js/move-top.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/js/easing.js' %}"></script>
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+				});
+			});
+</script>
+<script src="{% static 'blog/js/jquery.chocolat.js' %}"></script>
+<link rel="stylesheet" href="{% static 'blog/css/chocolat.css' %}" type="text/css" media="screen">
+<!--light-box-files -->
+<script type="text/javascript" >
+$(function() {
+	$('.gallery a').Chocolat();
+});
+</script>
+{% endblock %}
 {% block content %}
+{% load cache %}
+{% cache 604800 pub_list %}
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-
         </div>
+				<div class="gallery-grids">
+                    <div class="baner-row">
         {% for pub in pub_list %}
+            <!--这个是用来动态显示一些信息的页面-->
         <div class="col-lg-4 col-md-4 col-sm-4">
             <div class="panel panel-default">
                   <div class="panel-body">
-                      <img src="{{pub.img.url}}" class="img-responsive center-block img-rounded">
+                      <figure class="effect-bubba">
+                        <a href="{% url 'pub_detail' pub.pk %}" rel="title" class="b-link-stripe b-animate-go  thickbox">
+                            <img src="{{pub.img.url}}" alt="" class="img-responsive center-block img-rounded">
+                            <figcaption>
+                                <p  style="text-indent: 2em;">{{pub.intro| slice:':40'}}……</p>
+                            </figcaption>
+                        </a>
+                    </figure>
                   </div>
                   <div class="panel-footer">
                       <a href="{% url 'pub_detail' pub.pk %}" class="more text-center"><p class="text-center"> {{ pub.name }} </p></a>
@@ -17,17 +56,9 @@
             </div>
         </div>
         {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
-
+{% endcache %}
 {% endblock %}

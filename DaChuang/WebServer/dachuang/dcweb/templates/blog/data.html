@@ -1,786 +1,856 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load staticfiles %}
 
-
-{% extends 'base.html' %}
-{% load staticfiles %}
-{% block head %}
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>数据显示页面</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="{% static 'adminlte/bootstrap/css/bootstrap.min.css' %}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{% static 'adminlte/dist/css/AdminLTE.min.css' %}">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{% static 'adminlte/dist/css/skins/_all-skins.min.css' %}">
+  <!--mobile apps-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="" />
 
-  <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'blog/css/pygments/github.css' %}">
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!--mobile apps-->
+  <!--Custom Theme files -->
 
-{% endblock %}
+  <link href="{% static 'data/css/bootstrap.css'%}" type="text/css" rel="stylesheet" media="all">
+  <link href="{% static 'data/css/style.css'%}" type="text/css" rel="stylesheet" media="all">
+  <link rel="stylesheet" href="{% static 'data/css/lightbox.css'%}">
+  <!-- //Custom Theme files -->
+  <!-- js -->
+  <script src="{% static 'data/js/jquery-1.11.1.min.js'%}"></script>
+  <!-- //js -->
+  <!--web-fonts-->
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <!--//web-fonts-->
+  <!--animate-->
+  <link href="{% static 'data/css/animate.css'%}" rel="stylesheet" type="text/css" media="all">
+  <script src="{% static 'data/js/wow.min.js'%}"></script>
 
-{% block content %}
-<div class="wrapper">
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
+  <script>
+		new WOW().init();
+	</script>
+  <!--//end-animate-->
+  <!-- start-smoth-scrolling-->
+  <script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+  <style>
+	.rec {
+		margin-top: 50px;
+		margin-bottom:30px;
+		margin-left: 50px;
+		margin-right: 50px;
+		padding: 10px;
+		overflow:auto;
+		background: rgba(30,30,30,0.8);
+	}
+	.banner-right
+	{
+		position: relative;
+	}
+	.banner-right-1
+	{
+		position: relative;
+	}
+	.banner-right-2
+	{
+		position: relative;
+	}
+	.banner-right-3
+	{
+		position: relative;
+	}
+	.bnr-btm-left
+	{
+		position: relative;
+	}
+	.bnr-btm-left-1
+	{
+		position: relative;
+	}
+	.bnr-btm-left-2
+	{
+		position: relative;
+	}
+	.bnr-btm-left-3
+	{
+		position: relative;
+	}
+	li
+	{
+		white-space:nowrap;
 
+		text-overflow:ellipsis;
+		overflow: hidden;
+		margin: 5px;
+		padding: 0;
+		position: relative;
 
-        <div class="col-md-6">
-          <!-- BAR CHART -->
-          <div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title">文章热度排行榜</h3>
+	}
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body box-profile">
-              <ul class="list-group list-group-unbordered">
-             {% for article in hot_article_list %}
-               <li class="list-group-item">
-                 <a href="{% url 'app_detail' article.id %}"><b style="color:black">{{article.title}}</b></a>
-                   <p class="pull-right text-success">{{article.hot_num}}</p>
-               </li>
-               {% endfor %}
-                <li class="list-group-item">
-                </li>
-              </ul>
+	li a
+	{
+		width: 400px;
+	}
 
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
+	ol {
+		white-space:nowrap;
+		text-overflow:ellipsis;
+		overflow: hidden;
 
+		display: block;
+		list-style-type: decimal;
+		-webkit-margin-before: 3em;
+		-webkit-margin-after: 1em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+		-webkit-padding-start: 17px;
+	}
+</style>
+</head>
+<body>
+<!-- main content start-->
+<div id="page-wrapper">
+  <!--第一个模块-->
+  <div class="banner" id="home">
+    <div class="banner-right">
+      <div class=rec>
+        <p class="tit">
+          <span class="s1">实时热点</span>
+        </p>
+        <ol>
+          <li>
+            <span class="top">1</span>
 
-        <div class="col-md-6">
-          <!-- BAR CHART -->
-          <div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title">热词排行榜</h3>
+            <a href="{% url 'app_detail' hot_article_list.0.id %}" target="_blank">{{hot_article_list.0.title| slice:':30'}}</a>
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="tagChart" style="height:500px"></canvas>
+            <span class="num">{{hot_article_list.0.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+          </li>
 
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
+          <li>
+            <span class="top">2</span>
+            <a href="{% url 'app_detail' hot_article_list.1.id %}" target="_blank">{{hot_article_list.1.title| slice:':30'}}</a>
+            <span class="num">{{hot_article_list.1.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+          </li>
 
+          <li>
+            <span class="top">3</span>
+            <a href="{% url 'app_detail' hot_article_list.2.id %}" target="_blank">{{hot_article_list.2.title| slice:':30'}}</a>
+            <span class="num">{{hot_article_list.2.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+          </li>
 
+          <li>
+            <span class="top">4</span>
+            <a href="{% url 'app_detail' hot_article_list.3.id %}" target="_blank">{{hot_article_list.3.title| slice:':30'}}</a>
+            <span class="num">{{hot_article_list.3.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+          </li>
 
-        <div class="col-md-6">
-          <!-- BAR CHART -->
-          <div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title">最具吸引力的发布者排行榜</h3>
+          <li>
+            <span class="top">5</span>
+            <a href="{% url 'app_detail' hot_article_list.4.id %}" target="_blank">{{hot_article_list.4.title| slice:':30'}}</a>
+            <span class="num">{{hot_article_list.4.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+          </li>
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="starChart" style="height:250px"></canvas>
+          <li>
 
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
+            <span class="top">6</span>
 
+            <a href="{% url 'app_detail' hot_article_list.5.id %}" target="_blank">{{hot_article_list.5.title| slice:':30'}}</a>
 
+            <span class="num">{{hot_article_list.5.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
 
+          </li>
 
-        <div class="col-md-6">
-          <!-- BAR CHART -->
-          <div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title">最受欢迎的发布者排行榜</h3>
+          <li><span class="top">7</span>
+            <a href="{% url 'app_detail' hot_article_list.6.id %}" target="_blank">{{hot_article_list.6.title| slice:':30'}}</a>
+            <span class="num">{{hot_article_list.6.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+          </li>
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="hotPubChart" style="height:250px"></canvas>
+          <li><span class="top">8</span>
+            <a href="{% url 'app_detail' hot_article_list.7.id %}" target="_blank">{{hot_article_list.7.title| slice:':30'}}<br></a>
+            <span class="num">{{hot_article_list.7.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+          </li>
 
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
+          <li><span class="top">9</span>
+            <a href="{% url 'app_detail' hot_article_list.8.id %}" target="_blank">{{hot_article_list.8.title| slice:':30'}}<br></a>
+            <span class="num">{{hot_article_list.8.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+          </li>
 
-
-       <div class="col-md-6">
-          <!-- DONUT CHART -->
-          <div class="box box-danger">
-            <div class="box-header with-border">
-              <h3 class="box-title">文章分布</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <canvas id="numCatChart" style="height:250px"></canvas>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-
-
-        <div class="col-md-6">
-          <!-- DONUT CHART -->
-          <div class="box box-danger">
-            <div class="box-header with-border">
-              <h3 class="box-title">类别热度</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <canvas id="hotCatChart" style="height:250px"></canvas>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-
-
-        <div class="col-md-6">
-          <!-- DONUT CHART -->
-          <div class="box box-danger">
-            <div class="box-header with-border">
-              <h3 class="box-title">文章来源分布</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <canvas id="numSourceChart" style="height:250px"></canvas>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-
-
-        <div class="col-md-6">
-          <!-- DONUT CHART -->
-          <div class="box box-danger">
-            <div class="box-header with-border">
-              <h3 class="box-title">最受欢迎的文章来源分布</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <canvas id="hotSourceChart" style="height:250px"></canvas>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-
-
+          <li><span class="top">10</span>
+            <a href="{% url 'app_detail' hot_article_list.9.id %}" target="_blank">{{hot_article_list.9.title| slice:':30'}}</a>
+            <span class="num">{{hot_article_list.8.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+          </li>
+        </ol>
       </div>
-      <!-- /.row -->
+    </div>
+    <div class="banner-left">
+      <!--navigation-->
 
-    </section>
-    <!-- /.content -->
+      <!--//navigation-->
+      <div class="banner-text">
+        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">西工大 <br>周热度排行榜</h2>
+        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">一周内最热门的十片文章，其中前三篇分别来自{{hot_article_list.0.publisher.name}}、
+          {{hot_article_list.1.publisher.name}}、{{hot_article_list.2.publisher.name}}.
+        </p>
+        <a href="{% url 'index' %}" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s">更多</a>
+      </div>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+  <!--//banner-->
+
+  <!--第二个模块-->
+  <div class="banner-bottom">
+    <div class="bnr-btm-left">
+      <div class="rec">
+        <canvas id="myChart1" width="400px" height="400px"  class="chartjs-render-monitor"></canvas>
+      </div>
+
+    </div>
+    <div class="bnr-btm-right">
+      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>周内热词排行榜</h3>
+      <p class="wow fadeInRight animated" data-wow-delay=".5s"> 通过热门词汇，你会发现当前流行的网络语，并能迅速得知当前的热门话题.</p>
+      <a href="{% url 'index' %}" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s">导航</a>
+    </div>
+    <div class="clearfix"></div>
   </div>
 
-<!-- ./wrapper -->
-{% endblock  %}
-{% block js %}
-<!-- jQuery 2.2.3 -->
-<script src="{% static 'adminlte/plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="{% static 'adminlte/bootstrap/js/bootstrap.min.js' %}"></script>
-<!-- ChartJS 1.0.1 -->
-<script src="{% static 'adminlte/plugins/chartjs/Chart.min.js' %}"></script>
-<!-- FastClick -->
-<script src="{% static 'adminlte/plugins/fastclick/fastclick.js' %}"></script>
-<!-- AdminLTE App -->
-<script src="{% static 'adminlte/dist/js/app.min.js' %}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{% static 'adminlte/dist/js/demo.js' %}"></script>
-<!-- page script -->
-<script>
+  <!--//banner-bottom-->
+  <!--第三个模块-->
+  <div class="banner" id="home2">
+    <div class="banner-right-1">
+      <div class=rec>
+        <canvas id="myChart2" width="400px" height="400px"  class="chartjs-render-monitor"></canvas>
+      </div>
+    </div>
+    <div class="banner-left">
+      <!--navigation-->
 
-</script>
-<script>
-    $(function () {
-    /* ChartJS
-     * -------
-     * Here we will create a few charts using ChartJS
-     */
+      <!--//navigation-->
+      <div class="banner-text">
+        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">西工大<br>发布者被关注的数量</h2>
+        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">发布者获得的关注越多，说明其发布的内容质量更好，更能得到读者的信任和喜爱.</p>
+        <a href="{% url 'pub_list' %}" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s">更多</a>
+      </div>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+  <!--//gallery-->
+  <!--第四个模块-->
+  <div class="banner-bottom">
+    <div class="bnr-btm-left-1">
+      <div class="rec">
+        <canvas id="myChart3" width="400px" height="400px"  class="chartjs-render-monitor"></canvas>
+      </div>
 
+    </div>
+    <div class="bnr-btm-right">
+      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>发布者热度排行榜</h3>
+      <p class="wow fadeInRight animated" data-wow-delay=".5s">发布者在一周内，发布了一篇或多篇受到广泛关注的文章，获得大量点赞，说明发布者有较强的get热点的能力</p>
+      <a href="{% url 'pub_list' %}" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s">更多</a>
+    </div>
+    <div class="clearfix"></div>
+  </div>
 
-    //-------------
-    //- Tag BAR CHART -
-    //-------------
-    var barChartCanvasTag = $("#tagChart").get(0).getContext("2d");
-    var barChartTag = new Chart(barChartCanvasTag);
-    var barChartDataTag =  {
-      labels: ["{{use_tag.0.name}}", "{{use_tag.1.name}}", "{{use_tag.2.name}}", "{{use_tag.3.name}}", "{{use_tag.4.name}}", "{{use_tag.5.name}}",
+  <!--//第五个模块-->
+  <div class="banner" id="home3">
+    <div class="banner-right-2">
+      <div class=rec>
+        <canvas id="myChart4" width="400px" height="400px" class="chartjs-render-monitor"></canvas>
+      </div>
+    </div>
+    <div class="banner-left">
+      <!--navigation-->
+
+      <!--//navigation-->
+      <div class="banner-text">
+        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">西工大 <br>文章类别的分布</h2>
+        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">通过智能的分类系统，我们将文章划分为不同的类别，每种类别中文章的比例，能够反映当前发布者发布文章的倾向性.</p>
+        <a href="{% url 'index' %}" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s">更多</a>
+      </div>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+  <!--//第六个模块-->
+  <div class="banner-bottom">
+    <div class="bnr-btm-left-2">
+      <div class="rec">
+        <canvas id="myChart5" width="400px" height="400px" class="chartjs-render-monitor"></canvas>
+      </div>
+
+    </div>
+    <div class="bnr-btm-right">
+      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>文章热度分布</h3>
+      <p class="wow fadeInRight animated" data-wow-delay=".5s">每一个类别，都会引起不同人群的兴趣，类别越受欢迎，就说明这一类文章越能引起人们的喜爱.</p>
+      <a href="{% url 'index' %}" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s">更多</a>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <!--第七个模块-->
+  <div class="banner" id="home4">
+    <div class="banner-right-3">
+      <div class=rec>
+        <canvas id="myChart6" width="400px" height="400px" class="chartjs-render-monitor"></canvas>
+      </div>
+    </div>
+    <div class="banner-left">
+      <!--navigation-->
+
+      <!--//navigation-->
+      <div class="banner-text">
+        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">西工大<br>文章来源热度</h2>
+        <p class="wow fadeInUpBig animated" data-wow-delay=".5s">当前人们获取校园文章的方式各种各样，微信、西工大官网、校园网站等，不同来源的文章分布，能够说明发布者更喜欢哪一种发布渠道，也能体现文章媒介的变化.</p>
+        <a href="{% url 'index' %}" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s">更多</a>
+      </div>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+  <!--第八个模块-->
+  <div class="banner-bottom">
+    <div class="bnr-btm-left-3">
+      <div class="rec">
+        <canvas id="myChart7" width="400px" height="400px" class="chartjs-render-monitor"></canvas>
+      </div>
+
+    </div>
+    <div class="bnr-btm-right">
+      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>来源热度分布</h3>
+      <p class="wow fadeInRight animated" data-wow-delay=".5s">人们可以通过各种方式获取文章，热度分布，反映了读者通过何种平台获取文章最为广泛，体现了读者对不同文章平台的观点.</p>
+      <a href="{% url 'index' %}" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s">更多</a>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <!--copy-right-->
+  <div class="copy-right">
+    <div class="container">
+      <p class="wow bounceIn animated" data-wow-delay=".5s">特别鸣谢：前端工程师张鹏光，图片提供者董金国、许恒灼<br/>Copyright &copy;西北工业大学-西工大cybeTech小组<br/><a href="http://www.miitbeian.gov.cn/" title="备案号" target="_blank">ICP主体备案号 陕ICP备18002962号</a></p>
+    </div>
+  </div>
+  <!--//copy-right-->
+</div>
+<!--//main content start-->
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'data/js/bootstrap.js' %}"></script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<!-- 绘制1水平柱状图 -热词排行榜 -->
+<script type="text/javascript">
+		// 设置全局的属性
+		Chart.defaults.global.defaultFontColor = 'rgba(255,255, 255, 0.7)';
+		Chart.defaults.global.defaultFontFamily = "'宋体','楷体','sans-serif', 'Arial'";
+		Chart.defaults.global.defaultFontSize  = 16;
+		// 图标的数据
+		var horizontalBarChartData = {
+			labels: ["{{use_tag.0.name}}", "{{use_tag.1.name}}", "{{use_tag.2.name}}", "{{use_tag.3.name}}", "{{use_tag.4.name}}", "{{use_tag.5.name}}",
       "{{use_tag.6.name}}","{{use_tag.7.name}}","{{use_tag.8.name}}","{{use_tag.9..name}}"],
-      datasets: [
-        {
-          label: "标签热度",
+			datasets: [{
+				label: '标签热度',
+				backgroundColor: [
+				'rgba(255, 99, 132, 0.7)',
+				'rgba(54, 162, 235, 0.7)',
+				'rgba(255, 206, 86, 0.7)',
+				'rgba(75, 192, 192, 0.7)',
+				'rgba(153, 102, 255, 0.7)',
+				'rgba(255, 159, 64, 0.7)',
+				'rgba(255, 99, 132, 0.7)',
+				'rgba(54, 162, 235, 0.7)',
+				'rgba(255, 206, 86, 0.7)',
+				'rgba(75, 192, 192, 0.7)',
+				],
+				borderColor: [
+				'rgba(255, 99, 132, 0.66)',
+				'rgba(54, 162, 235, 0.66)',
+				'rgba(255, 206, 86, 0.66)',
+				'rgba(75, 192, 192, 0.66)',
+				'rgba(153, 102, 255,0.66)',
+				'rgba(255, 159, 64, 0.66)',
+				'rgba(255, 99, 132, 0.66)',
+				'rgba(54, 162, 235, 0.66)',
+				'rgba(255, 206, 86, 0.66)',
+				'rgba(75, 192, 192, 0.66)',
+				],
+				hoverBackgroundColor:[
+				'rgba(255, 99, 132, 0.66)',
+				'rgba(54, 162, 235, 0.66)',
+				'rgba(255, 206, 86, 0.66)',
+				'rgba(75, 192, 192, 0.66)',
+				'rgba(153, 102, 255,0.66)',
+				'rgba(255, 159, 64, 0.66)',
+				'rgba(255, 99, 132, 0.66)',
+				'rgba(54, 162, 235, 0.66)',
+				'rgba(255, 206, 86, 0.66)',
+				'rgba(75, 192, 192, 0.66)',
+				],
+				hoverBorderWidth:2,
+				borderWidth: 1,
+				data: [{{use_tag.0.number}}, {{use_tag.1.number}}, {{use_tag.2.number}}, {{use_tag.3.number}}, {{use_tag.4.number}},
+           {{use_tag.5.number}}, {{use_tag.6.number}},{{use_tag.7.number}},{{use_tag.8.number}},{{use_tag.9.number}}]
+			}]
 
-          fillColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-        ],
-          //strokeColor: "rgba(60,141,188,0.8)",
-          //pointColor: "#3b8bba",
-          //pointStrokeColor: "rgba(60,141,188,1)",
-          //pointHighlightFill: "#fff",
-          //pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [{{use_tag.0.number}}, {{use_tag.1.number}}, {{use_tag.2.number}}, {{use_tag.3.number}}, {{use_tag.4.number}},
-           {{use_tag.5.number}}, {{use_tag.6.number}},{{use_tag.7.number}},{{use_tag.8.number}},{{use_tag.9.number}}],
-        }
-      ]
-    };
-    //barChartDataTag.datasets[1].fillColor = "#00a65a";
-    //barChartDataTag.datasets[1].strokeColor = "#00a65a";
-    //barChartDataTag.datasets[1].pointColor = "#00a65a";
-    var barChartOptionsTag = {
-      //Boolean - If we should show the scale at all
-      showScale: true,
-      //Boolean - Whether grid lines are shown across the chart
-      scaleShowGridLines: false,
-      //String - Colour of the grid lines
-      scaleGridLineColor: "rgba(0,0,0,.05)",
-      //Number - Width of the grid lines
-      scaleGridLineWidth: 1,
-      //Boolean - Whether to show horizontal lines (except X axis)
-      scaleShowHorizontalLines: true,
-      //Boolean - Whether to show vertical lines (except Y axis)
-      scaleShowVerticalLines: true,
-      //Boolean - Whether the line is curved between points
-      bezierCurve: true,
-      //Number - Tension of the bezier curve between points
-      bezierCurveTension: 0.3,
-      //Boolean - Whether to show a dot for each point
-      pointDot: false,
-      //Number - Radius of each point dot in pixels
-      pointDotRadius: 4,
-      //Number - Pixel width of point dot stroke
-      pointDotStrokeWidth: 1,
-      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-      pointHitDetectionRadius: 20,
-      //Boolean - Whether to show a stroke for datasets
-      datasetStroke: true,
-      //Number - Pixel width of dataset stroke
-      datasetStrokeWidth: 2,
-      //Boolean - Whether to fill the dataset with a color
-      datasetFill: true,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++)%></ul>",
-      //Boolean - whether to maintain the HotPubting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio: true,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive: true
-    };
+		};
 
-    barChartOptionsTag.datasetFill = false;
-    barChartTag.Bar(barChartDataTag, barChartOptionsTag);
+		// 图标的配置
+		var horizontalBarChartOption = {
+			// 设置元素
+			elements: {
+				rectangle: {
+					borderWidth: 2,
+				}
+			},
+			// 设置画布大小变化的响应
+			responsive: true,
+			responsiveAnimationDuration:10,
 
+			// 设置图例的位置
+			legend: {
+				position: 'bottom',
+			},
+			// 设置标题
+			title: {
+				display: true,
+				text: '热词排行榜'
+			},
 
+			// tooltips: {
+			// 		mode: 'index',
+			// 		intersect: false,
+			// },
+			// 设置悬停效果
+			// hover: {
+			// 	mode: 'nearest',
+			// 	intersect: true
+			// },
+			// 设置坐标轴哦
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: false,
+						labelString: '热词热度'
+					},
+					position:'bottom',
+					gridLines: {
+						drawOnChartArea: false
+					},
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '热词名称'
+					},
+					position:'left',
+					// ticks: {
+					// 	min: 0,
+					// 	max: 100,
+					// 	stepSize: 10
+					// },
+					gridLines: {
+						drawOnChartArea: false
+					},
+				}]
+			}
 
-    //-------------
-    //- Star BAR CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var barChartCanvasStar = $("#starChart").get(0).getContext("2d");
-    // This will get the first returned node in the jQuery collection.
-    var barChartStar = new Chart(barChartCanvasStar);
+		};
+		//var value = context.dataset.data[context.dataIndex];
+		var ctx = document.getElementById('myChart1').getContext('2d');
+		myHorizontalBar = new Chart(ctx, {
+			type: 'horizontalBar',
+			data: horizontalBarChartData,
+			options: horizontalBarChartOption
+		});
 
-    var barChartDataStar =  {
-      labels: ["{{star_publisher_set.0.name}}", "{{star_publisher_set.1.name}}", "{{star_publisher_set.2.name}}", "{{star_publisher_set.3.name}}", "{{star_publisher_set.4.name}}", "{{star_publisher_set.5.name}}",
+	</script>
+
+<!-- 绘制2垂直柱状图 -最具吸引力的发布者排行榜 -->
+<script type="text/javascript">
+		var ctx = document.getElementById("myChart2");
+		var myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ["{{star_publisher_set.0.name}}", "{{star_publisher_set.1.name}}", "{{star_publisher_set.2.name}}", "{{star_publisher_set.3.name}}", "{{star_publisher_set.4.name}}", "{{star_publisher_set.5.name}}",
       "{{star_publisher_set.6.name}}","{{star_publisher_set.7.name}}","{{star_publisher_set.8.name}}","{{star_publisher_set.9..name}}"],
-      datasets: [
-        {
-          label: "标签热度",
-
-          fillColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-        ],
-          //strokeColor: "rgba(60,141,188,0.8)",
-          //pointColor: "#3b8bba",
-          //pointStrokeColor: "rgba(60,141,188,1)",
-          //pointHighlightFill: "#fff",
-          //pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [{{star_publisher_set.0.num_star}}, {{star_publisher_set.1.num_star}}, {{star_publisher_set.2.num_star}}, {{star_publisher_set.3.num_star}}, {{star_publisher_set.4.num_star}},
+				datasets: [{
+					label: '发布者热度',
+					data:  [{{star_publisher_set.0.num_star}}, {{star_publisher_set.1.num_star}}, {{star_publisher_set.2.num_star}}, {{star_publisher_set.3.num_star}}, {{star_publisher_set.4.num_star}},
            {{star_publisher_set.5.num_star}}, {{star_publisher_set.6.num_star}},{{star_publisher_set.7.num_star}},{{star_publisher_set.8.num_star}},{{star_publisher_set.9.num_star}}],
-        }
-      ]
-    };
+					backgroundColor: [
+					'rgba(255, 99, 132, 0.6)',
+					'rgba(54, 162, 235, 0.6)',
+					'rgba(255, 206, 86, 0.6)',
+					'rgba(75, 192, 192, 0.6)',
+					'rgba(153, 102, 255, 0.6)',
+					'rgba(255, 159, 64, 0.6)',
+					'rgba(255, 99, 132, 0.6)',
+					'rgba(54, 162, 235, 0.6)',
+					'rgba(255, 206, 86, 0.6)',
+					'rgba(75, 192, 192, 0.6)',
+					],
+					borderColor: [
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					'rgba(153, 102, 255,0.66)',
+					'rgba(255, 159, 64, 0.66)',
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					],
+					hoverBackgroundColor:[
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					'rgba(153, 102, 255,0.66)',
+					'rgba(255, 159, 64, 0.66)',
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					],
+					hoverBorderWidth:2,
+					borderWidth: 1,
+				}]
+			},
+			options: {
+		    	// 设置画布大小变化的响应
+		    	responsive: true,
+		    	responsiveAnimationDuration:10,
+				// 设置坐标轴哦
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: false,
+							labelString: '发布者名称'
+						},
+						position:'bottom',
+						gridLines: {
+							drawOnChartArea: false
+						},
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: '发布者被关注度'
+						},
+						position:'left',
+						// ticks: {
+						// 	min: 0,
+						// 	max: 100,
+						// 	stepSize: 10
+						// },
+						gridLines: {
+							drawOnChartArea: false
+						},
+					}]
+				},
+				title: {
+					display: true,
+					text: '最具吸引力的发布者排行榜'
+				}
+			}
+		});
+	</script>
 
-    var barChartOptionsStar = {
-      //Boolean - If we should show the scale at all
-      showScale: true,
-      //Boolean - Whether grid lines are shown across the chart
-      scaleShowGridLines: false,
-      //String - Colour of the grid lines
-      scaleGridLineColor: "rgba(0,0,0,.05)",
-      //Number - Width of the grid lines
-      scaleGridLineWidth: 1,
-      //Boolean - Whether to show horizontal lines (except X axis)
-      scaleShowHorizontalLines: true,
-      //Boolean - Whether to show vertical lines (except Y axis)
-      scaleShowVerticalLines: true,
-      //Boolean - Whether the line is curved between points
-      bezierCurve: true,
-      //Number - Tension of the bezier curve between points
-      bezierCurveTension: 0.3,
-      //Boolean - Whether to show a dot for each point
-      pointDot: false,
-      //Number - Radius of each point dot in pixels
-      pointDotRadius: 4,
-      //Number - Pixel width of point dot stroke
-      pointDotStrokeWidth: 1,
-      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-      pointHitDetectionRadius: 20,
-      //Boolean - Whether to show a stroke for datasets
-      datasetStroke: true,
-      //Number - Pixel width of dataset stroke
-      datasetStrokeWidth: 2,
-      //Boolean - Whether to fill the dataset with a color
-      datasetFill: true,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++)%></ul>",
-      //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio: true,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive: true
-    };
-
-    barChartOptionsStar.datasetFill = false;
-    barChartStar.Bar(barChartDataStar, barChartOptionsStar);
-
-
-
-    //-------------
-    //- Hot Publisher BAR CHART -
-    //-------------
-    var barChartCanvasHotPub = $("#hotPubChart").get(0).getContext("2d");
-    var barChartHotPub = new Chart(barChartCanvasHotPub);
-    var barChartDataHotPub =  {
-      labels: ["{{hot_publisher_list.0.name}}", "{{hot_publisher_list.1.name}}", "{{hot_publisher_list.2.name}}", "{{hot_publisher_list.3.name}}", "{{hot_publisher_list.4.name}}", "{{hot_publisher_list.5.name}}",
+<!-- 绘制3垂直柱状图-最受欢迎的发布者排行榜 -->
+<script type="text/javascript">
+		var ctx = document.getElementById("myChart3");
+		var myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ["{{hot_publisher_list.0.name}}", "{{hot_publisher_list.1.name}}", "{{hot_publisher_list.2.name}}", "{{hot_publisher_list.3.name}}", "{{hot_publisher_list.4.name}}", "{{hot_publisher_list.5.name}}",
       "{{hot_publisher_list.6.name}}","{{hot_publisher_list.7.name}}","{{hot_publisher_list.8.name}}","{{hot_publisher_list.9..name}}"],
-      datasets: [
-        {
-          label: "标签热度",
-
-          fillColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-        ],
-          //strokeColor: "rgba(60,141,188,0.8)",
-          //pointColor: "#3b8bba",
-          //pointStrokeColor: "rgba(60,141,188,1)",
-          //pointHighlightFill: "#fff",
-          //pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [{{hot_publisher_list.0.hot_num}}, {{hot_publisher_list.1.hot_num}}, {{hot_publisher_list.2.hot_num}}, {{hot_publisher_list.3.hot_num}}, {{hot_publisher_list.4.hot_num}},
+				datasets: [{
+					label: '受欢迎程度',
+					data: [{{hot_publisher_list.0.hot_num}}, {{hot_publisher_list.1.hot_num}}, {{hot_publisher_list.2.hot_num}}, {{hot_publisher_list.3.hot_num}}, {{hot_publisher_list.4.hot_num}},
            {{hot_publisher_list.5.hot_num}}, {{hot_publisher_list.6.hot_num}},{{hot_publisher_list.7.hot_num}},{{hot_publisher_list.8.hot_num}},{{hot_publisher_list.9.hot_num}}],
-        }
-      ]
-    };
+					backgroundColor: [
+					'rgba(255, 99, 132, 0.6)',
+					'rgba(54, 162, 235, 0.6)',
+					'rgba(255, 206, 86, 0.6)',
+					'rgba(75, 192, 192, 0.6)',
+					'rgba(153, 102, 255, 0.6)',
+					'rgba(255, 159, 64, 0.6)',
+					'rgba(255, 99, 132, 0.6)',
+					'rgba(54, 162, 235, 0.6)',
+					'rgba(255, 206, 86, 0.6)',
+					'rgba(75, 192, 192, 0.6)',
+					],
+					borderColor: [
+					'rgba(255, 99, 132,0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86,0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					'rgba(153, 102, 255,0.66)',
+					'rgba(255, 159, 64, 0.66)',
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					],
+					hoverBackgroundColor:[
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					'rgba(153, 102, 255,0.66)',
+					'rgba(255, 159, 64, 0.66)',
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					],
+					hoverBorderWidth:2,
+					borderWidth: 1
+				}]
+			},
+			options: {
+				// 设置坐标轴哦
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: false,
+							labelString: '发布者名称'
+						},
+						position:'bottom',
+						gridLines: {
+							drawOnChartArea: false
+						},
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: '发布者受欢迎度'
+						},
+						position:'left',
+						// ticks: {
+						// 	min: 0,
+						// 	max: 100,
+						// 	stepSize: 10
+						// },
+						gridLines: {
+							drawOnChartArea: false
+						},
+					}]
+				},
+				title: {
+					display: true,
+					text: '最受欢迎的发布者排行榜'
+				}
+			}
+		});
+	</script>
 
-    var barChartOptionsHotPub = {
-      //Boolean - If we should show the scale at all
-      showScale: true,
-      //Boolean - Whether grid lines are shown across the chart
-      scaleShowGridLines: false,
-      //String - Colour of the grid lines
-      scaleGridLineColor: "rgba(0,0,0,.05)",
-      //Number - Width of the grid lines
-      scaleGridLineWidth: 1,
-      //Boolean - Whether to show horizontal lines (except X axis)
-      scaleShowHorizontalLines: true,
-      //Boolean - Whether to show vertical lines (except Y axis)
-      scaleShowVerticalLines: true,
-      //Boolean - Whether the line is curved between points
-      bezierCurve: true,
-      //Number - Tension of the bezier curve between points
-      bezierCurveTension: 0.3,
-      //Boolean - Whether to show a dot for each point
-      pointDot: false,
-      //Number - Radius of each point dot in pixels
-      pointDotRadius: 4,
-      //Number - Pixel width of point dot stroke
-      pointDotStrokeWidth: 1,
-      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-      pointHitDetectionRadius: 20,
-      //Boolean - Whether to show a stroke for datasets
-      datasetStroke: true,
-      //Number - Pixel width of dataset stroke
-      datasetStrokeWidth: 2,
-      //Boolean - Whether to fill the dataset with a color
-      datasetFill: true,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++)%></ul>",
-      //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio: true,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive: true
-    };
+<!-- 绘制4饼图-文章类别分布 -->
+<script type="text/javascript">
+		var ctx = document.getElementById("myChart4");
+		var myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: ["{{ category_list.0.name}}", "{{category_list.1.name}}", "{{category_list.2.name}}", "{{category_list.3.name}}",
+				"{{category_list.4.name}}","{{category_list.5.name}}","{{category_list.6.name}}","{{category_list.7.name}}"],
+				datasets: [{
+					label: '# of Votes',
+					data: [ {{ category_list.0.num_article|default_if_none:"1"}},
+					{{ category_list.1.num_article|default_if_none:"1"}},
+					{{ category_list.2.num_article|default_if_none:"1"}},
+					{{ category_list.3.num_article|default_if_none:"1"}},
+					{{ category_list.4.num_article|default_if_none:"1"}},
+					{{ category_list.5.num_article|default_if_none:"1"}},
+					{{ category_list.6.num_article|default_if_none:"1"}},
+					{{ category_list.7.num_article|default_if_none:"1"}}],
+					backgroundColor: [
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					'rgba(153, 102, 255,0.66)',
+					'rgba(255, 159, 64, 0.66)',
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					],
+					borderColor: [
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					'rgba(153, 102, 255,0.66)',
+					'rgba(255, 159, 64, 0.66)',
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					],
+					hoverBorderWidth:2,
+					borderWidth: 1
+				}]
+			},
+			options: {
+				title: {
+					display: true,
+					text: '文章类别分布'
+				}
+			}
+		});
+	</script>
 
-    barChartOptionsHotPub.datasetFill = false;
-    barChartHotPub.Bar(barChartDataHotPub, barChartOptionsHotPub);
+<!-- 绘制5饼图-文章类别热度 -->
+<script type="text/javascript">
+		var ctx = document.getElementById("myChart5");
+		var myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: ["{{ hot_category_list.0.name}}",
+				"{{ hot_category_list.1.name}}",
+				"{{ hot_category_list.2.name}}",
+				"{{ hot_category_list.3.name}}",
+				"{{ hot_category_list.4.name}}",
+				"{{ hot_category_list.5.name}}",
+				"{{ hot_category_list.6.name}}",
+				"{{ hot_category_list.7.name}}"],
+				datasets: [{
+					label: '文章类别热度',
+					data: [{{ hot_category_list.0.hot_num|default_if_none:"1"}},
+					{{ hot_category_list.1.hot_num|default_if_none:"1"}},
+					{{ hot_category_list.2.hot_num|default_if_none:"1"}},
+					{{ hot_category_list.3.hot_num|default_if_none:"1"}},
+					{{ hot_category_list.4.hot_num|default_if_none:"1"}},
+					{{ hot_category_list.5.hot_num|default_if_none:"1"}},
+					{{ hot_category_list.6.hot_num|default_if_none:"1"}},
+					{{ hot_category_list.7.hot_num|default_if_none:"1"}}],
+					backgroundColor: [
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192, 0.66)',
+					'rgba(153, 102, 255,0.66)',
+					'rgba(255, 159, 64, 0.66)',
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					],
+					borderColor: [
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					'rgba(75, 192, 192,0.66)',
+					'rgba(153, 102, 255,0.66)',
+					'rgba(255, 159, 64, 0.66)',
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					],
+					hoverBorderWidth:2,
+					borderWidth: 1
+				}]
+			},
+			options: {
+				title: {
+					display: true,
+					text: '文章热度分布'
+				},
 
+			}
+		});
+	</script>
 
+<!-- 绘制6环图-文章来源分布 -->
+<script type="text/javascript">
+		var ctx = document.getElementById("myChart6");
+		var myChart = new Chart(ctx, {
+			type: 'doughnut',
+			data: {
+				labels: ["{{ source_set.0.name}}", "{{ source_set.1.name}}", "{{ source_set.2.name}}"],
+				datasets: [{
+					label: '文章来源分布',
+					data: [{{ source_set.0.article_num|default_if_none:"1"}},
+					{{ source_set.1.article_num|default_if_none:"1"}},
+					{{ source_set.2.article_num|default_if_none:"1"}}],
+					backgroundColor: [
+					'rgba(255, 99, 132, 0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
 
-    //-------------
-    //- num Cat PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvasNumCat = $("#numCatChart").get(0).getContext("2d");
-    var pieChartNumCat = new Chart(pieChartCanvasNumCat);
-    var PieDataNumCat = [
-      {
-        value: {{ category_list.0.num_article|default_if_none:"1"}},
-        color: "#f56954",
-        highlight: "#f56954",
-        label: "{{ category_list.0.name}}"
-      },
-      {
-        value: {{ category_list.1.num_article|default_if_none:"1"}},
-        color: "#00a65a",
-        highlight: "#00a65a",
-        label: "{{ category_list.1.name}}"
-      },
-      {
-        value: {{ category_list.2.num_article|default_if_none:"1"}},
-        color: "#f39c12",
-        highlight: "#f39c12",
-        label: "{{ category_list.2.name}}"
-      },
-      {
-        value: {{ category_list.3.num_article|default_if_none:"1"}},
-        color: "#00c0ef",
-        highlight: "#00c0ef",
-        label: "{{ category_list.3.name}}"
-      },
-      {
-        value: {{ category_list.4.num_article|default_if_none:"1"}},
-        color: "#3c8dbc",
-        highlight: "#3c8dbc",
-        label: "{{ category_list.4.name}}"
-      },
-      {
-        value: {{ category_list.5.num_article|default_if_none:"1"}},
-        color: "#d2d6de",
-        highlight: "#d2d6de",
-        label: "{{ category_list.5.name}}"
-      },
-      {
-        value: {{ category_list.6.num_article|default_if_none:"1"}},
-        color: "#e2d6de",
-        highlight: "#d2d6de",
-        label: "{{ category_list.6.name}}"
-      },
-      {
-        value: {{ category_list.7.num_article|default_if_none:"1"}},
-        color: "#d2e6de",
-        highlight: "#d2d6de",
-        label: "{{ category_list.7.name}}"
-      }
-    ];
-    var pieOptionsNumCat = {
-      //Boolean - Whether we should show a stroke on each segment
-      segmentShowStroke: true,
-      //String - The colour of each segment stroke
-      segmentStrokeColor: "#fff",
-      //Number - The width of each segment stroke
-      segmentStrokeWidth: 2,
-      //Number - The percentage of the chart that we cut out of the middle
-      percentageInnerCutout: 0, // This is 0 for Pie charts
-      //Number - Amount of animation steps
-      animationSteps: 100,
-      //String - Animation easing effect
-      animationEasing: "easeOutBounce",
-      //Boolean - Whether we animate the rotation of the Doughnut
-      animateRotate: true,
-      //Boolean - Whether we animate scaling the Doughnut from the centre
-      animateScale: false,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive: true,
-      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio: true,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++)%></ul>"
-    };
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    pieChartNumCat.Doughnut(PieDataNumCat, pieOptionsNumCat);
+					],
+					borderColor: [
+					'rgba(255,99,132,0.66)',
+					'rgba(54, 162, 235, 0.66)',
+					'rgba(255, 206, 86, 0.66)',
+					],
+					hoverBorderWidth:2,
+					borderWidth: 1
+				}]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					position: 'top',
+				},
+				title: {
+					display: true,
+					text: '文章来源分布'
+				},
+				animation: {
+					animateScale: true,
+					animateRotate: true
+				}
+			}
+		});
+	</script>
 
-
-  //-------------
-    //-hot Cat PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvasHotCat = $("#hotCatChart").get(0).getContext("2d");
-    var pieChartHotCat = new Chart(pieChartCanvasHotCat);
-    var PieDataHotCat = [
-      {
-        value: {{ hot_category_list.0.hot_num|default_if_none:"1"}},
-        color: "#f56954",
-        highlight: "#f56954",
-        label: "{{ hot_category_list.0.name}}"
-      },
-      {
-        value: {{ hot_category_list.1.hot_num|default_if_none:"1"}},
-        color: "#00a65a",
-        highlight: "#00a65a",
-        label: "{{ hot_category_list.1.name}}"
-      },
-      {
-        value: {{ hot_category_list.2.hot_num|default_if_none:"1"}},
-        color: "#f39c12",
-        highlight: "#f39c12",
-        label: "{{ hot_category_list.2.name}}"
-      },
-      {
-        value: {{ hot_category_list.3.hot_num|default_if_none:"1"}},
-        color: "#00c0ef",
-        highlight: "#00c0ef",
-        label: "{{ hot_category_list.3.name}}"
-      },
-      {
-        value: {{ hot_category_list.4.hot_num|default_if_none:"1"}},
-        color: "#3c8dbc",
-        highlight: "#3c8dbc",
-        label: "{{ hot_category_list.4.name}}"
-      },
-      {
-        value: {{ hot_category_list.5.hot_num|default_if_none:"1"}},
-        color: "#d2d6de",
-        highlight: "#d2d6de",
-        label: "{{ hot_category_list.5.name}}"
-      },
-      {
-        value: {{ hot_category_list.6.hot_num|default_if_none:"1"}},
-        color: "#e2d6de",
-        highlight: "#d2d6de",
-        label: "{{ hot_category_list.6.name}}"
-      },
-      {
-        value: {{ hot_category_list.7.hot_num|default_if_none:"1"}},
-        color: "#d2e6de",
-        highlight: "#d2d6de",
-        label: "{{ hot_category_list.7.name}}"
-      }
-    ];
-    var pieOptionsHotCat = {
-      //Boolean - Whether we should show a stroke on each segment
-      segmentShowStroke: true,
-      //String - The colour of each segment stroke
-      segmentStrokeColor: "#fff",
-      //Number - The width of each segment stroke
-      segmentStrokeWidth: 2,
-      //Number - The percentage of the chart that we cut out of the middle
-      percentageInnerCutout: 0, // This is 0 for Pie charts
-      //Number - Amount of animation steps
-      animationSteps: 100,
-      //String - Animation easing effect
-      animationEasing: "easeOutBounce",
-      //Boolean - Whether we animate the rotation of the Doughnut
-      animateRotate: true,
-      //Boolean - Whether we animate scaling the Doughnut from the centre
-      animateScale: false,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive: true,
-      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio: true,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++)%></ul>"
-    };
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    pieChartHotCat.Doughnut(PieDataHotCat, pieOptionsHotCat);
-
-
-    //-------------
-    //-num Source PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvasNumSou = $("#numSourceChart").get(0).getContext("2d");
-    var pieChartNumSou = new Chart(pieChartCanvasNumSou);
-    var PieDataNumSou = [
-      {
-        value: {{ source_set.0.article_num|default_if_none:"1"}},
-        color: "#f56954",
-        highlight: "#f56954",
-        label: "{{ source_set.0.name}}"
-      },
-      {
-        value: {{ source_set.1.article_num|default_if_none:"1"}},
-        color: "#00a65a",
-        highlight: "#00a65a",
-        label: "{{ source_set.1.name}}"
-      },
-      {
-        value: {{ source_set.2.article_num|default_if_none:"1"}},
-        color: "#f39c12",
-        highlight: "#f39c12",
-        label: "{{ source_set.2.name}}"
-      }
-    ];
-    var pieOptionsNumSou = {
-      //Boolean - Whether we should show a stroke on each segment
-      segmentShowStroke: true,
-      //String - The colour of each segment stroke
-      segmentStrokeColor: "#fff",
-      //Number - The width of each segment stroke
-      segmentStrokeWidth: 2,
-      //Number - The percentage of the chart that we cut out of the middle
-      percentageInnerCutout: 50, // This is 0 for Pie charts
-      //Number - Amount of animation steps
-      animationSteps: 100,
-      //String - Animation easing effect
-      animationEasing: "easeOutBounce",
-      //Boolean - Whether we animate the rotation of the Doughnut
-      animateRotate: true,
-      //Boolean - Whether we animate scaling the Doughnut from the centre
-      animateScale: false,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive: true,
-      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio: true,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++)%></ul>"
-    };
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    pieChartNumSou.Doughnut(PieDataNumSou, pieOptionsNumSou);
-
-
-
-
-
-    //-------------
-    //-hot Source PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvasHotSou = $("#hotSourceChart").get(0).getContext("2d");
-    var pieChartHotSou = new Chart(pieChartCanvasHotSou);
-    var PieDataHotSou = [
-      {
-        value: {{ source_set2.0.hot_num|default_if_none:"1"}},
-        color: "#00c0ef",
-        highlight: "#00c0ef",
-        label: "{{ source_set2.0.name}}"
-      },
-      {
-        value: {{ source_set2.1.hot_num|default_if_none:"1"}},
-        color: "#3c8dbc",
-        highlight: "#3c8dbc",
-        label: "{{ source_set2.1.name}}"
-      },
-      {
-        value: {{ source_set2.2.hot_num|default_if_none:"1"}},
-        color: "#d2d6de",
-        highlight: "#d2d6de",
-        label: "{{ source_set2.2.name}}"
-      }
-    ];
-    var pieOptionsHotSou = {
-      //Boolean - Whether we should show a stroke on each segment
-      segmentShowStroke: true,
-      //String - The colour of each segment stroke
-      segmentStrokeColor: "#fff",
-      //Number - The width of each segment stroke
-      segmentStrokeWidth: 2,
-      //Number - The percentage of the chart that we cut out of the middle
-      percentageInnerCutout: 50, // This is 0 for Pie charts
-      //Number - Amount of animation steps
-      animationSteps: 100,
-      //String - Animation easing effect
-      animationEasing: "easeOutBounce",
-      //Boolean - Whether we animate the rotation of the Doughnut
-      animateRotate: true,
-      //Boolean - Whether we animate scaling the Doughnut from the centre
-      animateScale: false,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive: true,
-      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio: true,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++)%></ul>"
-    };
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    pieChartHotSou.Doughnut(PieDataHotSou, pieOptionsHotSou);
-  });
-</script>
-{% endblock %}
-
+<!-- 绘制7环图-文章来源热度 -->
+<script type="text/javascript">
+		var ctx = document.getElementById("myChart7");
+		var myChart = new Chart(ctx, {
+			type: 'doughnut',
+			data: {
+				labels: ["{{ source_set2.0.name}}", "{{ source_set2.1.name}}", "{{ source_set2.2.name}}"],
+				datasets: [{
+					label: '文章来源热度',
+					data: [{{ source_set2.0.hot_num|default_if_none:"1"}},
+					{{ source_set2.1.hot_num|default_if_none:"1"}},
+					{{ source_set2.2.hot_num|default_if_none:"1"}},],
+					backgroundColor: [
+					'rgba(75, 192, 192, 0.66)',
+					'rgba(153, 102, 255,0.66)',
+					'rgba(255, 159, 64, 0.66)'
+					],
+					borderColor: [
+					'rgba(75, 192, 192, 0.66)',
+					'rgba(153, 102, 255, 0.66)',
+					'rgba(255, 159, 64, 0.66)'
+					],
+					hoverBorderWidth:2,
+					borderWidth: 1
+				}]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					position: 'top',
+				},
+				title: {
+					display: true,
+					text: '文章来源热度'
+				},
+				animation: {
+					animateScale: true,
+					animateRotate: true
+				}
+			}
+		});
+	</script>
+</html>

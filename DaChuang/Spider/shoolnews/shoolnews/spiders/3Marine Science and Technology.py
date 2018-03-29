@@ -6,28 +6,80 @@
 
 import scrapy
 import sys
-import os
+
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class MarineScienceSpider(scrapy.Spider):
     name = 'MarineScience'
     allowed_domains = ['hanghai.nwpu.edu.cn']
     start_urls = [
+        ## 2012/01/13之前的图片都爬取不到，因为代码没有考虑../../images/12/02/16/1cfshf2mfi/20111226093243577031.jpg这种相对路径
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/30.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/31.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/32.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/33.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/34.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/35.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/36.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/37.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/38.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/39.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/40.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/41.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/42.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/43.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/44.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/45.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/46.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/47.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/48.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/49.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/50.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/51.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/52.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/53.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/54.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/55.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/56.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/57.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/58.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/59.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/60.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/61.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/62.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/63.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/64.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/65.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/66.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/67.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/68.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/69.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/70.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/71.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/72.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/73.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/74.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/75.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/76.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/77.htm',
+
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/79.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/80.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/81.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/82.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/83.htm',
+        # 'http://hanghai.nwpu.edu.cn/index/xyxw/84.htm',
         'http://hanghai.nwpu.edu.cn/index/xyxw.htm',
     ]
 
     base_image_html = 'http://hanghai.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '航海学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -102,11 +154,11 @@ class MarineScienceSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] =  'art/' + self.name + hashlib.md5(str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] =  'art/' + self.name + hashlib.md5(str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:

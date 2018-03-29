@@ -48,12 +48,17 @@ class Source(models.Model):
 class Publisher(models.Model):
     name = models.CharField(max_length=300,verbose_name=u'发布者名称')
     wechat_id = models.CharField(max_length=300,verbose_name=u'微信号',default='nothing' )
-    img = models.ImageField(upload_to='pub',verbose_name=u'图片路径',blank=True,null=True,default='1.jpg')
+    img = models.ImageField(upload_to='pub',verbose_name=u'图片路径',blank=True,null=True)
     source = models.ForeignKey(Source,verbose_name=u'分类')
     intro = models.TextField(verbose_name=u'简介')
     class Meta:
         verbose_name = u'发布者'
         verbose_name_plural = verbose_name
+
+    @property
+    def img_url(self):
+        if self.img and hasattr(self.img, 'url'):
+            return self.img.url
 
     def __unicode__(self):
         return self.name
@@ -63,7 +68,7 @@ class Article(models.Model):
     title = models.CharField(max_length=300, verbose_name=u'文章标题')
     desc = models.CharField(max_length=300, verbose_name=u'文章描述', blank=True)
     content = models.TextField(verbose_name=u'文章内容')
-    img = models.ImageField(upload_to='art',verbose_name=u'图片路径', blank=True, null=True)
+    img = models.ImageField(upload_to='art', verbose_name=u'图片路径', blank=True, null=True)
 
     love_count = models.IntegerField(default=0, verbose_name=u'喜欢数')
     click_count = models.IntegerField(default=0, verbose_name=u'点击次数')
@@ -79,8 +84,14 @@ class Article(models.Model):
         verbose_name_plural = verbose_name
         ordering = ['-date_publish']
 
+    @property
+    def img_url(self):
+        if self.img and hasattr(self.img, 'url'):
+            print self.img.url
+            return self.img.url
+
     def increase_views(self):
-        self.click_count +=1
+        self.click_count += 1
         self.save(update_fields=['click_count'])
 
     def increase_loves(self):
@@ -108,6 +119,12 @@ class UserNormal(models.Model):
 
     desc = models.CharField(max_length=300,verbose_name=u'简介',default=u'小白')
     img = models.ImageField(upload_to='user', verbose_name=u'头像',null=True,default='1.jpg')
+
+    @property
+    def img_url(self):
+        if self.img and hasattr(self.img, 'url'):
+            return self.img.url
+
     def __unicode__(self):
         return self.user.username
 

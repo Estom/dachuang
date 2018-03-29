@@ -6,13 +6,13 @@
 
 import scrapy
 import sys
-import os
+
 import datetime
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
-import datetime
-import Myfilter
+import time
+import hashlib
 
 class InternationalCooperationOfficeSpider(scrapy.Spider) :
     name = 'InternationalCooperationOffice'
@@ -23,12 +23,6 @@ class InternationalCooperationOfficeSpider(scrapy.Spider) :
 
     base_article_html = "http://guoji.nwpu.edu.cn/info/"
     base_image_html = 'http://guoji.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '国际合作处'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -68,7 +62,8 @@ class InternationalCooperationOfficeSpider(scrapy.Spider) :
         if len(response.xpath('//div[@class="page-header"]/h3/text()').extract()):
             item['title'] = response.xpath('//div[@class="page-header"]/h3/text()').extract()[
                 0].encode('utf-8')
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             print 'title : ', item['title']
             print 'image_path : ', item['image_path']
 
@@ -94,7 +89,6 @@ class InternationalCooperationOfficeSpider(scrapy.Spider) :
             content += p
 
         item['content'] = content
-
 
 
         return item

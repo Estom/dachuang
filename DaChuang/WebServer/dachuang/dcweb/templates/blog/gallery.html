@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head %}
+<title>Gallery</title>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="stylesheet" href="{% static 'gallery/css/style.css'%}">
+<link rel="stylesheet" href="{% static 'gallery/css/camera.css'%}">
+<link rel="stylesheet" href="{% static 'gallery/css/jquery.fancybox.css'%}">
+
+<script src="{% static 'gallery/js/jquery.js'%}"></script>
+<script src="{% static 'gallery/js/jquery-migrate-1.2.1.js'%}"></script>
+
+<script src="{% static 'gallery/js/device.min.js'%}"></script>
+<style type="text/css">.fancybox-margin{margin-right:17px;}</style>
+
+{% endblock %}
+{% block content %}
+
+{% load paginate_tags %} {% paginate article_list 9 %}
+{% load cache %}
+{% cache 86400 gallery current_page %}
+<div class="gallery">
+    <div class="gallery_col-1">
+        <a data-fancybox-group="gallery" href="{% url 'detail' article_list.0.pk %}" class="gallery_item thumb lazy-img" style="padding-bottom: 93.96551724137931%;">
+            <img data-src="{{article_list.0.img_url}}" alt="" src="{{article_list.0.img_url}}" onerror="this.src='{{article_list.0.publisher.img_url|default_if_none:'#'}}'" class="lazy-loaded">
+            <div class="gallery_overlay">
+                <div class="gallery_caption">
+                    <p><em>{{article_list.0.publisher}}</em></p>
+                    <p>{{article_list.0.title}}</p>
+                </div>
+            </div>
+        </a>
+        <a data-fancybox-group="gallery" href="{% url 'detail' article_list.1.pk %}" class="gallery_item thumb lazy-img" style="padding-bottom: 74.13793103448276%;">
+            <img data-src="{{article_list.1.img_url}}" alt="" src="{{article_list.1.img_url}}" onerror="this.src='{{article_list.1.publisher.img_url|default_if_none:'#'}}'" class="lazy-loaded">
+            <div class="gallery_overlay">
+                <div class="gallery_caption">
+                    <p><em>{{article_list.1.publisher}}</em></p>
+                    <p>{{article_list.1.title}}</p>
+                </div>
+            </div>
+        </a>
+        <a data-fancybox-group="gallery" href="{% url 'detail' article_list.2.pk %}" class="gallery_item thumb lazy-img" style="padding-bottom: 94.6551724137931%;">
+            <img data-src="{{article_list.2.img_url}}" alt="" src="{{article_list.2.img_url}}" onerror="this.src='{{article_list.2.publisher.img_url|default_if_none:'#'}}'" class="lazy-loaded">
+            <div class="gallery_overlay">
+                <div class="gallery_caption">
+                    <p><em>{{article_list.2.publisher}}</em></p>
+                    <p>{{article_list.2.title}}</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="gallery_col-2">
+        <a data-fancybox-group="gallery" href="{% url 'detail' article_list.3.pk %}" class="gallery_item thumb lazy-img" style="padding-bottom: 52.48322147651007%;">
+            <img data-src="{{article_list.3.img_url}}" alt="" src="{{article_list.3.img_url}}" onerror="this.src='{{article_list.3.publisher.img_url|default_if_none:'#'}}'" class="lazy-loaded">
+            <div class="gallery_overlay">
+                <div class="gallery_caption">
+                    <p><em>{{article_list.3.publisher}}</em></p>
+                    <p>{{article_list.3.title}}</p>
+                </div>
+            </div>
+        </a>
+        <a data-fancybox-group="gallery" href="{% url 'detail' article_list.4.pk %}" class="gallery_item thumb lazy-img" style="padding-bottom: 55.97315436241611%;">
+            <img data-src="{{article_list.4.img_url}}" alt="" src="{{article_list.4.img_url}}" onerror="this.src='{{article_list.4.publisher.img_url|default_if_none:'#'}}'" class="lazy-loaded">
+            <div class="gallery_overlay">
+                <div class="gallery_caption">
+                    <p><em>{{article_list.4.publisher}}</em></p>
+                    <p>{{article_list.4.title}}</p>
+                </div>
+            </div>
+        </a>
+        <a data-fancybox-group="gallery" href="{% url 'detail' article_list.5.pk %}" class="gallery_item thumb lazy-img" style="padding-bottom: 96.10738255033557%;">
+            <img data-src="{{article_list.5.img_url}}" alt="" src="{{article_list.5.img_url}}" onerror="this.src='{{article_list.5.publisher.img_url|default_if_none:'#'}}'" class="lazy-loaded">
+            <div class="gallery_overlay">
+                <div class="gallery_caption">
+                    <p><em>{{article_list.5.publisher}}</em></p>
+                    <p>{{article_list.5.title}}</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="gallery_col-3">
+        <a data-fancybox-group="gallery" href="{% url 'detail' article_list.6.pk %}" class="gallery_item thumb lazy-img" style="padding-bottom: 93.69676320272572%;">
+            <img data-src="{{article_list.6.img_url}}" alt="" src="{{article_list.6.img_url}}" onerror=" this.src='{{article_list.6.publisher.img_url|default_if_none:'#'}}'"  class="lazy-loaded">
+            <div class="gallery_overlay">
+                <div class="gallery_caption">
+                    <p><em>{{article_list.6.publisher}}</em></p>
+                    <p>{{article_list.6.title}}</p>
+                </div>
+            </div>
+        </a>
+        <a data-fancybox-group="gallery" href="{% url 'detail' article_list.7.pk %}" class="gallery_item thumb lazy-img" style="padding-bottom: 72.23168654173765%;">
+            <img data-src="{{article_list.7.img_url}}" alt="" src="{{article_list.7.img_url}}" onerror="this.src='{{article_list.7.publisher.img_url|default_if_none:'#'}}'" class="lazy-loaded">
+            <div class="gallery_overlay">
+                <div class="gallery_caption">
+                    <p><em>{{article_list.7.publisher}}</em></p>
+                    <p>{{article_list.7.title}}</p>
+                </div>
+            </div>
+        </a>
+        <a data-fancybox-group="gallery" href="{% url 'detail' article_list.8.pk %}" class="gallery_item thumb lazy-img" style="padding-bottom: 93.69676320272572%;">
+            <img data-src="{{article_list.8.img_url}}" alt="" src="{{article_list.8.img_url}}" onerror="this.src='{{article_list.8.publisher.img_url|default_if_none:'#'}}'" class="lazy-loaded">
+            <div class="gallery_overlay">
+                <div class="gallery_caption">
+                    <p><em>{{article_list.8.publisher}}</em></p>
+                    <p>{{article_list.8.title}}l</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<nav aria-label="fuck">
+    <ul class="pager">
+        <li><a href="?page={{ article_list.next_page_number }}"><span class="glyphicon glyphicon-refresh">&nbsp;换一批</span></a></li>
+    </ul>
+</nav>
+{% endcache %}
+{% endblock %}

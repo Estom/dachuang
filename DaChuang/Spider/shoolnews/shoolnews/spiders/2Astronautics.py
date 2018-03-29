@@ -6,28 +6,48 @@
 
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class AstronauticsSpider(scrapy.Spider):
     name = 'astronautics'
     allowed_domains = ['hangtian.nwpu.edu.cn']
     start_urls = [
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/10.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/11.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/12.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/13.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/14.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/15.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/16.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/17.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/18.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/19.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/20.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/21.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/22.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/23.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/24.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/25.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/26.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/27.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/28.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/29.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/30.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/31.htm',
+
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/31.htm',
+        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/32.htm',
         'http://hangtian.nwpu.edu.cn/xwgg1/xyxw.htm',
     ]
 
     base_image_html = 'http://hangtian.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '航天学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -104,11 +124,11 @@ class AstronauticsSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:

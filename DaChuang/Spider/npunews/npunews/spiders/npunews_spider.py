@@ -4,12 +4,13 @@
 import scrapy
 from npunews.items import NpunewsItem
 from urlparse import urljoin
-import os
 import re
 import sys
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -19,15 +20,100 @@ class GdywSpider(scrapy.Spider):
     name = "gdyw"
     allowed_domains = ["news.nwpu.edu.cn"]
     start_urls = [
+        # 'http://news.nwpu.edu.cn/news/gdyw/280.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/281.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/282.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/283.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/284.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/285.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/286.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/287.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/288.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/289.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/290.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/291.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/292.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/293.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/294.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/295.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/296.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/297.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/298.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/299.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/300.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/301.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/302.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/303.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/304.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/305.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/306.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/307.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/308.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/309.htm',
+
+        # 'http://news.nwpu.edu.cn/news/gdyw/310.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/311.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/312.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/313.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/314.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/315.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/316.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/317.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/318.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/319.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/320.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/321.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/322.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/323.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/324.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/325.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/326.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/327.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/328.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/329.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/330.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/331.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/332.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/333.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/334.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/335.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/336.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/337.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/338.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/339.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/340.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/341.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/342.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/343.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/344.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/345.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/346.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/347.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/348.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/349.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/350.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/351.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/352.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/353.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/354.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/355.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/356.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/357.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/358.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/359.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/360.htm',
+
+        # 'http://news.nwpu.edu.cn/news/gdyw/362.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/364.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/367.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/368.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/369.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/370.htm',
+        # 'http://news.nwpu.edu.cn/news/gdyw/371.htm',
         'http://news.nwpu.edu.cn/news/gdyw.htm', # 工大要闻
     ]
 
     base_image_html = 'http://news.nwpu.edu.cn'
-    base_path = 'C:/Images/' + '工大新闻网'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     # 收集处理一部分数据
     def parse(self, response):
@@ -105,12 +191,14 @@ class GdywSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + \
                                  response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + \
                                  response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 

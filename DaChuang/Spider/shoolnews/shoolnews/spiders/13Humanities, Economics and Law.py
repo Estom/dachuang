@@ -5,29 +5,64 @@
 '''
 import scrapy
 import sys
-import os
 import re
 from shoolnews.items import ShoolnewsItem
 from urlparse import urljoin
 
 import datetime
 import Myfilter
+import time
+import hashlib
 
 class HumanitiesSpider(scrapy.Spider):
     name = 'Humanities'
     allowed_domains = ['rwjj.nwpu.edu.cn']
 
     start_urls = [
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/2.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/3.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/4.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/5.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/6.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/7.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/8.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/9.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/10.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/11.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/12.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/13.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/14.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/15.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/16.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/17.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/18.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/19.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/20.htm',
+
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/21.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/22.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/23.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/24.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/25.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/26.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/27.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/28.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/29.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/30.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/31.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/32.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/33.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/34.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/35.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/36.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/37.htm',
+
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/38.htm',
+        # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/39.htm',
         'http://rwjj.nwpu.edu.cn/xwgg/xwdt.htm'
     ]
 
     base_image_html = 'http://rwjj.nwpu.edu.cn'
-
-    base_path = 'C:/Images/' + '人文与经法学院'
-
-    if not os.path.exists(base_path.decode('utf-8')):
-        os.makedirs(base_path.decode('utf-8'))
-
 
     def parse(self, response):
         reload(sys)
@@ -109,11 +144,13 @@ class HumanitiesSpider(scrapy.Spider):
 
         # 图片网址 图片地址
         if len(response.xpath('//img[@class="img_vsb_content"]/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//img[@class="img_vsb_content"]/@src').extract()[0].encode('utf-8')
 
         elif len(response.xpath('//div[@class="v_news_content"]//img/@src').extract()):
-            item['image_path'] = self.base_path + '/' + item['title'] + '.jpg'
+            item['image_path'] = 'art/' + self.name + hashlib.md5(
+                str(time.clock()).encode('utf-8')).hexdigest() + '.jpg'
             item['image_html'] = self.base_image_html + response.xpath('//div[@class="v_news_content"]//img/@src').extract()[0].encode('utf-8')
 
         else:
