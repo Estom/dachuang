@@ -15,17 +15,27 @@ sys.setdefaultencoding("utf-8")
 # 提取数据+分词+建立Bunch数据
 bunch = Bunch(contents=[], id=[])
 date = []
-i = 0
+i = -1
 while True:
-    info = SQLconfig.sql0.select('article', ['id', 'content'], None, 1, i)
-    if len(info) == 0:
-        break
-    info[1] = FormatData.TextCut(info[1])
-    date.append(info)
-    bunch.contents.append(info[1])
-    bunch.id.append(info[0])
     i += 1
-    print "读取第%s条数据" % i
+    state = SQLconfig.sql0.select('article', ['id', 'process_state'], None, 0, i)
+    if len(state) == 0:
+        break
+    if (state[1] % 2**3)/(2**0) % 2 == 1:
+        print "id = %d文章已完成分类" % state[1]
+        continue
+    else:
+        cate = SQLconfig.sql0.select('article', ['category'], None, 1, i)
+        if cate[0] in SQLconfig.dicClassToCategory.values():
+            print "%d: id = %d 文章来源存在类别" % (i, state[0])
+            continue
+        else:
+            info = SQLconfig.sql0.select('article', ['id', 'content'], None, 1, i)
+            info[1] = FormatData.TextCut(info[1])
+            date.append(info)
+            bunch.contents.append(info[1])
+            bunch.id.append(info[0])
+            print "%d: id = %d 文章自动分类" % (i, state[0])
 # 提取数据+分词+建立Bunch数据结束
 
 # 读取停用词
