@@ -35,7 +35,7 @@ Version 3.0
 
 ~~:fa-check-square-o:增量爬虫~~
 
-~~:fa-square-o:公众号扩展~~
+~~:fa-check-square-o:公众号扩展~~
 
 :fa-square-o:爬虫通过脚本自动化运行
 
