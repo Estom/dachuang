@@ -27,11 +27,11 @@ sql1 = MySQLTools(
 )
 
 # 停用词路径
-stopword_path = '.\hlt_stop_words.txt'
+stopword_path = '.\Classify\hlt_stop_words.txt'
 # 词向量空间路径
-wordbag_path = '.\\train_set.dat'
+wordbag_path = '.\Classify\\train_set.dat'
 # 分类器地址
-classification_path = '.\classification_NB.dat'
+classification_path = '.\Classify\classification_NB.dat'
 
 # 类别字典
 dicClassToCategory = {}

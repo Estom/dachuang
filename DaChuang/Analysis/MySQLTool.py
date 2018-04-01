@@ -48,7 +48,7 @@ class MySQLTools:
             i += 1
         return text
 
-    def _exeCuteCommit(self, sql = '', arg = None):
+    def _exeCuteCommit(self, sql='', arg=None):
         """
         @summary: 针对更新，删除，事物等的异常处理
         :param sql: 执行的SQL语句
@@ -63,7 +63,7 @@ class MySQLTools:
             self._conn.commit()
         except MySQLdb.Error, e:
             self._conn.rollback()
-            error = 'MySQL execute failed! ERROR(%s):%s' %(e.args[0], e.args[1])
+            error = 'MySQL execute failed! ERROR(%s):%s' % (e.args[0], e.args[1])
             print error
 
     def select(self, tablename, param=None, con=None, num=None, offset=None):

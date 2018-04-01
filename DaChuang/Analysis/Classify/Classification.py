@@ -5,12 +5,15 @@
 脚本用作用：分类
 """
 import sys
-import FormatData
 from sklearn.datasets.base import Bunch
 from sklearn.feature_extraction.text import TfidfVectorizer
 import SQLconfig
 reload(sys)
 sys.setdefaultencoding("utf-8")
+sys.path.insert(0, '..')
+import FormatData
+
+FormatData.readfile(SQLconfig.wordbag_path)
 
 # 提取数据+分词+建立Bunch数据
 bunch = Bunch(contents=[], id=[])
@@ -18,15 +21,17 @@ date = []
 i = -1
 while True:
     i += 1
-    state = SQLconfig.sql0.select('article', ['id', 'process_state'], None, 0, i)
+    state = SQLconfig.sql0.select('article', ['id', 'process_state'], None, 1, i)
     if len(state) == 0:
+        print "数据提取结束"
         break
     if (state[1] % 2**3)/(2**0) % 2 == 1:
-        print "id = %d文章已完成分类" % state[1]
+        print "%d :id = %d文章已完成分类" % (i, state[1])
         continue
     else:
         cate = SQLconfig.sql0.select('article', ['category'], None, 1, i)
         if cate[0] in SQLconfig.dicClassToCategory.values():
+            SQLconfig.sql0.update('article', {'process_state': state[1] % 2 ** 3 + 2 ** 0}, 'id = %d' % state[0])
             print "%d: id = %d 文章来源存在类别" % (i, state[0])
             continue
         else:
@@ -61,6 +66,6 @@ predicted = clf.predict(tfidfspace.tdm)
 i = 0
 for id, expct_cate in zip(tfidfspace.id, predicted):
     i = i + 1
-    dic = {'category': expct_cate}
+    dic = {'category': expct_cate, 'process_state': state[1] % 2**3 + 2**0}
     SQLconfig.sql0.update('article', dic, 'id = %d' % id)
     print "存第%s条数据！" % i

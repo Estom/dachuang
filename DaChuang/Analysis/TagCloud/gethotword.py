@@ -106,5 +106,3 @@ while True:
             dic = {'name': ii[0], 'number': ii[1]}
             SQLconfig.sql1.add('dcweb_tag', dic)
 # #######################热词存回数据库结束##################################
-
-import matchWordAndContent

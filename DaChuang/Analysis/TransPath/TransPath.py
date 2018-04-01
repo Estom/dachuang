@@ -17,7 +17,7 @@ while True:
     if len(state) == 0:
         break
     if (state[0] % 2**3)/(2**2) % 2 == 1:
-        print "id = %d文章已转移" % state[1]
+        print "%d : id = %d文章已转移" % (i, state[1])
         continue
     else:
         info = SQLconfig.sql0.select('article', ['title', 'author', 'article.desc', 'content', 'image_path', 'posttime',

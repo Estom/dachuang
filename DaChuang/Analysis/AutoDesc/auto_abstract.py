@@ -76,7 +76,7 @@ while True:
     if len(state) == 0:
         break
     if (state[1] % 2**3)/(2**1) % 2 == 1:
-        print "%d : id = %d文章已完成摘要" % state[1]
+        print "%d : id = %d文章已完成摘要" % (i, state[0])
         continue
     else:
         SQLconfig.sql0.update('article', {'process_state': state[1] % 2**3 + 2**1}, 'id = %d' % state[0])
