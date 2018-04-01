@@ -5,15 +5,38 @@
 <head>
 	<title>登录</title>
 		<meta charset="utf-8">
-	 	<link rel="stylesheet"  href="{% static 'adminlte/bootstrap/css/bootstrap.min.css' %}">
- 		<link rel="stylesheet" href="{% static 'adminlte/bootstrap/css/templatemo_style.css' %}">
-
+		<!--使用非模板库-->
+	 	<link rel="stylesheet"  href="{% static 'lib/css/bootstrap.min.css' %}">
+ 		<link rel="stylesheet" href="{% static 'blog/css/form_style.css' %}">
+		<link rel="stylesheet" href="{% static 'lib/css/font-awesome.min.css' %}">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body class="">
+<body class="templatemo-bg-image-1" >
+	<div class="mask" style="overflow:auto;">
 	<div class="container">
-		<div class="col-md-12">
-			<form class="form-horizontal templatemo-login-form-2" id="my-form" role="form" action="{% url 'login' %}" method="post">
+		<div class="row">
+			<div class="col-md-7">
+				<div class="login-intro">
+					<h1>聚加文章</h1>
+					<div class="description">
+						<p>
+							我们汇聚纷杂的文章，定制你的专属阅读环境，致力于提高用户的阅读体验！
+						</p>
+						<p>
+							聚加文章,开启你的校园阅读新时代！
+
+						</p>
+						<br/>
+						<p style="text-align:center;">
+							<a href="#"><strong>了解我们</strong></a>
+						</p>
+
+					</div>
+				</div>
+			</div>
+
+		<div class="col-md-5">
+			<form class="form-horizontal templatemo-login-form-1" id="my-form" role="form" action="{% url 'login' %}" method="post">
 				{% csrf_token %}
 				<div class="row">
 					<div class="col-md-12">
@@ -26,7 +49,7 @@
 				          <div class="col-md-12">
 				            <label for="username" class="control-label">用户名</label>
 				            <div class="templatemo-input-icon-container">
-				            	<i class="fa fa-user"></i>
+								<i class="fa fa-user"></i>
 								{{ login_form.username }}
 				            	<!--<input type="text" class="form-control" id="username" name="username" placeholder="UserName/UserNumber">-->
 				            </div>
@@ -36,7 +59,7 @@
 				          <div class="col-md-12">
 				            <label for="password" class="control-label">密码</label>
 				            <div class="templatemo-input-icon-container">
-				            	<i class="fa fa-lock"></i>
+								<i class="fa fa-lock"></i>
 								{{ login_form.password }}
 				            	<!--<input type="password" class="form-control" id="password" name="password" placeholder="please input your password">-->
 				            </div>
@@ -59,6 +82,8 @@
 		<p>{{ reason }}</p>
 
 		</div>
+		</div>
+	</div>
 	</div>
 </body>
 

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Single Page</title>
+<!--mobile apps-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--mobile apps-->
+<!--Custom Theme files -->
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="js/jquery-1.11.1.min.js"></script> 
+<!-- //js -->
+<!--web-fonts-->
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!--//web-fonts-->
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- start-smoth-scrolling-->
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+</script>
+<!--//end-smoth-scrolling-->
+</head>
+<body>
+	<!-- main content start-->
+	<div id="page-wrapper">
+		<!--banner-->
+		<div class="banner about-banner">
+			<div class="banner-right">
+				<h1 class="wow zoomIn animated" data-wow-delay=".5s"><a href="index.html">Liqueur</a></h1>
+			</div>
+			<div class="banner-left">
+				<!--navigation-->
+				<nav> 
+					<a href="" id="menuToggle"> <span class="navClosed"></span> </a>
+					<a href="index.html">Home</a> 
+					<a href="about.html">About</a> 
+					<a href="typo.html">Typography</a> 
+					<a href="index.html">Blog</a>
+					<a href="index.html">Gallery</a> 
+					<a href="contact.html">Contact</a> 
+				</nav>
+				<script>
+					(function($){
+						// Menu Functions
+						$(document).ready(function(){
+						$('#menuToggle').click(function(e){
+							var $parent = $(this).parent('nav');
+						  $parent.toggleClass("open");
+						  var navState = $parent.hasClass('open') ? "hide" : "show";
+						  $(this).attr("title", navState + " navigation");
+								// Set the timeout to the animation length in the CSS.
+								setTimeout(function(){
+									console.log("timeout set");
+									$('#menuToggle > span').toggleClass("navClosed").toggleClass("navOpen");
+								}, 200);
+							e.preventDefault();
+						});
+					  });
+					})(jQuery);
+				</script>
+				<!--//navigation-->
+				<div class="banner-text">
+					<h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">Liqueur <br>is strong & <br> sweet alcohol</h2>
+					<ol class="breadcrumb wow fadeInUpBig animated" data-wow-delay=".5s">
+					  <li><a href="index.html">Home</a></li>
+					  <li>Single Page</li>
+					</ol>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<!--//banner-->
+		<!-- single -->
+		<div class="single">
+			<div class="container">
+				<h3 class="title wow fadeInDown animated" data-wow-delay=".5s">Single Page</h3>
+				<div class="single-page-artical">
+					<div class="artical-content">
+						<h4 class="wow fadeInDown animated" data-wow-delay=".5s">Lorem Ipsum is simply dummy text</h4>
+						<img class="img-responsive wow zoomIn animated" data-wow-delay=".5s" src="images/img5.jpg" alt=" " />
+						<p class="wow fadeInDown animated" data-wow-delay=".5s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					</div>
+					<div class="artical-links fadeInDown animated" data-wow-delay=".5s">
+						<ul>
+							<li><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i><span>March 10, 2016</span></li>
+							<li><a href="#"><i class="glyphicon glyphicon-user" aria-hidden="true"></i><span>admin</span></a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><span>No comments</span></a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-share" aria-hidden="true"></i><span>View posts</span></a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-link" aria-hidden="true"></i><span>permalink</span></a></li>
+						</ul>
+					</div>
+					<div class="comment-grid-top">
+						<h3 class="wow fadeInDown animated" data-wow-delay=".5s">Responses</h3>
+						<div class="comments-top-top wow fadeInLeft animated" data-wow-delay=".5s">
+							<div class="top-comment-left">
+								<a href="#"><img class="img-responsive" src="images/co.png" alt=""></a>
+							</div>
+							<div class="top-comment-right">
+								<ul>
+									<li><span class="left-at"><a href="#">Admin</a></span></li>
+									<li><span class="right-at">March 10, 2016 at 10.30am</span></li>
+									<li><a class="reply" href="#">Reply</a></li>
+								</ul>
+							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less </p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="comments-top-top top-grid-comment wow fadeInRight animated" data-wow-delay=".5s">
+							<div class="top-comment-left">
+								<a href="#"><img class="img-responsive" src="images/co.png" alt=""></a>
+							</div>
+							<div class="top-comment-right">
+								<ul>
+									<li><span class="left-at"><a href="#">Admin</a></li>
+									<li><span class="right-at">March 18, 2016 at 10.30am</span></li>
+									<li><a class="reply" href="#">Reply</a></li>
+								</ul>
+							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less </p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>			
+					<div class="artical-commentbox">
+						<h3 class="wow fadeInDown animated" data-wow-delay=".5s">leave a comment</h3>
+						<div class="table-form">
+							<form>
+								<input class="wow fadeInDown animated" data-wow-delay=".5s" type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
+								<input class="wow fadeInDown animated" data-wow-delay=".5s" type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
+								<input class="wow fadeInDown animated" data-wow-delay=".5s" type="text" value="Phone number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone number';}">
+								<textarea class="wow fadeInDown animated" data-wow-delay=".5s" value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>	
+								<input class="wow zoomIn animated" data-wow-delay=".5s" type="submit" value="Send">
+							</form>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<!-- //single -->
+		<!--footer-->
+		<div class="footer">
+			<div class="container">
+				<div class="col-md-4 footer-grids wow fadeInDown animated" data-wow-delay=".5s">
+					<h3>Review :</h3>
+					<p>Sed ut turpis elit ullamcorper in auctor non, accumsan vel lacus nulla auctor cursus nunc. Maecenas ultricies dolor in urna tempus, id egestas erat finibus  interdum lectus eget scelerisque.</p>
+				</div>
+				<div class="col-md-4 footer-grids footer-address wow fadeInDown animated" data-wow-delay=".5s">
+					<h3>Contact Us:</h3>
+					<ul>
+						<li><i class="glyphicon glyphicon-send"></i> 123 San Sebastian <span> New York City USA. </span></li>
+						<li><i class="glyphicon glyphicon-phone"></i> +11 222 3333</li>
+						<li><i class="glyphicon glyphicon-envelope"></i><a href="mailto:example@mail.com">mail@example.com</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4 footer-grids wow fadeInDown animated" data-wow-delay=".5s">
+					<h3>Follow us:</h3>
+					<ul>
+						<li><a href="#"><img src="images/f1.png" alt=""> FACEBOOK</a></li>
+						<li><a href="#"><img src="images/f2.png" alt=""> GOOGLE+</a></li>
+						<li><a href="#"><img src="images/f3.png" alt=""> LINKEDIN</a></li>
+						<li><a href="#"><img src="images/f4.png" alt=""> TWITTER</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<!--//footer-->
+		<!--copy-right-->
+		<div class="copy-right">
+			<div class="container">
+				<p class="wow bounceIn animated" data-wow-delay=".5s">Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+			</div>
+		</div>
+		<!--//copy-right-->
+	</div>
+	<!--//main content start-->
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>

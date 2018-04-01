@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div class="container">
     <div class="row">
@@ -8,23 +9,26 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-4 col-md-offset-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                  <img src="{{pub.img.url}}" class="img-responsive center-block">
+                    <a href="" class="more text-center"><h3> {{ pub.name }} </h3></a>
+
                 </div>
                 <div class="panel-body">
-                  <a href="" class="more text-center"><p class="text-center"> {{ pub.name }} </p></a>
+                  <img src="{{pub.img.url}}" class="img-responsive center-block">
+                    <br/>
+                    <p style="text-indent: 2em;font-size:16px;">{{pub.intro}}</p>
                 </div>
                 <div class="panel-footer">
-                    <p class="text-center">文章:{{ article_num }}
+                    <p class="text-center">文章:{{ article_num }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     {% if loged %}
                     {% if stared %}
                     <a class="btn btn-default" href="staroff/?pub_id={{pub.id}}" role="button">已关注</a></p>
 
                     {% else %}
-                    <a class="btn btn-default" href="staring/?pub_id={{pub.id}}" role="button">关注</a></p>
+                    <a class="btn btn-warning" href="staring/?pub_id={{pub.id}}" role="button">关注</a></p>
 
                     {% endif %}
                     {% else %}
-                    <a class="btn btn-default" href="{% url 'login' %}" role="button">未登录</a></p>
+                    <a class="btn btn-danger" href="{% url 'login' %}" role="button">未登录</a></p>
 
                     {% endif %}
 
@@ -39,12 +43,9 @@
                     <div class="post">
                         <div class="post-hd">
                             <div class="row">
-                                <div class="col-lg-9 col-md-9">
+                                <div class="col-lg-12 col-md-12">
                                     <h1 class="title"><a href="{% url 'detail' article.pk %}">{{ article.title }}</a>
                                     </h1>
-                                </div>
-                                <div class="col-lg-3 col-md-3">
-                                    <h6 class="title text-right"> <span class="glyphicon glyphicon-user" aria-hidden="true">{{ article.category }}</span></h6>
                                 </div>
                             </div>
 
@@ -60,8 +61,7 @@
                             <a href="{% url 'detail' article.id %}" class="more">阅读全文>></a>
                             <i class="icon-date"></i>
                             <span class="date">{{ article.date_publish|date:"Y年n月d日" }}</span>
-                            <span class="glyphicon glyphicon-user" aria-hidden="true">{{ article.publisher }}</span>
-
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true">{{ article.category }}</span>
                         </div>
                     </div>
                     {% endfor %} {% include 'blog/pagination.html' %}

@@ -1,176 +1,142 @@
 {% extends 'base.html' %} {% block content %}
+{% load paginate_tags %} {% paginate article_list 6 %}
+{% load cache %}
+{% cache 86400 index request.path request.user.username current_page %}
 <!--<div id="banner" class="noselect"></div>-->
 <!--轮播图开始-->
-<div class="container">
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        </ol>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    </ol>
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img src="../../static/blog/img/wraps1.jpg" alt="..." style="height: 400px;width:100%;">
-                <div class="carousel-caption">
-                    <h4>西工大</h4>
-                    <p> 位于古都西安，是中国唯一一所以同时发展航空、航天、航海（三航）工程教育和科学研究为特色的多科性、研究型、开放式国家重点大学</p>
-
-                </div>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="../../static/blog/img/wraps1.jpg" alt="..." style="height: 550px;width:100%;">
+            <div class="carousel-caption">
+                <h4>西工大</h4>
+                <p> 位于古都西安，是中国唯一一所以同时发展航空、航天、航海（三航）工程教育和科学研究为特色的多科性、研究型、开放式国家重点大学</p>
             </div>
-            <div class="item">
-                <img src="../../static/blog/img/wraps2.jpg" alt="..." style="height: 400px;;width:100%;">
-                <div class="carousel-caption">
-                    <h4>西工大</h4>
-                    <p> 隶属于中华人民共和国工业和信息化部。由工信部、教育部、陕西省共建，是国家“双一流”、“985工程、211工程”重点建设高校，入选“2011计划”、“111计划”、“卓越工程师教育培养计划”，是“卓越大学联盟”、“中俄工科大学联盟”、“中俄交通大学联盟”、“中英大学工程教育与研究联盟”成员</p>
-                </div>
+        </div>
+        <div class="item">
+            <img src="../../static/blog/img/wraps2.jpg" alt="..." style="height: 550px;;width:100%;">
+            <div class="carousel-caption">
+                <h4>西工大</h4>
+                <p> 隶属于中华人民共和国工业和信息化部。由工信部、教育部、陕西省共建，是国家“双一流”、“985工程、211工程”重点建设高校，入选“2011计划”、“111计划”、“卓越工程师教育培养计划”，是“卓越大学联盟”、“中俄工科大学联盟”、“中俄交通大学联盟”、“中英大学工程教育与研究联盟”成员</p>
             </div>
-            <div class="item">
-                <img src="../../static/blog/img/wraps3.jpg" alt="..." style="height: 400px;;width:100%;">
-                <div class="carousel-caption">
-                    <h4>西工大</h4>
-                    <p> 西北工业大学由西北工学院和原西安航空学院于1957年10月在西安合并成立；1970年中国人民解放军军事工程学院空军工程系整体并入西北工业大学[4]  ，脉源三支</p>
+        </div>
+        <div class="item">
+            <img src="../../static/blog/img/wraps3.jpg" alt="..." style="height: 550px;;width:100%;">
+            <div class="carousel-caption">
+                <h4>西工大</h4>
+                <p> 西北工业大学由西北工学院和原西安航空学院于1957年10月在西安合并成立；1970年中国人民解放军军事工程学院空军工程系整体并入西北工业大学[4]  ，脉源三支</p>
 
-                </div>
             </div>
+        </div>
+        <div class="item">
+            <img src="../../static/blog/img/wraps4.jpg" alt="..." style="height: 550px;;width:100%;">
+            <div class="carousel-caption">
+                <h4>西工大</h4>
+                <p></p>
 
+            </div>
         </div>
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
- <!--轮播图开始-->
+
+<!--轮播图开始-->
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
-
-
-            <div id="bd" class="wrp clear-fix">
-                <div id="main">
-                    {% load paginate_tags %} {% paginate article_list 6 %}
-                    {% for article in article_list %}
-                    <div class="post">
-                        <div class="post-hd">
-                            <div class="row">
-                                <div class="col-lg-9 col-md-9 col-sm-9">
-                                    <h1 class="title"><a href="{% url 'detail' article.pk %}">{{ article.title }}</a>
-                                    </h1>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3">
-                                    <h6 class="title text-right"> <span class="glyphicon glyphicon-user" aria-hidden="true">{{ article.category }}</span></h6>
-                                </div>
+        <!--article begin-->
+        <div class="col-lg-9 col-md-9">
+            {% for article in article_list %}
+            <div class="post">
+                <div class="post-hd">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="avatar">
+                                <img src="{{article.publisher.img.url}}" class="">
                             </div>
-
+                            <h3>{{ article.publisher }}</h3>
                         </div>
-                        <div class="post-bd">
-                            <!-- 	<p><a href=""><img src="" alt=""></a></p> -->
-                            <p>{{ article.desc }}</p>
-                            <p>
-                                <a href="" class="more-link"></a>
-                            </p>
-                        </div>
-                        <div class="post-ft">
-                            <a href="{% url 'detail' article.id %}" class="more">阅读全文>></a>
-                            <i class="icon-date"></i>
-                            <span class="date">{{ article.date_publish|date:"Y年n月d日" }}</span>
-                            <span class="glyphicon glyphicon-user" aria-hidden="true">{{ article.publisher }}</span>
-
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <h1 class="title"><a href="{% url 'detail' article.pk %}">{{ article.title }}</a>
+                            </h1>
                         </div>
                     </div>
-                    {% endfor %} {% include 'blog/pagination.html' %}
+                </div>
+                <div class="post-bd">
+                    <!-- 	<p><a href=""><img src="" alt=""></a></p> -->
+                    <p>{{ article.desc }}</p>
+                    <p>
+                        <a href="" class="more-link"></a>
+                    </p>
+                </div>
+                <div class="post-ft">
+                    <a href="{% url 'detail' article.id %}" class="more">阅读全文>></a>
+                    <i class="icon-date"></i>
+                    <span class="date">{{ article.date_publish|date:"Y年n月d日" }}</span>
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true">{{ article.category }}</span>
+
                 </div>
             </div>
-
-
+            {% endfor %} {% include 'blog/pagination.html' %}
         </div>
-
-        <div class="col-lg-3">
-            <!-- category -->
-                        <!-- tags -->
+        <!--article end-->
+        <!--category begin-->
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <br/>
             <br/>
             <div class="panel panel-success">
-              <div class="panel-heading">
-                <h3 class="panel-title">分类</h3>
-              </div>
-              <div class="panel-body">
-                        {% for category in category_list %}
-                        <a href="{% url 'category' category.pk %}" class=""><span
-                                class="badge"></span>{{ category.name }}</a>
-                        <hr/>
-                        {% endfor %}
-
-              </div>
-            </div>
-
-            <!--<h3>分类</h3>-->
-            <!--<div  class="list-group">-->
-                    <!--{% for category in category_list %}-->
-                    <!--<a href="{% url 'category' category.pk %}" class="list-group-item"><span-->
-                            <!--class="badge"></span>{{ category.name }}</a>-->
-
-                    <!--{% endfor %}-->
-            <!--</div>-->
-            <!-- tags -->
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h3 class="panel-title">标签</h3>
-              </div>
-              <div class="panel-body">
-                  <p>
-                    {% for tag in tag_list %}
-                    <a href="{% url 'tag' tag.pk %}" class=""><span  style="font-size:{% cycle '35px' '30px' '20px' %};"
-                                class="label {% cycle 'label-danger' 'label-info' 'label-warning' 'label-primary' 'label-success' %}">{{ tag.name }}</span></a>
+                <div class="panel-heading">
+                    <h3 class="panel-title">分类</h3>
+                </div>
+                <div class="panel-body">
+                    {% for category in category_list %}
+                    <a href="{% url 'category' category.pk %}" class=""><span
+                            class="badge"></span>{{ category.name }}</a>
+                    <hr/>
                     {% endfor %}
-                  </p>
-              </div>
+                </div>
             </div>
-
-            <!--<h3>标签</h3>-->
-            <!--<div class="list-group">-->
-                <!--{% for tag in tag_list %}-->
-                <!--<a href="{% url 'tag' tag.pk %}" class="list-group-item"><span-->
-                                <!--class="badge"></span>{{ tag.name }} <span class="text-right">{{tag.number}}</span></a>-->
-                <!--{% endfor %}-->
-            <!--</div>-->
-
-            <!-- archive -->
-            <!--<h3>文章归档</h3>-->
-            <!--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">-->
-                <!--{% for year,months in date_archive %}-->
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-heading" role="tab" id="heading{{ forloop.counter }}">-->
-                        <!--<h4 class="panel-title">-->
-                            <!--<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.counter }}" aria-expanded="true"-->
-                                <!--aria-controls="collapse{{ forloop.counter }}">-->
-                                        <!--{{ year }} 年-->
-                                    <!--</a>-->
-                        <!--</h4>-->
-                    <!--</div>-->
-                    <!--<div id="collapse{{ forloop.counter }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{ forloop.counter }}">-->
-                        <!--<div class="panel-body">-->
-                            <!--{% for month in months %}-->
-                            <!--<a href="{% url 'archive' year month %}">-->
-                                <!--<p>{{ month }} 月</p>-->
-                            <!--</a>-->
-                            <!--{% endfor %}-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--{% endfor %}-->
-            <!--</div>-->
         </div>
+        <!--category end-->
+        <!--tag begin-->
+        <div class="col-lg-3 col-md-3  col-sm-6 col-xs-12">
+            <br/>
+            <br/>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">标签</h3>
+                </div>
+                <div class="panel-body">
+                    <p style="line-height:40px;">
+                        {% for tag in tag_list %}
+                        <a href="{% url 'tag' tag.pk %}" class=""><span  style="font-size:{% cycle '35px' '30px' '20px' %};"
+                                                                         class="label {% cycle 'label-danger' 'label-info' 'label-warning' 'label-primary' 'label-success' %}">{{ tag.name }}</span></a>
+                        {% endfor %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--tag end-->
     </div>
 </div>
+{% endcache %}
 {% endblock %}

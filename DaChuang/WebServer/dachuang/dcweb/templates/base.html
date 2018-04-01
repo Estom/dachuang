@@ -10,9 +10,9 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="shortcut icon" href="{% static 'pencil1.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/pygments/github.css' %}">
     <link rel="stylesheet" href="{% static 'lib/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
     {% block head %}{% endblock %}
 </head>
 
@@ -25,7 +25,8 @@
                 <li><a href="{% url 'index_rec' %}">推荐</a></li>
                 <li><a href="{% url 'index_star' %}">关注</a></li> <!---->
                 <li><a href="{% url 'pub_list' %}">团体</a></li>
-                <li><a href="{% url 'data' %}">数据</a></li>
+                <li><a href="{% url 'data' %}"  target="_blank">数据</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
                 <li><a href="{% url 'person' %}">个人</a></li>
                 {% if request.user.is_authenticated %}
                 <li>
@@ -53,8 +54,7 @@
     <div id="footer" class="noselect ">
         <ul id="ft-links" class="container">
             <li >
-                <a href="http://www.nwpu.edu.cn/" target="_blank">西北工业大学 &copy; 西工大cybeTech小组</a>
-
+                <a href="http://www.nwpu.edu.cn/" target="_blank">Copyright&copy;西北工业大学-西工大cybeTech小组</a>
             </li>
             <li></li>
             <li></li>
