@@ -6,7 +6,6 @@
 """
 import sys
 import FormatData
-import cPickle as pickle
 from sklearn.datasets.base import Bunch
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB  # 导入多项式贝叶斯算法
@@ -27,6 +26,7 @@ while True:
     bunch.contents.append(info[0])
     bunch.label.append(info[1])
     i += 1
+    print i
 # 提取数据+分词+建立Bunch数据结束
 
 # 读取停用词
