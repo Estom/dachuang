@@ -6,6 +6,8 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import MySQLdb
 import requests
+import os
+
 
 class ShoolnewsPipeline(object):
     def process_item(self, item, spider):
@@ -39,7 +41,11 @@ class ImageShoolnewsPipeline(object) :
         if len(item['image_html']) :
 
             try:
-                temp_path = 'F:/Innovation Project/WorkNew/dachuang/DaChuang/WebServer/dachuang/upload/'
+                # temp_path = 'F:/Innovation Project/WorkNew/dachuang/DaChuang/WebServer/dachuang/upload/'
+
+                # 改为相对路径
+                temp_path = os.path.abspath('../..') + '/WebServer/dachuang/upload/'
+                
                 path = temp_path + item['image_path']
                 image = requests.get(item['image_html'])
                 f = open(path, 'wb')

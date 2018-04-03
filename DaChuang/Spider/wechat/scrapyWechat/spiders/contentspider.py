@@ -137,17 +137,24 @@ class ContentspiderSpider(scrapy.Spider):
 # 导致一些文章在编码的时候出错，不过保存到数据库真的有影响吗，可以尝试一下。
 # 白死不得其解的是，为什么有几个网页不能看，而其他的都没有问题，真的不爽啊这就说明错误还跟网页的具体内容有关？？？
 
-        title = response.xpath('//*[@id="activity-name"]/text()')[0].extract().strip()
-        time = response.xpath('string(//*[@id="post-date"])')[0].extract().strip()
-        if len(response.xpath('//*[@id="meta_content"]/em[2]/text()')) != 0:
-            group = response.xpath('//*[@id="meta_content"]/em[2]/text()')[0].extract().strip()
-        else:
-            group = ""
-        publication = response.xpath('//*[@id="meta_content"]/span/text()')[0].extract().strip()
+        # title = response.xpath('//*[@id="activity-name"]/text()')[0].extract().strip()
+        # time = response.xpath('string(//*[@id="post-date"])')[0].extract().strip()
+        # if len(response.xpath('//*[@id="meta_content"]/em[2]/text()')) != 0:
+        #     group = response.xpath('//*[@id="meta_content"]/em[2]/text()')[0].extract().strip()
+        # else:
+        #     group = ""
+        # publication = response.xpath('//*[@id="meta_content"]/span/text()')[0].extract().strip()
+
         content = response.xpath('string(//div[@id="js_content"])').extract()[0].encode('utf-8')
 
-        content_real = title + "\n" + time + "\n" + group + "\n" + publication + "\n" + content + "\n"
 
-        item["content"] = content_real
+        # content = response.xpath('//div[@id="js_content"]')[0].extract().encode('utf-8')
+
+
+        # data = response.xpath('//div[@id="js_content"]')
+        # content = data[0].xpath('string(.)').extract()[0].encode('utf-8')
+
+
+        item["content"] = content
         # 此处省略对content_real从body中解析出来的过程
         return item
