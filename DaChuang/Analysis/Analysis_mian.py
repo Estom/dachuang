@@ -8,7 +8,7 @@ import TagCloud.matchWordAndContent
 import TransPath.TransPath
 
 def RunAnalysis():
-    logging.basicConfig(filename='Mainlog.log', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename='Analysislog.log', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     try:
         Classify.Classification.runClassification()

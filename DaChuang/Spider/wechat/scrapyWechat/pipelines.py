@@ -44,6 +44,12 @@ class ImageScrapywechatPipeline(object) :
                 # 改为相对路径
                 temp_path = os.path.abspath('../..') + '/WebServer/dachuang/upload/'
 
+                if(os.path.exists('/var/www/html/dachuang/upload/art')):
+                    temp_path_linux = '/var/www/html/dachuang/upload/art' + item['image_path']
+                    image_linux = requests.get(item['image_html'])
+                    f_linux = open(temp_path_linux, 'wb')
+                    f_linux.write(image_linux.content)
+
                 path = temp_path + item['image_path']
                 image = requests.get(item['image_html'])
                 f = open(path, 'wb')
@@ -53,9 +59,14 @@ class ImageScrapywechatPipeline(object) :
                 item['image_path'] = ''
                 item['image_html'] = ''
                 path = ''
+
             else:
                 print "图片下载成功"
                 f.close()
+
+                if (os.path.exists('/var/www/html/dachuang/upload/art')):
+                    f_linux.close()
+
         else :
             item['image_path'] = ''
             item['image_html'] = ''
