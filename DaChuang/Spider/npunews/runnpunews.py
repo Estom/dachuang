@@ -9,9 +9,9 @@ def RunNpunewsSpider():
     logging.basicConfig(filename='runnpunews.log', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
-    # # 查看当前工作目录
-    # retval = os.getcwd()
-    # print "当前工作目录为 %s" % retval
+    # 查看当前工作目录
+    retval = os.getcwd()
+    print "当前工作目录为 %s" % retval
 
     os.chdir('./Spider/npunews')
 
