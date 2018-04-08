@@ -21,9 +21,9 @@ def Commend_CT(UserID, numHistoryArticle=3, numTagRecommend=3, numRecommend=10):
     :return: 在数据库更新目标用户的推荐列表
     """
     # 提取用户阅读记录
-    import SQLconfig
+    import Analysis.SQLconfig
     ReadHistory = []
-    ReadHistory.append(SQLconfig.sql1.select('dcweb_history', ['article_id', 'time'],
+    ReadHistory.append(Analysis.SQLconfig.sql1.select('dcweb_history', ['article_id', 'time'],
                                              'user_id = %d' % (UserID), 10))
     ReadHistory = ReadHistory[0]
     # 用户阅读记录按阅读实现正序排序
@@ -33,7 +33,7 @@ def Commend_CT(UserID, numHistoryArticle=3, numTagRecommend=3, numRecommend=10):
     for i in range(len(ReadHistory)):
         if i > numHistoryArticle - 1:  # 只找用户最近三篇文章的所有关键字
             break
-        temp = SQLconfig.sql1.select('dcweb_article_tag', ['tag_id', 'value'],
+        temp = Analysis.SQLconfig.sql1.select('dcweb_article_tag', ['tag_id', 'value'],
                                      'article_id = %d' % (ReadHistory[i][0]))
         temp = sorted(temp, key=lambda x: (x[1]), reverse=True)
         for ii in range(len(temp)):
@@ -43,7 +43,7 @@ def Commend_CT(UserID, numHistoryArticle=3, numTagRecommend=3, numRecommend=10):
     # 找出用户阅读记录关键字的所有文章ID
     RecommendArticleId = []
     for i in tag_id:
-        RecommendArticleId.extend(SQLconfig.sql1.select('dcweb_article_tag', ['article_id'],
+        RecommendArticleId.extend(Analysis.SQLconfig.sql1.select('dcweb_article_tag', ['article_id'],
                                                         'tag_id = %d' % (i)))
         for ii in RecommendArticleId:
             while RecommendArticleId.count(ii) > 1:
@@ -53,18 +53,15 @@ def Commend_CT(UserID, numHistoryArticle=3, numTagRecommend=3, numRecommend=10):
                 RecommendArticleId.remove(iii[0])
         if len(RecommendArticleId) > numRecommend:
             break
-    SQLconfig.sql1.delete('dcweb_recommend', 'user_id = %d' % (UserID))
+    Analysis.SQLconfig.sql1.delete('dcweb_recommend', 'user_id = %d' % (UserID))
     for i in range(numRecommend):
         if len(RecommendArticleId) > i:
-            SQLconfig.sql1.add('dcweb_recommend', {'article_id': RecommendArticleId[i],
+            Analysis.SQLconfig.sql1.add('dcweb_recommend', {'article_id': RecommendArticleId[i],
                                                       'user_id': UserID, 'recommend_id': i+1})
     print "用户%d阅读了："
     for i in ReadHistory:
-        print SQLconfig.sql1.select('dcweb_article', ['title'], 'id = %d' % (i[0]))[0].decode('utf8')
+        print Analysis.SQLconfig.sql1.select('dcweb_article', ['title'], 'id = %d' % (i[0]))[0].decode('utf8')
     print "智能推荐文章标题："
     for i in RecommendArticleId:
-        print SQLconfig.sql1.select('dcweb_article', ['title'], 'id = %d' % (i))[0].decode('utf8')
+        print Analysis.SQLconfig.sql1.select('dcweb_article', ['title'], 'id = %d' % (i))[0].decode('utf8')
 
-# 举例
-Commend_CT(48, numHistoryArticle=3, numTagRecommend=3, numRecommend=10)
-# Commend_CT(90, numHistoryArticle=3, numTagRecommend=3, numRecommend=10)

@@ -35,5 +35,4 @@ def RunAnalysis():
         logging.debug("统计热词发生错误")
 
 
-if __name__ == "__main__":
-    RunAnalysis()
+
