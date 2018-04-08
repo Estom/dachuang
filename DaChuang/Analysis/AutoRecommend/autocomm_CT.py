@@ -65,3 +65,27 @@ def Commend_CT(UserID, numHistoryArticle=3, numTagRecommend=3, numRecommend=10):
     for i in RecommendArticleId:
         print Analysis.SQLconfig.sql1.select('dcweb_article', ['title'], 'id = %d' % (i))[0].decode('utf8')
 
+
+def run_recommend():
+    """
+    启动推荐算法
+    :return: 无
+    """
+    import Analysis.SQLconfig
+    user_id = []
+    i = -1
+    while True:
+        i += 1
+        info = Analysis.SQLconfig.sql1.select('auth_user', ['id'], None, 1, i)
+        if len(info) == 0:
+            break
+        user_id.append(info[0])
+    for ii in user_id:
+        try:
+            Commend_CT(ii, 3, 3, 10)
+            print "id=%d 用户推荐成功" % ii
+        except Exception,err:
+            print "id=%d 用户推荐错误" % ii
+
+if __name__ == "__main__":
+    run_recommend()
