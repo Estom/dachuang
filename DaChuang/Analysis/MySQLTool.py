@@ -20,7 +20,7 @@ class MySQLTools:
         a = self._cursor.execute(sql)
         return a
 
-    def _exeCute(self, sql = ''):
+    def exeCute(self, sql = ''):
         """
         @summary: 针对读操作返回结果集
         :param sql: 执行的数据库语句 
@@ -48,7 +48,7 @@ class MySQLTools:
             i += 1
         return text
 
-    def _exeCuteCommit(self, sql='', arg=None):
+    def exeCuteCommit(self, sql='', arg=None):
         """
         @summary: 针对更新，删除，事物等的异常处理
         :param sql: 执行的SQL语句
@@ -93,7 +93,7 @@ class MySQLTools:
             sql += ' LIMIT %d' % num
         if offset is not None:
             sql += ' OFFSET %d' % offset
-        data = self._exeCute(sql)
+        data = self.exeCute(sql)
         if data is None:
             return []
         re = []
@@ -135,7 +135,7 @@ class MySQLTools:
                 sql += '"%s",' % dicDate.get(ii)
         sql = sql.strip(',')
         sql += ')'
-        self._exeCuteCommit(sql)
+        self.exeCuteCommit(sql)
 
     def update(self, tablename, dataDic, con=None):
         """
@@ -158,7 +158,7 @@ class MySQLTools:
         sql = sql.strip(',')
         if con is not None:
             sql += ' WHERE %s' % con
-        self._exeCuteCommit(sql)
+        self.exeCuteCommit(sql)
 
 
     def delete(self, tablename, con = None):
@@ -171,7 +171,7 @@ class MySQLTools:
         sql = 'DELETE FROM %s' % (tablename)
         if con is not None:
             sql += ' WHERE %s' % (con)
-        self._exeCuteCommit(sql)
+        self.exeCuteCommit(sql)
 
     def close(self):
         """
