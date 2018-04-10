@@ -20,21 +20,6 @@ class InternationalCollegeSpider(scrapy.Spider):
 
     start_urls = [
         # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/2.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/3.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/4.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/5.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/6.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/7.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/8.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/9.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/10.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/11.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/12.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/13.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/14.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/15.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/16.htm',
-        # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/17.htm',
 
         # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/18.htm',
         # 'http://gjjyxy.nwpu.edu.cn/xin/xinwen/news/19.htm',
