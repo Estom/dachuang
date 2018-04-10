@@ -175,8 +175,17 @@ class Love(models.Model):
         Love.objects.filter(user=user,article=article).delete()
         result = Love(user=user,article=article)
         result.save()
+        print "love successful"
         # article_item = Article.objects.get(pk=article)
 
+    def dec(self,user,article):
+        if Love.objects.filter(user=user,article=article).exists():
+            Article.objects.filter(pk=article.pk).update(love_count=article.love_count -1)
+        Love.objects.filter(user=user,article=article).delete()
+        print 'love off successful'
+        # result = Love(user=user,article=article)
+        # result.save()
+        # article_item = Article.objects.get(pk=article)
 
     def __unicode__(self):
         return unicode(self.id)

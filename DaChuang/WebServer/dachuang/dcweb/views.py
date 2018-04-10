@@ -21,13 +21,13 @@ from django.core.urlresolvers import reverse
 
 from django.views.decorators.cache import cache_page
 # 加载推荐文章的类
-import sys
-import os
-path1 = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-path2 = '/Analysis/AutoRecommend'
-path = path1+path2
-sys.path.append(path)
-import autocomm_CT
+# import sys
+# import os
+# path1 = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+# path2 = '/Analysis/AutoRecommend'
+# path = path1+path2
+# sys.path.append(path)
+# import autocomm_CT
 
 
 class IndexView(ListView): # index首页view
@@ -63,7 +63,7 @@ class IndexRecView(ListView): # index首页所有文章
             return redirect(reverse('login'))
         # 调用自动推荐函数
         UserID = self.user.id
-        autocomm_CT.Commend_CT(UserID, numHistoryArticle=10, numTagRecommend=3, numRecommend=10)
+        # autocomm_CT.Commend_CT(UserID, numHistoryArticle=10, numTagRecommend=3, numRecommend=10)
         self.object_list = self.get_queryset()
         allow_empty = self.get_allow_empty()
 
@@ -278,7 +278,8 @@ def update_data(request):
         else:
             return render(request, 'failure.html', {'reason': form.errors})
     else:
-        form = PersonsForm()
+        user_normal = UserNormal.objects.get(user = request.user)
+        form = PersonsForm({'sex':user_normal.sex,'age':user_normal.age,'phone':user_normal.phone,'desc':user_normal.desc,'img':user_normal.img})
     return render(request,'blog/person_form.html', {'form': form})
 
 
@@ -288,6 +289,24 @@ def love(request):
     article = Article.objects.get(pk=article_id)
     if request.user.is_authenticated():
         his = Love().add(request.user, article)
+    else:
+        return redirect(reverse('login'))
+    # if not request.session.get('has_loved'+article_id, False):
+    #     article = Article.objects.get(id=article_id)
+    #     article.increase_loves()
+    #     request.session['has_loved'+article_id] = True
+    #     print 123
+    return redirect(reverse('detail',kwargs={'article_id':article_id}))
+
+# 取消点赞
+def loveoff(request):
+    article_id = request.GET['article_id']
+    article = Article.objects.get(pk=article_id)
+    print article_id
+    if request.user.is_authenticated():
+        his = Love().dec(request.user, article)
+    else:
+        return redirect(reverse('login'))
     # if not request.session.get('has_loved'+article_id, False):
     #     article = Article.objects.get(id=article_id)
     #     article.increase_loves()
@@ -360,6 +379,7 @@ class ArticleDetailView(DetailView): # detail  view 文章详细
         if request.user.is_authenticated():
             his = History().add(request.user,article)
             self.love = Love.objects.filter(user=request.user,article=article).exists()
+            print self.love
         return super(ArticleDetailView, self).get(self,request,*args,**kwargs)
     # get_object返回该视图要显示的对象。若果设置了queryset，则查询结果就是数据源。如果没有设置queryset，查询视图中
     # 的pk_url_kwarg，以它为主键进行查询，返回查询结果

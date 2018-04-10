@@ -30,7 +30,8 @@ urlpatterns = [
     url(r'^reg', views.do_reg, name='reg'),
     url(r'^login', views.do_login, name='login'),
 
-    url(r'^article/love',views.love, name='love'),
+    url(r'^article/love$',views.love, name='love'),
+    url(r'^article/loveoff/$',views.loveoff, name='loveoff'),
     url(r'^pub_detail/staring',views.staring, name='staring'),
     url(r'^pub_detail/staroff',views.staroff,name='staroff'),
 
