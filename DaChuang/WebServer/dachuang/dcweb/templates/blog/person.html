@@ -157,7 +157,7 @@
             <li>
               <i class="fa fa-clock-o {% cycle 'bg-maroon' 'bg-yellow' 'bg-blue' 'bg-green' 'bg-purple' %}"></i>
               <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i>{{ article.1|date:"Y年n月d日h:m:s" }}</span>
+                <span class="time"><i class="fa fa-clock-o"></i>{{ article.1|date:"Y年n月d日h:i:s" }}</span>
 
                 <h3 class="timeline-header"><a href="{% url 'detail' article.0.pk %}">{{ article.0.title }}</a></h3>
 
