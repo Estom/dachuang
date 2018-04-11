@@ -27,14 +27,14 @@ sql1 = MySQLTools(
 )
 
 # 本地数据库
-LocalSql = MySQLTools(
-    host='localhost',
-    port=3306,
-    user='root',
-    passwd='ykl123',
-    db='test',
-    charset='utf8'
-)
+# LocalSql = MySQLTools(
+#     host='localhost',
+#     port=3306,
+#     user='root',
+#     passwd='ykl123',
+#     db='test',
+#     charset='utf8'
+# )
 
 # 停用词路径
 stopword_path = '.\Classify\hlt_stop_words.txt'
