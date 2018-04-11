@@ -103,11 +103,11 @@ class ElectricitySpider(scrapy.Spider):
                                 item['title'] = title
 
                                 temp_url = tr.xpath('./td[2]/a/@href').extract()[0].encode('utf-8')
-                                value = re.search(r'../../../info/', temp_url)
-                                # value = re.search(r'../../info/', temp_url)
+                                # value = re.search(r'../../../info/', temp_url)
+                                value = re.search(r'../../info/', temp_url)
 
                                 if value:
-                                    temp_url = temp_url[3:]
+                                    # temp_url = temp_url[3:]
                                     item['url'] = urljoin("http://dianzi.nwpu.edu.cn/info/1002/51024.htm", temp_url)
                                 else:
                                     item['url'] = urljoin("http://dianzi.nwpu.edu.cn/info/", temp_url)

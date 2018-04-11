@@ -5,12 +5,11 @@
 脚本作用：训练分类器
 """
 import sys
-import FormatData
-import cPickle as pickle
+import Analysis.FormatData
 from sklearn.datasets.base import Bunch
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB  # 导入多项式贝叶斯算法
-import SQLconfig
+import Analysis.SQLconfig
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
@@ -19,18 +18,19 @@ bunch = Bunch(contents=[], label=[])
 TrainData = []
 i = 0
 while True:
-    info = SQLconfig.sql0.select('train', ['content', 'category_id'], None, 1, i)
+    info = Analysis.SQLconfig.sql0.select('train', ['content', 'category_id'], None, 1, i)
     if len(info) == 0:
         break
-    info[0] = FormatData.TextCut(info[0])
+    info[0] = Analysis.FormatData.TextCut(info[0])
     TrainData.append(info)
     bunch.contents.append(info[0])
     bunch.label.append(info[1])
     i += 1
+    print i
 # 提取数据+分词+建立Bunch数据结束
 
 # 读取停用词
-stpwrdlst = FormatData.readfile(SQLconfig.stopword_path).splitlines()
+stpwrdlst = Analysis.FormatData.readfile(Analysis.SQLconfig.stopword_path).splitlines()
 
 # 构建tf-idf词向量空间对象
 tfidfspace = Bunch(label=bunch.label, tdm=[], vocabulary={})
@@ -64,9 +64,9 @@ min_df:
 # 此时tdm里面存储的就是if-idf权值矩阵
 tfidfspace.tdm = vectorizer.fit_transform(bunch.contents)
 tfidfspace.vocabulary = vectorizer.vocabulary_
-FormatData.writebunchobj(SQLconfig.wordbag_path, tfidfspace)
+Analysis.FormatData.writebunchobj(Analysis.SQLconfig.wordbag_path, tfidfspace)
 
 # 训练分类器：输入词袋向量和分类标签，alpha:0.001 alpha越小，迭代次数越多，精度越高
 clf = MultinomialNB(alpha=0.001).fit(tfidfspace.tdm, tfidfspace.label)
 
-FormatData.writebunchobj(SQLconfig.classification_path, clf)
+Analysis.FormatData.writebunchobj(Analysis.SQLconfig.classification_path, clf)

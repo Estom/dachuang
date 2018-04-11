@@ -69,11 +69,11 @@
                                 <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center" >
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;{{ article.click_count}}</span>
+                                <span class="glyphicon glyphicon-eye-open" style="color:blue;" aria-hidden="true">&nbsp;{{ article.click_count}}</span>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                                 {% if love %}
-                                <span class="glyphicon glyphicon-heart" style="color:red;" aria-hidden="true">&nbsp;{{ article.love_count }}</span>
+                                <a href="loveoff/?article_id={{article.id}}"><span class="glyphicon glyphicon-heart" style="color:red;" aria-hidden="true">&nbsp;{{ article.love_count }}</span></a>
                                 {% else %}
                                 <a href="love/?article_id={{article.id}}"> <span class="glyphicon glyphicon-heart" style="color:#505050;" aria-hidden="true">&nbsp;{{ article.love_count }}</span></a>
                                 {% endif %}

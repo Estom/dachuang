@@ -7,6 +7,9 @@
 
 import requests
 import MySQLdb
+import os
+from PIL import Image
+from io import BytesIO
 
 
 class NpunewsPipeline(object):
@@ -42,11 +45,27 @@ class ImageNpunewsPipeline(object) :
         if len(item['image_html']) :
 
             try:
-                temp_path = 'F:/Innovation Project/WorkNew/dachuang/DaChuang/WebServer/dachuang/upload/'
+                # temp_path = 'F:/Innovation Project/WorkNew/dachuang/DaChuang/WebServer/dachuang/upload/'
+
+                # 改为相对路径
+                temp_path = os.path.abspath('../..') + '/WebServer/dachuang/upload/'
+
                 path = temp_path + item['image_path']
-                image = requests.get(item['image_html'])
-                f = open(path, 'wb')
-                f.write(image.content)
+                response = requests.get(item['image_html'])
+                image = Image.open(BytesIO(response.content))
+                # print image.size[0]
+                width = int(image.size[0])
+                height = int(image.size[1])
+                out = image.resize((width, height),Image.ANTIALIAS)  # resize image with high-quality
+                out.save(path)
+
+                # f = open(path, 'wb')
+                # f.write(image.content)
+
+                if (os.path.exists('/var/www/html/dachuang/upload/art')):
+                    print '图片保存到服务器'
+                    temp_path_linux = '/var/www/html/dachuang/upload/' + item['image_path'] #'image_path'：atr/xxxx.jpg
+                    out.save(temp_path_linux)
             except IOError:
                 print "Error: 图片下载失败，清空"
                 item['image_path'] = ''
@@ -54,7 +73,7 @@ class ImageNpunewsPipeline(object) :
                 path = ''
             else:
                 print "图片下载成功"
-                f.close()
+                # f.close()
 
 
         else :

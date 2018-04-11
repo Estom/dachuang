@@ -20,27 +20,7 @@ class AstronauticsSpider(scrapy.Spider):
     allowed_domains = ['hangtian.nwpu.edu.cn']
     start_urls = [
         # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/10.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/11.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/12.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/13.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/14.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/15.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/16.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/17.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/18.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/19.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/20.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/21.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/22.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/23.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/24.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/25.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/26.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/27.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/28.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/29.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/30.htm',
-        # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/31.htm',
+
 
         # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/31.htm',
         # 'http://hangtian.nwpu.edu.cn/xwgg1/xyxw/32.htm',
