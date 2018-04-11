@@ -1,3 +1,8 @@
+# -*- coding: UTF-8 -*-
+import sys
+
+sys.path.append("../..")
+import Analysis
 dict_hot_word = {}  # 所有的关键词列表
 hotwordlist = []  # 关键词列表
 i = 0
@@ -8,7 +13,7 @@ while True:
     dict_hot_word.update({info[0]: info[1]})
     hotwordlist.append(info[0])
     i += 1
-    print "读取第%d条数据" % i
+    # print "读取第%d条数据" % i
 
 # 读取停用词表
 stpwrdlst = []

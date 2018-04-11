@@ -13,23 +13,31 @@ def RunMain():
 
     try:
         Spider.npunews.runnpunews.RunNpunewsSpider()
+        logging.debug('新闻网爬虫successful')
+
     except Exception, e:
-        logging.debug('新闻网爬虫')
+        logging.debug('新闻网爬虫error')
 
     try:
         Spider.shoolnews.runshoolnews.RunSchoolnewsSpider()
+        logging.debug('学院爬虫successful')
+
     except Exception, e:
-        logging.debug('学院爬虫')
+        logging.debug('学院爬虫error')
 
     try:
         Spider.wechat.runwechat.RunWechatSpider()
+        logging.debug('微信爬虫successful')
+
     except Exception, e:
-        logging.debug('微信爬虫')
+        logging.debug('微信爬虫error')
 
     try:
         Analysis.Analysis_mian.RunAnalysis()
+        logging.debug('数据分析successful')
+
     except Exception, e:
-        logging.debug('数据分析')
+        logging.debug('数据分析error')
 
 
 if __name__ == "__main__":
