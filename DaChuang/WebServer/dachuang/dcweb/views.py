@@ -56,7 +56,7 @@ class IndexRecView(ListView): # index首页所有文章
     user = UserNormal()
 
     def get(self, request, *args, **kwargs):
-        print 456456
+        # print 456456
         self.user = request.user
         if not request.user.is_authenticated():
             print 11111
@@ -83,15 +83,13 @@ class IndexRecView(ListView): # index首页所有文章
         return self.render_to_response(context)
 
     def get_queryset(self):
-        print 456
-        print self.user
+        # print 456
+        # print self.user
         rec_list = Recommend.objects.filter(user=self.user)
         article_list = []
         for rec in rec_list:
             article_list.append(rec.article)
-        #因为没有使用markdown
-        #for article in article_list:
-            #article.body = markdown2.markdown(article.body, extras=['fenced-code-blocks'], )
+
         return article_list
 
     def get_context_data(self, **kwargs):
@@ -131,8 +129,8 @@ class IndexStarView(ListView): # index首页关注文章view
         return self.render_to_response(context)
 
     def get_queryset(self):
-        print 456
-        print self.user
+        # print 456
+        # print self.user
         star_list = Star.objects.filter(user=self.user)
         article_list = []
         pub_list = []
@@ -146,6 +144,15 @@ class IndexStarView(ListView): # index首页关注文章view
         #因为没有使用markdown
         #for article in article_list:
             #article.body = markdown2.markdown(article.body, extras=['fenced-code-blocks'], )
+        # star_sql='''
+        # SELECT art.*
+        # FROM dcweb_article art
+        # WHERE art.publisher_id IN
+        # (SELECT pub.id
+        # FROM dcweb_publisher pub,dcweb_star star
+        # WHERE star.user_id=1 AND pub.id=star.publisher_id)
+        # '''
+        # article_list=Article.objects.raw(star_sql)
         return article_list
 
     def get_context_data(self, **kwargs):

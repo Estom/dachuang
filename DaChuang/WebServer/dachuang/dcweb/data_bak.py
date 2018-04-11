@@ -159,7 +159,7 @@ def app_data(request):
 # 首先实现参数封装传递过程，这节课必须完成这个东西
 # 然后根据页面需要，对参数进行格式化，然后显示出来。
 # @cache_page(60 * 60 * 24 * 7,key_prefix="data") # 秒数，这里指缓存 一天，不直接写900是为了提高可读性
-def data_bak(request):
+def data(request):
     # 传递导视图的数据
     print "data is handling"
     print time.clock()
@@ -300,104 +300,4 @@ def data_bak(request):
     data_dict2['source_set2'] = source_set2
     print "hot_source done"
     print time.clock()
-    return render(request, 'blog/data.html',data_dict2)
-
-
-# 首先实现参数封装传递过程，这节课必须完成这个东西
-# 然后根据页面需要，对参数进行格式化，然后显示出来。
-@cache_page(60 * 60 * 24 * 7,key_prefix="data") # 秒数，这里指缓存 一天，不直接写900是为了提高可读性
-def data(request):
-    # 传递导视图的数据
-    # print "data is handling"
-    # print time.clock()
-    data_dict2 = {}
-
-    # 获得文章热度前十名
-    hot_article_sql='SELECT *,(2*love_count+click_count) hot FROM dcweb_article ORDER BY hot DESC LIMIT 10;'
-    hot_article_set = Article.objects.raw(hot_article_sql)
-    # for p in hot_article_set:
-    #     print p.title,p.hot
-    # 添加到字典当中
-    data_dict2['hot_article_list'] = hot_article_set
-    # print "hot_article done"
-    # print time.clock()
-
-    # 标签数据排行榜------------------------
-    use_tag = Tag.objects.all().order_by('-number')[:10]
-
-    # 添加到字典当中
-    data_dict2['use_tag'] = use_tag
-    # print "tag done"
-    # print time.clock()
-    # 标签的热度排行榜---------------------------暂缓执行
-
-    # 发布者被关注排行榜--------------------
-    star_publisher_set = Publisher.objects.annotate(num_star=Count('star')).order_by('-num_star')[:10]
-    # 测试，用来显示内容
-    # for star_publisher in star_publisher_set:
-    #     print star_publisher.num_star
-
-    # 添加到字典当中
-    data_dict2['star_publisher_set'] = star_publisher_set
-    # print "star_publisher done"
-    # print time.clock()
-    # 发布者热度排行--------------------------
-    hot_publisher_sql='''
-    SELECT pub.*,SUM(art.click_count+2*art.love_count) hot 
-    FROM dcweb_publisher pub,dcweb_article art 
-    WHERE art.publisher_id=pub.id 
-    GROUP BY pub.id
-    ORDER BY hot DESC
-    LIMIT 10;
-    '''
-    hot_publisher_set = Publisher.objects.raw(hot_publisher_sql)
-
-    # 添加到字典当中
-    data_dict2['hot_publisher_list'] = hot_publisher_set
-    # print "hot_publisher done"
-    # print time.clock()
-    # 类别的文章数量分布--------------------------
-    category_list = Category.objects.annotate(num_article=Count('article')).order_by('-num_article')
-
-    # 添加到字典当中
-    data_dict2['category_list'] = category_list
-    # print "num_category done"
-    # print time.clock()
-    # 类别的文章热度分布---------------------------
-    hot_category_sql='''
-    SELECT cat.*,SUM(art.click_count+2*art.love_count) hot
-    FROM dcweb_category cat,dcweb_article art
-    WHERE art.category_id=cat.id
-    GROUP BY cat.id;
-    '''
-    hot_category_set = Category.objects.raw(hot_category_sql)
-
-    data_dict2['hot_category_list'] = hot_category_set
-    # print "hot_category done"
-    # print time.clock()
-
-    # 来源的文章数量分布---------------------------------------
-    source_sql='''
-    SELECT COUNT(*) num,sou.*
-    FROM dcweb_article art,dcweb_publisher pub,dcweb_source sou
-    WHERE pub.source_id=sou.id AND art.publisher_id = pub.id
-    GROUP BY sou.id;
-    '''
-    source_set = Source.objects.raw(source_sql)
-
-    data_dict2['source_set'] = source_set
-    # print "num_source done"
-    # print time.clock()
-    # 来源的文章热度分布--------------------------------
-    source_set2_sql='''
-    SELECT sou.*,SUM(art.click_count+2*art.love_count) hot
-    FROM dcweb_source sou,dcweb_article art,dcweb_publisher pub
-    WHERE pub.source_id=sou.id AND art.publisher_id=pub.id
-    GROUP BY sou.id;
-    '''
-    source_set2 = Source.objects.raw(source_set2_sql)
-    # 添加到字典当中
-    data_dict2['source_set2'] = source_set2
-    # print "hot_source done"
-    # print time.clock()
     return render(request, 'blog/data.html',data_dict2)

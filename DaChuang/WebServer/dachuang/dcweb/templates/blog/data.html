@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load cache %}
+{% cache 604800 data_page %}
 <html>
 <head>
   {% load staticfiles %}
@@ -132,31 +134,31 @@
 
             <a href="{% url 'app_detail' hot_article_list.0.id %}" target="_blank">{{hot_article_list.0.title| slice:':30'}}</a>
 
-            <span class="num">{{hot_article_list.0.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+            <span class="num">{{hot_article_list.0.hot}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
           </li>
 
           <li>
             <span class="top">2</span>
             <a href="{% url 'app_detail' hot_article_list.1.id %}" target="_blank">{{hot_article_list.1.title| slice:':30'}}</a>
-            <span class="num">{{hot_article_list.1.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+            <span class="num">{{hot_article_list.1.hot}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
           </li>
 
           <li>
             <span class="top">3</span>
             <a href="{% url 'app_detail' hot_article_list.2.id %}" target="_blank">{{hot_article_list.2.title| slice:':30'}}</a>
-            <span class="num">{{hot_article_list.2.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+            <span class="num">{{hot_article_list.2.hot}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
           </li>
 
           <li>
             <span class="top">4</span>
             <a href="{% url 'app_detail' hot_article_list.3.id %}" target="_blank">{{hot_article_list.3.title| slice:':30'}}</a>
-            <span class="num">{{hot_article_list.3.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+            <span class="num">{{hot_article_list.3.hot}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
           </li>
 
           <li>
             <span class="top">5</span>
             <a href="{% url 'app_detail' hot_article_list.4.id %}" target="_blank">{{hot_article_list.4.title| slice:':30'}}</a>
-            <span class="num">{{hot_article_list.4.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+            <span class="num">{{hot_article_list.4.hot}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
           </li>
 
           <li>
@@ -165,28 +167,28 @@
 
             <a href="{% url 'app_detail' hot_article_list.5.id %}" target="_blank">{{hot_article_list.5.title| slice:':30'}}</a>
 
-            <span class="num">{{hot_article_list.5.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+            <span class="num">{{hot_article_list.5.hot}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
 
           </li>
 
           <li><span class="top">7</span>
             <a href="{% url 'app_detail' hot_article_list.6.id %}" target="_blank">{{hot_article_list.6.title| slice:':30'}}</a>
-            <span class="num">{{hot_article_list.6.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+            <span class="num">{{hot_article_list.6.hot}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
           </li>
 
           <li><span class="top">8</span>
             <a href="{% url 'app_detail' hot_article_list.7.id %}" target="_blank">{{hot_article_list.7.title| slice:':30'}}<br></a>
-            <span class="num">{{hot_article_list.7.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+            <span class="num">{{hot_article_list.7.hot}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
           </li>
 
           <li><span class="top">9</span>
             <a href="{% url 'app_detail' hot_article_list.8.id %}" target="_blank">{{hot_article_list.8.title| slice:':30'}}<br></a>
-            <span class="num">{{hot_article_list.8.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+            <span class="num">{{hot_article_list.8.hot}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
           </li>
 
           <li><span class="top">10</span>
             <a href="{% url 'app_detail' hot_article_list.9.id %}" target="_blank">{{hot_article_list.9.title| slice:':30'}}</a>
-            <span class="num">{{hot_article_list.8.hot_num}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
+            <span class="num">{{hot_article_list.8.hot}}<i class="up">&nbsp;&nbsp;&nbsp;</i></span>
           </li>
         </ol>
       </div>
@@ -288,7 +290,7 @@
 
     </div>
     <div class="bnr-btm-right">
-      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>文章热度分布</h3>
+      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>文章类别热度分布</h3>
       <p class="wow fadeInRight animated" data-wow-delay=".5s">每一个类别，都会引起不同人群的兴趣，类别越受欢迎，就说明这一类文章越能引起人们的喜爱.</p>
       <a href="{% url 'index' %}" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s">更多</a>
     </div>
@@ -306,7 +308,7 @@
 
       <!--//navigation-->
       <div class="banner-text">
-        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">西工大<br>文章来源热度</h2>
+        <h2 class="wow fadeInDownBig animated" data-wow-delay=".5s">西工大<br>文章来源数量分布</h2>
         <p class="wow fadeInUpBig animated" data-wow-delay=".5s">当前人们获取校园文章的方式各种各样，微信、西工大官网、校园网站等，不同来源的文章分布，能够说明发布者更喜欢哪一种发布渠道，也能体现文章媒介的变化.</p>
         <a href="{% url 'index' %}" class="buy btn-wayra wow zoomInRight animated" data-wow-delay=".5s">更多</a>
       </div>
@@ -322,7 +324,7 @@
 
     </div>
     <div class="bnr-btm-right">
-      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>来源热度分布</h3>
+      <h3 class="wow fadeInRight animated" data-wow-delay=".5s">西工大<br/>文章来源热度分布</h3>
       <p class="wow fadeInRight animated" data-wow-delay=".5s">人们可以通过各种方式获取文章，热度分布，反映了读者通过何种平台获取文章最为广泛，体现了读者对不同文章平台的观点.</p>
       <a href="{% url 'index' %}" class="buy btn-wayra wow zoomIn animated" data-wow-delay=".5s">更多</a>
     </div>
@@ -482,7 +484,7 @@
 				labels: ["{{star_publisher_set.0.name}}", "{{star_publisher_set.1.name}}", "{{star_publisher_set.2.name}}", "{{star_publisher_set.3.name}}", "{{star_publisher_set.4.name}}", "{{star_publisher_set.5.name}}",
       "{{star_publisher_set.6.name}}","{{star_publisher_set.7.name}}","{{star_publisher_set.8.name}}","{{star_publisher_set.9..name}}"],
 				datasets: [{
-					label: '发布者热度',
+					label: '发布者被关注度',
 					data:  [{{star_publisher_set.0.num_star}}, {{star_publisher_set.1.num_star}}, {{star_publisher_set.2.num_star}}, {{star_publisher_set.3.num_star}}, {{star_publisher_set.4.num_star}},
            {{star_publisher_set.5.num_star}}, {{star_publisher_set.6.num_star}},{{star_publisher_set.7.num_star}},{{star_publisher_set.8.num_star}},{{star_publisher_set.9.num_star}}],
 					backgroundColor: [
@@ -577,8 +579,8 @@
       "{{hot_publisher_list.6.name}}","{{hot_publisher_list.7.name}}","{{hot_publisher_list.8.name}}","{{hot_publisher_list.9..name}}"],
 				datasets: [{
 					label: '受欢迎程度',
-					data: [{{hot_publisher_list.0.hot_num}}, {{hot_publisher_list.1.hot_num}}, {{hot_publisher_list.2.hot_num}}, {{hot_publisher_list.3.hot_num}}, {{hot_publisher_list.4.hot_num}},
-           {{hot_publisher_list.5.hot_num}}, {{hot_publisher_list.6.hot_num}},{{hot_publisher_list.7.hot_num}},{{hot_publisher_list.8.hot_num}},{{hot_publisher_list.9.hot_num}}],
+					data: [{{hot_publisher_list.0.hot}}, {{hot_publisher_list.1.hot}}, {{hot_publisher_list.2.hot}}, {{hot_publisher_list.3.hot}}, {{hot_publisher_list.4.hot}},
+           {{hot_publisher_list.5.hot}}, {{hot_publisher_list.6.hot}},{{hot_publisher_list.7.hot}},{{hot_publisher_list.8.hot}},{{hot_publisher_list.9.hot}}],
 					backgroundColor: [
 					'rgba(255, 99, 132, 0.6)',
 					'rgba(54, 162, 235, 0.6)',
@@ -658,7 +660,7 @@
 		});
 	</script>
 
-<!-- 绘制4饼图-文章类别分布 -->
+<!-- 绘制4饼图-文章类别数量分布 -->
 <script type="text/javascript">
 		var ctx = document.getElementById("myChart4");
 		var myChart = new Chart(ctx, {
@@ -703,13 +705,13 @@
 			options: {
 				title: {
 					display: true,
-					text: '文章类别分布'
+					text: '文章类别数量分布'
 				}
 			}
 		});
 	</script>
 
-<!-- 绘制5饼图-文章类别热度 -->
+<!-- 绘制5饼图-文章类别热度分布 -->
 <script type="text/javascript">
 		var ctx = document.getElementById("myChart5");
 		var myChart = new Chart(ctx, {
@@ -724,15 +726,15 @@
 				"{{ hot_category_list.6.name}}",
 				"{{ hot_category_list.7.name}}"],
 				datasets: [{
-					label: '文章类别热度',
-					data: [{{ hot_category_list.0.hot_num|default_if_none:"1"}},
-					{{ hot_category_list.1.hot_num|default_if_none:"1"}},
-					{{ hot_category_list.2.hot_num|default_if_none:"1"}},
-					{{ hot_category_list.3.hot_num|default_if_none:"1"}},
-					{{ hot_category_list.4.hot_num|default_if_none:"1"}},
-					{{ hot_category_list.5.hot_num|default_if_none:"1"}},
-					{{ hot_category_list.6.hot_num|default_if_none:"1"}},
-					{{ hot_category_list.7.hot_num|default_if_none:"1"}}],
+					label: '文章类别热度分布',
+					data: [{{ hot_category_list.0.hot|default_if_none:"1"}},
+					{{ hot_category_list.1.hot|default_if_none:"1"}},
+					{{ hot_category_list.2.hot|default_if_none:"1"}},
+					{{ hot_category_list.3.hot|default_if_none:"1"}},
+					{{ hot_category_list.4.hot|default_if_none:"1"}},
+					{{ hot_category_list.5.hot|default_if_none:"1"}},
+					{{ hot_category_list.6.hot|default_if_none:"1"}},
+					{{ hot_category_list.7.hot|default_if_none:"1"}}],
 					backgroundColor: [
 					'rgba(255, 99, 132, 0.66)',
 					'rgba(54, 162, 235, 0.66)',
@@ -760,14 +762,14 @@
 			options: {
 				title: {
 					display: true,
-					text: '文章热度分布'
+					text: '文章类别热度分布'
 				},
 
 			}
 		});
 	</script>
 
-<!-- 绘制6环图-文章来源分布 -->
+<!-- 绘制6环图-文章来源数量分布 -->
 <script type="text/javascript">
 		var ctx = document.getElementById("myChart6");
 		var myChart = new Chart(ctx, {
@@ -776,9 +778,9 @@
 				labels: ["{{ source_set.0.name}}", "{{ source_set.1.name}}", "{{ source_set.2.name}}"],
 				datasets: [{
 					label: '文章来源分布',
-					data: [{{ source_set.0.article_num|default_if_none:"1"}},
-					{{ source_set.1.article_num|default_if_none:"1"}},
-					{{ source_set.2.article_num|default_if_none:"1"}}],
+					data: [{{ source_set.0.num|default_if_none:"1"}},
+					{{ source_set.1.num|default_if_none:"1"}},
+					{{ source_set.2.num|default_if_none:"1"}}],
 					backgroundColor: [
 					'rgba(255, 99, 132, 0.66)',
 					'rgba(54, 162, 235, 0.66)',
@@ -801,7 +803,7 @@
 				},
 				title: {
 					display: true,
-					text: '文章来源分布'
+					text: '文章来源数量分布'
 				},
 				animation: {
 					animateScale: true,
@@ -811,7 +813,7 @@
 		});
 	</script>
 
-<!-- 绘制7环图-文章来源热度 -->
+<!-- 绘制7环图-文章来源热度分布 -->
 <script type="text/javascript">
 		var ctx = document.getElementById("myChart7");
 		var myChart = new Chart(ctx, {
@@ -820,9 +822,9 @@
 				labels: ["{{ source_set2.0.name}}", "{{ source_set2.1.name}}", "{{ source_set2.2.name}}"],
 				datasets: [{
 					label: '文章来源热度',
-					data: [{{ source_set2.0.hot_num|default_if_none:"1"}},
-					{{ source_set2.1.hot_num|default_if_none:"1"}},
-					{{ source_set2.2.hot_num|default_if_none:"1"}},],
+					data: [{{ source_set2.0.hot|default_if_none:"1"}},
+					{{ source_set2.1.hot|default_if_none:"1"}},
+					{{ source_set2.2.hot|default_if_none:"1"}},],
 					backgroundColor: [
 					'rgba(75, 192, 192, 0.66)',
 					'rgba(153, 102, 255,0.66)',
@@ -844,7 +846,7 @@
 				},
 				title: {
 					display: true,
-					text: '文章来源热度'
+					text: '文章来源热度分布'
 				},
 				animation: {
 					animateScale: true,
@@ -854,3 +856,5 @@
 		});
 	</script>
 </html>
+
+{% endcache %}
