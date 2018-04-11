@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 dict_hot_word = {}  # 所有的关键词列表
 hotwordlist = []  # 关键词列表
 i = 0
