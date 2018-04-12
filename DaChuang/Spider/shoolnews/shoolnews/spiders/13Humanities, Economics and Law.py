@@ -21,7 +21,6 @@ class HumanitiesSpider(scrapy.Spider):
     start_urls = [
         # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/2.htm',
 
-
         # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/38.htm',
         # 'http://rwjj.nwpu.edu.cn/xwgg/xwdt/39.htm',
         'http://rwjj.nwpu.edu.cn/xwgg/xwdt.htm'

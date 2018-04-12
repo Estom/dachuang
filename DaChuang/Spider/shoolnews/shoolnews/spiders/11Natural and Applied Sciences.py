@@ -23,8 +23,6 @@ class NaturalandAppliedSciencesSpider(scrapy.Spider):
     start_urls = [
         # 'http://lxy.nwpu.edu.cn/new/index/xwkx/2.htm',
 
-
-        # 'http://lxy.nwpu.edu.cn/new/index/xwkx/81.htm',
         # 'http://lxy.nwpu.edu.cn/new/index/xwkx/82.htm',
         # 'http://lxy.nwpu.edu.cn/new/index/xwkx/83.htm',
         'http://lxy.nwpu.edu.cn/new/index/xwkx.htm'

@@ -5,6 +5,7 @@
 @脚本作用：所有数据库配置配置
 """
 from MySQLTool import MySQLTools
+import os
 
 # sql0是dcspider数据库
 sql0 = MySQLTools(
@@ -27,21 +28,21 @@ sql1 = MySQLTools(
 )
 
 # 本地数据库
-LocalSql = MySQLTools(
-    host='localhost',
-    port=3306,
-    user='root',
-    passwd='',
-    db='test',
-    charset='utf8'
-)
+# LocalSql = MySQLTools(
+#     host='localhost',
+#     port=3306,
+#     user='root',
+#     passwd='',
+#     db='test',
+#     charset='utf8'
+# )
 
 # 停用词路径
-stopword_path = '.\Classify\hlt_stop_words.txt'
+stopword_path = os.getcwd() + '\Analysis\Classify\hlt_stop_words.txt'
 # 词向量空间路径
-wordbag_path = '.\Classify\\train_set.dat'
+wordbag_path = os.getcwd() + '\Analysis\Classify\\train_set.dat'
 # 分类器地址
-classification_path = '.\Classify\classification_NB.dat'
+classification_path = os.getcwd() + '\Analysis\Classify\classification_NB.dat'
 
 # 类别字典
 dicClassToCategory = {}
