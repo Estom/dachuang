@@ -58,10 +58,10 @@ def Commend_CT(UserID, numHistoryArticle=3, numTagRecommend=3, numRecommend=10):
         if len(RecommendArticleId) > i:
             Analysis.SQLconfig.sql1.add('dcweb_recommend', {'article_id': RecommendArticleId[i],
                                                       'user_id': UserID, 'recommend_id': i+1})
-    print "用户%d阅读了："
+    print u"用户%d阅读了："
     for i in ReadHistory:
         print Analysis.SQLconfig.sql1.select('dcweb_article', ['title'], 'id = %d' % (i[0]))[0].decode('utf8')
-    print "智能推荐文章标题："
+    print u"智能推荐文章标题："
     for i in RecommendArticleId:
         print Analysis.SQLconfig.sql1.select('dcweb_article', ['title'], 'id = %d' % (i))[0].decode('utf8')
 
@@ -83,9 +83,9 @@ def run_recommend():
     for ii in user_id:
         try:
             Commend_CT(ii, 3, 3, 10)
-            print "id=%d 用户推荐成功" % ii
+            print u"id=%d 用户推荐成功" % ii
         except Exception,err:
-            print "id=%d 用户推荐错误" % ii
+            print u"id=%d 用户推荐错误" % ii
 
 if __name__ == "__main__":
     run_recommend()

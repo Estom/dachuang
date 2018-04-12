@@ -22,8 +22,6 @@ class SoftwareSpider(scrapy.Spider):
     start_urls = [
         # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/2.htm',
 
-
-        # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/24.htm',
         # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/25.htm',
         # 'http://rjwdz.nwpu.edu.cn/xydt/xyxw/26.htm',
         'http://rjwdz.nwpu.edu.cn/xydt/xyxw.htm',

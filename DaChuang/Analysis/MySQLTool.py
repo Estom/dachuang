@@ -6,7 +6,6 @@ import MySQLdb
 
 class MySQLTools:
     """数据库基本操作库"""
-
     def __init__(self, *args, **kwargs):
         self._conn = MySQLdb.connect(*args, **kwargs)
         self._cursor = self._conn.cursor()
@@ -31,7 +30,7 @@ class MySQLTools:
             records = self._cursor.fetchall()
             return records
         except MySQLdb.Error, e:
-            error = 'MySQL execute failed! ERROR(%s): %s' %(e.args[0], e.args[1])
+            error = u'MySQL execute failed! ERROR(%s): %s' %(e.args[0], e.args[1])
             print error
 
     def _QuMark(self, text):
@@ -63,7 +62,7 @@ class MySQLTools:
             self._conn.commit()
         except MySQLdb.Error, e:
             self._conn.rollback()
-            error = 'MySQL execute failed! ERROR(%s):%s' % (e.args[0], e.args[1])
+            error = u'MySQL execute failed! ERROR(%s):%s' % (e.args[0], e.args[1])
             print error
 
     def select(self, tablename, param=None, con=None, num=None, offset=None):

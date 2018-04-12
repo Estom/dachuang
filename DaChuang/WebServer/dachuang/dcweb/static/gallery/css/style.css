@@ -119,9 +119,15 @@ figcaption {
 .address-2 a:hover {
   text-decoration: underline;
 }
+.navbar-static-top{
+background-color:white;
+margin:0;
+display:block;
+
+}
 a {
   font: inherit;
-  color: inherit;
+
   text-decoration: none;
   -moz-transition: 0.3s;
   -o-transition: 0.3s;
@@ -541,9 +547,13 @@ header {
 header .brand {
   float: left;
 }
-header .nav {
-  margin: 38px 0 48px 0;
-  float: right;
+a :link {
+
+    color:#3399FF;
+}
+a:active {
+color:#FFFFFF;
+
 }
 @media (max-width: 767px) {
   header {

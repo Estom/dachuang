@@ -1,12 +1,9 @@
-# encoding=utf-8
-
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 import jieba
 from networkx import from_scipy_sparse_matrix, pagerank
 from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
 import Analysis.SQLconfig
-import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
 
 def cut_sentence(sentence):
     """ 
@@ -26,12 +23,14 @@ def cut_sentence(sentence):
     if buf:
         yield ''.join(buf)
 
-def load_stopwords(path='stop_words.txt'):
+def load_stopwords():
     """ 
     加载停用词 
     :param path: 
     :return: 
     """
+    import os
+    path = os.getcwd() + '\Analysis\AutoDesc\stop_words.txt'
     with open(path) as f:
         stopwords = f.readlines()
     stopwrdlist = []
@@ -70,40 +69,32 @@ def get_abstract(content, size=3):
     return map(lambda idx: docs[idx], indices)
 
 
-def runAbstract():
+def RunAbstract():
     """
     摘要的主函数
     :return: 无
     """
-    i = -1
-    while True:
-        i += 1
-        state = Analysis.SQLconfig.sql0.select('article', ['id', 'process_state'], None, 1, i)
-        if len(state) == 0:
-            break
-        if (state[1] % 2 ** 3) / (2 ** 1) % 2 == 1:
-            print "%d : id = %d文章已完成摘要" % (i, state[0])
-            continue
-        else:
-            a = Analysis.SQLconfig.sql0.select('article', ['article.desc'], None, 1, i)
-            if a[0] is not None and len(a[0]) > 4:  # 在微信中有一些文章是有摘要的，不需要重新生成摘要
-                Analysis.SQLconfig.sql0.update('article', {'process_state': state[1] % 2 ** 3 + 2 ** 1},
-                                               'id = %d' % state[0])
-                print "%d ：id = %d 文章来源存在摘要" % (i, state[0])
-            else:
-                info = Analysis.SQLconfig.sql0.select('article', ['id', 'content'], None, 1, i)
-                if len(info[1]) < 2:
-                    print "%d ：id = %d 文章太短不必要摘要" % (i, state[0])
-                    continue
-                s = get_abstract(info[1])
-                s[0] = s[0].strip('\r\n')
-                s[0] = s[0].strip(' ')
-                s[0] = s[0].replace(' ', '')
-                s[0] = s[0].replace('\n', '')
-                s[0] = s[0].replace('\r', '')
-                s[0] = s[0].replace('\t', '')
-                dic = {'article.desc': s[0]}
-                Analysis.SQLconfig.sql0.update('article', dic, 'id=%d' % info[0])
-                Analysis.SQLconfig.sql0.update('article', {'process_state': state[1] % 2 ** 3 + 2 ** 1},
-                                               'id = %d' % state[0])
-                print '%d: id = %d : %s' % (i, state[0], s[0])
+    continue_flag = True
+    # 取数据操作的改变，直接搜索语句就好了
+    while continue_flag:
+        info = Analysis.SQLconfig.sql0.select('article', ['id', 'content'], 'article.desc is null', 1000, None)
+        if len(info) == 0:
+            print u"已完成全部摘要"
+            return
+        if len(info) < 1000:
+            continue_flag = False
+        print u"已读取%d条数据" % len(info)
+        for ii in info:
+            if len(ii[1]) < 2:
+                print u"id = %d 文章太短不必要摘要" % ii[0]
+                continue
+            s = get_abstract(ii[1])
+            s[0] = s[0].strip('\r\n')
+            s[0] = s[0].strip(' ')
+            s[0] = s[0].replace(' ', '')
+            s[0] = s[0].replace('\n', '')
+            s[0] = s[0].replace('\r', '')
+            s[0] = s[0].replace('\t', '')
+            dic = {'article.desc': s[0]}
+            Analysis.SQLconfig.sql0.update('article', dic, 'id=%d' % ii[0])
+            print u'id = %d : %s' % (ii[0], s[0])

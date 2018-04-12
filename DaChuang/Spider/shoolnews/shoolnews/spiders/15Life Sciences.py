@@ -21,7 +21,6 @@ class LifeSciencesSpider(scrapy.Spider):
     start_urls = [
         # 'http://shengming.nwpu.edu.cn/xwzx/yxxw/2.htm',
 
-        # 'http://shengming.nwpu.edu.cn/xwzx/yxxw/38.htm',
         # 'http://shengming.nwpu.edu.cn/xwzx/yxxw/39.htm',
         # 'http://shengming.nwpu.edu.cn/xwzx/yxxw/40.htm',
         'http://shengming.nwpu.edu.cn/xwzx/yxxw.htm',

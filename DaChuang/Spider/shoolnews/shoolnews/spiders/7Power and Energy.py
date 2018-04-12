@@ -22,8 +22,6 @@ class PowerandEnergySpider(scrapy.Spider):
     start_urls = [
         # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/10.htm',
 
-        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/71.htm',
-        # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/72.htm',
         # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/73.htm',
         # 'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt/74.htm',
         'http://dongneng.nwpu.edu.cn/newwz/sy/xwdt.htm',

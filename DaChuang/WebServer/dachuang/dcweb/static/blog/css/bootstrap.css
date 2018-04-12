@@ -281,10 +281,7 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
-a {
-  color: #1B242F;
-  text-decoration: none;
-}
+
 a:hover,
 a:focus {
   color: #E74C3C;
@@ -3636,7 +3633,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
+
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
@@ -3808,8 +3805,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-nav {
-    float: left;
-    margin: 0;
+
+    margin: 10px;
   }
   .navbar-nav > li {
     float: left;
