@@ -43,7 +43,7 @@ def RunAnalysis():
 
     try:
         print u"------文章转移开始------\n"
-        logging.debug(u'文章转移开始...\n')
+        logging.debug(u'文章转移开始...')
         TransPath.TransPath.runTransPath()
         logging.debug(u"文章转移成功执行!")
         print u"\n------文章转移成功执行!------\n"
