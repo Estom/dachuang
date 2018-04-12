@@ -14,6 +14,8 @@ def RunAnalysis():
         print "分类开始\n"
         Classify.Classification.RunClassify()
         print "分类结束\n"
+        logging.debug("分类结束")
+
     except Exception, e:
         logging.debug("分类算法出错")
 
@@ -21,18 +23,24 @@ def RunAnalysis():
         print "摘要开始"
         AutoDesc.auto_abstract.RunAbstract()
         print "摘要结束"
+        logging.debug("摘要结束")
+
     except Exception, e:
         logging.debug("自动摘要出错")
 
     try:
         print "文章转移开始"
         TransPath.TransPath.runTransPath()
+        logging.debug("文章转移结束")
+
     except Exception, e:
         logging.debug("转移路径出错")
 
     try:
         print "关键词统计开始"
         TagCloud.gethotword.rungethotword()
+        logging.debug("关键词统计结束")
+
         try:
             TagCloud.matchWordAndContent.runmatchWordAndContent()
         except Exception, e:

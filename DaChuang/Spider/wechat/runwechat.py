@@ -20,9 +20,9 @@ def RunWechatSpider():
 
     try:
         os.system("scrapy crawl contentspider")
-        logging.info('微信')
+        logging.info('微信ac')
     except Exception, e:
-        logging.debug('微信')
+        logging.debug('微信wa')
 
 
     # 查看当前工作目录

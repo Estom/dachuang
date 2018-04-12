@@ -3,10 +3,11 @@
 import jieba
 from networkx import from_scipy_sparse_matrix, pagerank
 from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
-import Analysis.SQLconfig
+
 import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
+sys.path.append("..")
+
+import Analysis.SQLconfig
 
 def cut_sentence(sentence):
     """ 

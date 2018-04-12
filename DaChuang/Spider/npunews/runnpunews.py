@@ -26,15 +26,15 @@ def RunNpunewsSpider():
 
     try:
         os.system("scrapy crawl xyxw")  # 校园动态
-        logging.info('校园动态')
+        logging.info('校园动态ac')
     except Exception, e:
-        logging.debug('校园动态')
+        logging.debug('校园动态wa')
 
     try:
         os.system("scrapy crawl PartyCommittee")
-        logging.info('党委宣传部')
+        logging.info('党委宣传部ac')
     except Exception, e:
-        logging.debug('党委宣传部')
+        logging.debug('党委宣传部wa')
 
 
     # 查看当前工作目录
