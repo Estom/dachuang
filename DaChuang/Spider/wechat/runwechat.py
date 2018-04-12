@@ -20,8 +20,20 @@ def RunWechatSpider():
 
     try:
         os.system("scrapy crawl contentspider")
+        logging.info('微信')
     except Exception, e:
         logging.debug('微信')
+
+
+    # 查看当前工作目录
+    retval = os.getcwd()
+    print "***** wechat爬虫结束，当前工作目录为 %s" % retval
+
+    os.chdir('../../')
+
+    retval = os.getcwd()
+    print "***** wechat爬虫结束，目录修改成功 %s" % retval
+
 
 if __name__ == "__main__":
     RunWechatSpider()

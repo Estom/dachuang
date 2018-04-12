@@ -21,8 +21,7 @@ class AutomationSpider(scrapy.Spider):
     start_urls = [
         # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/10.htm',
 
-        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/47.htm',
-        # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/48.htm',
+
         # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/49.htm',
         # 'http://zdhxy.nwpu.edu.cn/xwgg/tuxw/50.htm',
         'http://zdhxy.nwpu.edu.cn/xwgg/tuxw.htm'

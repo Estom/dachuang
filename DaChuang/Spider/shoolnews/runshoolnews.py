@@ -18,98 +18,126 @@ def RunSchoolnewsSpider():
 
     try:
         os.system("scrapy crawl aeronautic")  # 航空 2.11 1.31
+        logging.info('航空')
     except Exception, e:
         logging.debug('航空')
 
     try:
         os.system("scrapy crawl astronautics")  # 航天 2.11 # 1.31
+        logging.info('航天')
     except Exception, e:
         logging.debug('航天')
 
     try:
         os.system("scrapy crawl MarineScience")  # 航海 # 2.11 1.31
+        logging.info('航海')
     except Exception, e:
         logging.debug('航海')
 
     try:
         os.system("scrapy crawl MaterialsScience")  # 材料 # 2.11 1.31
+        logging.info('材料')
     except Exception, e:
         logging.debug('材料')
 
     try:
         os.system("scrapy crawl MechanicalEngineering")  # 机电 # 2.11 2.1
+        logging.info('机电')
     except Exception, e:
         logging.debug('机电')
 
     try:
         os.system("scrapy crawl PowerandEnergy")  # 动力与能源学院 # 2.11 2.2
+        logging.info('动力与能源学院')
     except Exception, e:
         logging.debug('动力与能源学院')
 
     try:
         os.system("scrapy crawl electricity")  # 电子信息 2.12 1.31
+        logging.info('电子信息')
     except Exception, e:
         logging.debug('电子信息')
 
     try:
         os.system("scrapy crawl automation")  # 自动化 2.12 1.30
+        logging.info('自动化')
     except Exception, e:
         logging.debug('自动化')
 
     try:
         os.system("scrapy crawl computer")  # 计算机 2.11 1.28
+        logging.info('计算机')
     except Exception, e:
         logging.debug('计算机')
 
     try:
         os.system("scrapy crawl NaturalandAppliedSciences")  # 理学院 # 2.12 2.2
+        logging.info('理学院')
     except Exception, e:
         logging.debug('理学院')
 
     try:
         os.system("scrapy crawl management")  # 管理 2.12 1.31
+        logging.info('管理')
     except Exception, e:
         logging.debug('管理')
 
     try:
         os.system("scrapy crawl Humanities")  # 人文与经法学院 # 2.12 2.1
+        logging.info('人文与经法学院')
     except Exception, e:
         logging.debug('人文与经法学院')
 
     try:
         os.system("scrapy crawl Software")  # 软件学院 # 2.12 2.2
+        logging.info('软件学院')
     except Exception, e:
         logging.debug('软件学院')
 
     try:
         os.system("scrapy crawl LifeSciences")  # 生命学院 # 2.12 2.1
+        logging.info('生命学院')
     except Exception, e:
         logging.debug('生命学院')
 
     try:
         os.system("scrapy crawl ForeignStudies")  # 外国语学院 # 2.12 2.1
+        logging.info('外国语学院')
     except Exception, e:
         logging.debug('外国语学院')
 
     try:
         os.system("scrapy crawl InternationalCollege")  # 国际教育学院 # 2.12 2.1
+        logging.info('国际教育学院')
     except Exception, e:
         logging.debug('国际教育学院')
 
     try:
         os.system("scrapy crawl Marxism")  # 马克思主义学院 # 2.12 2.3
+        logging.info('马克思主义学院')
     except Exception, e:
         logging.debug('马克思主义学院')
 
     try:
         os.system("scrapy crawl Administration")  # 教务处 # 2.12 2.3
+        logging.info('教务处')
     except Exception, e:
         logging.debug('教务处')
 
     try:
         os.system("scrapy crawl InternationalCooperationOfficeNotice")  # 国际合作处通知 # 2.12 2.3
+        logging.info('国际合作处通知')
     except Exception, e:
         logging.debug('国际合作处通知')
+
+    # 查看当前工作目录
+    retval = os.getcwd()
+    print "***** school爬虫结束，当前工作目录为 %s" % retval
+
+    os.chdir('../../')
+
+    retval = os.getcwd()
+    print "***** school爬虫结束，目录修改成功 %s" % retval
 
 
 if __name__ == "__main__":

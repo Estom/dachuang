@@ -21,41 +21,15 @@ class ElectricitySpider(scrapy.Spider):
     allowed_domains = ['dianzi.nwpu.edu.cn']
     start_urls = [
         # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/2.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/3.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/4.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/5.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/6.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/7.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/8.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/9.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/10.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/11.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/12.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/13.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/14.htm',
+
         # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/15.htm',
         # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/16.htm', # http://dianzi.nwpu.edu.cn/../info/1131/6905.htm
         # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/17.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/18.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/19.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/20.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/21.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/22.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/23.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/24.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/25.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/26.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/27.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/28.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/29.htm',
+
         # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/30.htm',
         # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/31.htm',
         # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/32.htm', #
 
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/33.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/34.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/35.htm',
-        # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/36.htm',
         # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/37.htm',
         # 'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw/39.htm',
         'http://dianzi.nwpu.edu.cn/xwgg/xyxw/xyxw.htm',

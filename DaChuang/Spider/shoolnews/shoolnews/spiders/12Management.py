@@ -22,7 +22,6 @@ class ManagementSpider(scrapy.Spider):
     start_urls = [
         # 'http://som.nwpu.edu.cn/xxfb/xyxw/2.htm',
 
-
         # 'http://som.nwpu.edu.cn/xxfb/xyxw/42.htm',
         # 'http://som.nwpu.edu.cn/xxfb/xyxw/43.htm',
         # 'http://som.nwpu.edu.cn/xxfb/xyxw/44.htm',
