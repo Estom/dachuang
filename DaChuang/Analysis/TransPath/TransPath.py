@@ -19,11 +19,11 @@ def runTransPath():
                                                           'posttime', 'category', 'id'], 'process_state = 0', 1000,
                                               None)
         if len(info) == 0:
-            print "已完成全部转移"
+            print u"已完成全部转移"
             return
         if len(info) < 1000:
             continue_flag = False
-        print "已读取%d条数据" % len(info)
+        print u"已读取%d条数据" % len(info)
         for ii in info:
             if ii[2] is None:
                 ii[2] = " "
@@ -35,4 +35,4 @@ def runTransPath():
                        'img': ii[4], 'tag_mark': 0}
             Analysis.SQLconfig.sql1.add('dcweb_article', dicDate)
             Analysis.SQLconfig.sql0.update('article', {'process_state': 1}, 'id = %d' % ii[7])
-            print "id = %d文章已转移" % ii[7]
+            print u"id = %d文章已转移" % ii[7]

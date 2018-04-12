@@ -18,17 +18,17 @@ def rungethotword():
     while continue_flag:
         info = Analysis.SQLconfig.sql1.select('dcweb_article', ['title', 'content', 'id'], 'tag_mark = 0', 1000, None)
         if len(info) == 0:
-            print "已完成全部热词统计"
+            print u"已完成全部热词统计"
             return
         if len(info) < 1000:
             continue_flag = False
-        print "已读取%d条数据" % len(info)
+        print u"已读取%d条数据" % len(info)
         Data_content = []
         Data_ID = []
         for date in info:
             Data_content.append(Analysis.FormatData.TextCut(date[0] * 2 + date[1]))
             Data_ID.append(date[2])
-            print "正在统计id = %d文章的关键字" % (date[2])
+            print u"正在统计id = %d文章的关键字" % (date[2])
         # 读热词
         dict_hot_word = {}  # 所有的关键词列表
         hotwordlist = []  # 关键词列表
@@ -80,7 +80,7 @@ def rungethotword():
         dict_hot_word_list = sorted(dict_hot_word.iteritems(), key=lambda asd: asd[1], reverse=True)
         for ii in dict_hot_word_list:
             i += 1
-            print "第%d条 : %s : %d\n" % (i, ii[0], ii[1])
+            print u"第%d条 : %s : %d\n" % (i, ii[0], ii[1])
             if ii[0] in hotwordlist:  # 如果这条热词已经在数据库了就更新这个热词的权值
                 dic = {'number': ii[1]}
                 Analysis.SQLconfig.sql1.update('dcweb_tag', dic, 'name="%s"' % ii[0])

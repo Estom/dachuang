@@ -1,12 +1,8 @@
-# encoding=utf-8
-
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 import jieba
 from networkx import from_scipy_sparse_matrix, pagerank
 from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
-
-import sys
-sys.path.append("..")
-
 import Analysis.SQLconfig
 
 def cut_sentence(sentence):
@@ -83,14 +79,14 @@ def RunAbstract():
     while continue_flag:
         info = Analysis.SQLconfig.sql0.select('article', ['id', 'content'], 'article.desc is null', 1000, None)
         if len(info) == 0:
-            print "已完成全部摘要"
+            print u"已完成全部摘要"
             return
         if len(info) < 1000:
             continue_flag = False
-        print "已读取%d条数据" % len(info)
+        print u"已读取%d条数据" % len(info)
         for ii in info:
             if len(ii[1]) < 2:
-                print "id = %d 文章太短不必要摘要" % ii[0]
+                print u"id = %d 文章太短不必要摘要" % ii[0]
                 continue
             s = get_abstract(ii[1])
             s[0] = s[0].strip('\r\n')
@@ -101,4 +97,4 @@ def RunAbstract():
             s[0] = s[0].replace('\t', '')
             dic = {'article.desc': s[0]}
             Analysis.SQLconfig.sql0.update('article', dic, 'id=%d' % ii[0])
-            print 'id = %d : %s' % (ii[0], s[0])
+            print u'id = %d : %s' % (ii[0], s[0])

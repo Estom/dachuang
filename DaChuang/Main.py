@@ -38,7 +38,7 @@ def RunMain():
 
 
 if __name__ == "__main__":
-    print '执行自动化脚本'
+    print u'执行自动化脚本'
     logging.info('执行自动化脚本')
     RunMain()
 

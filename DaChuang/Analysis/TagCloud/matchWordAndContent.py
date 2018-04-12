@@ -17,18 +17,18 @@ def runmatchWordAndContent():
     while continue_flag:
         info = Analysis.SQLconfig.sql1.select('dcweb_article', ['id', 'title', 'content'], 'tag_mark = 1', 1000, None)
         if len(info) == 0:
-            print "已完成全部热词统计"
+            print u"已完成全部热词统计"
             return
         if len(info) < 1000:
             continue_flag = False
-        print "已读取%d条数据" % len(info)
+        print u"已读取%d条数据" % len(info)
         numcontent = len(info)
         Data_content = []
         Data_ID = []
         for ii in info:
             Data_ID.append(ii[0])
             Data_content.append(Analysis.FormatData.TextCut(ii[1] * 2 + ii[2]))
-            print "读取id = %d文章内容" % ii[0]
+            print u"读取id = %d文章内容" % ii[0]
 
         dict_hot_word = {}  # 所有的关键词列表
         hotwords = Analysis.SQLconfig.sql1.select('dcweb_tag', ['id', 'name'], None, None, None)
@@ -82,7 +82,7 @@ def runmatchWordAndContent():
                 if Data_ID[ii] is not None and id_tag is not None and value is not None:
                     dic = {'article_id': Data_ID[ii], 'tag_id': id_tag, 'value': value}
                     Analysis.SQLconfig.sql1.add('dcweb_article_tag', dic)
-                    print '文章号 : %d , 标签号 : %d , 重要度 : %d' % (Data_ID[ii], id_tag, value)
+                    print u'文章号 : %d , 标签号 : %d , 重要度 : %d' % (Data_ID[ii], id_tag, value)
             Analysis.SQLconfig.sql1.update('dcweb_article', {'tag_mark': 2}, 'id = %d' % Data_ID[ii])
         # #######################文章与关键词匹配##################################
 

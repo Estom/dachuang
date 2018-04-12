@@ -26,14 +26,14 @@ def RunClassify():
         bunch = Bunch(contents=[], id=[])
         info = Analysis.SQLconfig.sql0.select('article', ['id', 'content'], 'category is null', 1000, None)
         if len(info) == 0:
-            print "已完成全部分类"
+            print u"已完成全部分类"
             return
         if len(info) < 1000:
             continue_flag = False
         for ii in info:
             bunch.id.append(ii[0])
             bunch.contents.append(ii[1])
-        print "已读%d条数据" % len(info)
+        print u"已读%d条数据" % len(info)
 
         # 读取停用词
         stpwrdlst = Analysis.FormatData.readfile(Analysis.SQLconfig.stopword_path).splitlines()
@@ -60,7 +60,7 @@ def RunClassify():
             i = i + 1
             dic = {'category': expect_cate}
             Analysis.SQLconfig.sql0.update('article', dic, 'id = %d' % article_id)
-            print "存第%s条数据！" % i
+            print u"存第%s条数据！" % i
 
 
 if __name__ == '__main__':

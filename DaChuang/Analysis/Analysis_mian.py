@@ -12,44 +12,66 @@ import TransPath.TransPath
 
 def RunAnalysis():
     logging.basicConfig(filename='Analysislog.log', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    print "文本处理开始："
+
+    logging.debug(u"文本处理开始...")
+
+    print u"------文本处理开始：------\n"
+
     try:
-        print "分类开始\n"
+        logging.debug(u"分类开始...")
+        print u"------分类开始...------\n"
         Classify.Classification.RunClassify()
-        print "分类结束\n"
-        logging.debug("分类结束")
+        print u"\n------分类成功执行!------\n"
+        logging.debug(u"分类成功执行！")
 
     except Exception, e:
-        logging.debug("分类算法出错")
+        log = u"分类发生错误!ERROR(%s):%s" % (e.args[0], e.message)
+        print log
+        logging.debug(log)
 
     try:
-        print "摘要开始"
+        logging.debug(u"摘要开始...")
+        print u"------摘要开始...------\n"
         AutoDesc.auto_abstract.RunAbstract()
-        print "摘要结束"
-        logging.debug("摘要结束")
+        print u"\n------摘要成功执行!------\n"
+        logging.debug(u"摘要成功执行！")
 
     except Exception, e:
-        logging.debug("自动摘要出错")
+        log = u"摘要发生错误!ERROR(%s):%s" % (e.args[0], e.message)
+        print log
+        logging.debug(log)
 
     try:
-        print "文章转移开始"
+        print u"------文章转移开始------\n"
+        logging.debug(u'文章转移开始...\n')
         TransPath.TransPath.runTransPath()
-        logging.debug("文章转移结束")
+        logging.debug(u"文章转移成功执行!")
+        print u"\n------文章转移成功执行!------\n"
 
     except Exception, e:
-        logging.debug("转移路径出错")
+        log = u"文章转移路径出错!ERROR(%s):%s" % (e.args[0], e.message)
+        print log
+        logging.debug(log)
 
     try:
-        print "关键词统计开始"
+        logging.debug(u'关键字统计开始...')
+        print u"------关键词统计开始...------\n"
         TagCloud.gethotword.rungethotword()
-        logging.debug("关键词统计结束")
-
         try:
             TagCloud.matchWordAndContent.runmatchWordAndContent()
+            print u"\n------关键字统计结束!------\n"
+            logging.debug(u"关键词统计成功执行!")
+            print u"------文本处理成功执行!------\n"
+            logging.debug(u"文本处理成功执行!")
         except Exception, e:
-            logging.debug("热词与文章匹配发生错误")
+            log = u"热词与文章匹配发生错误!ERROR(%s):%s" % (e.args[0], e.message)
+            print log
+            logging.debug(log)
     except Exception, e:
-        logging.debug("统计热词发生错误")
+        log = u"统计热词发生错误!ERROR(%s):%s" % (e.args[0], e.message)
+        print log
+        logging.debug(log)
+        logging.debug(u"文本处理有错误!")
 
 
 if __name__ == '__main__':

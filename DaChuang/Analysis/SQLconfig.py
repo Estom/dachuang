@@ -63,8 +63,3 @@ while True:
     if len(info) == 0:
         break
     dicPublisher.update({'%s' % info[1]: '%d' % info[0]})
-
-if __name__ == '__main__':
-    print stopword_path
-    print wordbag_path
-    print classification_path

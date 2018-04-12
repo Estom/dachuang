@@ -41,11 +41,3 @@ for i in SimsilarUser:
         TempDic.update({ii[0]: ii[1]})
     UserHistoryDict.update({i: TempDic})
 
-# 使用基于协同过滤推荐算法：
-import autocomm_CF
-print '基于用户过滤，为用户推荐的电影是：'
-print autocomm_CF.recommendItems(UserHistoryDict, SQLconfig.user_id, 3)
-
-itemsAllsim = autocomm_CF.calSimilarItems(UserHistoryDict)  #这个值会事先计算好
-print '基于物品过滤，为用户推荐的电影是：'
-print autocomm_CF.getrecommendations(UserHistoryDict, SQLconfig.user_id, itemsAllsim)
