@@ -14,62 +14,44 @@ sys.setdefaultencoding("utf-8")
 
 
 def rungethotword():
-    break_flag = False
-    index = -1001
-    while True:
-        index += 1000
-        if break_flag:
-            print "统计热词结束！！！"
-            break
-        num = 0
+    continue_flag = True
+    while continue_flag:
+        info = Analysis.SQLconfig.sql1.select('dcweb_article', ['title', 'content', 'id'], 'tag_mark = 0', 1000, None)
+        if len(info) == 0:
+            print "已完成全部热词统计"
+            return
+        if len(info) < 1000:
+            continue_flag = False
+        print "已读取%d条数据" % len(info)
         Data_content = []
         Data_ID = []
-        while True:
-            if num > 1000:
-                print "一次最多处理三千条数据"
-                break
-            index += 1
-            state = Analysis.SQLconfig.sql1.select('dcweb_article', ['id', 'tag_mark'], None, 1, index)
-            if len(state) == 0:
-                print "文章统计结束"
-                break_flag = True
-                break
-            if (state[1] % 2 ** 2) / 2 ** 1 % 2 == 1:
-                print "%d:id = %d 文章已统计过热词" % (index, state[0])
-                continue
-            else:
-                info = Analysis.SQLconfig.sql1.select('dcweb_article', ['title', 'content'], None, 1, index)
-                Data_content.append(Analysis.FormatData.TextCut(info[0] * 2 + info[1]))
-                Data_ID.append(state)
-                print "%d:统计第id = %d文章" % (index, state[0])
-                num += 1
-
-                # 读热词
+        for date in info:
+            Data_content.append(Analysis.FormatData.TextCut(date[0] * 2 + date[1]))
+            Data_ID.append(date[2])
+            print "正在统计id = %d文章的关键字" % (date[2])
+        # 读热词
         dict_hot_word = {}  # 所有的关键词列表
         hotwordlist = []  # 关键词列表
-        i = 0
-        while True:
-            info = Analysis.SQLconfig.sql1.select('dcweb_tag', ['name', 'number'], None, 1, i)
-            if len(info) == 0:
-                break
-            dict_hot_word.update({info[0]: info[1]})
-            hotwordlist.append(info[0])
-            i += 1
-            print "读取第%d条数据" % i
 
-            # 读取停用词表
+        hotwords = Analysis.SQLconfig.sql1.select('dcweb_tag', ['name', 'number'], None, None, None)
+        for iii in hotwords:
+            dict_hot_word.update({iii[0]: iii[1]})
+            hotwordlist.append(iii[0])
+
+        # 读取停用词表
         stpwrdlst = []
-        with open('stop_words.txt', 'rb') as f:
+        import os
+        path = os.getcwd() + '\Analysis\TagCloud\stop_words.txt'
+        with open(path, 'rb') as f:
             text = f.readlines()
-        for ii in text:
-            ii1 = ii.decode('utf8')
+        for date in text:
+            ii1 = date.decode('utf8')
             ii1 = ii1.strip("\r\n")
             stpwrdlst.append(ii1)
-            # 读停用词表结束
 
         '''用新文章更新热词词典，并记录新文章的热词'''
         dict = {}  # 中间变量
-        dict_1 = []  # 中间变量
+        dict_1 = []
         # 文章Tfidf化
         vectorizer = TfidfVectorizer(stop_words=stpwrdlst, sublinear_tf=True, max_df=0.2)
         tfidf = vectorizer.fit_transform(Data_content)
@@ -91,10 +73,7 @@ def rungethotword():
                         dict_hot_word.update({ii[0]: 1000 * ii[1] + dict_hot_word.get(ii[0])})
                     else:
                         dict_hot_word.update({ii[0]: 1000 * ii[1]})
-            Analysis.SQLconfig.sql1.update('dcweb_article', {'tag_mark': Data_ID[i][1] % 2 ** 2 + 2 ** 1},
-                                  'id = %d' % Data_ID[i][0])
-            print "%d:id=%d更新状态变量为%d" % (index - 1000 + i, Data_ID[i][0], Data_ID[i][1] % 2 ** 2 + 2 ** 1)
-        '''以上程序已经实现了热词的更新和当前数据表中文章关键字的提取'''
+            Analysis.SQLconfig.sql1.update('dcweb_article', {'tag_mark': 1}, 'id = %d' % Data_ID[i])
 
         # #######################热词存回数据库###############################
         i = 0
@@ -108,4 +87,8 @@ def rungethotword():
             else:
                 dic = {'name': ii[0], 'number': ii[1]}
                 Analysis.SQLconfig.sql1.add('dcweb_tag', dic)
-                # #######################热词存回数据库结束##################################
+        # #######################热词存回数据库结束##################################
+
+
+if __name__ == "__main__":
+    rungethotword()

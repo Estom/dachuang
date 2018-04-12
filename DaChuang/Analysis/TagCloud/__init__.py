@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # -*- coding: UTF-8 -*-
 import sys
 
@@ -67,3 +68,5 @@ for ii in dict_hot_word_list:
         dic = {'name': ii[0], 'number': ii[1]}
         Analysis.SQLconfig.sql1.add('dcweb_tag', dic)
 # #######################热词存回数据库结束##################################
+=======
+>>>>>>> modifysql
