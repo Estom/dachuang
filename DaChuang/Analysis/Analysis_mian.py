@@ -1,11 +1,14 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append("..")
 import logging
 import AutoDesc.auto_abstract
 import Classify.Classification
 import TagCloud.gethotword
 import TagCloud.matchWordAndContent
 import TransPath.TransPath
+
 
 def RunAnalysis():
     logging.basicConfig(filename='Analysislog.log', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -39,6 +42,7 @@ def RunAnalysis():
             logging.debug("热词与文章匹配发生错误")
     except Exception, e:
         logging.debug("统计热词发生错误")
+
 
 if __name__ == '__main__':
     RunAnalysis()

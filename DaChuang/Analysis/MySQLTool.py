@@ -6,7 +6,6 @@ import MySQLdb
 
 class MySQLTools:
     """数据库基本操作库"""
-
     def __init__(self, *args, **kwargs):
         self._conn = MySQLdb.connect(*args, **kwargs)
         self._cursor = self._conn.cursor()
