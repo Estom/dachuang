@@ -12,32 +12,27 @@ sys.setdefaultencoding("utf-8")
 
 
 def runTransPath():
-    i = -1
-    while True:
-        i += 1
-        state = Analysis.SQLconfig.sql0.select('article', ['process_state', 'id'], None, 1, i)
-        if len(state) == 0:
-            break
-        if (state[0] % 2 ** 3) / (2 ** 0) % 2 != 1 or (state[0] % 2 ** 3) / (2 ** 1) % 2 != 1:
-            print "%d : id = %d文章未完成分类或自动摘要，不允许转移路径" % (i, state[1])
-            continue
-        if (state[0] % 2 ** 3) / (2 ** 2) % 2 == 1:
-            print "%d : id = %d文章已转移" % (i, state[1])
-            continue
-        else:
-            info = Analysis.SQLconfig.sql0.select('article',
-                                         ['title', 'author', 'article.desc', 'content', 'image_path', 'posttime',
-                                          'category'], None, 1, i)
-            if info[2] is None:
-                info[2] = " "
-            elif len(info[2]) > 299:
-                info[2] = info[2][0:299]
-            dicDate = {'title': info[0], 'dcweb_article.desc': info[2], 'content': info[3], 'love_count': 0,
-                       'click_count': 0,
-                       'date_publish': info[5], 'category_id': info[6],
-                       'publisher_id': Analysis.SQLconfig.dicPublisher.get(info[1]),
-                       'img': info[4], 'tag_mark': 0}
+    continue_flag = True
+    # 取数据操作的改变，直接搜索语句就好了
+    while continue_flag:
+        info = Analysis.SQLconfig.sql0.select('article', ['title', 'author', 'article.desc', 'content', 'image_path',
+                                                          'posttime', 'category', 'id'], 'process_state = 0', 1000,
+                                              None)
+        if len(info) == 0:
+            print "已完成全部转移"
+            return
+        if len(info) < 1000:
+            continue_flag = False
+        print "已读取%d条数据" % len(info)
+        for ii in info:
+            if ii[2] is None:
+                ii[2] = " "
+            elif len(ii[2]) > 299:
+                ii[2] = ii[2][0:299]
+            dicDate = {'title': ii[0], 'dcweb_article.desc': ii[2], 'content': ii[3], 'love_count': 0, 'click_count': 0,
+                       'date_publish': ii[5], 'category_id': ii[6],
+                       'publisher_id': Analysis.SQLconfig.dicPublisher.get(ii[1]),
+                       'img': ii[4], 'tag_mark': 0}
             Analysis.SQLconfig.sql1.add('dcweb_article', dicDate)
-            Analysis.SQLconfig.sql0.update('article', {'process_state': state[0] % 2 ** 3 + 2 ** 2}, 'id = %d' % state[1])
-            print "转移第id = %d条" % state[1]
-
+            Analysis.SQLconfig.sql0.update('article', {'process_state': 1}, 'id = %d' % ii[7])
+            print "id = %d文章已转移" % ii[7]
