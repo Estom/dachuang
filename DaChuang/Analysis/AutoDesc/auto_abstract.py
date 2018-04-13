@@ -3,6 +3,12 @@
 import jieba
 from networkx import from_scipy_sparse_matrix, pagerank
 from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
+
+import os
+path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(path)
+print path
+
 import Analysis.SQLconfig
 
 def cut_sentence(sentence):
