@@ -24,7 +24,7 @@ def RunMain():
         logging.debug('学院爬虫error')
 
     try:
-        Spider.wechat.runwechat.RunWechatSpider()
+        # Spider.wechat.runwechat.RunWechatSpider()
         logging.info('微信爬虫successful')
 
     except Exception, e:

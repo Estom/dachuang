@@ -1,13 +1,20 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
-sys.path.append("..")
+import os
+
+path=os.path.dirname(os.path.abspath(__file__))
+sys.path.append(path)
+sys.path.append('/urs/local/bin/python')
+print path
+
 import logging
 import AutoDesc.auto_abstract
 import Classify.Classification
 import TagCloud.gethotword
 import TagCloud.matchWordAndContent
 import TransPath.TransPath
+
 
 
 def RunAnalysis():
@@ -75,4 +82,11 @@ def RunAnalysis():
 
 
 if __name__ == '__main__':
+    # 修改当前工作路径
+    path_now = os.path.dirname(os.path.abspath(__file__))
+    path_before = os.getcwd()
+    print 'path_now',path_now
+    print 'path_before',path_before
+    os.chdir(path_now)
     RunAnalysis()
+    os.chdir(path_before)

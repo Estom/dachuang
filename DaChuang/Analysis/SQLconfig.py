@@ -9,7 +9,7 @@ import os
 
 # sql0是dcspider数据库
 sql0 = MySQLTools(
-    host='111.230.181.121',
+    host='localhost',
     port=3306,
     user='root',
     passwd='ykl123',
@@ -19,7 +19,7 @@ sql0 = MySQLTools(
 
 # sql1是dcserver数据库
 sql1 = MySQLTools(
-    host='111.230.181.121',
+    host='localhost',
     port=3306,
     user='root',
     passwd='ykl123',
@@ -32,7 +32,7 @@ sql1 = MySQLTools(
 #     host='localhost',
 #     port=3306,
 #     user='root',
-#     passwd='',
+#     passwd='ykl123',
 #     db='test',
 #     charset='utf8'
 # )

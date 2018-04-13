@@ -4,8 +4,15 @@
 脚本名称：initTrainDate.py
 脚本作用：初始化训练分类数据
 """
-import Analysis.SQLconfig
 import sys
+
+import os
+path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(path)
+print path
+
+import Analysis.SQLconfig
+
 reload(sys)
 sys.setdefaultencoding("utf-8")
 a = Analysis.SQLconfig.sql1._getCount('train')

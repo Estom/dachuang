@@ -5,6 +5,10 @@
 脚本作用：训练分类器
 """
 import sys
+import os
+path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(path)
+print path
 import Analysis.FormatData
 from sklearn.datasets.base import Bunch
 from sklearn.feature_extraction.text import TfidfVectorizer
