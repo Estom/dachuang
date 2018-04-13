@@ -5,11 +5,15 @@
 @脚本作用：搬运数据
 @备注：只搬运了'title'、'content'、'data_publish'、'love_count'=0、'click_count'=0、'img'字段
 """
-import Analysis.SQLconfig
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
+import os
+path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(path)
+print path
 
+import Analysis.SQLconfig
 
 def runTransPath():
     continue_flag = True
