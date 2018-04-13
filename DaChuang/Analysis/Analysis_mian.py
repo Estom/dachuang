@@ -16,6 +16,7 @@ import TagCloud.matchWordAndContent
 import TransPath.TransPath
 
 
+
 def RunAnalysis():
     logging.basicConfig(filename='Analysislog.log', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -81,4 +82,11 @@ def RunAnalysis():
 
 
 if __name__ == '__main__':
+    # 修改当前工作路径
+    path_now = os.path.dirname(os.path.abspath(__file__))
+    path_before = os.getcwd()
+    print 'path_now',path_now
+    print 'path_before',path_before
+    os.chdir(path_now)
     RunAnalysis()
+    os.chdir(path_before)
