@@ -11,6 +11,11 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
+import os
+path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(path)
+print path
+
 def Commend_CT(UserID, numHistoryArticle=3, numTagRecommend=3, numRecommend=10):
     """
     基于关键字的智能推荐
@@ -71,7 +76,9 @@ def run_recommend():
     启动推荐算法
     :return: 无
     """
+    print u"run before"
     import Analysis.SQLconfig
+    print u"run end"
     user_id = []
     i = -1
     while True:
