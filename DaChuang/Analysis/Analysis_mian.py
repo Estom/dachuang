@@ -1,7 +1,13 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
-sys.path.append("..")
+import os
+
+path=os.path.dirname(os.path.abspath(__file__))
+sys.path.append(path)
+sys.path.append('/urs/local/bin/python')
+print path
+
 import logging
 import AutoDesc.auto_abstract
 import Classify.Classification
