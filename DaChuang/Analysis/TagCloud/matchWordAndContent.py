@@ -5,6 +5,10 @@
 # 脚本作用：将文章与热词联系在一起
 """
 import sys
+import os
+path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(path)
+print path
 import Analysis.SQLconfig
 import Analysis.FormatData
 from sklearn.feature_extraction.text import TfidfVectorizer
