@@ -5,6 +5,10 @@
 脚本用作用：分类
 """
 import sys
+import os
+path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(path)
+print path
 from sklearn.datasets.base import Bunch
 from sklearn.feature_extraction.text import TfidfVectorizer
 import Analysis.SQLconfig
