@@ -17,24 +17,18 @@ import Analysis.SQLconfig
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
+
 # 提取数据+分词+建立Bunch数据
 bunch = Bunch(contents=[], label=[])
-TrainData = []
-i = 0
-while True:
-    info = Analysis.SQLconfig.sql0.select('train', ['content', 'category_id'], None, 1, i)
-    if len(info) == 0:
-        break
-    info[0] = Analysis.FormatData.TextCut(info[0])
-    TrainData.append(info)
-    bunch.contents.append(info[0])
-    bunch.label.append(info[1])
-    i += 1
-    print i
+info = Analysis.SQLconfig.sql0.select('train', ['content', 'category_id'], None, None, None)
+for ii in info:
+    ii[0] = Analysis.FormatData.TextCut(ii[0])
+    bunch.contents.append(ii[0])
+    bunch.label.append(ii[1])
 # 提取数据+分词+建立Bunch数据结束
 
 # 读取停用词
-stpwrdlst = Analysis.FormatData.readfile(Analysis.SQLconfig.stopword_path).splitlines()
+stpwrdlst = Analysis.SQLconfig.sql0.select('stop_words', ['word'], None, None, None)
 
 # 构建tf-idf词向量空间对象
 tfidfspace = Bunch(label=bunch.label, tdm=[], vocabulary={})
@@ -68,9 +62,12 @@ min_df:
 # 此时tdm里面存储的就是if-idf权值矩阵
 tfidfspace.tdm = vectorizer.fit_transform(bunch.contents)
 tfidfspace.vocabulary = vectorizer.vocabulary_
-Analysis.FormatData.writebunchobj(Analysis.SQLconfig.wordbag_path, tfidfspace)
 
+path = os.path.abspath(__file__)
+path1 = os.path.split(path)
+wordbag_path = path1[0] + '\\train_set.dat'
+classification_path = path1[0] + '\\Classification_NB.dat'
+Analysis.FormatData.writebunchobj(wordbag_path, tfidfspace)
 # 训练分类器：输入词袋向量和分类标签，alpha:0.001 alpha越小，迭代次数越多，精度越高
 clf = MultinomialNB(alpha=0.001).fit(tfidfspace.tdm, tfidfspace.label)
-
-Analysis.FormatData.writebunchobj(Analysis.SQLconfig.classification_path, clf)
+Analysis.FormatData.writebunchobj(classification_path, clf)

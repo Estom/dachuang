@@ -19,14 +19,16 @@ sys.setdefaultencoding("utf-8")
 def runmatchWordAndContent():
     continue_flag = True
     while continue_flag:
-        info = Analysis.SQLconfig.sql1.select('dcweb_article', ['id', 'title', 'content'], 'tag_mark = 1', 1000, None)
-        if len(info) == 0:
+        info = Analysis.SQLconfig.sql1.select('dcweb_article', ['id', 'title', 'content'], 'tag_mark = 1', 1500, None)
+        numcontent = len(info)
+        if numcontent == 0:
             print u"已完成全部热词统计"
             return
-        if len(info) < 1000:
+        if numcontent < 1500:
             continue_flag = False
-        print u"已读取%d条数据" % len(info)
-        numcontent = len(info)
+            info1 = Analysis.SQLconfig.sql0.select('train', ['id', 'title', 'content'], None, 1500 - numcontent, None)
+            info += info1
+        print u"已读取%d条数据" % numcontent
         Data_content = []
         Data_ID = []
         for ii in info:
@@ -40,16 +42,7 @@ def runmatchWordAndContent():
             dict_hot_word.update({iii[1]: iii[0]})
 
         # 读取停用词表
-        stpwrdlst = []
-        import os
-        path = os.getcwd() + '\Analysis\TagCloud\stop_words.txt'
-        with open(path, 'rb') as f:
-            text = f.readlines()
-        for ii in text:
-            ii1 = ii.decode('utf8')
-            ii1 = ii1.strip("\r\n")
-            stpwrdlst.append(ii1)
-        # 读停用词表结束
+        stpwrdlst = Analysis.SQLconfig.sql0.select('stop_words', ['word'], None, None, None)
 
         '''得到文章的关键词'''
         FeaturesWordList = []  # 文章的关键词列表
@@ -60,7 +53,7 @@ def runmatchWordAndContent():
         tfidf = vectorizer.fit_transform(Data_content)
         word = vectorizer.get_feature_names()
         weight = tfidf.toarray()
-        for i in range(len(weight)):  # 打印每类文本的tf-idf词语权重，第一个for遍历所有文本，第二个for便利某一类文本下的词语权重
+        for i in range(numcontent):  # 打印每类文本的tf-idf词语权重，第一个for遍历所有文本，第二个for便利某一类文本下的词语权重
             print u"-------这里输出第", i, u"类文本的词语tf-idf权重------"
             dict.clear()
             dict_1 = []

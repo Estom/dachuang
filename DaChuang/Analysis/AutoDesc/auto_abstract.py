@@ -52,8 +52,8 @@ def cut_words(sentence):
     :param sentence: 
     :return: 
     """
-    stopwords = load_stopwords()
-    return filter(lambda x: not stopwords.__contains__(x), jieba.cut(sentence))
+    stpwrdlst = Analysis.SQLconfig.sql0.select('stop_words', ['word'], None, None, None)
+    return filter(lambda x: not stpwrdlst.__contains__(x), jieba.cut(sentence))
 
 
 def get_abstract(content, size=3):

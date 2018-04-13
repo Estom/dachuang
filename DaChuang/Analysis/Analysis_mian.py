@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-
+import SQLconfig
 path=os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path)
 sys.path.append('/urs/local/bin/python')
