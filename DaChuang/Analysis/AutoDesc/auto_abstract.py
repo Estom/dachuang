@@ -106,4 +106,5 @@ def RunAbstract():
             Analysis.SQLconfig.sql0.update('article', dic, 'id=%d' % ii[0])
             print u'id = %d : %s' % (ii[0], s[0])
 
-RunAbstract()
+if __name__ == "__main__":
+    RunAbstract()
