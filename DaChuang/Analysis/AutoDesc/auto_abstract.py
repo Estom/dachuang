@@ -104,3 +104,5 @@ def RunAbstract():
             dic = {'article.desc': s[0]}
             Analysis.SQLconfig.sql0.update('article', dic, 'id=%d' % ii[0])
             print u'id = %d : %s' % (ii[0], s[0])
+
+RunAbstract()
