@@ -36,7 +36,7 @@ def load_stopwords():
     :return: 
     """
     import os
-    path = os.getcwd() + '\Analysis\AutoDesc\stop_words.txt'
+    path = os.path.dirname(os.path.abspath(__file__)) + '/stop_words.txt'
     with open(path) as f:
         stopwords = f.readlines()
     stopwrdlist = []
@@ -64,7 +64,8 @@ def get_abstract(content, size=3):
     :return: 
     """
     docs = list(cut_sentence(content))
-    tfidf_model = TfidfVectorizer(tokenizer=jieba.cut, stop_words=load_stopwords())
+    stpwrdlst = Analysis.SQLconfig.sql0.select('stop_words', ['word'], None, None, None)
+    tfidf_model = TfidfVectorizer(tokenizer=jieba.cut, stpwrdlst)
     tfidf_matrix = tfidf_model.fit_transform(docs)
     normalized_matrix = TfidfTransformer().fit_transform(tfidf_matrix)
     similarity = from_scipy_sparse_matrix(normalized_matrix * normalized_matrix.T)
