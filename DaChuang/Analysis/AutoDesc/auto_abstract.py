@@ -36,7 +36,7 @@ def load_stopwords():
     :return: 
     """
     import os
-    path = os.getcwd() + '\Analysis\AutoDesc\stop_words.txt'
+    path = os.path.dirname(os.path.abspath(__file__)) + '/stop_words.txt'
     with open(path) as f:
         stopwords = f.readlines()
     stopwrdlist = []

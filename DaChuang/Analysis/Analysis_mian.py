@@ -18,6 +18,13 @@ import TransPath.TransPath
 
 
 def RunAnalysis():
+    # 修改当前工作路径
+    path_now = os.path.dirname(os.path.abspath(__file__))
+    path_before = os.getcwd()
+    print 'path_now',path_now
+    print 'path_before',path_before
+    os.chdir(path_now)
+
     logging.basicConfig(filename='Analysislog.log', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     logging.debug(u"文本处理开始...")
@@ -79,7 +86,8 @@ def RunAnalysis():
         print log
         logging.debug(log)
         logging.debug(u"文本处理有错误!")
-
+        
+    os.chdir(path_before)
 
 if __name__ == '__main__':
     # 修改当前工作路径
