@@ -64,7 +64,8 @@ def get_abstract(content, size=3):
     :return: 
     """
     docs = list(cut_sentence(content))
-    tfidf_model = TfidfVectorizer(tokenizer=jieba.cut, stop_words=load_stopwords())
+    stpwrdlst = Analysis.SQLconfig.sql0.select('stop_words', ['word'], None, None, None)
+    tfidf_model = TfidfVectorizer(tokenizer=jieba.cut, stop_words=stpwrdlst)
     tfidf_matrix = tfidf_model.fit_transform(docs)
     normalized_matrix = TfidfTransformer().fit_transform(tfidf_matrix)
     similarity = from_scipy_sparse_matrix(normalized_matrix * normalized_matrix.T)
@@ -104,3 +105,5 @@ def RunAbstract():
             dic = {'article.desc': s[0]}
             Analysis.SQLconfig.sql0.update('article', dic, 'id=%d' % ii[0])
             print u'id = %d : %s' % (ii[0], s[0])
+
+RunAbstract()
