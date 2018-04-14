@@ -27,7 +27,8 @@ def RunAnalysis():
 
     print u"当前目录", os.getcwd()
 
-    logging.basicConfig(filename='Analysislog.log', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    logging.basicConfig(filename='/Analysislog.log', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     logging.debug(u"文本处理开始...")
 
