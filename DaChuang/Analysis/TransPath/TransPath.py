@@ -37,6 +37,9 @@ def runTransPath():
                        'date_publish': ii[5], 'category_id': ii[6],
                        'publisher_id': Analysis.SQLconfig.dicPublisher.get(ii[1]),
                        'img': ii[4], 'tag_mark': 0}
-            Analysis.SQLconfig.sql1.add('dcweb_article', dicDate)
-            Analysis.SQLconfig.sql0.update('article', {'process_state': 1}, 'id = %d' % ii[7])
+            try:
+                Analysis.SQLconfig.sql1.add('dcweb_article', dicDate)
+                Analysis.SQLconfig.sql0.update('article', {'process_state': 1}, 'id = %d' % ii[7])
+            except:
+                print u"转移路径出错"
             print u"id = %d文章已转移" % ii[7]
