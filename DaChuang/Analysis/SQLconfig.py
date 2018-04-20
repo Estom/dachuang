@@ -9,7 +9,7 @@ import os
 
 # sql0是dcspider数据库
 sql0 = MySQLTools(
-    host='localhost',
+    host='111.230.181.121',
     port=3306,
     user='root',
     passwd='ykl123',
@@ -19,7 +19,7 @@ sql0 = MySQLTools(
 
 # sql1是dcserver数据库
 sql1 = MySQLTools(
-    host='localhost',
+    host='111.230.181.121',
     port=3306,
     user='root',
     passwd='ykl123',
@@ -36,13 +36,6 @@ sql1 = MySQLTools(
 #     db='test',
 #     charset='utf8'
 # )
-
-# 停用词路径
-stopword_path = os.getcwd() + '\Analysis\Classify\hlt_stop_words.txt'
-# 词向量空间路径
-wordbag_path = os.getcwd() + '\Analysis\Classify\\train_set.dat'
-# 分类器地址
-classification_path = os.getcwd() + '\Analysis\Classify\classification_NB.dat'
 
 # 类别字典
 dicClassToCategory = {}

@@ -1,0 +1,120 @@
+2018-04-12 23:58:42 [scrapy.utils.log] INFO: Scrapy 1.4.0 started (bot: npunews)
+2018-04-12 23:58:42 [scrapy.utils.log] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'npunews.spiders', 'ROBOTSTXT_OBEY': True, 'SPIDER_MODULES': ['npunews.spiders'], 'BOT_NAME': 'npunews', 'COOKIES_ENABLED': False, 'LOG_FILE': 'npuscrapy.log', 'DOWNLOAD_DELAY': 3}
+2018-04-12 23:58:42 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+2018-04-12 23:58:42 [twisted] CRITICAL: Unhandled error in Deferred:
+2018-04-12 23:58:42 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "c:\python27\lib\site-packages\twisted\internet\defer.py", line 1386, in _inlineCallbacks
+    result = g.send(result)
+  File "c:\python27\lib\site-packages\scrapy\crawler.py", line 95, in crawl
+    six.reraise(*exc_info)
+  File "c:\python27\lib\site-packages\scrapy\crawler.py", line 77, in crawl
+    self.engine = self._create_engine()
+  File "c:\python27\lib\site-packages\scrapy\crawler.py", line 102, in _create_engine
+    return ExecutionEngine(self, lambda _: self.stop())
+  File "c:\python27\lib\site-packages\scrapy\core\engine.py", line 69, in __init__
+    self.downloader = downloader_cls(crawler)
+  File "c:\python27\lib\site-packages\scrapy\core\downloader\__init__.py", line 88, in __init__
+    self.middleware = DownloaderMiddlewareManager.from_crawler(crawler)
+  File "c:\python27\lib\site-packages\scrapy\middleware.py", line 58, in from_crawler
+    return cls.from_settings(crawler.settings, crawler)
+  File "c:\python27\lib\site-packages\scrapy\middleware.py", line 34, in from_settings
+    mwcls = load_object(clspath)
+  File "c:\python27\lib\site-packages\scrapy\utils\misc.py", line 44, in load_object
+    mod = import_module(module)
+  File "c:\python27\lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "c:\python27\lib\site-packages\scrapy\downloadermiddlewares\retry.py", line 20, in <module>
+    from twisted.web.client import ResponseFailed
+  File "c:\python27\lib\site-packages\twisted\web\client.py", line 42, in <module>
+    from twisted.internet.endpoints import HostnameEndpoint, wrapClientTLS
+  File "c:\python27\lib\site-packages\twisted\internet\endpoints.py", line 41, in <module>
+    from twisted.internet.stdio import StandardIO, PipeAddress
+  File "c:\python27\lib\site-packages\twisted\internet\stdio.py", line 30, in <module>
+    from twisted.internet import _win32stdio
+  File "c:\python27\lib\site-packages\twisted\internet\_win32stdio.py", line 9, in <module>
+    import win32api
+ImportError: No module named win32api
+2018-04-12 23:58:43 [scrapy.utils.log] INFO: Scrapy 1.4.0 started (bot: npunews)
+2018-04-12 23:58:43 [scrapy.utils.log] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'npunews.spiders', 'ROBOTSTXT_OBEY': True, 'SPIDER_MODULES': ['npunews.spiders'], 'BOT_NAME': 'npunews', 'COOKIES_ENABLED': False, 'LOG_FILE': 'npuscrapy.log', 'DOWNLOAD_DELAY': 3}
+2018-04-12 23:58:43 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+2018-04-12 23:58:43 [twisted] CRITICAL: Unhandled error in Deferred:
+2018-04-12 23:58:43 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "c:\python27\lib\site-packages\twisted\internet\defer.py", line 1386, in _inlineCallbacks
+    result = g.send(result)
+  File "c:\python27\lib\site-packages\scrapy\crawler.py", line 95, in crawl
+    six.reraise(*exc_info)
+  File "c:\python27\lib\site-packages\scrapy\crawler.py", line 77, in crawl
+    self.engine = self._create_engine()
+  File "c:\python27\lib\site-packages\scrapy\crawler.py", line 102, in _create_engine
+    return ExecutionEngine(self, lambda _: self.stop())
+  File "c:\python27\lib\site-packages\scrapy\core\engine.py", line 69, in __init__
+    self.downloader = downloader_cls(crawler)
+  File "c:\python27\lib\site-packages\scrapy\core\downloader\__init__.py", line 88, in __init__
+    self.middleware = DownloaderMiddlewareManager.from_crawler(crawler)
+  File "c:\python27\lib\site-packages\scrapy\middleware.py", line 58, in from_crawler
+    return cls.from_settings(crawler.settings, crawler)
+  File "c:\python27\lib\site-packages\scrapy\middleware.py", line 34, in from_settings
+    mwcls = load_object(clspath)
+  File "c:\python27\lib\site-packages\scrapy\utils\misc.py", line 44, in load_object
+    mod = import_module(module)
+  File "c:\python27\lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "c:\python27\lib\site-packages\scrapy\downloadermiddlewares\retry.py", line 20, in <module>
+    from twisted.web.client import ResponseFailed
+  File "c:\python27\lib\site-packages\twisted\web\client.py", line 42, in <module>
+    from twisted.internet.endpoints import HostnameEndpoint, wrapClientTLS
+  File "c:\python27\lib\site-packages\twisted\internet\endpoints.py", line 41, in <module>
+    from twisted.internet.stdio import StandardIO, PipeAddress
+  File "c:\python27\lib\site-packages\twisted\internet\stdio.py", line 30, in <module>
+    from twisted.internet import _win32stdio
+  File "c:\python27\lib\site-packages\twisted\internet\_win32stdio.py", line 9, in <module>
+    import win32api
+ImportError: No module named win32api
+2018-04-12 23:58:44 [scrapy.utils.log] INFO: Scrapy 1.4.0 started (bot: npunews)
+2018-04-12 23:58:44 [scrapy.utils.log] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'npunews.spiders', 'ROBOTSTXT_OBEY': True, 'SPIDER_MODULES': ['npunews.spiders'], 'BOT_NAME': 'npunews', 'COOKIES_ENABLED': False, 'LOG_FILE': 'npuscrapy.log', 'DOWNLOAD_DELAY': 3}
+2018-04-12 23:58:44 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats']
+2018-04-12 23:58:44 [twisted] CRITICAL: Unhandled error in Deferred:
+2018-04-12 23:58:44 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "c:\python27\lib\site-packages\twisted\internet\defer.py", line 1386, in _inlineCallbacks
+    result = g.send(result)
+  File "c:\python27\lib\site-packages\scrapy\crawler.py", line 95, in crawl
+    six.reraise(*exc_info)
+  File "c:\python27\lib\site-packages\scrapy\crawler.py", line 77, in crawl
+    self.engine = self._create_engine()
+  File "c:\python27\lib\site-packages\scrapy\crawler.py", line 102, in _create_engine
+    return ExecutionEngine(self, lambda _: self.stop())
+  File "c:\python27\lib\site-packages\scrapy\core\engine.py", line 69, in __init__
+    self.downloader = downloader_cls(crawler)
+  File "c:\python27\lib\site-packages\scrapy\core\downloader\__init__.py", line 88, in __init__
+    self.middleware = DownloaderMiddlewareManager.from_crawler(crawler)
+  File "c:\python27\lib\site-packages\scrapy\middleware.py", line 58, in from_crawler
+    return cls.from_settings(crawler.settings, crawler)
+  File "c:\python27\lib\site-packages\scrapy\middleware.py", line 34, in from_settings
+    mwcls = load_object(clspath)
+  File "c:\python27\lib\site-packages\scrapy\utils\misc.py", line 44, in load_object
+    mod = import_module(module)
+  File "c:\python27\lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "c:\python27\lib\site-packages\scrapy\downloadermiddlewares\retry.py", line 20, in <module>
+    from twisted.web.client import ResponseFailed
+  File "c:\python27\lib\site-packages\twisted\web\client.py", line 42, in <module>
+    from twisted.internet.endpoints import HostnameEndpoint, wrapClientTLS
+  File "c:\python27\lib\site-packages\twisted\internet\endpoints.py", line 41, in <module>
+    from twisted.internet.stdio import StandardIO, PipeAddress
+  File "c:\python27\lib\site-packages\twisted\internet\stdio.py", line 30, in <module>
+    from twisted.internet import _win32stdio
+  File "c:\python27\lib\site-packages\twisted\internet\_win32stdio.py", line 9, in <module>
+    import win32api
+ImportError: No module named win32api
